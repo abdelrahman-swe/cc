@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img" aria-label="">
+  <rect width="640" height="520" rx="30" fill="#f9fcff"/>
+  <path d="M70 170l500-70 22 158-500 70z" fill="#1a1f28" opacity=".12"/>
+  <rect x="148" y="92" width="312" height="364" rx="34" transform="rotate(-15 304 274)" fill="#111827"/>
+  <rect x="166" y="116" width="276" height="320" rx="24" transform="rotate(-15 304 276)" fill="#ffffff"/>
+  <rect x="210" y="126" width="142" height="16" rx="8" transform="rotate(-15 281 134)" fill="#d8e6ff"/>
+  <rect x="214" y="174" width="190" height="84" rx="16" transform="rotate(-15 309 216)" fill="#eef5ff"/>
+  <rect x="244" y="196" width="116" height="12" rx="6" transform="rotate(-15 302 202)" fill="#183777"/>
+  <rect x="239" y="226" width="150" height="10" rx="5" transform="rotate(-15 314 231)" fill="#a9bddc"/>
+  <rect x="250" y="290" width="196" height="38" rx="14" transform="rotate(-15 348 309)" fill="#ff5a24"/>
+  <rect x="266" y="355" width="148" height="12" rx="6" transform="rotate(-15 340 361)" fill="#d8e6ff"/>
+  <circle cx="486" cy="128" r="38" fill="#fff3ed"/>
+  <path d="M486 110v36M468 128h36" stroke="#ff5a24" stroke-width="8" stroke-linecap="round"/>
+  <path d="M128 444h386" stroke="#0c1730" stroke-width="22" stroke-linecap="round" opacity=".12"/>
+</svg>
