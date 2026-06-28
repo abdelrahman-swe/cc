@@ -1,70 +1,41 @@
- ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+ ⚠ Port 3000 is in use by process 4728, using available port 3002 instead.
 <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Parsing of C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next-intl\dist\esm\production\extractor\format\index.js for build dependencies failed at 'import(t)'.
-<w> Build dependencies behind this expression are ignored and might cause incorrect cache invalidation.
-<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Parsing of C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next-intl\dist\esm\production\extractor\format\index.js for build dependencies failed at 'import(t)'.
-<w> Build dependencies behind this expression are ignored and might cause incorrect cache invalidation.
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\1.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\1.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\server-development\1.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\server-development\1.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\0.pack.gz'
- ⨯ ./src/features/home/LiteralHomePage.tsx
-Error:   [31mx[0m Expression expected
-     ,-[[36;1;4mC:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\src\features\home\LiteralHomePage.tsx[0m:275:1]
- [2m272[0m |                 <br />
- [2m273[0m |                 <br
- [2m274[0m |                 تدعم نمو أعمالك
- [2m275[0m |               </h1>
-     : [35;1m              ^[0m
- [2m276[0m |               <p className={cn('mt-6', 'text-[16px]', 'leading-8', 'text-[#8B93A6]')}>
- [2m277[0m |                 نصمم ونطور حلولاً وتطبيقات مخصصة لتحسين الكفاءة وتجربة العملاء.
- [2m278[0m |               </p>
-     `----
-  [31mx[0m Unterminated regexp literal
-     ,-[[36;1;4mC:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\src\features\home\LiteralHomePage.tsx[0m:275:1]
- [2m272[0m |                 <br />
- [2m273[0m |                 <br
- [2m274[0m |                 تدعم نمو أعمالك
- [2m275[0m |               </h1>
-     : [35;1m               ^^^^[0m
- [2m276[0m |               <p className={cn('mt-6', 'text-[16px]', 'leading-8', 'text-[#8B93A6]')}>
- [2m277[0m |                 نصمم ونطور حلولاً وتطبيقات مخصصة لتحسين الكفاءة وتجربة العملاء.
- [2m278[0m |               </p>
-     `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/features/home/LiteralHomePage.tsx
-./src/app/[locale]/page.tsx
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\1.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\1.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\1.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\1.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\server-development\1.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\server-development\1.pack.gz'
- ⨯ ./src/features/home/LiteralHomePage.tsx
-Error:   [31mx[0m Expression expected
-     ,-[[36;1;4mC:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\src\features\home\LiteralHomePage.tsx[0m:266:1]
- [2m263[0m |               </a>
- [2m264[0m |             ))}
- [2m265[0m |           </div>
- [2m266[0m |           <PillButton href="#contact" className="w-[160px]"</PillButton>
-     : [35;1m                                                           ^[0m
- [2m267[0m |         </nav>
- [2m268[0m |       </header>
-     `----
-  [31mx[0m Unterminated regexp literal
-     ,-[[36;1;4mC:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\src\features\home\LiteralHomePage.tsx[0m:266:1]
- [2m263[0m |               </a>
- [2m264[0m |             ))}
- [2m265[0m |           </div>
- [2m266[0m |           <PillButton href="#contact" className="w-[160px]"</PillButton>
-     : [35;1m                                                            ^^^^^^^^^^^^[0m
- [2m267[0m |         </nav>
- [2m268[0m |       </header>
-     `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/features/home/LiteralHomePage.tsx
-./src/app/[locale]/page.tsx
+<w> Build dependencies behind this expression are ignored and might cause incorrect cache i ⨯ ./src/fe<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: EPERM: operation not permitted, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\12.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\12.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: EPERM: operation not permitted, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\0.pack.gz'
+ ⨯ Error: Cannot find module './1103.js'
+Require stack:
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\server\webpack-runtime.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\server\app\_not-found\page.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\server\require.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\3.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\3.pack.gz'
+nai-curated-remote\node_modules\next\dist\build\swc\index.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\build\analysis\parse-module.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\build\analysis\get-page-static-info.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\server\lib\router-server.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\server\app\_not-found\page.js:2:7476)
+    at Object.<anonymous> (C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\server\app\_not-found\page.js:2:7528) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './1103.js'
+Require stack:
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\server\webpack-runtime.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\server\app\_not-found\page.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\server\require.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\server\load-components.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\build\utils.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\build\swc\options.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\build\swc\index.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\build\analysis\parse-module.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\build\analysis\get-page-static-info.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\server\lib\router-server.js
+- C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\server\app\_not-found\page.js:2:7476)
+    at Object.<anonymous> (C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\server\app\_not-found\page.js:2:7528) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\4.pack.gz_' -> 'C:\Users\Azza\Documents\Codex\2026-06-25\figma-plugin-figma-openai-curated-remote\.next\cache\webpack\client-development\4.pack.gz'

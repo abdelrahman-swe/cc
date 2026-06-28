@@ -117,7 +117,7 @@
 }
 
 :root {
-  --font-brand: var(--font-sans), "Thmanyah Sans", "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-brand: "Thmanyah Sans", var(--font-sans), "Segoe UI", Tahoma, Arial, sans-serif;
   --page-bg: #ffffff;
   --page-fg: #0e1730;
 }
@@ -185,4 +185,8 @@ canvas {
   *::after {
     scroll-behavior: auto !important;
   }
+}
+
+body {
+    cursor: url('/icons/mouse.svg'), auto;
 }

@@ -1,0 +1,131 @@
+{
+  "source": {
+    "figmaUrl": "https://www.figma.com/design/ki4BXvIoqd1WERQEzlbRbn/Codeclouders.web?node-id=413-23839&m=dev",
+    "nodeId": "413:23839",
+    "desktopFrame": {
+      "width": 1440,
+      "height": 6909,
+      "direction": "rtl"
+    }
+  },
+  "layout": {
+    "container": {
+      "desktopMaxWidth": 1240,
+      "desktopSideMargin": 100
+    },
+    "grid": {
+      "columns": 12,
+      "bentoGap": 24,
+      "listGap": 32
+    },
+    "sectionHeightsDesktop": {
+      "nav": 100,
+      "hero": 995,
+      "partners": 392,
+      "services": 1725,
+      "whoWeAreStatsWhyUs": 796,
+      "featuredWork": 937,
+      "methodology": 1024,
+      "contactCta": 584,
+      "footer": 356
+    }
+  },
+  "colors": {
+    "primary": "#F15722",
+    "primaryLight": "#F4794E",
+    "primaryAccent": "#FCDDD3",
+    "primarySoft": "#FEEEE9",
+    "secondary": "#243A77",
+    "secondarySpace": "#0D193B",
+    "secondaryDark": "#0E1730",
+    "secondaryMidnight": "#070C18",
+    "neutralWhite": "#FFFFFF",
+    "mutedText": "#74829A",
+    "softBackground": "#FAFBFF",
+    "borderSoft": "#EEF2F8",
+    "borderBlue": "#CFE0FF",
+    "borderOrange": "#F1D5CC"
+  },
+  "typography": {
+    "fontFamilyPrimary": "Thmanyah Sans",
+    "fontWeights": {
+      "regular": 400,
+      "medium": 500,
+      "bold": 700,
+      "black": 900
+    },
+    "fontFiles": {
+      "regular": "/font/thmanyah-typeface/thmanyahsans/woff2/thmanyahsans-Regular.woff2",
+      "medium": "/font/thmanyah-typeface/thmanyahsans/woff2/thmanyahsans-Medium.woff2",
+      "bold": "/font/thmanyah-typeface/thmanyahsans/woff2/thmanyahsans-Bold.woff2",
+      "black": "/font/thmanyah-typeface/thmanyahsans/woff2/thmanyahsans-Black.woff2"
+    },
+    "scaleDesktop": {
+      "nav": { "size": 15, "weight": 500 },
+      "heroHeadline": { "size": 52, "weight": 900, "lineHeight": 1.22 },
+      "heroBody": { "size": 16, "weight": 400, "lineHeight": 2 },
+      "sectionTag": { "size": 15, "weight": 500 },
+      "sectionHeading": { "size": 32, "weight": 700, "lineHeight": 1.25 },
+      "cardTitle": { "size": 22, "weight": 700, "lineHeight": 1.45 },
+      "cardBody": { "size": 15, "weight": 400, "lineHeight": 1.85 },
+      "statsNumber": { "size": 30, "weight": 900 },
+      "footerText": { "size": 15, "weight": 400 }
+    }
+  },
+  "radii": {
+    "card": 50,
+    "subcard": 16,
+    "button": 50.5,
+    "contactBand": 32,
+    "projectCard": 28,
+    "projectImage": 18
+  },
+  "borders": {
+    "soft": "1px solid #EEF2F8",
+    "heroCard": "1px solid #CFE0FF",
+    "orangeSubcard": "1px solid #F1D5CC"
+  },
+  "shadows": {
+    "card": "0 18px 44px rgba(14, 23, 48, 0.04)",
+    "button": "0 12px 28px rgba(14, 23, 48, 0.12)",
+    "heroCard": "0 20px 50px rgba(36, 58, 119, 0.06)"
+  },
+  "assets": {
+    "logo": "/Logo.svg",
+    "heroWave": "/footer.svg",
+    "heroBlurOrange": "/images/hero-blur-orange.svg",
+    "heroCardOrange": "/images/hero-card-orange.svg",
+    "heroChart": "/images/chart-orange.svg",
+    "partners": [
+      "/images/sadia.svg",
+      "/images/stc.svg",
+      "/images/mada.svg",
+      "/media/nafath.svg",
+      "/images/naama.svg",
+      "/images/noboco.svg"
+    ],
+    "services": [
+      "/mockups/mascot_web.png",
+      "/mockups/3aloolo.png",
+      "/mockups/Mockup 14.png",
+      "/mockups/Dashboard 1.png",
+      "/images/service-image.svg",
+      "/images/service-image-3.png",
+      "/images/globe.svg"
+    ],
+    "projects": [
+      "/media/red-cresent.png",
+      "/mockups/Mockup 14.png"
+    ],
+    "contactCta": [
+      "/mockups/mascot.png",
+      "/mockups/mascot_arm_front.png"
+    ],
+    "footerIcons": [
+      "/icons/twitter.svg",
+      "/icons/email.svg",
+      "/icons/Vector.svg",
+      "/icons/mouse.svg"
+    ]
+  }
+}
