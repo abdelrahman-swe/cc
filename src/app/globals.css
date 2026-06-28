@@ -179,6 +179,66 @@ canvas {
   animation: marquee 25s linear infinite;
 }
 
+/* ── CTA Pill Button – hybrid hover effect ────────────────────────── */
+.cta-pill {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Skewed overlay – slides away on hover (BHARGAVPATEL1244 inspired) */
+.cta-pill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -10%;
+  width: 120%;
+  height: 100%;
+  z-index: 0;
+  transform: skew(-30deg);
+  transition: transform 0.5s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.cta-pill--navy::before  { background: #1a2d5e; }
+.cta-pill--orange::before { background: #c44118; }
+.cta-pill--white::before  { background: #ffe8df; }
+
+.cta-pill:hover::before {
+  transform: skew(-30deg) translateX(-100%);
+}
+
+/* Children sit above the overlay */
+.cta-pill > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Icon diagonal-slide animation (Creatlydev inspired) ── */
+.cta-icon-wrap {
+  overflow: hidden;
+}
+
+.cta-icon-main {
+  transition: transform 0.35s ease-in-out;
+}
+
+.cta-icon-ghost {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: translate(150%, 150%);
+  transition: transform 0.35s ease-in-out 0.08s;
+}
+
+.cta-pill:hover .cta-icon-main {
+  transform: translate(-150%, -150%);
+}
+
+.cta-pill:hover .cta-icon-ghost {
+  transform: translate(0, 0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

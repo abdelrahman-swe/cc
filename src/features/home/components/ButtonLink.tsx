@@ -17,23 +17,26 @@ export function ButtonLink({
 }: ButtonLinkProps) {
   const variants = {
     primary:
-      'bg-brand-orange text-white shadow-[0_16px_36px_rgba(255,90,36,0.24)] hover:bg-[#ee4f1e]',
+      'cta-pill--orange bg-brand-orange text-white shadow-[0_16px_36px_rgba(255,90,36,0.24)]',
     secondary:
-      'bg-brand-navy text-white shadow-[0_16px_36px_rgba(24,55,119,0.18)] hover:bg-[#132e65]',
-    light: 'bg-white text-brand-orange shadow-[0_14px_34px_rgba(12,23,48,0.16)] hover:bg-[#fff7f3]'
+      'cta-pill--navy bg-brand-navy text-white shadow-[0_16px_36px_rgba(24,55,119,0.18)]',
+    light: 'cta-pill--white bg-white text-brand-orange shadow-[0_14px_34px_rgba(12,23,48,0.16)]'
   }
 
   return (
     <a
       href={href}
       className={cn(
-        'inline-flex h-14 items-center justify-center gap-3 rounded-full px-4 pe-6 text-sm font-bold transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-orange',
+        'cta-pill group inline-flex h-14 items-center justify-center gap-3 rounded-full px-4 pe-6 text-sm font-bold transition duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-orange',
         variants[variant],
         className
       )}
     >
-      <span className="grid size-10 place-items-center rounded-full bg-white/18">
-        <ArrowLeft aria-hidden="true" className="size-5" />
+      <span className="cta-icon-wrap relative grid size-10 place-items-center rounded-full bg-white/18">
+        <ArrowLeft aria-hidden className="cta-icon-main size-5" />
+        <span className="cta-icon-ghost">
+          <ArrowLeft aria-hidden className="size-5" />
+        </span>
       </span>
       <span>{children}</span>
     </a>
