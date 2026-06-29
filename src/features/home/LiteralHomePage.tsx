@@ -10,8 +10,9 @@ import {
 import { ArrowLeft, ArrowUpLeft, Star } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/cn";
+import type { HomePageData } from "./types/home";
 
-const navLinks = [
+const defaultNavLinks = [
   ["الرئيسية", "#home"],
   ["من نحن", "#who-we-are"],
   ["أعمالنا", "#featured-work"],
@@ -20,7 +21,7 @@ const navLinks = [
   ["تواصل معنا", "#contact"],
 ] as const;
 
-const partners = [
+const defaultPartners = [
   ["/images/noboco.svg", "noboco"],
   ["/images/naama.svg", "Naama"],
   ["/media/nafath.svg", "نفاذ"],
@@ -29,7 +30,7 @@ const partners = [
   ["/images/sadia.svg", "SDAIA"],
 ] as const;
 
-const whyCards = [
+const defaultWhyCards = [
   [
     "/icons/content/medal.svg",
     "خبرة تزيد عن 6 سنوات",
@@ -52,7 +53,7 @@ const whyCards = [
   ],
 ] as const;
 
-const methodology = [
+const defaultMethodology = [
   [
     "تحليل وفهم المشروع",
     "نكتشف الفكرة ونحولها إلى نطاق عمل واضح ومؤشرات نجاح قابلة للقياس.",
@@ -124,7 +125,7 @@ function PillButton({
   const circle = {
     nav: "bg-white text-[#243A77]",
     orange: "bg-white text-[#F15722]",
-    blue: "bg-white text-[#243A77]",
+    blue: "bg-white text-[#F15722]",
     white: "bg-[#F15722] text-white",
   };
 
@@ -292,7 +293,6 @@ function HeroProcessArt() {
         "gap-4",
       )}
     >
-      {/* Top Pill - Nama */}
       <div
         className={cn(
           "flex",
@@ -342,7 +342,6 @@ function HeroProcessArt() {
         </span>
       </div>
 
-      {/* Bottom Pill - Nobco */}
       <div
         className={cn(
           "flex",
@@ -449,7 +448,6 @@ function HeroCard({
         "group relative h-[360px] overflow-hidden rounded-[50px] border-2 border-[#F1D5CC] bg-white p-10 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(241,87,34,0.22)]",
       )}
     >
-      {/* Soft orange bottom glow on hover */}
       <div
         className={cn(
           "pointer-events-none",
@@ -527,7 +525,6 @@ function AiServiceCard() {
         "lg:col-span-2",
       )}
     >
-      {/* Simple ambient glow strictly behind image on hover */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-full w-full bg-gradient-to-t from-[#F15722]/25 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       <img
         src="/mockups/mascot.png"
@@ -698,7 +695,6 @@ function ServiceCard({
           "bg-transparent",
         )}
       >
-        {/* Simple ambient glow strictly behind the image on hover */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-full w-full bg-gradient-to-t from-[#F15722]/30 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         <img
           src={image}
@@ -786,7 +782,6 @@ function WideServiceCard() {
         </div>
       </div>
       <div className={cn("relative", "h-[320px]", "bg-white")}>
-        {/* Simple ambient glow strictly behind the image on hover */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-l from-[#F15722]/30 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         <img
           src="/images/globe.svg"
@@ -912,7 +907,27 @@ function ProjectCard({
   );
 }
 
-export function LiteralHomePage() {
+export function LiteralHomePage({ data }: { data?: HomePageData }) {
+  const navLinksList = data?.nav?.links?.length
+    ? data.nav.links.map((link) => [link.label, link.href] as const)
+    : defaultNavLinks;
+
+  const partnersList = data?.partners?.length
+    ? data.partners.map((p) => [p.logo?.src || "/images/noboco.svg", p.name] as const)
+    : defaultPartners;
+
+  const whyUsList = data?.whyUs?.length
+    ? data.whyUs.map((w, idx) => [
+        defaultWhyCards[idx % defaultWhyCards.length][0],
+        w.title,
+        w.description,
+      ] as const)
+    : defaultWhyCards;
+
+  const methodologyList = data?.methodology?.steps?.length
+    ? data.methodology.steps.map((m) => [m.title, m.description] as const)
+    : defaultMethodology;
+
   return (
     <div
       dir="rtl"
@@ -937,7 +952,7 @@ export function LiteralHomePage() {
         >
           <img
             src="/Logo.svg"
-            alt="Code Clouders"
+            alt={data?.nav?.brand || "Code Clouders"}
             className={cn("h-[39px]", "w-[160px]")}
           />
           <div
@@ -952,7 +967,7 @@ export function LiteralHomePage() {
               "lg:flex",
             )}
           >
-            {navLinks.map(([label, href], index) => (
+            {navLinksList.map(([label, href], index) => (
               <a
                 key={label}
                 href={href}
@@ -962,8 +977,8 @@ export function LiteralHomePage() {
               </a>
             ))}
           </div>
-          <PillButton href="#contact" className="w-[160px]">
-            طلب خدمة
+          <PillButton href={data?.nav?.cta?.href || "#contact"} className="w-[160px]">
+            {data?.nav?.cta?.label || "طلب خدمة"}
           </PillButton>
         </motion.nav>
       </header>
@@ -1022,10 +1037,10 @@ export function LiteralHomePage() {
                 )}
               >
                 <span className="block">
-                  شريكك التقني لحلــــول{" "}
-                  <span className="text-[#F15722]">رقميـــــة</span>
+                  {data?.hero?.headline?.before || "شريكك التقني لحلــــول"}{" "}
+                  <span className="text-[#F15722]">{data?.hero?.headline?.emphasis || "رقميـــــة"}</span>
                 </span>
-                <span className={cn("mt-5", "block")}>تدعم نمو أعمالك</span>
+                <span className={cn("mt-5", "block")}>{data?.hero?.headline?.after || "تدعم نمو أعمالك"}</span>
               </h1>
               <p
                 className={cn(
@@ -1037,7 +1052,7 @@ export function LiteralHomePage() {
                   "text-[#8B93A6]",
                 )}
               >
-                نصمم ونطور مواقع وتطبيقات مخصصة لتحسين الكفاءة وتجربة العملاء.
+                {data?.hero?.subtitle || "نصمم ونطور مواقع وتطبيقات مخصصة لتحسين الكفاءة وتجربة العملاء."}
               </p>
             </motion.div>
 
@@ -1056,24 +1071,38 @@ export function LiteralHomePage() {
                 "max-md:mt-14",
               )}
             >
-              <HeroCard
-                title="نجعل الأمر أسهل"
-                body="من الفكرة إلى التنفيذ، بخطوات واضحة وعملية"
-                type="button"
-                hoverRotate={-2}
-              />
-              <HeroCard
-                title="نستمع إليك لنفهم احتياجاتك"
-                body="فخورين بثقة أكثر من 250 مؤسسة ومنظمة"
-                type="process"
-                hoverRotate={2}
-              />
-              <HeroCard
-                title="نمنحك رؤية أوضح"
-                body="من خلال أدوات تساعدك على قياس النجاح"
-                type="chart"
-                hoverRotate={-2}
-              />
+              {data?.hero?.cards?.length ? (
+                data.hero.cards.map((card, idx) => (
+                  <HeroCard
+                    key={card.title}
+                    title={card.title}
+                    body={card.description}
+                    type={card.visual || (idx === 0 ? "button" : idx === 1 ? "process" : "chart")}
+                    hoverRotate={idx % 2 === 0 ? -2 : 2}
+                  />
+                ))
+              ) : (
+                <>
+                  <HeroCard
+                    title="نجعل الأمر أسهل"
+                    body="من الفكرة إلى التنفيذ، بخطوات واضحة وعملية"
+                    type="button"
+                    hoverRotate={-2}
+                  />
+                  <HeroCard
+                    title="نستمع إليك لنفهم احتياجاتك"
+                    body="فخورين بثقة أكثر من 250 مؤسسة ومنظمة"
+                    type="process"
+                    hoverRotate={2}
+                  />
+                  <HeroCard
+                    title="نمنحك رؤية أوضح"
+                    body="من خلال أدوات تساعدك على قياس النجاح"
+                    type="chart"
+                    hoverRotate={-2}
+                  />
+                </>
+              )}
             </motion.div>
 
             <motion.div
@@ -1083,8 +1112,8 @@ export function LiteralHomePage() {
               viewport={motionViewport}
               className="mt-16"
             >
-              <PillButton href="#contact" variant="orange">
-                احصل على استشارة مجانية
+              <PillButton href={data?.hero?.primaryCta?.href || "#contact"} variant="orange">
+                {data?.hero?.primaryCta?.label || "احصل على استشارة مجانية"}
               </PillButton>
             </motion.div>
           </div>
@@ -1107,7 +1136,7 @@ export function LiteralHomePage() {
               "lg:px-0",
             )}
           >
-            <SectionTag>شركاء النجاح</SectionTag>
+            <SectionTag>{data?.partnersCopy?.eyebrow || "شركاء النجاح"}</SectionTag>
             <h2
               className={cn(
                 "mt-6",
@@ -1117,7 +1146,7 @@ export function LiteralHomePage() {
                 "text-[#243A77]",
               )}
             >
-              عملاء وثقوا بنا لصناعة حلول رقمية مؤثرة
+              {data?.partnersCopy?.heading || "عملاء وثقوا بنا لصناعة حلول رقمية مؤثرة"}
             </h2>
             <div
               className={cn(
@@ -1129,7 +1158,7 @@ export function LiteralHomePage() {
                 "md:grid-cols-6",
               )}
             >
-              {partners.map(([src, alt]) => (
+              {partnersList.map(([src, alt]) => (
                 <motion.div
                   key={alt}
                   variants={fadeIn}
@@ -1173,7 +1202,7 @@ export function LiteralHomePage() {
               whileInView="visible"
               viewport={motionViewport}
             >
-              <SectionTag>خدماتنا</SectionTag>
+              <SectionTag>{data?.servicesCopy?.eyebrow || "خدماتنا"}</SectionTag>
               <h2
                 className={cn(
                   "mx-auto",
@@ -1186,7 +1215,7 @@ export function LiteralHomePage() {
                   "text-[#243A77]",
                 )}
               >
-                حلول رقمية متكاملة تواكب نمو أعمالك
+                {data?.servicesCopy?.heading || "حلول رقمية متكاملة تواكب نمو أعمالك"}
               </h2>
             </motion.div>
 
@@ -1197,32 +1226,45 @@ export function LiteralHomePage() {
               viewport={motionViewport}
               className={cn("mt-[70px]", "grid", "gap-6", "lg:grid-cols-3")}
             >
-              <ServiceCard
-                title="تصميم الواجهات وتجربة المستخدم"
-                body="نصمم تجارب مستخدم رقمية تتمحور حول المستخدم، تعزز التفاعل وترفع قيمة علامتك التجارية."
-                image="/mockups/Mockup 14.png"
-                imageClass="object-cover object-top w-full h-full"
-              />
-              <AiServiceCard />
-              <ServiceCard
-                title="تطوير تطبيقات الجوال"
-                body="نبني تطبيقات Native وCross-platform لتجربة مستخدم سلسة ومتكاملة مع مختلف الأنظمة."
-                image="/images/service-image.svg"
-                imageClass="object-cover object-top w-full h-full"
-              />
-              <ServiceCard
-                title="بناء منتجات SaaS"
-                body="نساعدك في تطوير منصات SaaS مرنة وقابلة للتوسع، بنظام اشتراكات يمكن منتجك من النمو."
-                image="/images/service-image-3.png"
-                imageClass="object-cover object-top w-full h-full"
-              />
-              <ServiceCard
-                title="حلول التجارة الإلكترونية"
-                body="نبني متاجر وتجارب بيع رقمية عالية الأداء، من الكتالوج حتى الدفع والتكاملات."
-                image="/mockups/Dashboard 1.png"
-                imageClass="object-cover object-top w-full h-full"
-              />
-              <WideServiceCard />
+              {data?.services?.length ? (
+                data.services.map((svc) => (
+                  <ServiceCard
+                    key={svc.title}
+                    title={svc.title}
+                    body={svc.description}
+                    image={svc.image?.src || "/mockups/Mockup 14.png"}
+                  />
+                ))
+              ) : (
+                <>
+                  <ServiceCard
+                    title="تصميم الواجهات وتجربة المستخدم"
+                    body="نصمم تجارب مستخدم رقمية تتمحور حول المستخدم، تعزز التفاعل وترفع قيمة علامتك التجارية."
+                    image="/mockups/Mockup 14.png"
+                    imageClass="object-cover object-top w-full h-full"
+                  />
+                  <AiServiceCard />
+                  <ServiceCard
+                    title="تطوير تطبيقات الجوال"
+                    body="نبني تطبيقات Native وCross-platform لتجربة مستخدم سلسة ومتكاملة مع مختلف الأنظمة."
+                    image="/images/service-image.svg"
+                    imageClass="object-cover object-top w-full h-full"
+                  />
+                  <ServiceCard
+                    title="بناء منتجات SaaS"
+                    body="نساعدك في تطوير منصات SaaS مرنة وقابلة للتوسع، بنظام اشتراكات يمكن منتجك من النمو."
+                    image="/images/service-image-3.png"
+                    imageClass="object-cover object-top w-full h-full"
+                  />
+                  <ServiceCard
+                    title="حلول التجارة الإلكترونية"
+                    body="نبني متاجر وتجارب بيع رقمية عالية الأداء، من الكتالوج حتى الدفع والتكاملات."
+                    image="/mockups/Dashboard 1.png"
+                    imageClass="object-cover object-top w-full h-full"
+                  />
+                  <WideServiceCard />
+                </>
+              )}
             </motion.div>
           </div>
         </section>
@@ -1258,7 +1300,7 @@ export function LiteralHomePage() {
                   "text-[#0E1730]",
                 )}
               >
-                نبني حلولا رقمية تنمو مع أعمالك
+                {data?.whoWeAre?.heading || "نبني حلولا رقمية تنمو مع أعمالك"}
               </h2>
               <p
                 className={cn(
@@ -1268,9 +1310,7 @@ export function LiteralHomePage() {
                   "text-[#6F7890]",
                 )}
               >
-                منذ انطلاقنا في 2017، كرسنا جهودنا لتمكين المؤسسات من التميز
-                الرقمي. نفخر بسجل من المشاريع التي أحدثت فارقا حقيقيا في أداء
-                شركائنا.
+                {data?.whoWeAre?.body || "منذ انطلاقنا في 2017، كرسنا جهودنا لتمكين المؤسسات من التميز الرقمي. نفخر بسجل من المشاريع التي أحدثت فارقا حقيقيا في أداء شركائنا."}
               </p>
               <motion.div
                 variants={staggerContainer}
@@ -1286,15 +1326,15 @@ export function LiteralHomePage() {
                   "text-center",
                 )}
               >
-                {[
-                  ["+200", "مشروع", "تم تسليمه بنجاح"],
-                  ["+150", "عميل", "وشريك نجاح"],
-                  ["+10", "سنوات", "خبرة وتميز تقني"],
-                ].map(([value, label, body]) => {
-                  const numericValue = Number(String(value).replace(/\D/g, ""));
+                {(data?.stats?.length ? data.stats : [
+                  { value: "+200", label: "مشروع", description: "تم تسليمه بنجاح" },
+                  { value: "+150", label: "عميل", description: "وشريك نجاح" },
+                  { value: "+10", label: "سنوات", description: "خبرة وتميز تقني" },
+                ]).map((stat) => {
+                  const numericValue = Number(String(stat.value).replace(/\D/g, ""));
 
                   return (
-                    <motion.div key={label} variants={fadeUp}>
+                    <motion.div key={stat.label} variants={fadeUp}>
                       <div
                         className={cn(
                           "text-[30px]",
@@ -1311,7 +1351,7 @@ export function LiteralHomePage() {
                           "text-[#243A77]",
                         )}
                       >
-                        {label}
+                        {stat.label}
                       </div>
                       <p
                         className={cn(
@@ -1321,15 +1361,15 @@ export function LiteralHomePage() {
                           "text-[#74829A]",
                         )}
                       >
-                        {body}
+                        {stat.description}
                       </p>
                     </motion.div>
                   );
                 })}
               </motion.div>
               <div className={cn("mt-16", "flex", "justify-start")}>
-                <PillButton href="#contact" variant="blue">
-                  ابدأ رحلة نموك
+                <PillButton href={data?.whoWeAre?.cta?.href || "#contact"} variant="blue">
+                  {data?.whoWeAre?.cta?.label || "ابدأ رحلة نموك"}
                 </PillButton>
               </div>
             </motion.div>
@@ -1341,7 +1381,7 @@ export function LiteralHomePage() {
               viewport={motionViewport}
               className={cn("grid", "gap-8")}
             >
-              {whyCards.map(([icon, title, body]) => (
+              {whyUsList.map(([icon, title, body]) => (
                 <motion.article
                   key={title}
                   variants={fadeUp}
@@ -1418,7 +1458,7 @@ export function LiteralHomePage() {
               whileInView="visible"
               viewport={motionViewport}
             >
-              <SectionTag>مشاريع مختارة</SectionTag>
+              <SectionTag>{data?.resultsCopy?.eyebrow || "مشاريع مختارة"}</SectionTag>
               <h2
                 className={cn(
                   "mt-6",
@@ -1428,7 +1468,7 @@ export function LiteralHomePage() {
                   "text-[#243A77]",
                 )}
               >
-                نحوّل الأفكار إلى مشاريع تحقق نتائج
+                {data?.resultsCopy?.heading || "نحوّل الأفكار إلى مشاريع تحقق نتائج"}
               </h2>
             </motion.div>
 
@@ -1439,22 +1479,35 @@ export function LiteralHomePage() {
               viewport={motionViewport}
               className={cn("mt-14", "grid", "gap-6", "md:grid-cols-3")}
             >
-              <ProjectCard
-                image="/media/red-cresent.png"
-                category="موقع"
-                title="هيئة الهلال الأحمر السعودي"
-              />
-              <ProjectCard
-                image="/mockups/Mockup 14.png"
-                category="متجر"
-                title="أبير"
-                imageClass="object-cover object-center"
-              />
-              <ProjectCard
-                image="/media/red-cresent.png"
-                category="موقع"
-                title="هيئة الهلال الأحمر السعودي"
-              />
+              {data?.caseStudies?.length ? (
+                data.caseStudies.map((cs) => (
+                  <ProjectCard
+                    key={cs.title}
+                    image={cs.image?.src || "/media/red-cresent.png"}
+                    category={cs.category}
+                    title={cs.title}
+                  />
+                ))
+              ) : (
+                <>
+                  <ProjectCard
+                    image="/media/red-cresent.png"
+                    category="موقع"
+                    title="هيئة الهلال الأحمر السعودي"
+                  />
+                  <ProjectCard
+                    image="/mockups/Mockup 14.png"
+                    category="متجر"
+                    title="أبير"
+                    imageClass="object-cover object-center"
+                  />
+                  <ProjectCard
+                    image="/media/red-cresent.png"
+                    category="موقع"
+                    title="هيئة الهلال الأحمر السعودي"
+                  />
+                </>
+              )}
             </motion.div>
             <motion.div
               variants={fadeUp}
@@ -1463,8 +1516,8 @@ export function LiteralHomePage() {
               viewport={motionViewport}
               className="mt-14"
             >
-              <PillButton href="#featured-work" variant="blue">
-                تصفح جميع المشاريع
+              <PillButton href={data?.resultsCopy?.cta?.href || "#featured-work"} variant="blue">
+                {data?.resultsCopy?.cta?.label || "تصفح جميع المشاريع"}
               </PillButton>
             </motion.div>
           </div>
@@ -1489,7 +1542,7 @@ export function LiteralHomePage() {
               whileInView="visible"
               viewport={motionViewport}
             >
-              <SectionTag>آلية العمل</SectionTag>
+              <SectionTag>{data?.methodology?.eyebrow || "آلية العمل"}</SectionTag>
               <h2
                 className={cn(
                   "mt-6",
@@ -1499,7 +1552,7 @@ export function LiteralHomePage() {
                   "text-[#243A77]",
                 )}
               >
-                من الفكرة إلى الإطلاق بخطوات تقنية دقيقة
+                {data?.methodology?.heading || "من الفكرة إلى الإطلاق بخطوات تقنية دقيقة"}
               </h2>
             </motion.div>
 
@@ -1527,7 +1580,7 @@ export function LiteralHomePage() {
                   "lg:block",
                 )}
               />
-              {methodology.map(([title, body], index) => {
+              {methodologyList.map(([title, body], index) => {
                 const step = index + 1;
                 const even = step % 2 === 0;
 
@@ -1694,12 +1747,17 @@ export function LiteralHomePage() {
                 );
               })}
             </div>
-
-            <div className="my-20">
-              <PillButton href="#contact" variant="blue">
-                تواصل معنا الآن
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={motionViewport}
+              className="mt-14"
+            >
+              <PillButton href={data?.methodology?.cta?.href || "#contact"} variant="orange">
+                {data?.methodology?.cta?.label || "تواصل معنا الآن"}
               </PillButton>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -1746,7 +1804,7 @@ export function LiteralHomePage() {
                     "leading-tight",
                   )}
                 >
-                  لنحوّل فكرتك إلى منتج رقمي حقيقي
+                  {data?.finalCta?.heading || "لنحوّل فكرتك إلى منتج رقمي حقيقي"}
                 </h2>
                 <p
                   className={cn(
@@ -1756,11 +1814,11 @@ export function LiteralHomePage() {
                     "text-white/80",
                   )}
                 >
-                  حوّل الفكرة إلى واقع ملموس
+                  {data?.finalCta?.body || "حوّل الفكرة إلى واقع ملموس"}
                 </p>
                 <div className="mt-9">
-                  <PillButton href="#contact" variant="white">
-                    احصل على استشارة مجانية
+                  <PillButton href={data?.finalCta?.cta?.href || "#contact"} variant="white">
+                    {data?.finalCta?.cta?.label || "احصل على استشارة مجانية"}
                   </PillButton>
                 </div>
               </div>
@@ -1783,23 +1841,23 @@ export function LiteralHomePage() {
         </section>
       </main>
 
-      <footer className={cn("bg-[#0D193B]", "text-white", "lg:min-h-[356px]")}>
+      <footer className={cn("bg-[#0E1730]", "pt-16", "text-white")}>
         <div
           className={cn(
             "mx-auto",
             "grid",
-            "max-w-[1200px]",
+            "max-w-[1240px]",
             "gap-10",
             "px-5",
-            "py-16",
-            "lg:grid-cols-[199px_220px_220px_160px]",
-            "lg:justify-between",
+            "pb-16",
+            "md:grid-cols-2",
+            "lg:grid-cols-4",
             "lg:px-0",
           )}
         >
           <div>
             <p className={cn("text-[17px]", "font-bold")}>
-              تابعنا على وسائل التواصل
+              {data?.footer?.socialTitle || "تابعنا على وسائل التواصل"}
             </p>
             <div className={cn("mt-4", "flex", "gap-4")}>
               {[
@@ -1832,18 +1890,18 @@ export function LiteralHomePage() {
               <p
                 className={cn("mb-3", "text-[17px]", "font-bold", "text-white")}
               >
-                العنوان
+                {data?.footer?.locationTitle || "العنوان"}
               </p>
-              <p>المملكة العربية السعودية</p>
+              <p>{data?.footer?.location || "المملكة العربية السعودية"}</p>
             </div>
             <div>
               <p
                 className={cn("mb-3", "text-[17px]", "font-bold", "text-white")}
               >
-                تواصل معنا
+                {data?.footer?.contactTitle || "تواصل معنا"}
               </p>
-              <p>info@codeclouders.com</p>
-              <p className="mt-2">+966 55 019 7744</p>
+              <p>{data?.footer?.email || "info@codeclouders.com"}</p>
+              <p className="mt-2">{data?.footer?.phone || "+966 55 019 7744"}</p>
             </div>
           </div>
           <div>
@@ -1857,7 +1915,7 @@ export function LiteralHomePage() {
                 "text-white/70",
               )}
             >
-              {navLinks.map(([label, href]) => (
+              {navLinksList.map(([label, href]) => (
                 <a key={label} href={href}>
                   {label}
                 </a>
@@ -1866,7 +1924,7 @@ export function LiteralHomePage() {
           </div>
           <img
             src="/Logo.svg"
-            alt="Code Clouders"
+            alt={data?.nav?.brand || "Code Clouders"}
             className={cn("h-[39px]", "w-[160px]", "brightness-0", "invert")}
           />
         </div>
@@ -1882,7 +1940,7 @@ export function LiteralHomePage() {
             "lg:px-0",
           )}
         >
-          جميع الحقوق محفوظة - CodeClouders.
+          {data?.footer?.copyright || "جميع الحقوق محفوظة - CodeClouders."}
         </p>
       </footer>
     </div>

@@ -1,18 +1,15 @@
-import type { GlobalConfig } from 'payload'
+import type { Block } from 'payload'
 
-import { anyone, authenticated } from '@/payload/access'
-
-export const HeroContent: GlobalConfig = {
-  slug: 'hero-content',
-  label: 'Hero Content',
-  access: {
-    read: anyone,
-    update: authenticated
+export const HeroBlock: Block = {
+  slug: 'hero-block',
+  labels: {
+    singular: 'Hero Block',
+    plural: 'Hero Blocks'
   },
   fields: [
     {
       name: 'headline',
-      label: 'Main Headline Parts',
+      label: 'Main Headline Parts (Colored)',
       type: 'group',
       localized: true,
       fields: [
@@ -87,18 +84,9 @@ export const HeroContent: GlobalConfig = {
           type: 'select',
           defaultValue: 'button',
           options: [
-            {
-              label: 'Button Art (CTA Pill)',
-              value: 'button'
-            },
-            {
-              label: 'Process Art (Client Feedback)',
-              value: 'process'
-            },
-            {
-              label: 'Chart Art (Graph)',
-              value: 'chart'
-            }
+            { label: 'Button Art (CTA Pill)', value: 'button' },
+            { label: 'Process Art (Client Feedback)', value: 'process' },
+            { label: 'Chart Art (Graph)', value: 'chart' }
           ]
         }
       ],

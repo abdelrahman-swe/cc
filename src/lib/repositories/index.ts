@@ -1,0 +1,5 @@
+export * from './pages.repository'
+export * from './services.repository'
+export * from './partners.repository'
+export * from './caseStudies.repository'
+export * from './blogs.repository'

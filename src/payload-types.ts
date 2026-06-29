@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    pages: Page;
     services: Service;
     statistics: Statistic;
     'case-studies': CaseStudy;
@@ -83,6 +84,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     statistics: StatisticsSelect<false> | StatisticsSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
@@ -94,14 +96,20 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: number;
+    defaultIDType: string;
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('ar' | 'en') | ('ar' | 'en')[];
   globals: {
+    'site-settings': SiteSetting;
+    navigation: Navigation;
+    footer: Footer;
     'hero-content': HeroContent;
     'homepage-settings': HomepageSetting;
   };
   globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
     'hero-content': HeroContentSelect<false> | HeroContentSelect<true>;
     'homepage-settings': HomepageSettingsSelect<false> | HomepageSettingsSelect<true>;
   };
@@ -138,7 +146,7 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
+  id: string;
   name?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -164,7 +172,7 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
+  id: string;
   alt: string;
   caption?: string | null;
   updatedAt: string;
@@ -199,17 +207,197 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: string;
+  title: string;
+  slug: string;
+  hero?: {
+    type?: ('standard' | 'homepage' | 'none') | null;
+    badge?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    primaryCta?: {
+      label?: string | null;
+      href?: string | null;
+    };
+    secondaryCta?: {
+      label?: string | null;
+      href?: string | null;
+    };
+    homepageHeadline?: {
+      before?: string | null;
+      emphasis?: string | null;
+      after?: string | null;
+    };
+    homepageSubtitle?: string | null;
+    homepagePrimaryCta?: {
+      label?: string | null;
+      href?: string | null;
+    };
+    homepageCards?:
+      | {
+          title: string;
+          description: string;
+          visual?: ('button' | 'process' | 'chart') | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  layout?:
+    | (
+        | {
+            headline?: {
+              before?: string | null;
+              emphasis?: string | null;
+              after?: string | null;
+            };
+            subtitle?: string | null;
+            primaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            cards?:
+              | {
+                  title: string;
+                  description: string;
+                  visual?: ('button' | 'process' | 'chart') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero-block';
+          }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            description?: string | null;
+            selectionMode?: ('all' | 'featured' | 'manual') | null;
+            manualServices?: (string | Service)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'services-block';
+          }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            description?: string | null;
+            selectionMode?: ('featured' | 'latest' | 'manual') | null;
+            manualCaseStudies?: (string | CaseStudy)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featured-work-block';
+          }
+        | {
+            sectionTag?: string | null;
+            selectionMode?: ('all' | 'featured' | 'manual') | null;
+            manualPartners?: (string | Partner)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'partners-block';
+          }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            description?: string | null;
+            selectionMode?: ('latest' | 'featured' | 'manual') | null;
+            manualPosts?: (string | BlogPost)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blog-block';
+          }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            selectionMode?: ('all' | 'manual') | null;
+            manualStats?: (string | Statistic)[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statistics-block';
+          }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            steps?:
+              | {
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'methodology-block';
+          }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            description?: string | null;
+            whyCards?:
+              | {
+                  icon: string;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'who-we-are-block';
+          }
+        | {
+            headline?: string | null;
+            subtitle?: string | null;
+            primaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            secondaryCta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'final-cta-block';
+          }
+      )[]
+    | null;
+  seo?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    keywords?: string | null;
+    ogImage?: (string | null) | Media;
+  };
+  settings?: {
+    transparentHeader?: boolean | null;
+    pageTemplate?: ('default' | 'landing' | 'fullWidth') | null;
+    breadcrumbVisibility?: boolean | null;
+    defaultTheme?: ('light' | 'dark' | 'auto') | null;
+    animationToggle?: boolean | null;
+    previewImage?: (string | null) | Media;
+    analyticsIdentifiers?: {
+      gtmId?: string | null;
+      conversionTag?: string | null;
+    };
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
 export interface Service {
-  id: number;
+  id: string;
   title: string;
   description: string;
   summary?: string | null;
   metric?: string | null;
   layout: 'featured' | 'standard' | 'wide';
   accent?: ('blue' | 'orange' | 'neutral') | null;
-  image?: (number | null) | Media;
+  image?: (string | null) | Media;
   /**
    * Optional public or remote image URL used by the homepage card.
    */
@@ -221,27 +409,14 @@ export interface Service {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "statistics".
- */
-export interface Statistic {
-  id: number;
-  value: string;
-  label: string;
-  description?: string | null;
-  order: number;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "case-studies".
  */
 export interface CaseStudy {
-  id: number;
+  id: string;
   title: string;
   category: string;
   excerpt?: string | null;
-  image?: (number | null) | Media;
+  image?: (string | null) | Media;
   /**
    * Optional public or remote image URL used by the homepage card.
    */
@@ -257,9 +432,9 @@ export interface CaseStudy {
  * via the `definition` "partners".
  */
 export interface Partner {
-  id: number;
+  id: string;
   name: string;
-  logo?: (number | null) | Media;
+  logo?: (string | null) | Media;
   href?: string | null;
   order: number;
   updatedAt: string;
@@ -270,10 +445,10 @@ export interface Partner {
  * via the `definition` "blog-posts".
  */
 export interface BlogPost {
-  id: number;
+  id: string;
   title: string;
   excerpt: string;
-  image?: (number | null) | Media;
+  image?: (string | null) | Media;
   /**
    * Optional public or remote image URL used by the homepage card.
    */
@@ -286,10 +461,23 @@ export interface BlogPost {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "statistics".
+ */
+export interface Statistic {
+  id: string;
+  value: string;
+  label: string;
+  description?: string | null;
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: number;
+  id: string;
   key: string;
   data:
     | {
@@ -306,40 +494,44 @@ export interface PayloadKv {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
+  id: string;
   document?:
     | ({
         relationTo: 'users';
-        value: number | User;
+        value: string | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: number | Media;
+        value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: string | Page;
       } | null)
     | ({
         relationTo: 'services';
-        value: number | Service;
+        value: string | Service;
       } | null)
     | ({
         relationTo: 'statistics';
-        value: number | Statistic;
+        value: string | Statistic;
       } | null)
     | ({
         relationTo: 'case-studies';
-        value: number | CaseStudy;
+        value: string | CaseStudy;
       } | null)
     | ({
         relationTo: 'partners';
-        value: number | Partner;
+        value: string | Partner;
       } | null)
     | ({
         relationTo: 'blog-posts';
-        value: number | BlogPost;
+        value: string | BlogPost;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -349,10 +541,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
+  id: string;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   key?: string | null;
   value?:
@@ -372,7 +564,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
+  id: string;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -443,6 +635,218 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        badge?: T;
+        title?: T;
+        subtitle?: T;
+        primaryCta?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+            };
+        secondaryCta?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+            };
+        homepageHeadline?:
+          | T
+          | {
+              before?: T;
+              emphasis?: T;
+              after?: T;
+            };
+        homepageSubtitle?: T;
+        homepagePrimaryCta?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+            };
+        homepageCards?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              visual?: T;
+              id?: T;
+            };
+      };
+  layout?:
+    | T
+    | {
+        'hero-block'?:
+          | T
+          | {
+              headline?:
+                | T
+                | {
+                    before?: T;
+                    emphasis?: T;
+                    after?: T;
+                  };
+              subtitle?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    visual?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'services-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              description?: T;
+              selectionMode?: T;
+              manualServices?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'featured-work-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              description?: T;
+              selectionMode?: T;
+              manualCaseStudies?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'partners-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              selectionMode?: T;
+              manualPartners?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'blog-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              description?: T;
+              selectionMode?: T;
+              manualPosts?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'statistics-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              selectionMode?: T;
+              manualStats?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'methodology-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              steps?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'who-we-are-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              description?: T;
+              whyCards?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'final-cta-block'?:
+          | T
+          | {
+              headline?: T;
+              subtitle?: T;
+              primaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        keywords?: T;
+        ogImage?: T;
+      };
+  settings?:
+    | T
+    | {
+        transparentHeader?: T;
+        pageTemplate?: T;
+        breadcrumbVisibility?: T;
+        defaultTheme?: T;
+        animationToggle?: T;
+        previewImage?: T;
+        analyticsIdentifiers?:
+          | T
+          | {
+              gtmId?: T;
+              conversionTag?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -559,10 +963,70 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: string;
+  siteName?: string | null;
+  brandLogo?: (string | null) | Media;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  address?: string | null;
+  socialLinks?:
+    | {
+        platform: string;
+        url: string;
+        icon?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: string;
+  brand?: string | null;
+  cta?: {
+    label?: string | null;
+    href?: string | null;
+  };
+  links?:
+    | {
+        label: string;
+        href?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  socialTitle?: string | null;
+  locationTitle?: string | null;
+  location?: string | null;
+  contactTitle?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  linksTitle?: string | null;
+  copyright?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "hero-content".
  */
 export interface HeroContent {
-  id: number;
+  id: string;
   headline?: {
     before?: string | null;
     emphasis?: string | null;
@@ -577,8 +1041,7 @@ export interface HeroContent {
     | {
         title: string;
         description: string;
-        kicker?: string | null;
-        visual?: ('chart' | 'process' | 'button') | null;
+        visual?: ('button' | 'process' | 'chart') | null;
         id?: string | null;
       }[]
     | null;
@@ -590,7 +1053,7 @@ export interface HeroContent {
  * via the `definition` "homepage-settings".
  */
 export interface HomepageSetting {
-  id: number;
+  id: string;
   nav?: {
     brand?: string | null;
     cta?: {
@@ -678,6 +1141,68 @@ export interface HomepageSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteName?: T;
+  brandLogo?: T;
+  contactEmail?: T;
+  contactPhone?: T;
+  address?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        icon?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  brand?: T;
+  cta?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+      };
+  links?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  socialTitle?: T;
+  locationTitle?: T;
+  location?: T;
+  contactTitle?: T;
+  email?: T;
+  phone?: T;
+  linksTitle?: T;
+  copyright?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "hero-content_select".
  */
 export interface HeroContentSelect<T extends boolean = true> {
@@ -700,7 +1225,6 @@ export interface HeroContentSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
-        kicker?: T;
         visual?: T;
         id?: T;
       };

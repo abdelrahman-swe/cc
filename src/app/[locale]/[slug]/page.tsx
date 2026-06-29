@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import config from '@payload-config'
 import { getPayload } from 'payload'
 
@@ -9,6 +11,13 @@ const fallbackLocale = routing.defaultLocale
 
 const asLocale = (value: string): Locale =>
   routing.locales.includes(value as Locale) ? (value as Locale) : fallbackLocale
+
+type PageProps = {
+  params: Promise<{
+    locale: string
+    slug: string
+  }>
+}
 
 async function getNavigation(locale: Locale) {
   const payload = await getPayload({ config })
@@ -24,13 +33,13 @@ async function getNavigation(locale: Locale) {
   }
 }
 
-async function getHomePageFromCMS(locale: Locale) {
+async function getPageBySlug(slug: string, locale: Locale) {
   const payload = await getPayload({ config })
 
   const result = await payload.find({
     collection: 'pages',
     where: {
-      slug: { equals: 'home' }
+      slug: { equals: slug }
     },
     locale,
     fallbackLocale: fallbackLocale,
@@ -41,22 +50,16 @@ async function getHomePageFromCMS(locale: Locale) {
   return result.docs[0] || null
 }
 
-export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: localeParam } = await params
+export default async function SlugPage({ params }: PageProps) {
+  const { locale: localeParam, slug } = await params
   const locale = asLocale(localeParam)
   const [page, nav] = await Promise.all([
-    getHomePageFromCMS(locale),
+    getPageBySlug(slug, locale),
     getNavigation(locale)
   ])
 
   if (!page) {
-    return (
-      <div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="flex min-h-screen items-center justify-center bg-white text-[#0E1730]">
-        <p className="text-xl text-[#6F7890]">
-          Create a page with slug <strong>&quot;home&quot;</strong> in the dashboard to see your homepage.
-        </p>
-      </div>
-    )
+    notFound()
   }
 
   const layout = (page as any).layout

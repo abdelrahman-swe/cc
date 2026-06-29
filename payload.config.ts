@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -37,11 +37,8 @@ export default buildConfig({
     defaultLocale: 'ar',
     fallback: true
   },
-  db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URL || 'file:./payload.db'
-    },
-    push: process.env.NODE_ENV !== 'production'
+  db: mongooseAdapter({
+    url: process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/codeclouders'
   }),
   secret: process.env.PAYLOAD_SECRET || 'development-codeclouders-homepage-secret',
   sharp,
