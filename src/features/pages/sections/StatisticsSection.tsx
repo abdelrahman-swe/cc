@@ -33,7 +33,10 @@ export function StatisticsSection(props: StatisticsSectionProps) {
       <div className="mx-auto w-full max-w-[1240px] px-5 lg:px-0">
         <div className="text-right">
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className="mt-4 text-[32px] font-extrabold leading-tight text-[#0E1730] md:text-[40px]">
+          <h2
+            className="mt-4 font-serif-text text-[32px] font-bold leading-tight md:text-[40px]"
+            style={{ color: 'var(--Neutral-800, #1E1E20)' }}
+          >
             {title}
           </h2>
         </div>
@@ -44,10 +47,19 @@ export function StatisticsSection(props: StatisticsSectionProps) {
               key={stat.label}
               className="rounded-[30px] border border-[#EEF2F8] bg-[#FAFCFF] p-6 text-center shadow-[0_10px_24px_rgba(36,58,119,0.03)]"
             >
-              <div className="text-[36px] font-extrabold text-[#243A77] md:text-[44px]">
+              <div className="text-[36px] font-extrabold text-[#F15722] md:text-[44px]">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="mt-2 text-[14px] font-medium text-[#6F7890]">{stat.label}</p>
+              <p
+                className="mt-2 text-center font-normal"
+                style={{
+                  color: 'var(--Neutral-500, #5F6063)',
+                  fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                  fontSize: '16px'
+                }}
+              >
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>

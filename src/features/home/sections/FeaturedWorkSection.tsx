@@ -1,9 +1,9 @@
-import { ArrowUpLeft } from 'lucide-react'
+'use client'
 
 import type { CaseStudy, SectionCopy } from '@/features/home/types/home'
-
-import { ButtonLink } from '../components/ButtonLink'
+import { ProjectCard } from '@/features/case-studies/sections/FeaturedWorkSection'
 import { SectionHeader } from '../components/SectionHeader'
+import { ButtonLink } from '../components/ButtonLink'
 
 type FeaturedWorkSectionProps = {
   copy: SectionCopy & {
@@ -22,34 +22,12 @@ export function FeaturedWorkSection({ copy, caseStudies }: FeaturedWorkSectionPr
         <SectionHeader eyebrow={copy.eyebrow} heading={copy.heading} />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {caseStudies.map((study) => (
-            <article
+            <ProjectCard
               key={`${study.title}-${study.category}`}
-              className="rounded-[30px] border border-brand-line bg-white p-4 shadow-card"
-            >
-              <a href={study.href} className="group block">
-                <div className="overflow-hidden rounded-[24px] bg-brand-mist">
-                  {study.image ? (
-                    <img
-                      src={study.image.src}
-                      alt={study.image.alt}
-                      loading="lazy"
-                      className="aspect-[365/445] w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                    />
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between gap-4 px-1 pt-5">
-                  <span className="grid size-11 place-items-center rounded-full border border-brand-line text-brand-navy">
-                    <ArrowUpLeft aria-hidden="true" className="size-5" />
-                  </span>
-                  <div className="flex items-center gap-3 text-sm">
-                    <span className="rounded-full bg-brand-mist px-3 py-1 font-bold text-brand-navy">
-                      {study.category}
-                    </span>
-                    <h3 className="font-extrabold text-brand-ink">{study.title}</h3>
-                  </div>
-                </div>
-              </a>
-            </article>
+              image={study.image?.src || '/media/red-cresent.png'}
+              category={study.category}
+              title={study.title}
+            />
           ))}
         </div>
         <div className="mt-12 flex justify-center">

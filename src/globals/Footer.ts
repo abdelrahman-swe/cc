@@ -17,16 +17,46 @@ export const Footer: GlobalConfig = {
       defaultValue: 'تابعنا على وسائل التواصل'
     },
     {
+      name: 'socialLinks',
+      type: 'array',
+      fields: [
+        {
+          name: 'platform',
+          type: 'select',
+          required: true,
+          options: [
+            { label: 'Facebook', value: 'facebook' },
+            { label: 'Twitter / X', value: 'twitter' },
+            { label: 'Snapchat', value: 'snapchat' },
+            { label: 'TikTok', value: 'tiktok' },
+            { label: 'Instagram', value: 'instagram' }
+          ]
+        },
+        {
+          name: 'url',
+          type: 'text',
+          required: true
+        }
+      ],
+      defaultValue: [
+        { platform: 'instagram', url: '#' },
+        { platform: 'twitter', url: '#' },
+        { platform: 'snapchat', url: '#' },
+        { platform: 'tiktok', url: '#' },
+        { platform: 'facebook', url: '#' }
+      ]
+    },
+    {
       name: 'locationTitle',
       type: 'text',
       localized: true,
-      defaultValue: 'العنوان'
+      defaultValue: 'الموقع'
     },
     {
       name: 'location',
       type: 'text',
       localized: true,
-      defaultValue: 'المملكة العربية السعودية'
+      defaultValue: 'الرياض، حي المهدية'
     },
     {
       name: 'contactTitle',
@@ -42,19 +72,34 @@ export const Footer: GlobalConfig = {
     {
       name: 'phone',
       type: 'text',
-      defaultValue: '+966 55 019 7744'
+      defaultValue: '0501479944'
     },
     {
       name: 'linksTitle',
       type: 'text',
       localized: true,
-      defaultValue: 'روابط مهمة'
+      defaultValue: 'روابط سريعة'
+    },
+    {
+      name: 'links',
+      type: 'array',
+      fields: [
+        { name: 'label', type: 'text', required: true, localized: true },
+        { name: 'url', type: 'text', required: true }
+      ],
+      defaultValue: [
+        { label: 'الرئيسية', url: '/' },
+        { label: 'مشاريعنا', url: '/work' },
+        { label: 'خدماتنا', url: '/services' },
+        { label: 'لماذا حي المهدية', url: '#why-us' },
+        { label: 'تواصل معنا', url: '#contact' }
+      ]
     },
     {
       name: 'copyright',
       type: 'text',
       localized: true,
-      defaultValue: 'جميع الحقوق محفوظة - CodeClouders.'
+      defaultValue: 'جميع الحقوق محفوظة© 2026 - Code Clouders..'
     }
   ]
 }

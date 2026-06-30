@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
   motion,
   useReducedMotion,
@@ -7,6 +8,45 @@ import {
 } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/cn";
+
+const DISPLAY_PARTNERS = [
+  {
+    id: 'naama',
+    name: 'نما',
+    note: 'تم تسليم المشروع بنجاح',
+    logo: '/partners/naama.svg',
+  },
+  {
+    id: 'nupco',
+    name: 'نوبكو',
+    note: 'شكرا لكم، النتائج فاقت توقعاتنا',
+    logo: '/partners/nupco.svg',
+  },
+  {
+    id: 'sdaia',
+    name: 'سدايا',
+    note: 'شريك استراتيجي في التحول الرقمي',
+    logo: '/partners/sdaia.svg',
+  },
+  {
+    id: 'stc',
+    name: 'STC',
+    note: 'حلول تقنية متكاملة ومبتكرة',
+    logo: '/partners/stc.svg',
+  },
+  {
+    id: 'nafath',
+    name: 'نفاذ',
+    note: 'ربط وتكامل الأنظمة الرقمية',
+    logo: '/partners/nafath.svg',
+  },
+  {
+    id: 'odawi',
+    name: 'عُداوي',
+    note: 'منصة الرعاية الصحية الذكية',
+    logo: '/partners/odawi.svg',
+  },
+];
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -49,7 +89,7 @@ function PillButton({
 }) {
   const styles = {
     nav: "cta-pill--navy bg-[#243A77] text-white",
-    orange: "cta-pill--orange bg-[#F15722] text-white",
+    orange: "cta-pill--orange bg-[#c44118] text-white",
     blue: "cta-pill--navy bg-[#243A77] text-white",
     white: "cta-pill--white border border-[#F1D5CC] bg-white text-[#F15722]",
   };
@@ -65,7 +105,7 @@ function PillButton({
     <a
       href={href}
       className={cn(
-        "cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold shadow-[0_14px_34px_rgba(14,23,48,0.12)] transition duration-300 hover:-translate-y-0.5",
+        "cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold transition duration-300 hover:-translate-y-0.5",
         styles[variant],
         className,
       )}
@@ -77,7 +117,7 @@ function PillButton({
           circle[variant],
         )}
       >
-        <ArrowLeft aria-hidden className="cta-icon-main size-5" />
+        <ArrowLeft aria-hidden className={cn('cta-icon-main', 'size-5')} />
         <span className="cta-icon-ghost">
           <ArrowLeft aria-hidden className="size-5" />
         </span>
@@ -88,50 +128,78 @@ function PillButton({
 
 function HeroButtonArt() {
   return (
-    <div
-      className={cn(
-        "absolute right-[-26px] top-[32px] flex w-[314.11px] origin-top-right -rotate-[10deg] flex-col items-start justify-center gap-[8.08px] p-[16.16px] max-md:right-[-76px]"
-      )}
-    >
-      <div className="absolute inset-y-[-2px] end-0 w-[92px] rounded-e-[62px] border-y-2 border-e-2 border-[#F5C9BB]" />
-      <div className="absolute bottom-[-2px] end-[88px] h-0.5 w-[226px] bg-[#F5C9BB]" />
-      <div className="absolute top-[-2px] end-[88px] h-0.5 w-[226px] bg-[#F5C9BB]" />
-      <PillButton href="#contact" className="relative right-[125px] -mt-1.5 w-[160px]">
-        طلب خدمة
-      </PillButton>
+    <div className={cn('absolute', '-right-[35px]', 'top-[32px]', 'flex', 'origin-top-right', '-rotate-[8deg]', 'items-center')}>
+      <div className={cn('relative', 'flex', 'h-[66px]', 'w-[270px]', 'items-center', 'justify-between', 'rounded-full', 'border-[1.5px]', 'border-[#F5C9BB]', 'p-1.5', 'bg-white/40')}>
+        <div className="w-1" />
+        <PillButton href="#contact" className={cn('!h-[52px]', '!ps-4', '!pe-1', '!text-[14px]', 'w-[150px]', 'shadow-md')}>
+          طلب خدمة
+        </PillButton>
+      </div>
     </div>
   );
 }
 
 function HeroProcessArt() {
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep((prev) => prev + 1);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const len = DISPLAY_PARTNERS.length;
+  const currentStack = [
+    { partner: DISPLAY_PARTNERS[(step + 1) % len], slot: 'top' as const },
+    { partner: DISPLAY_PARTNERS[step % len], slot: 'bottom' as const },
+  ];
+
+  const slotVariants = {
+    bottom: {
+      y: 62,
+      scale: 1,
+      opacity: 1,
+      zIndex: 20,
+      transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] as const }
+    },
+    top: {
+      y: -10,
+      scale: 0.92,
+      opacity: 0.75,
+      zIndex: 10,
+      transition: { duration: 0.45, ease: "easeInOut" as const }
+    }
+  } as const;
+
   return (
-    <div className="absolute inset-x-0 top-8 flex flex-col items-center gap-4">
-      <div className="flex h-[64px] w-[260px] items-center justify-between rounded-full border border-[#E6E9F0] bg-white px-5 shadow-[0_8px_24px_rgba(14,23,48,0.05)]">
-        <div className="text-right">
-          <strong className="block text-[14px] font-bold text-[#0E1730]">نما</strong>
-          <span className="text-[12px] text-[#6F7890]">تم تسليم المشروع بنجاح</span>
-        </div>
-        <span className="grid size-10 shrink-0 place-items-center rounded-full border border-[#E6E9F0] bg-[#FAFCFF] text-[12px] font-bold text-[#243A77]">
-          نما
-        </span>
-      </div>
-      <div className="flex h-[76px] w-[310px] items-center justify-between rounded-full border border-[#E6E9F0] bg-white px-6 shadow-[0_10px_28px_rgba(14,23,48,0.06)]">
-        <div className="text-right">
-          <strong className="block text-[18px] font-bold text-[#0E1730]">نوبكو</strong>
-          <span className="text-[13px] text-[#6F7890]">شكرا لكم، النتائج فاقت توقعاتنا</span>
-        </div>
-        <span className="grid size-12 shrink-0 place-items-center rounded-full border border-[#E6E9F0] bg-[#FAFCFF] text-[13px] font-bold text-[#243A77]">
-          نوبكو
-        </span>
-      </div>
+    <div className={cn('absolute', 'inset-x-0', 'top-6', 'flex', 'h-[160px]', 'items-center', 'justify-center', 'pointer-events-none', 'select-none', 'overflow-visible')}>
+      {currentStack.map(({ partner, slot }) => (
+        <motion.div
+          key={partner.id}
+          layout
+          initial={false}
+          animate={slot}
+          variants={slotVariants}
+          className={cn('absolute', 'flex', 'h-[64px]', 'w-[275px]', 'items-center', 'gap-3', 'rounded-full', 'border', 'border-[#EBECEF]', 'bg-white', 'px-4', 'py-2', 'shadow-[0_8px_24px_rgba(14,23,48,0.05)]')}
+        >
+          <div className={cn('relative', 'flex', 'size-11', 'shrink-0', 'items-center', 'justify-center', 'rounded-full', 'border', 'border-[#EAECEF]', 'bg-white', 'p-1.5', 'shadow-sm')}>
+            <img src={partner.logo} alt={partner.name} className={cn('h-full', 'w-full', 'object-contain')} />
+          </div>
+          <div className={cn('text-right', 'flex-1', 'min-w-0')}>
+            <strong className={cn('block', 'text-[14px]', 'font-bold', 'text-[#0E1730]', 'truncate')}>{partner.name}</strong>
+            <span className={cn('block', 'text-[11px]', 'text-[#808586]', 'truncate')}>{partner.note}</span>
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
 }
 
 function HeroChartArt() {
   return (
-    <div className="absolute inset-x-0 top-10 flex h-full items-center justify-center">
-      <img src="/images/chart-orange.svg" alt="" className="h-full w-auto object-contain" />
+    <div className={cn('absolute', 'inset-x-0', 'top-10', 'flex', 'h-[160px]', 'items-center', 'justify-center')}>
+      <img src="/images/chart-orange.svg" alt="" className={cn('h-[160px]', 'w-auto', 'object-contain')} />
     </div>
   );
 }
@@ -160,21 +228,41 @@ function HeroCardItem({
           ? undefined
           : {
               rotate: hoverRotate,
-              y: -6,
-              transition: { type: "spring", stiffness: 300, damping: 20 },
+              transition: { duration: 0.2, ease: "easeOut" },
             }
       }
-      className="group relative h-[360px] overflow-hidden rounded-[50px] border-2 border-[#F1D5CC] bg-white p-10 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(241,87,34,0.22)]"
+      className={cn('group', 'relative', 'h-[360px]', 'overflow-hidden', 'rounded-[50.5px]', 'border-[2.02px]', 'border-[#F1D5CC]', 'bg-white', 'px-6', 'py-10', 'xl:px-8', 'text-right', 'shadow-[0_12px_32px_rgba(14,23,48,0.03)]', 'transition-[border-color]', 'duration-200', 'hover:border-[#F79A7A]')}
     >
-      <div className="pointer-events-none absolute bottom-4 left-1/2 h-28 w-[75%] -translate-x-1/2 rounded-full bg-[#F15722]/25 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
-      <img src="/images/hero-card-orange.svg" alt="" className="pointer-events-none absolute inset-x-0 bottom-0 z-0 w-full" />
+      <div className={cn('pointer-events-none', 'absolute', 'bottom-4', 'left-1/2', 'h-28', 'w-[75%]', '-translate-x-1/2', 'rounded-full', 'bg-[#F79A7A]/25', 'opacity-0', 'blur-2xl', 'transition-opacity', 'duration-300', 'group-hover:opacity-100')} />
+      <img src="/images/hero-card-orange.svg" alt="" className={cn('pointer-events-none', 'absolute', 'inset-x-0', 'bottom-0', 'z-0', 'w-full')} />
       {type === "button" ? <HeroButtonArt /> : null}
       {type === "process" ? <HeroProcessArt /> : null}
       {type === "chart" ? <HeroChartArt /> : null}
 
-      <div className="relative z-10 mt-[218px]">
-        <h3 className="text-[24px] font-bold leading-tight text-[#0E1730]">{title}</h3>
-        <p className="mt-2 text-[16px] leading-7 text-[#6F7890]">{body}</p>
+      <div className={cn('relative', 'z-10', 'mt-[218px]')}>
+        <h3
+          className={cn('text-right', 'font-semibold', 'leading-normal')}
+          style={{
+            color: 'var(--Neutral-800, #121516)',
+            fontFamily: '"IBM Plex Sans Arabic", sans-serif',
+            fontSize: '22px',
+            fontWeight: 600,
+            lineHeight: 'normal',
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          className={cn('mt-2', 'text-right', 'font-normal', 'whitespace-nowrap', 'text-[16px]', 'lg:text-[18px]', 'xl:text-[20px]')}
+          style={{
+            color: 'var(--Neutral-400, #575C5E)',
+            fontFamily: '"IBM Plex Sans Arabic", sans-serif',
+            fontWeight: 400,
+            lineHeight: '140%'
+          }}
+        >
+          {body}
+        </p>
       </div>
     </motion.article>
   );
@@ -198,17 +286,25 @@ export function HeroSection(props: any) {
   ];
 
   return (
-    <section id="home" className="relative overflow-hidden bg-white pb-14 pt-16 lg:min-h-[870px]" dir="rtl">
-      <div className="pointer-events-none absolute left-1/2 top-[250px] z-0 h-[360px] w-[1540px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(241,87,34,0.14)_0%,rgba(241,87,34,0.08)_42%,rgba(255,255,255,0)_73%)] opacity-90" />
-      <div className="relative z-10 mx-auto max-w-[1248px] px-5 text-center lg:px-0">
-        <motion.div variants={fadeUp} initial="hidden" animate="visible" className="mx-auto w-full max-w-[760px]">
-          <h1 className="font-serif-display text-[42px] font-bold leading-[1.18] text-[#243A77] md:text-[52px]">
+    <section id="home" className={cn('relative', 'overflow-hidden', 'bg-white', 'pb-14', 'pt-16', 'lg:min-h-[870px]')} dir="rtl">
+      <div className={cn('pointer-events-none', 'absolute', 'left-1/2', 'top-[250px]', 'z-0', 'h-[360px]', 'w-[1540px]', '-translate-x-1/2', 'bg-[radial-gradient(ellipse_at_center,rgba(241,87,34,0.14)_0%,rgba(241,87,34,0.08)_42%,rgba(255,255,255,0)_73%)]', 'opacity-90')} />
+      <div className={cn('relative', 'z-10', 'mx-auto', 'max-w-[1248px]', 'px-5', 'text-center', 'lg:px-0')}>
+        <motion.div variants={fadeUp} initial="hidden" animate="visible" className={cn('mx-auto', 'w-full', 'max-w-[760px]')}>
+          <h1 className={cn('text-[42px]', 'font-bold', 'leading-[1.18]', 'text-[#243A77]', 'md:text-[52px]', 'font-serif-display')} style={{ fontFamily: '"Thmanyah Serif Display", serif' }}>
             <span className="block">
-              {headlineBefore} <span className="text-[#F15722]">{headlineEmphasis}</span>
+              {headlineBefore} <span className={cn('text-[#F15722]', 'font-serif-display')}>{headlineEmphasis}</span>
             </span>
-            <span className="mt-5 block">{headlineAfter}</span>
+            <span className={cn('mt-5', 'block', 'font-serif-display')}>{headlineAfter}</span>
           </h1>
-          <p className="mx-auto mt-7 max-w-[652px] text-[16px] leading-8 text-[#8B93A6]">
+          <p
+            className={cn('mx-auto', 'mt-7', 'max-w-[652px]', 'text-center', 'font-normal')}
+            style={{
+              color: 'var(--Neutral-300, #808586)',
+              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+              fontSize: '24px',
+              lineHeight: '140%'
+            }}
+          >
             {subtitle}
           </p>
         </motion.div>
@@ -218,7 +314,7 @@ export function HeroSection(props: any) {
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="mx-auto mt-[86px] grid max-w-[1248px] gap-6 md:grid-cols-3 max-md:mt-14"
+          className={cn('mx-auto', 'mt-[86px]', 'grid', 'max-w-[1248px]', 'gap-6', 'md:grid-cols-3', 'max-md:mt-14')}
         >
           {cards.map((card: any, idx: number) => (
             <HeroCardItem

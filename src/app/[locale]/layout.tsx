@@ -47,7 +47,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const dir = locale === 'ar' ? 'rtl' : 'ltr'
 
   return (
-    <html lang={locale} dir={dir} className={ibmPlexSansArabic.variable}>
+    <html lang={locale} dir={dir} className={`${ibmPlexSansArabic.className} ${ibmPlexSansArabic.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
       </body>

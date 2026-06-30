@@ -6,6 +6,7 @@ import { PillButton } from '@/components/ui/PillButton'
 import { SectionTag } from '@/components/ui/SectionTag'
 import { type CaseStudyItem } from '@/lib/repositories/caseStudies.repository'
 import { cn } from '@/lib/cn'
+import { BorderBeam } from '@/components/ui/BorderBeam'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -17,10 +18,9 @@ const fadeUp: Variants = {
 }
 
 const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.96 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    scale: 1,
     transition: { duration: 0.6, ease: 'easeOut' }
   }
 }
@@ -34,7 +34,7 @@ const staggerContainer: Variants = {
 
 const motionViewport = { once: true, margin: '-80px' } as const
 
-function ProjectCard({
+export function ProjectCard({
   image,
   category,
   title,
@@ -45,28 +45,19 @@ function ProjectCard({
   title: string
   imageClass?: string
 }) {
-  const shouldReduceMotion = useReducedMotion()
-
   return (
     <motion.article
       variants={scaleIn}
       initial="hidden"
       whileInView="visible"
       viewport={motionViewport}
-      whileHover={
-        shouldReduceMotion
-          ? undefined
-          : {
-              y: -8,
-              transition: { type: 'spring', stiffness: 220, damping: 18 }
-            }
-      }
       className={cn(
-        'group relative h-[539px] rounded-[28px] border border-[#EEF2F8] bg-white p-4 text-right shadow-[0_18px_44px_rgba(14,23,48,0.05)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(241,87,34,0.2)]'
+        'group relative h-[539px] rounded-[28px] border border-[#EEF2F8] bg-white p-4 text-right transition-all duration-300 overflow-hidden'
       )}
     >
-      <div className="relative z-10 h-[445px] overflow-hidden rounded-[18px] bg-[#FAFBFF]">
-        <div className="pointer-events-none absolute bottom-0 left-1/2 h-28 w-[80%] -translate-x-1/2 rounded-full bg-[#F15722]/25 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
+      <div className={cn('relative', 'z-10', 'h-[445px]', 'overflow-hidden', 'rounded-[18px]', 'bg-[#FAFBFF]')}>
+        <div className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-1/2', 'h-28', 'w-[80%]', '-translate-x-1/2', 'rounded-full', 'bg-[#F15722]/25', 'opacity-0', 'blur-2xl', 'transition-opacity', 'duration-300', 'group-hover:opacity-100')} />
+
         <img
           src={image}
           alt=""
@@ -74,17 +65,18 @@ function ProjectCard({
           loading="lazy"
         />
       </div>
-      <div className="flex h-[62px] items-end justify-between">
-        <span className="grid size-10 place-items-center text-[#243A77]">
-          <ArrowUpLeft aria-hidden className="size-6" />
-        </span>
-        <div className="flex items-center gap-2 text-[15px]">
-          <span className="rounded-full bg-[#F4F7FC] px-3 py-1 text-[13px] text-[#6F7890]">
+      <div className={cn('flex', 'h-[62px]', 'items-end', 'justify-between')}>
+        <div className={cn('flex', 'items-center', 'gap-2', 'text-[15px]')}>
+          <span className={cn('rounded-full', 'bg-[#F4F7FC]', 'px-3', 'py-1', 'text-[13px]', 'text-[#6F7890]')}>
             {category}
           </span>
-          <h3 className="font-bold text-[#0E1730]">{title}</h3>
+          <h3 className={cn('font-bold', 'text-[#0E1730]')}>{title}</h3>
         </div>
+        <span className={cn('grid', 'size-10', 'place-items-center', 'text-[#243A77]')}>
+          <ArrowUpLeft aria-hidden className="size-6" />
+        </span>
       </div>
+      <BorderBeam duration={3} size={120} colorFrom="#F15722" colorTo="#F4794E" className={cn('opacity-0', 'group-hover:opacity-100', 'transition-opacity', 'duration-300')} />
     </motion.article>
   )
 }
@@ -104,11 +96,11 @@ export function FeaturedWorkSection(props: FeaturedWorkSectionProps) {
   const sectionId = props.customSectionId || 'featured-work'
 
   return (
-    <section id={sectionId} className="bg-white py-16 lg:min-h-[937px]">
-      <div className="mx-auto max-w-[1240px] px-5 text-center lg:px-0">
+    <section id={sectionId} className={cn('bg-white', 'py-16', 'lg:min-h-[937px]')}>
+      <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className="mt-6 font-serif-text text-[32px] font-bold text-[#243A77]">
+          <h2 className={cn('mt-6', 'font-serif-text', 'text-[32px]', 'font-bold', 'text-[#243A77]')}>
             {heading}
           </h2>
         </motion.div>
@@ -118,7 +110,7 @@ export function FeaturedWorkSection(props: FeaturedWorkSectionProps) {
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="mt-14 grid gap-6 md:grid-cols-3"
+          className={cn('mt-14', 'grid', 'gap-6', 'md:grid-cols-3')}
         >
           {props.items && props.items.length > 0 ? (
             props.items.map((cs) => (

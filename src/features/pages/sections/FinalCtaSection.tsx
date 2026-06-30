@@ -25,40 +25,66 @@ type FinalCtaSectionProps = {
 
 export function FinalCtaSection(props: FinalCtaSectionProps) {
   const heading = props.heading || 'لنحوّل فكرتك إلى منتج رقمي حقيقي'
-  const body = props.body || 'حوّل الفكرة إلى واقع ملموس'
+  const body = props.body || 'نحوّل الرؤية إلى واقع رقمي'
   const sectionId = props.customSectionId || 'contact'
 
   return (
-    <section className="mt-24 bg-white py-20 lg:min-h-[584px]" id={sectionId}>
+    <section className="mt-24 bg-white py-20 lg:min-h-[456px]" id={sectionId}>
       <div className="mx-auto max-w-[1240px] px-5 lg:px-0">
         <motion.div
           variants={scaleIn}
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="relative min-h-[456px] overflow-hidden rounded-[32px] bg-[#F15722] px-10 py-14 text-white lg:px-0 lg:py-0"
+          className="relative min-h-[420px] overflow-hidden rounded-[32px] bg-[#0D193B] px-8 py-12 text-white md:p-14 lg:px-16 lg:py-16"
         >
-          <div className="relative z-10 max-w-[634px] text-center lg:absolute lg:left-10 lg:top-24 lg:text-right">
-            <h2 className="font-serif-text text-[44px] font-black leading-tight">
-              {heading}
-            </h2>
-            <p className="mt-4 text-[20px] font-bold text-white/80">
-              {body}
-            </p>
-            <div className="mt-9">
-              <PillButton href={props.cta?.href || '#contact'} variant="white">
-                {props.cta?.label || 'احصل على استشارة مجانية'}
-              </PillButton>
-            </div>
-          </div>
+          {/* CTA Pop Starburst behind mascot head */}
+          <img
+            src="/images/cta-pop-orange.svg"
+            alt=""
+            className="pointer-events-none absolute left-[170px] top-[15px] z-0 hidden w-[190px] md:block lg:left-[240px] lg:top-[25px] lg:w-[230px]"
+            loading="lazy"
+          />
+
+          {/* Mascot Robot on Left */}
           <img
             src="/mockups/mascot.png"
             alt=""
-            className="pointer-events-none absolute bottom-[-155px] right-[40px] hidden w-[420px] lg:block"
+            className="pointer-events-none absolute bottom-[-100px] left-0 z-10 hidden w-[340px] md:block lg:bottom-[-210px] lg:left-[30px] lg:w-[460px]"
             loading="lazy"
           />
+
+          {/* CTA Blur overlay on top of mascot at bottom end of card */}
+          <img
+            src="/images/cta-blur-blue.svg"
+            alt=""
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-auto w-full object-cover"
+            loading="lazy"
+          />
+
+          {/* Grid Layout: Text on Right */}
+          <div className="relative z-30 grid w-full items-center gap-8 md:grid-cols-[1.2fr_0.8fr]">
+            <div className="flex flex-col items-center text-center md:items-start md:text-right">
+              <h3 className="font-brand bg-white px-4 py-2 border rounded-3xl text-brand-ink mb-3">
+                لديك فكرة ؟
+              </h3>
+              <h2 className="font-serif-text text-[30px] font-brand-ink leading-tight text-white md:text-[40px] lg:text-[44px]">
+                {heading}
+              </h2>
+              <p className="mt-4 text-[18px] font-semibold text-white/90 md:text-[20px]">
+                {body}
+              </p>
+              <div className="mt-8">
+                <PillButton href={props.cta?.href || '#contact'} variant="blue">
+                  {props.cta?.label || 'احصل علي استشارة مجانية'}
+                </PillButton>
+              </div>
+            </div>
+            <div className="hidden min-h-[300px] md:block" />
+          </div>
         </motion.div>
       </div>
     </section>
   )
 }
+

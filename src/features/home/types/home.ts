@@ -50,10 +50,7 @@ export type Partner = {
 export type Service = {
   title: string
   description: string
-  summary?: string
-  metric?: string
-  layout: 'featured' | 'standard' | 'wide'
-  accent: 'blue' | 'orange' | 'neutral'
+  layout: 'ai-card' | 'globe-card' | 'standard'
   image?: ImageAsset
 }
 
@@ -71,9 +68,10 @@ export type WhyUsItem = {
 export type CaseStudy = {
   title: string
   category: string
-  excerpt?: string
   href: string
   image?: ImageAsset
+  displayMode: 'image' | 'livePreview'
+  livePreviewUrl?: string
 }
 
 export type MethodologyStep = {

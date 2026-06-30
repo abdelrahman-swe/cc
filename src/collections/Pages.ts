@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { blocks } from '@/lib/payload/blocks'
 import { anyone, authenticated } from '@/payload/access'
+import { seoFields } from '@/payload/fields/seoFields'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -228,12 +229,7 @@ export const Pages: CollectionConfig = {
         {
           label: 'SEO',
           name: 'seo',
-          fields: [
-            { name: 'metaTitle', type: 'text', localized: true },
-            { name: 'metaDescription', type: 'textarea', localized: true },
-            { name: 'keywords', type: 'text', localized: true },
-            { name: 'ogImage', type: 'relationship', relationTo: 'media' }
-          ]
+          fields: seoFields
         },
         {
           label: 'Settings',

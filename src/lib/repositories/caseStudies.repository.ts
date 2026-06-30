@@ -5,9 +5,10 @@ export type CaseStudyItem = {
   id: string
   title: string
   category: string
-  excerpt?: string
   href?: string
   imageUrl: string
+  displayMode: 'image' | 'livePreview'
+  livePreviewUrl?: string
 }
 
 const defaultCaseStudies: CaseStudyItem[] = [
@@ -15,22 +16,21 @@ const defaultCaseStudies: CaseStudyItem[] = [
     id: '1',
     title: 'تطوير منصة خدمات سحابية متكاملة لقطاع الرعاية الصحية',
     category: 'نظام سحابي وتطبيق جوال',
-    excerpt: 'بناء معمارية سحابية آمنة تخدم آلاف المستخدمين يومياً بتكامل كامل مع الأنظمة الحكومية.',
     href: '#',
-    imageUrl: '/images/case-study-1.svg'
+    imageUrl: '/images/case-study-1.svg',
+    displayMode: 'image'
   },
   {
     id: '2',
     title: 'إعادة تصميم وتطوير البوابة الرقمية لمنظومة إمداد',
     category: 'تجربة مستخدم وتطوير ويب',
-    excerpt: 'رفع كفاءة العمليات وتسهيل رحلة المستخدم للحصول على الخدمات بسرعة وسلاسة.',
     href: '#',
-    imageUrl: '/images/case-study-2.svg'
+    imageUrl: '/images/case-study-2.svg',
+    displayMode: 'image'
   }
 ]
 
 export async function getCaseStudies(options?: {
-  featuredOnly?: boolean
   manualIds?: (string | number)[]
   limit?: number
   locale?: string
@@ -38,10 +38,6 @@ export async function getCaseStudies(options?: {
   try {
     const payload = await getPayload({ config })
     const where: any = {}
-
-    if (options?.featuredOnly) {
-      where.isFeatured = { equals: true }
-    }
 
     if (options?.manualIds && options.manualIds.length > 0) {
       where.id = { in: options.manualIds }
@@ -61,9 +57,10 @@ export async function getCaseStudies(options?: {
         id: String(doc.id),
         title: doc.title,
         category: doc.category,
-        excerpt: doc.excerpt,
         href: doc.href || '#',
-        imageUrl: doc.imageUrl || (doc.image && typeof doc.image === 'object' ? doc.image.url : '/images/case-study-1.svg')
+        imageUrl: doc.imageUrl || (doc.image && typeof doc.image === 'object' ? doc.image.url : '/images/case-study-1.svg'),
+        displayMode: doc.displayMode || 'image',
+        livePreviewUrl: doc.livePreviewUrl || undefined
       }))
     }
   } catch (error) {
@@ -72,3 +69,4 @@ export async function getCaseStudies(options?: {
 
   return defaultCaseStudies
 }
+

@@ -30,7 +30,6 @@ export const ServicesBlock: Block = {
       defaultValue: 'all',
       options: [
         { label: 'All Services', value: 'all' },
-        { label: 'Featured Services Only', value: 'featured' },
         { label: 'Manual Selection', value: 'manual' }
       ]
     },

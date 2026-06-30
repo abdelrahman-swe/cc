@@ -4,6 +4,7 @@ import { motion, type Variants } from 'framer-motion'
 import { SectionTag } from '@/components/ui/SectionTag'
 import { type PartnerItem } from '@/lib/repositories/partners.repository'
 import { cn } from '@/lib/cn'
+import { Marquee } from '@/registry/magicui/marquee'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -46,33 +47,42 @@ export function PartnersSection(props: PartnersSectionProps) {
   const heading = props.heading || 'عملاء وثقوا بنا لصناعة حلول رقمية مؤثرة'
   const sectionId = props.customSectionId || 'partners'
 
-  const partnerItems = props.items && props.items.length > 0
-    ? props.items.map((p) => [p.logoSrc, p.name] as const)
+  const filteredItems = props.items?.filter((p) => Boolean(p.logoSrc))
+  const partnerItems = filteredItems && filteredItems.length > 0
+    ? filteredItems.map((p) => [p.logoSrc, p.name] as const)
     : defaultPartners
 
   return (
-    <section className="bg-white py-16 lg:min-h-[392px]" id={sectionId}>
+    <section className={cn('bg-white', 'py-16', 'lg:min-h-[392px]')} id={sectionId}>
       <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={motionViewport}
-        className="mx-auto max-w-[1240px] px-5 text-center lg:px-0"
+        className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'text-center', 'lg:px-0')}
       >
         <SectionTag>{sectionTag}</SectionTag>
-        <h2 className="mt-6 font-serif-text text-[28px] font-bold text-[#243A77]">
+        <h2 className={cn('mt-6', 'font-serif-text', 'text-[28px]', 'font-bold', 'text-[#243A77]')}>
           {heading}
         </h2>
-        <div className="mt-14 grid grid-cols-2 items-center gap-8 md:grid-cols-6">
-          {partnerItems.map(([src, alt]) => (
-            <motion.div
-              key={alt}
-              variants={fadeIn}
-              className="flex h-16 items-center justify-center opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0"
-            >
-              <img src={src} alt={alt} className="max-h-12 max-w-[130px]" loading="lazy" />
-            </motion.div>
-          ))}
+        <div className={cn('relative', 'flex', 'w-full', 'flex-col', 'items-center', 'justify-center', 'overflow-hidden', 'mt-12')}>
+          <Marquee className={cn('[--duration:12s]', '[--gap:5.5rem]', 'py-4')}>
+            {partnerItems.map(([src, alt], idx) => (
+              <div
+                key={`${alt}-${idx}`}
+                className={cn('flex', 'h-16', 'w-36', 'items-center', 'justify-center', 'opacity-75', 'grayscale', 'transition-all', 'duration-300', 'hover:opacity-100', 'hover:grayscale-0')}
+              >
+                <img
+                  src={src}
+                  alt={alt}
+                  className={cn('max-h-12', 'max-w-[130px]', 'object-contain')}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </Marquee>
+          <div className={cn('pointer-events-none', 'absolute', 'inset-y-0', 'left-0', 'w-1/3', 'bg-gradient-to-r', 'from-white', 'via-white/80', 'via-40%', 'to-transparent', 'z-10')}></div>
+          <div className={cn('pointer-events-none', 'absolute', 'inset-y-0', 'right-0', 'w-1/3', 'bg-gradient-to-l', 'from-white', 'via-white/80', 'via-40%', 'to-transparent', 'z-10')}></div>
         </div>
       </motion.div>
     </section>

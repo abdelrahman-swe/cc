@@ -38,10 +38,27 @@ export function BlogPreviewSection({ copy, posts }: BlogPreviewSectionProps) {
                     {dateFormatter.format(new Date(post.publishedAt))}
                   </time>
                 ) : null}
-                <h3 className="mt-4 text-xl font-extrabold leading-8 text-brand-ink">
+                <h3
+                  className="mt-4 text-right font-medium leading-normal"
+                  style={{
+                    color: 'var(--Neutral-800, #1E1E20)',
+                    fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                    fontSize: '20px'
+                  }}
+                >
                   <a href={post.href}>{post.title}</a>
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-brand-muted">{post.excerpt}</p>
+                <p
+                  className="mt-3 text-right font-normal"
+                  style={{
+                    color: 'var(--Neutral-500, #5F6063)',
+                    fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                    fontSize: '16px',
+                    lineHeight: '140%'
+                  }}
+                >
+                  {post.excerpt}
+                </p>
               </div>
             </article>
           ))}

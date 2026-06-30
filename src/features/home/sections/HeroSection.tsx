@@ -71,12 +71,20 @@ export function HeroSection({ hero }: HeroSectionProps) {
         <div className="mx-auto max-w-[720px] text-center">
           <h1 className="text-balance text-4xl font-black leading-[1.25] text-brand-navy md:text-6xl">
             {hero.headline.before}{' '}
-            <span className="text-brand-orange">{hero.headline.emphasis}</span>
+            <span className="text-brand-orange font-serif-display">{hero.headline.emphasis}</span>
             <br />
             {hero.headline.after}
           </h1>
           {hero.subtitle ? (
-            <p className="mx-auto mt-8 max-w-2xl text-base leading-8 text-brand-muted">
+            <p
+              className="mx-auto mt-8 max-w-2xl text-center font-normal"
+              style={{
+                color: 'var(--Neutral-300, #808586)',
+                fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                fontSize: '24px',
+                lineHeight: '140%'
+              }}
+            >
               {hero.subtitle}
             </p>
           ) : null}
@@ -89,12 +97,31 @@ export function HeroSection({ hero }: HeroSectionProps) {
               className="group rounded-[30px] border border-brand-line bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:border-[#93b8ff]"
             >
               <HeroCardVisual card={card} />
-              <div className="px-3 pb-2 pt-7 text-center">
+              <div className="px-3 pb-2 pt-7 text-right">
                 {card.kicker ? (
                   <p className="mb-2 text-xs font-bold text-brand-orange">{card.kicker}</p>
                 ) : null}
-                <h3 className="text-lg font-extrabold text-brand-navy">{card.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-brand-muted">{card.description}</p>
+                <h3
+                  className="text-right font-semibold leading-normal"
+                  style={{
+                    color: 'var(--Neutral-800, #121516)',
+                    fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                    fontSize: '22px'
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  className="mt-3 text-right font-normal"
+                  style={{
+                    color: 'var(--Neutral-400, #575C5E)',
+                    fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                    fontSize: '20px',
+                    lineHeight: '140%'
+                  }}
+                >
+                  {card.description}
+                </p>
               </div>
             </article>
           ))}

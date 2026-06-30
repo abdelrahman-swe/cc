@@ -120,12 +120,7 @@ export async function getHomePageData(localeParam: string): Promise<HomePageData
         locale,
         fallbackLocale,
         limit: 6,
-        sort: 'order',
-        where: {
-          isFeatured: {
-            equals: true
-          }
-        }
+        sort: 'order'
       }),
       payload.find({
         collection: 'partners',
@@ -208,13 +203,10 @@ export async function getHomePageData(localeParam: string): Promise<HomePageData
     services: services.docs.map<Service>((service) => ({
       title: text(service.title),
       description: text(service.description),
-      summary: text(service.summary),
-      metric: text(service.metric),
       layout: service.layout || 'standard',
-      accent: service.accent || 'blue',
       image: mediaAsset(
         service.image as Relationship<MediaLike>,
-        service.imageUrl,
+        undefined,
         text(service.title)
       )
     })),
@@ -246,13 +238,14 @@ export async function getHomePageData(localeParam: string): Promise<HomePageData
     caseStudies: caseStudies.docs.map<CaseStudy>((study) => ({
       title: text(study.title),
       category: text(study.category),
-      excerpt: text(study.excerpt),
       href: text(study.href, '#'),
       image: mediaAsset(
         study.image as Relationship<MediaLike>,
         study.imageUrl,
         text(study.title)
-      )
+      ),
+      displayMode: (study as any).displayMode || 'image',
+      livePreviewUrl: (study as any).livePreviewUrl || undefined
     })),
     methodology: {
       eyebrow: text(methodology.eyebrow),

@@ -8,9 +8,51 @@ import {
   type Variants,
 } from "framer-motion";
 import { ArrowLeft, ArrowUpLeft, Star } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
+import { Marquee } from "@/registry/magicui/marquee";
 import type { HomePageData } from "./types/home";
+import { Footer } from "@/components/shared/Footer";
+import { ProjectCard } from "@/features/case-studies/sections/FeaturedWorkSection";
+
+const DISPLAY_PARTNERS = [
+  {
+    id: 'naama',
+    name: 'نما',
+    note: 'تم تسليم المشروع بنجاح',
+    logo: '/partners/naama.svg',
+  },
+  {
+    id: 'nupco',
+    name: 'نوبكو',
+    note: 'شكرا لكم، النتائج فاقت توقعاتنا',
+    logo: '/partners/nupco.svg',
+  },
+  {
+    id: 'sdaia',
+    name: 'سدايا',
+    note: 'شريك استراتيجي في التحول الرقمي',
+    logo: '/partners/sdaia.svg',
+  },
+  {
+    id: 'stc',
+    name: 'STC',
+    note: 'حلول تقنية متكاملة ومبتكرة',
+    logo: '/partners/stc.svg',
+  },
+  {
+    id: 'nafath',
+    name: 'نفاذ',
+    note: 'ربط وتكامل الأنظمة الرقمية',
+    logo: '/partners/nafath.svg',
+  },
+  {
+    id: 'odawi',
+    name: 'عُداوي',
+    note: 'منصة الرعاية الصحية الذكية',
+    logo: '/partners/odawi.svg',
+  },
+];
 
 const defaultNavLinks = [
   ["الرئيسية", "#home"],
@@ -167,11 +209,15 @@ function SectionTag({ children }: { children: string }) {
         "border-[#E8EDF6]",
         "bg-white",
         "px-4",
-        "text-[15px]",
-        "font-medium",
-        "text-[#6F7890]",
+        "font-normal",
+        "leading-normal",
         "shadow-[0_10px_24px_rgba(36,58,119,0.04)]",
       )}
+      style={{
+        color: 'var(--Neutral-700, #2F3032)',
+        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+        fontSize: '16px'
+      }}
     >
       {children}
     </div>
@@ -221,175 +267,70 @@ const cardVariants: Variants = {
 
 function HeroButtonArt() {
   return (
-    <div
-      className={cn(
-        "absolute",
-        "right-[-26px]",
-        "top-[32px]",
-        "flex",
-        "w-[314.11px]",
-        "origin-top-right",
-        "-rotate-[10deg]",
-        "flex-col",
-        "items-start",
-        "justify-center",
-        "gap-[8.08px]",
-        "p-[16.16px]",
-        "max-md:right-[-76px]",
-      )}
-    >
-      <div
-        className={cn(
-          "absolute",
-          "inset-y-[-2px]",
-          "end-0",
-          "w-[92px]",
-          "rounded-e-[62px]",
-          "border-y-2",
-          "border-e-2",
-          "border-[#F5C9BB]",
-        )}
-      />
-      <div
-        className={cn(
-          "absolute",
-          "bottom-[-2px]",
-          "end-[88px]",
-          "h-0.5",
-          "w-[226px]",
-          "bg-[#F5C9BB]",
-        )}
-      />
-      <div
-        className={cn(
-          "absolute",
-          "top-[-2px]",
-          "end-[88px]",
-          "h-0.5",
-          "w-[226px]",
-          "bg-[#F5C9BB]",
-        )}
-      />
-      <PillButton
-        href="#contact"
-        className={cn("w-[160px]", "-mt-1.5", "relative", "right-[125px]")}
-      >
-        طلب خدمة
-      </PillButton>
+    <div className={cn("absolute", "-right-[35px]", "top-[32px]", "flex", "origin-top-right", "-rotate-[8deg]", "items-center")}>
+      <div className={cn("relative", "flex", "h-[66px]", "w-[270px]", "items-center", "justify-between", "rounded-full", "border-[1.5px]", "border-[#F5C9BB]", "p-1.5", "bg-white/40")}>
+        <div className="w-1" />
+        <PillButton href="#contact" className={cn("!h-[52px]", "!ps-4", "!pe-1", "!text-[14px]", "w-[150px]", "shadow-md")}>
+          طلب خدمة
+        </PillButton>
+      </div>
     </div>
   );
 }
 
 function HeroProcessArt() {
-  return (
-    <div
-      className={cn(
-        "absolute",
-        "inset-x-0",
-        "top-8",
-        "flex",
-        "flex-col",
-        "items-center",
-        "gap-4",
-      )}
-    >
-      <div
-        className={cn(
-          "flex",
-          "h-[64px]",
-          "w-[260px]",
-          "items-center",
-          "justify-between",
-          "rounded-full",
-          "border",
-          "border-[#E6E9F0]",
-          "bg-white",
-          "px-5",
-          "shadow-[0_8px_24px_rgba(14,23,48,0.05)]",
-        )}
-      >
-        <div className="text-right">
-          <strong
-            className={cn(
-              "block",
-              "text-[14px]",
-              "font-bold",
-              "text-[#0E1730]",
-            )}
-          >
-            نما
-          </strong>
-          <span className={cn("text-[12px]", "text-[#6F7890]")}>
-            تم تسليم المشروع بنجاح
-          </span>
-        </div>
-        <span
-          className={cn(
-            "grid",
-            "size-10",
-            "shrink-0",
-            "place-items-center",
-            "rounded-full",
-            "border",
-            "border-[#E6E9F0]",
-            "bg-[#FAFCFF]",
-            "text-[12px]",
-            "font-bold",
-            "text-[#243A77]",
-          )}
-        >
-          نما
-        </span>
-      </div>
+  const [step, setStep] = useState(0);
 
-      <div
-        className={cn(
-          "flex",
-          "h-[76px]",
-          "w-[310px]",
-          "items-center",
-          "justify-between",
-          "rounded-full",
-          "border",
-          "border-[#E6E9F0]",
-          "bg-white",
-          "px-6",
-          "shadow-[0_10px_28px_rgba(14,23,48,0.06)]",
-        )}
-      >
-        <div className="text-right">
-          <strong
-            className={cn(
-              "block",
-              "text-[18px]",
-              "font-bold",
-              "text-[#0E1730]",
-            )}
-          >
-            نوبكو
-          </strong>
-          <span className={cn("text-[13px]", "text-[#6F7890]")}>
-            شكرا لكم، النتائج فاقت توقعاتنا
-          </span>
-        </div>
-        <span
-          className={cn(
-            "grid",
-            "size-12",
-            "shrink-0",
-            "place-items-center",
-            "rounded-full",
-            "border",
-            "border-[#E6E9F0]",
-            "bg-[#FAFCFF]",
-            "text-[13px]",
-            "font-bold",
-            "text-[#243A77]",
-          )}
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStep((prev) => prev + 1);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const len = DISPLAY_PARTNERS.length;
+  const currentStack = [
+    { partner: DISPLAY_PARTNERS[(step + 1) % len], slot: 'top' as const },
+    { partner: DISPLAY_PARTNERS[step % len], slot: 'bottom' as const },
+  ];
+
+  const slotVariants = {
+    bottom: {
+      y: 62,
+      scale: 1,
+      opacity: 1,
+      zIndex: 20,
+      transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] as const }
+    },
+    top: {
+      y: -10,
+      scale: 0.92,
+      opacity: 0.75,
+      zIndex: 10,
+      transition: { duration: 0.45, ease: "easeInOut" as const }
+    }
+  } as const;
+
+  return (
+    <div className="absolute inset-x-0 top-6 flex h-[160px] items-center justify-center pointer-events-none select-none overflow-visible">
+      {currentStack.map(({ partner, slot }) => (
+        <motion.div
+          key={partner.id}
+          layout
+          initial={false}
+          animate={slot}
+          variants={slotVariants}
+          className="absolute flex h-[64px] w-[275px] items-center gap-3 rounded-full border border-[#EBECEF] bg-white px-4 py-2 shadow-[0_8px_24px_rgba(14,23,48,0.05)]"
         >
-          نوبكو
-        </span>
-      </div>
+          <div className="relative flex size-11 shrink-0 items-center justify-center rounded-full border border-[#EAECEF] bg-white p-1.5 shadow-sm">
+            <img src={partner.logo} alt={partner.name} className="h-full w-full object-contain" />
+          </div>
+          <div className="text-right flex-1 min-w-0">
+            <strong className="block text-[14px] font-bold text-[#0E1730] truncate">{partner.name}</strong>
+            <span className="block text-[11px] text-[#808586] truncate">{partner.note}</span>
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
 }
@@ -440,12 +381,11 @@ function HeroCard({
           ? undefined
           : {
               rotate: hoverRotate,
-              y: -6,
-              transition: { type: "spring", stiffness: 300, damping: 20 },
+              transition: { duration: 0.2, ease: "easeOut" },
             }
       }
       className={cn(
-        "group relative h-[360px] overflow-hidden rounded-[50px] border-2 border-[#F1D5CC] bg-white p-10 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(241,87,34,0.22)]",
+        "group relative h-[360px] overflow-hidden rounded-[50.5px] border-[2.02px] border-[#F1D5CC] bg-white px-6 py-10 xl:px-8 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-[border-color,box-shadow] duration-200 hover:border-[#F79A7A] hover:shadow-[-217.15px_247.45px_91.91px_0px_rgba(36,58,119,0.01),-9.09px_10.1px_29.29px_0px_rgba(36,58,119,0.08)]",
       )}
     >
       <div
@@ -458,7 +398,7 @@ function HeroCard({
           "w-[75%]",
           "-translate-x-1/2",
           "rounded-full",
-          "bg-[#F15722]/25",
+          "bg-[#F79A7A]/25",
           "opacity-0",
           "blur-2xl",
           "transition-opacity",
@@ -485,16 +425,26 @@ function HeroCard({
 
       <div className={cn("relative", "z-10", "mt-[218px]")}>
         <h3
-          className={cn(
-            "text-[24px]",
-            "font-bold",
-            "leading-tight",
-            "text-[#0E1730]",
-          )}
+          className="text-right font-semibold leading-normal"
+          style={{
+            color: "var(--Neutral-800, #121516)",
+            fontFamily: '"IBM Plex Sans Arabic", sans-serif',
+            fontSize: "22px",
+            fontWeight: 600,
+            lineHeight: "normal",
+          }}
         >
           {title}
         </h3>
-        <p className={cn("mt-2", "text-[16px]", "leading-7", "text-[#6F7890]")}>
+        <p
+          className="mt-2 text-right font-normal whitespace-nowrap text-[16px] lg:text-[18px] xl:text-[20px]"
+          style={{
+            color: "var(--Neutral-400, #575C5E)",
+            fontFamily: '"IBM Plex Sans Arabic", sans-serif',
+            fontWeight: 400,
+            lineHeight: "140%",
+          }}
+        >
           {body}
         </p>
       </div>
@@ -522,105 +472,106 @@ function AiServiceCard() {
         "transition-all",
         "duration-300",
         "hover:border-[#F15722]",
+        "hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]",
         "lg:col-span-2",
       )}
     >
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-full w-full bg-gradient-to-t from-[#F15722]/25 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <img
+        src="/images/hover.svg"
+        alt=""
+        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+      />
+
+      {/* Layer 1: Mascot at Back */}
       <img
         src="/mockups/mascot.png"
         alt=""
         className={cn(
           "absolute",
           "left-1/2",
-          "top-[-50px]",
+          "top-[95px]",
           "z-0",
-          "h-[458px]",
+          "h-[409px]",
           "w-auto",
           "-translate-x-1/2",
           "object-contain",
         )}
         loading="lazy"
       />
-      <div
-        className={cn(
-          "absolute",
-          "bottom-[58px]",
-          "left-1/2",
-          "z-10",
-          "flex",
-          "min-h-[150px]",
-          "w-[560px]",
-          "max-w-[calc(100%-48px)]",
-          "-translate-x-1/2",
-          "items-center",
-          "justify-between",
-          "gap-6",
-          "rounded-[24px]",
-          "bg-white",
-          "px-9",
-          "py-7",
-          "text-right",
-          "shadow-[0_20px_50px_rgba(14,23,48,0.08)]",
-        )}
-      >
-        <span
-          className={cn(
-            "grid",
-            "size-12",
-            "shrink-0",
-            "place-items-center",
-            "rounded-[15px]",
-            "border",
-            "border-[#EEF2F8]",
-            "text-[#243A77]",
-            "transition-colors",
-            "duration-300",
-            "group-hover:border-[#FBCDBD]",
-            "group-hover:text-[#F15722]",
-          )}
-        >
-          <Star aria-hidden className="size-5" />
-        </span>
-        <div className={cn("min-w-0", "flex-1")}>
+
+      {/* Layer 2: White Card Container (Figma 563:9152) */}
+      <div className="absolute bottom-[30px] left-1/2 z-10 flex w-[623px] max-w-[calc(100%-32px)] -translate-x-1/2 flex-col gap-3 rounded-[24px] bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+        {/* Star Badge positioned on the right */}
+        <div className="flex w-full justify-start">
+          <div className="flex size-[48px] shrink-0 items-center justify-center rounded-[16px] border border-[#FCDDD3] bg-[#F9F9F9] p-3 text-[#F15722]">
+            <svg className="size-6 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Gray Content Box */}
+        <div className="w-full rounded-[16px] bg-[#F9F9F9] p-5 text-right">
           <h3
-            className={cn(
-              "text-[24px]",
-              "font-bold",
-              "leading-8",
-              "text-[#0E1730]",
-            )}
+            className="text-right font-medium leading-normal text-[#1E1E20]"
+            style={{
+              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+              fontSize: "20px",
+              fontStyle: "normal",
+              fontWeight: 500,
+            }}
           >
             حلول الذكاء الاصطناعي المتقدمة
           </h3>
           <p
-            className={cn("mt-4", "text-[15px]", "leading-8", "text-[#6F7890]")}
+            className="mt-2 text-right font-normal text-[#5F6063]"
+            style={{
+              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+              fontSize: "16px",
+              fontStyle: "normal",
+              fontWeight: 400,
+              lineHeight: "1.4",
+            }}
           >
             نساعدك على تبني تقنيات الذكاء الاصطناعي التوليدي (GenAI) وتعلم الآلة
             (ML) لبناء أنظمة تفهم، تحلل، وتنبأ.
           </p>
         </div>
       </div>
-      <div
+
+      {/* Hidden SVG with clip path definition */}
+      <svg className="absolute -left-[999px] -top-[999px] h-0 w-0" aria-hidden="true">
+        <defs>
+          <clipPath id="edited-differentone23-1782742739957" clipPathUnits="objectBoundingBox">
+            <path
+              d="M0.107822 0.242870 L0.235307 0.324978 C0.563742 0.355229 0.263397 0.590752 0.369274 0.586430 L0.308773 0.644771 L0.192092 0.668539 C0.086214 0.515125 0.000000 0.766667 0.116465 0.240709 L0.109983 0.242870 Z"
+              fill="black"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+
+      {/* Layer 3: Hand with clip path applied on top of card */}
+      <figure
+        style={{ clipPath: 'url(#edited-differentone23-1782742739957)' }}
         className={cn(
+          "pointer-events-none",
           "absolute",
-          "left-[calc(50%-230px)]",
-          "top-[224px]",
+          "left-1/2",
+          "top-[95px]",
           "z-20",
-          "h-[145px]",
-          "w-[230px]",
-          "max-md:left-[4%]",
-          "max-md:h-[120px]",
-          "max-md:w-[190px]",
+          "h-[409px]",
+          "w-auto",
+          "-translate-x-1/2"
         )}
-        style={{ clipPath: "inset(0 0 8% 0)" }}
       >
         <img
-          src="/mockups/mascot_arm_front.png"
+          src="/mockups/mascot.png"
           alt=""
-          className={cn("h-full", "w-auto", "rotate-[-4deg]", "object-contain")}
+          className={cn("h-full", "w-auto", "object-contain")}
           loading="lazy"
         />
-      </div>
+      </figure>
     </motion.article>
   );
 }
@@ -667,20 +618,42 @@ function ServiceCard({
         "transition-all",
         "duration-300",
         "hover:border-[#F15722]",
+        "hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]",
       )}
     >
+      <img
+        src="/images/hover.svg"
+        alt=""
+        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+      />
       <div className={cn("px-8", "pt-9", "text-right")}>
         <h3
-          className={cn(
-            "text-[22px]",
-            "font-bold",
-            "leading-8",
-            "text-[#0E1730]",
-          )}
+          className="text-right font-medium leading-normal"
+          style={{
+            color: "var(--Neutral-800, #1E1E20)",
+            textAlign: "right",
+            fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+            fontSize: "20px",
+            fontStyle: "normal",
+            fontWeight: 500,
+            lineHeight: "normal",
+          }}
         >
           {title}
         </h3>
-        <p className={cn("mt-4", "text-[15px]", "leading-7", "text-[#6F7890]")}>
+        <p
+          className="mt-4 text-right font-normal self-stretch"
+          style={{
+            color: "var(--Neutral-500, #5F6063)",
+            textAlign: "right",
+            fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+            fontSize: "18px",
+            fontStyle: "normal",
+            fontWeight: 400,
+            lineHeight: "140%",
+            alignSelf: "stretch",
+          }}
+        >
           {body}
         </p>
       </div>
@@ -731,10 +704,16 @@ function WideServiceCard() {
         "transition-all",
         "duration-300",
         "hover:border-[#F15722]",
+        "hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]",
         "lg:col-span-3",
         "lg:grid-cols-[1fr_815px]",
       )}
     >
+      <img
+        src="/images/hover.svg"
+        alt=""
+        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+      />
       <div
         className={cn(
           "flex",
@@ -744,10 +723,33 @@ function WideServiceCard() {
           "text-right",
         )}
       >
-        <h3 className={cn("text-[22px]", "font-bold", "text-[#0E1730]")}>
+        <h3
+          className="text-right font-medium leading-normal"
+          style={{
+            color: "var(--Neutral-800, #1E1E20)",
+            textAlign: "right",
+            fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+            fontSize: "20px",
+            fontStyle: "normal",
+            fontWeight: 500,
+            lineHeight: "normal",
+          }}
+        >
           تعزيز الكفاءات والفرق التقنية
         </h3>
-        <p className={cn("mt-4", "text-[15px]", "leading-7", "text-[#6F7890]")}>
+        <p
+          className="mt-4 text-right font-normal self-stretch"
+          style={{
+            color: "var(--Neutral-500, #5F6063)",
+            textAlign: "right",
+            fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+            fontSize: "18px",
+            fontStyle: "normal",
+            fontWeight: 400,
+            lineHeight: "140%",
+            alignSelf: "stretch",
+          }}
+        >
           نوفر مطورين وخبراء تقنيين جاهزين للانضمام إلى فريقك، لتسريع تنفيذ
           المشاريع وسد فجوات المهارات بكفاءة ومرونة.
         </p>
@@ -794,126 +796,16 @@ function WideServiceCard() {
   );
 }
 
-function ProjectCard({
-  image,
-  category,
-  title,
-  imageClass = "object-cover object-center w-full h-full",
-}: {
-  image: string;
-  category: string;
-  title: string;
-  imageClass?: string;
-}) {
-  const shouldReduceMotion = useReducedMotion();
 
-  return (
-    <motion.article
-      variants={scaleIn}
-      initial="hidden"
-      whileInView="visible"
-      viewport={motionViewport}
-      whileHover={
-        shouldReduceMotion
-          ? undefined
-          : {
-              y: -8,
-              transition: { type: "spring", stiffness: 220, damping: 18 },
-            }
-      }
-      className={cn(
-        "group",
-        "relative",
-        "h-[539px]",
-        "rounded-[28px]",
-        "border",
-        "border-[#EEF2F8]",
-        "bg-white",
-        "p-4",
-        "text-right",
-        "shadow-[0_18px_44px_rgba(14,23,48,0.05)]",
-        "transition-all",
-        "duration-300",
-        "hover:border-[#F15722]",
-        "hover:shadow-[0_20px_48px_rgba(241,87,34,0.2)]",
-      )}
-    >
-      <div
-        className={cn(
-          "relative",
-          "z-10",
-          "h-[445px]",
-          "overflow-hidden",
-          "rounded-[18px]",
-          "bg-[#FAFBFF]",
-        )}
-      >
-        <div
-          className={cn(
-            "pointer-events-none",
-            "absolute",
-            "bottom-0",
-            "left-1/2",
-            "h-28",
-            "w-[80%]",
-            "-translate-x-1/2",
-            "rounded-full",
-            "bg-[#F15722]/25",
-            "opacity-0",
-            "blur-2xl",
-            "transition-opacity",
-            "duration-300",
-            "group-hover:opacity-100",
-          )}
-        />
-        <img
-          src={image}
-          alt=""
-          className={cn(
-            "relative z-10 h-full w-full transition-transform duration-500 group-hover:scale-[1.03]",
-            imageClass,
-          )}
-          loading="lazy"
-        />
-      </div>
-      <div className={cn("flex", "h-[62px]", "items-end", "justify-between")}>
-        <span
-          className={cn(
-            "grid",
-            "size-10",
-            "place-items-center",
-            "text-[#243A77]",
-          )}
-        >
-          <ArrowUpLeft aria-hidden className="size-6" />
-        </span>
-        <div className={cn("flex", "items-center", "gap-2", "text-[15px]")}>
-          <span
-            className={cn(
-              "rounded-full",
-              "bg-[#F4F7FC]",
-              "px-3",
-              "py-1",
-              "text-[13px]",
-              "text-[#6F7890]",
-            )}
-          >
-            {category}
-          </span>
-          <h3 className={cn("font-bold", "text-[#0E1730]")}>{title}</h3>
-        </div>
-      </div>
-    </motion.article>
-  );
-}
 
 export function LiteralHomePage({ data }: { data?: HomePageData }) {
   const navLinksList = data?.nav?.links?.length
     ? data.nav.links.map((link) => [link.label, link.href] as const)
     : defaultNavLinks;
 
-  const partnersList = data?.partners?.length
-    ? data.partners.map((p) => [p.logo?.src || "/images/noboco.svg", p.name] as const)
+  const filteredPartners = data?.partners?.filter((p) => Boolean(p.logo?.src));
+  const partnersList = filteredPartners && filteredPartners.length > 0
+    ? filteredPartners.map((p) => [p.logo!.src, p.name] as const)
     : defaultPartners;
 
   const whyUsList = data?.whyUs?.length
@@ -959,23 +851,39 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
             className={cn(
               "hidden",
               "w-[920px]",
+              "items-center",
               "justify-center",
               "gap-10",
-              "text-[15px]",
-              "font-medium",
-              "text-[#5F6575]",
               "lg:flex",
             )}
           >
-            {navLinksList.map(([label, href], index) => (
-              <a
-                key={label}
-                href={href}
-                className={index === 0 ? "font-bold text-[#F15722]" : ""}
-              >
-                {label}
-              </a>
-            ))}
+            {navLinksList.map(([label, href], index) => {
+              const isActive = index === 0;
+              return (
+                <a
+                  key={label}
+                  href={href}
+                  className="transition duration-200 leading-normal"
+                  style={
+                    isActive
+                      ? {
+                          color: "var(--Primary-500, #F15722)",
+                          fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                          fontSize: "20px",
+                          fontWeight: 700,
+                        }
+                      : {
+                          color: "var(--Neutral-600, #414244)",
+                          fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                          fontSize: "18px",
+                          fontWeight: 400,
+                        }
+                  }
+                >
+                  {label}
+                </a>
+              );
+            })}
           </div>
           <PillButton href={data?.nav?.cta?.href || "#contact"} className="w-[160px]">
             {data?.nav?.cta?.label || "طلب خدمة"}
@@ -1035,22 +943,22 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "text-[#243A77]",
                   "md:text-[52px]",
                 )}
+                style={{ fontFamily: '"Thmanyah Serif Display", serif' }}
               >
-                <span className="block">
+                <span className="block font-serif-display">
                   {data?.hero?.headline?.before || "شريكك التقني لحلــــول"}{" "}
-                  <span className="text-[#F15722]">{data?.hero?.headline?.emphasis || "رقميـــــة"}</span>
+                  <span className="text-[#F15722] font-serif-display">{data?.hero?.headline?.emphasis || "رقميـــــة"}</span>
                 </span>
-                <span className={cn("mt-5", "block")}>{data?.hero?.headline?.after || "تدعم نمو أعمالك"}</span>
+                <span className={cn("mt-5", "block", "font-serif-display")}>{data?.hero?.headline?.after || "تدعم نمو أعمالك"}</span>
               </h1>
               <p
-                className={cn(
-                  "mx-auto",
-                  "mt-7",
-                  "max-w-[652px]",
-                  "text-[16px]",
-                  "leading-8",
-                  "text-[#8B93A6]",
-                )}
+                className="mx-auto mt-7 max-w-[652px] text-center font-normal"
+                style={{
+                  color: "var(--Neutral-300, #808586)",
+                  fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                  fontSize: "24px",
+                  lineHeight: "140%",
+                }}
               >
                 {data?.hero?.subtitle || "نصمم ونطور مواقع وتطبيقات مخصصة لتحسين الكفاءة وتجربة العملاء."}
               </p>
@@ -1143,45 +1051,29 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 "font-serif-text",
                 "text-[28px]",
                 "font-bold",
-                "text-[#243A77]",
               )}
+              style={{ color: "var(--Neutral-800, #1E1E20)" }}
             >
               {data?.partnersCopy?.heading || "عملاء وثقوا بنا لصناعة حلول رقمية مؤثرة"}
             </h2>
-            <div
-              className={cn(
-                "mt-14",
-                "grid",
-                "grid-cols-2",
-                "items-center",
-                "gap-8",
-                "md:grid-cols-6",
-              )}
-            >
-              {partnersList.map(([src, alt]) => (
-                <motion.div
-                  key={alt}
-                  variants={fadeIn}
-                  className={cn(
-                    "flex",
-                    "h-16",
-                    "items-center",
-                    "justify-center",
-                    "opacity-75",
-                    "grayscale",
-                    "transition",
-                    "hover:opacity-100",
-                    "hover:grayscale-0",
-                  )}
-                >
-                  <img
-                    src={src}
-                    alt={alt}
-                    className={cn("max-h-12", "max-w-[130px]")}
-                    loading="lazy"
-                  />
-                </motion.div>
-              ))}
+            <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-12">
+              <Marquee  className="[--duration:12s] [--gap:5.5rem] py-4">
+                {partnersList.map(([src, alt], idx) => (
+                  <div
+                    key={`${alt}-${idx}`}
+                    className="flex h-16 w-36 items-center justify-center opacity-75 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                  >
+                    <img
+                      src={src}
+                      alt={alt}
+                      className="max-h-12 max-w-[130px] object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </Marquee>
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white via-white/80 via-40% to-transparent z-10"></div>
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white via-white/80 via-40% to-transparent z-10"></div>
             </div>
           </motion.div>
         </section>
@@ -1297,18 +1189,20 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "text-[36px]",
                   "font-bold",
                   "leading-[1.35]",
-                  "text-[#0E1730]",
+                  "text-right",
                 )}
+                style={{ color: "var(--Neutral-800, #1E1E20)" }}
               >
                 {data?.whoWeAre?.heading || "نبني حلولا رقمية تنمو مع أعمالك"}
               </h2>
               <p
-                className={cn(
-                  "mt-7",
-                  "text-[17px]",
-                  "leading-8",
-                  "text-[#6F7890]",
-                )}
+                className="mt-7 text-right font-normal"
+                style={{
+                  color: "var(--Neutral-500, #5F6063)",
+                  fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                  fontSize: "18px",
+                  lineHeight: "140%",
+                }}
               >
                 {data?.whoWeAre?.body || "منذ انطلاقنا في 2017، كرسنا جهودنا لتمكين المؤسسات من التميز الرقمي. نفخر بسجل من المشاريع التي أحدثت فارقا حقيقيا في أداء شركائنا."}
               </p>
@@ -1414,21 +1308,23 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   </div>
                   <div className="text-right">
                     <h3
-                      className={cn(
-                        "text-[18px]",
-                        "font-semibold",
-                        "text-[#0E1730]",
-                      )}
+                      className="text-right font-medium leading-normal"
+                      style={{
+                        color: "var(--Neutral-800, #1E1E20)",
+                        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                        fontSize: "20px",
+                      }}
                     >
                       {title}
                     </h3>
                     <p
-                      className={cn(
-                        "mt-2",
-                        "text-[14px]",
-                        "leading-6",
-                        "text-[#74829A]",
-                      )}
+                      className="mt-2 text-right font-normal"
+                      style={{
+                        color: "var(--Neutral-500, #5F6063)",
+                        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                        fontSize: "16px",
+                        lineHeight: "140%",
+                      }}
                     >
                       {body}
                     </p>
@@ -1614,14 +1510,21 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                             "p-7",
                             "text-right",
                             "shadow-[0_14px_34px_rgba(14,23,48,0.04)]",
-                            "lg:w-[calc(50%-32px)]",
+                            "lg:w-[calc(50%-80px)]",
+                            "group relative overflow-hidden transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]"
                           )}
                         >
+                          <img
+                            src="/images/hover.svg"
+                            alt=""
+                            className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                          />
                           <h3
                             className={cn(
                               "text-[18px]",
                               "font-bold",
                               "text-[#0E1730]",
+                              "relative z-10"
                             )}
                           >
                             {title}
@@ -1632,6 +1535,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                               "text-[14px]",
                               "leading-6",
                               "text-[#74829A]",
+                              "relative z-10"
                             )}
                           >
                             {body}
@@ -1665,7 +1569,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                         <div
                           className={cn(
                             "hidden",
-                            "w-[calc(50%-32px)]",
+                            "w-[calc(50%-80px)]",
                             "lg:block",
                           )}
                         />
@@ -1675,7 +1579,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                         <div
                           className={cn(
                             "hidden",
-                            "w-[calc(50%-32px)]",
+                            "w-[calc(50%-80px)]",
                             "lg:block",
                           )}
                         />
@@ -1718,14 +1622,21 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                             "p-7",
                             "text-right",
                             "shadow-[0_14px_34px_rgba(14,23,48,0.04)]",
-                            "lg:w-[calc(50%-32px)]",
+                            "lg:w-[calc(50%-80px)]",
+                            "group relative overflow-hidden transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]"
                           )}
                         >
+                          <img
+                            src="/images/hover.svg"
+                            alt=""
+                            className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                          />
                           <h3
                             className={cn(
                               "text-[18px]",
                               "font-bold",
                               "text-[#0E1730]",
+                              "relative z-10"
                             )}
                           >
                             {title}
@@ -1736,6 +1647,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                               "text-[14px]",
                               "leading-6",
                               "text-[#74829A]",
+                              "relative z-10"
                             )}
                           >
                             {body}
@@ -1773,176 +1685,83 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               viewport={motionViewport}
               className={cn(
                 "relative",
-                "min-h-[456px]",
+                "min-h-[420px]",
                 "overflow-hidden",
                 "rounded-[32px]",
                 "bg-[#F15722]",
-                "px-10",
-                "py-14",
+                "px-8",
+                "py-12",
                 "text-white",
-                "lg:px-0",
-                "lg:py-0",
+                "md:p-14",
+                "lg:px-16",
+                "lg:py-16",
               )}
             >
-              <div
-                className={cn(
-                  "relative",
-                  "z-10",
-                  "max-w-[634px]",
-                  "text-center",
-                  "lg:absolute",
-                  "lg:left-10",
-                  "lg:top-24",
-                  "lg:text-right",
-                )}
-              >
-                <h2
-                  className={cn(
-                    "font-serif-text",
-                    "text-[44px]",
-                    "font-black",
-                    "leading-tight",
-                  )}
-                >
-                  {data?.finalCta?.heading || "لنحوّل فكرتك إلى منتج رقمي حقيقي"}
-                </h2>
-                <p
-                  className={cn(
-                    "mt-4",
-                    "text-[20px]",
-                    "font-bold",
-                    "text-white/80",
-                  )}
-                >
-                  {data?.finalCta?.body || "حوّل الفكرة إلى واقع ملموس"}
-                </p>
-                <div className="mt-9">
-                  <PillButton href={data?.finalCta?.cta?.href || "#contact"} variant="white">
-                    {data?.finalCta?.cta?.label || "احصل على استشارة مجانية"}
-                  </PillButton>
-                </div>
-              </div>
+              {/* CTA Pop Starburst behind mascot head */}
+              <img
+                src="/images/cta-pop.svg"
+                alt=""
+                className="pointer-events-none absolute left-[170px] top-[15px] z-0 hidden w-[190px] md:block lg:left-[240px] lg:top-[25px] lg:w-[230px]"
+                loading="lazy"
+              />
+
+              {/* Mascot Robot on Left */}
               <img
                 src="/mockups/mascot.png"
                 alt=""
-                className={cn(
-                  "pointer-events-none",
-                  "absolute",
-                  "bottom-[-155px]",
-                  "right-[40px]",
-                  "hidden",
-                  "w-[420px]",
-                  "lg:block",
-                )}
+                className="pointer-events-none absolute bottom-[-75px] left-0 z-10 hidden w-[340px] md:block lg:bottom-[-95px] lg:left-[30px] lg:w-[460px]"
                 loading="lazy"
               />
+
+              {/* CTA Blur overlay on top of mascot at bottom end of card */}
+              <img
+                src="/images/cta-blur.svg"
+                alt=""
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-auto w-full object-cover"
+                loading="lazy"
+              />
+
+              {/* Grid Layout: Text on Right */}
+              <div className="relative z-30 grid w-full items-center gap-8 md:grid-cols-[1.2fr_0.8fr]">
+                <div className="flex flex-col items-center text-center md:items-start md:text-right">
+                  <h2
+                    className={cn(
+                      "font-serif-text",
+                      "text-[30px]",
+                      "font-black",
+                      "leading-tight",
+                      "text-white",
+                      "md:text-[40px]",
+                      "lg:text-[44px]",
+                    )}
+                  >
+                    {data?.finalCta?.heading || "لنحوّل فكرتك إلى منتج رقمي حقيقي"}
+                  </h2>
+                  <p
+                    className={cn(
+                      "mt-4",
+                      "text-[18px]",
+                      "font-bold",
+                      "text-white/90",
+                      "md:text-[20px]",
+                    )}
+                  >
+                    {data?.finalCta?.body || "نحوّل الرؤية إلى واقع رقمي"}
+                  </p>
+                  <div className="mt-8">
+                    <PillButton href={data?.finalCta?.cta?.href || "#contact"} variant="white">
+                      {data?.finalCta?.cta?.label || "احصل علي استشارة مجانية"}
+                    </PillButton>
+                  </div>
+                </div>
+                <div className="hidden min-h-[300px] md:block" />
+              </div>
             </motion.div>
           </div>
         </section>
       </main>
 
-      <footer className={cn("bg-[#0E1730]", "pt-16", "text-white")}>
-        <div
-          className={cn(
-            "mx-auto",
-            "grid",
-            "max-w-[1240px]",
-            "gap-10",
-            "px-5",
-            "pb-16",
-            "md:grid-cols-2",
-            "lg:grid-cols-4",
-            "lg:px-0",
-          )}
-        >
-          <div>
-            <p className={cn("text-[17px]", "font-bold")}>
-              {data?.footer?.socialTitle || "تابعنا على وسائل التواصل"}
-            </p>
-            <div className={cn("mt-4", "flex", "gap-4")}>
-              {[
-                "/icons/twitter.svg",
-                "/icons/email.svg",
-                "/icons/Vector.svg",
-                "/icons/mouse.svg",
-              ].map((src) => (
-                <span
-                  key={src}
-                  className={cn(
-                    "grid",
-                    "size-6",
-                    "place-items-center",
-                    "opacity-80",
-                  )}
-                >
-                  <img
-                    src={src}
-                    alt=""
-                    className={cn("max-h-5", "max-w-5", "invert")}
-                    loading="lazy"
-                  />
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className={cn("space-y-8", "text-[15px]", "text-white/70")}>
-            <div>
-              <p
-                className={cn("mb-3", "text-[17px]", "font-bold", "text-white")}
-              >
-                {data?.footer?.locationTitle || "العنوان"}
-              </p>
-              <p>{data?.footer?.location || "المملكة العربية السعودية"}</p>
-            </div>
-            <div>
-              <p
-                className={cn("mb-3", "text-[17px]", "font-bold", "text-white")}
-              >
-                {data?.footer?.contactTitle || "تواصل معنا"}
-              </p>
-              <p>{data?.footer?.email || "info@codeclouders.com"}</p>
-              <p className="mt-2">{data?.footer?.phone || "+966 55 019 7744"}</p>
-            </div>
-          </div>
-          <div>
-            <p className={cn("text-[17px]", "font-bold")}>روابط مهمة</p>
-            <div
-              className={cn(
-                "mt-4",
-                "grid",
-                "gap-2",
-                "text-[15px]",
-                "text-white/70",
-              )}
-            >
-              {navLinksList.map(([label, href]) => (
-                <a key={label} href={href}>
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
-          <img
-            src="/Logo.svg"
-            alt={data?.nav?.brand || "Code Clouders"}
-            className={cn("h-[39px]", "w-[160px]", "brightness-0", "invert")}
-          />
-        </div>
-        <p
-          className={cn(
-            "mx-auto",
-            "max-w-[1200px]",
-            "px-5",
-            "pb-8",
-            "text-center",
-            "text-[12px]",
-            "text-white/50",
-            "lg:px-0",
-          )}
-        >
-          {data?.footer?.copyright || "جميع الحقوق محفوظة - CodeClouders."}
-        </p>
-      </footer>
+      <Footer data={data?.footer} />
     </div>
   );
 }

@@ -24,12 +24,21 @@ export function SectionHeader({
       )}
     >
       {eyebrow ? (
-        <p className="inline-flex h-12 items-center gap-2 rounded-full border border-brand-line bg-white px-5 text-sm font-bold text-brand-muted shadow-[0_12px_34px_rgba(17,43,88,0.06)]">
-          <Sparkles aria-hidden="true" className="size-4 text-brand-orange" />
+        <div
+          className="inline-flex h-12 items-center justify-center rounded-full border border-[#E8EDF6] bg-white px-5 font-normal leading-normal shadow-[0_10px_24px_rgba(36,58,119,0.04)]"
+          style={{
+            color: 'var(--Neutral-700, #2F3032)',
+            fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+            fontSize: '16px'
+          }}
+        >
           <span>{eyebrow}</span>
-        </p>
+        </div>
       ) : null}
-      <h2 className="text-balance text-3xl font-extrabold leading-tight text-brand-navy md:text-4xl">
+      <h2
+        className="text-balance font-serif-text text-3xl font-bold leading-tight md:text-4xl"
+        style={{ color: 'var(--Neutral-800, #1E1E20)' }}
+      >
         {heading}
       </h2>
     </div>

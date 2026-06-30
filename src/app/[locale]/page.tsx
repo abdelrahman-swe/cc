@@ -2,7 +2,10 @@ import config from '@payload-config'
 import { getPayload } from 'payload'
 
 import { Header } from '@/components/shared/Header'
+import { Footer } from '@/components/shared/Footer'
+import { LiteralHomePage } from '@/features/home/LiteralHomePage'
 import { RenderBlocks } from '@/features/pages/components/RenderBlocks'
+import { resolveBlocks } from '@/lib/repositories/blocks.resolver'
 import { routing, type Locale } from '@/i18n/routing'
 
 const fallbackLocale = routing.defaultLocale
@@ -11,8 +14,8 @@ const asLocale = (value: string): Locale =>
   routing.locales.includes(value as Locale) ? (value as Locale) : fallbackLocale
 
 async function getNavigation(locale: Locale) {
-  const payload = await getPayload({ config })
   try {
+    const payload = await getPayload({ config })
     const nav = await payload.findGlobal({
       slug: 'navigation',
       locale,
@@ -24,42 +27,56 @@ async function getNavigation(locale: Locale) {
   }
 }
 
+async function getFooter(locale: Locale) {
+  try {
+    const payload = await getPayload({ config })
+    const footer = await payload.findGlobal({
+      slug: 'footer',
+      locale,
+      fallbackLocale: fallbackLocale
+    })
+    return footer
+  } catch {
+    return null
+  }
+}
+
 async function getHomePageFromCMS(locale: Locale) {
-  const payload = await getPayload({ config })
+  try {
+    const payload = await getPayload({ config })
 
-  const result = await payload.find({
-    collection: 'pages',
-    where: {
-      slug: { equals: 'home' }
-    },
-    locale,
-    fallbackLocale: fallbackLocale,
-    depth: 2,
-    limit: 1
-  })
+    const result = await payload.find({
+      collection: 'pages',
+      where: {
+        slug: { equals: 'home' }
+      },
+      locale,
+      fallbackLocale: fallbackLocale,
+      depth: 2,
+      limit: 1
+    })
 
-  return result.docs[0] || null
+    return result.docs[0] || null
+  } catch (error) {
+    console.warn('Payload / MongoDB connection offline or timed out, using fallback homepage:', error)
+    return null
+  }
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeParam } = await params
   const locale = asLocale(localeParam)
-  const [page, nav] = await Promise.all([
+  const [page, nav, footer] = await Promise.all([
     getHomePageFromCMS(locale),
-    getNavigation(locale)
+    getNavigation(locale),
+    getFooter(locale)
   ])
 
   if (!page) {
-    return (
-      <div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="flex min-h-screen items-center justify-center bg-white text-[#0E1730]">
-        <p className="text-xl text-[#6F7890]">
-          Create a page with slug <strong>&quot;home&quot;</strong> in the dashboard to see your homepage.
-        </p>
-      </div>
-    )
+    return <LiteralHomePage data={{ nav, footer } as any} />
   }
 
-  const layout = (page as any).layout
+  const layout = await resolveBlocks((page as any).layout, locale)
 
   return (
     <div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="overflow-x-hidden bg-white text-[#0E1730]">
@@ -69,6 +86,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         cta={nav?.cta as any ?? undefined}
       />
       <RenderBlocks blocks={layout} />
+      <Footer data={footer} />
     </div>
   )
 }
+
+

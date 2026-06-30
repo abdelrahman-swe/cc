@@ -1,3 +1,67 @@
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('/font/ibm-plex-sans-arabic/IBMPlexSansArabic-Thin.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/font/ibm-plex-sans-arabic/IBMPlexSansArabic-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/font/ibm-plex-sans-arabic/IBMPlexSansArabic-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/font/ibm-plex-sans-arabic/IBMPlexSansArabic-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/font/ibm-plex-sans-arabic/IBMPlexSansArabic-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/font/ibm-plex-sans-arabic/IBMPlexSansArabic-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/font/ibm-plex-sans-arabic/IBMPlexSansArabic-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'ibm plex sans arabic';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/font/ibm-plex-sans-arabic/IBMPlexSansArabic-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'ibm plex sans arabic';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/font/ibm-plex-sans-arabic/IBMPlexSansArabic-Bold.ttf') format('truetype');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -116,10 +180,38 @@
   font-display: swap;
 }
 
+@font-face { font-family: "thmanyah serif text"; src: url("/font/thmanyah-typeface/thmanyahseriftext/woff2/thmanyahseriftext-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "thmanyah serif display"; src: url("/font/thmanyah-typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "thmanyah sans"; src: url("/font/thmanyah-typeface/thmanyahsans/woff2/thmanyahsans-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+
 :root {
-  --font-brand: "Thmanyah Sans", var(--font-sans), "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-sans: "IBM Plex Sans Arabic", sans-serif;
+  --font-brand: "IBM Plex Sans Arabic", sans-serif;
   --page-bg: #ffffff;
   --page-fg: #0e1730;
+
+  /* Figma Brand & Color Tokens */
+  --Primary-500: #F15722;
+  --Primary-400: #F4794E;
+  --Primary-300: #F79A7A;
+  --Primary-75: #FCDDD3;
+  --Primary-50: #FEEEE9;
+  --Primary-25: #FFFFFF;
+
+  --Sec-900: #070C18;
+  --Sec-800: #0E1730;
+  --Sec-500: #243A77;
+
+  --Neutral-800: #1E1E20;
+  --Neutral-700: #2F3032;
+  --Neutral-600: #414244;
+  --Neutral-500: #5F6063;
+  --Neutral-400: #575C5E;
+  --Neutral-300: #808586;
+  --Neutral-200: #EAEAEB;
+  --Neutral-100: #F9F9F9;
+  --Neutral-50: #FFFFFF;
+  --Neutral-25: #E8EAEA;
 }
 
 * {
@@ -165,19 +257,31 @@ canvas {
 }
 
 @keyframes marquee {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1rem)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap, 1rem)));
   }
 }
 
 .animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 25s linear infinite;
+  animation: marquee var(--duration, 40s) linear infinite;
 }
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+}
+
 
 /* ── CTA Pill Button – hybrid hover effect ────────────────────────── */
 .cta-pill {
@@ -199,8 +303,8 @@ canvas {
   transition: transform 0.5s cubic-bezier(0.3, 1, 0.8, 1);
 }
 
-.cta-pill--navy::before  { background: #1a2d5e; }
-.cta-pill--orange::before { background: #c44118; }
+.cta-pill--navy::before  { background: #243A77; }
+.cta-pill--orange::before { background: #F15722; }
 .cta-pill--white::before  { background: #ffe8df; }
 
 .cta-pill:hover::before {

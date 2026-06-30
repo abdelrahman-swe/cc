@@ -55,19 +55,39 @@ export function Header({ brand, links, cta }: HeaderProps) {
           className={cn(
             'hidden',
             'w-[920px]',
+            'items-center',
             'justify-center',
             'gap-10',
-            'text-[15px]',
-            'font-medium',
-            'text-[#243A77]',
             'lg:flex'
           )}
         >
-          {navLinks.map(([label, href]) => (
-            <a key={label} href={href} className="transition duration-200 hover:text-[#F15722]">
-              {label}
-            </a>
-          ))}
+          {navLinks.map(([label, href], index) => {
+            const isActive = index === 0
+            return (
+              <a
+                key={label}
+                href={href}
+                className="transition duration-200 leading-normal"
+                style={
+                  isActive
+                    ? {
+                        color: 'var(--Primary-500, #F15722)',
+                        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                        fontSize: '20px',
+                        fontWeight: 700
+                      }
+                    : {
+                        color: 'var(--Neutral-600, #414244)',
+                        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                        fontSize: '18px',
+                        fontWeight: 400
+                      }
+                }
+              >
+                {label}
+              </a>
+            )
+          })}
         </div>
         <PillButton href={ctaHref} variant="nav" className="hidden lg:inline-flex">
           {ctaLabel}

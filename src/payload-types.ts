@@ -274,7 +274,7 @@ export interface Page {
             sectionTag?: string | null;
             title?: string | null;
             description?: string | null;
-            selectionMode?: ('all' | 'featured' | 'manual') | null;
+            selectionMode?: ('all' | 'manual') | null;
             manualServices?: (string | Service)[] | null;
             id?: string | null;
             blockName?: string | null;
@@ -365,10 +365,56 @@ export interface Page {
       )[]
     | null;
   seo?: {
+    /**
+     * Title shown in search engine results and browser tabs. Recommended: 50-60 characters.
+     */
     metaTitle?: string | null;
+    /**
+     * Description shown in search engine results. Recommended: 150-160 characters.
+     */
     metaDescription?: string | null;
+    /**
+     * Comma-separated keywords for SEO.
+     */
     keywords?: string | null;
+    /**
+     * Title for social media sharing. Falls back to Meta Title if empty.
+     */
+    ogTitle?: string | null;
+    ogType?: ('website' | 'article') | null;
+    /**
+     * Description for social media sharing. Falls back to Meta Description if empty.
+     */
+    ogDescription?: string | null;
+    /**
+     * Image shown when shared on social media. Recommended: 1200×630px.
+     */
     ogImage?: (string | null) | Media;
+    twitterCard?: ('summary' | 'summary_large_image') | null;
+    /**
+     * Set a custom canonical URL if this content is duplicated from another page.
+     */
+    canonicalUrl?: string | null;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+    /**
+     * Optional schema.org JSON-LD structured data for rich search results.
+     */
+    structuredData?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
   };
   settings?: {
     transparentHeader?: boolean | null;
@@ -393,17 +439,74 @@ export interface Service {
   id: string;
   title: string;
   description: string;
-  summary?: string | null;
-  metric?: string | null;
-  layout: 'featured' | 'standard' | 'wide';
-  accent?: ('blue' | 'orange' | 'neutral') | null;
-  image?: (string | null) | Media;
   /**
-   * Optional public or remote image URL used by the homepage card.
+   * Main image displayed on the service card.
    */
-  imageUrl?: string | null;
+  image?: (string | null) | Media;
+  seo?: {
+    /**
+     * Title shown in search engine results and browser tabs. Recommended: 50-60 characters.
+     */
+    metaTitle?: string | null;
+    /**
+     * Description shown in search engine results. Recommended: 150-160 characters.
+     */
+    metaDescription?: string | null;
+    /**
+     * Comma-separated keywords for SEO.
+     */
+    keywords?: string | null;
+    /**
+     * Title for social media sharing. Falls back to Meta Title if empty.
+     */
+    ogTitle?: string | null;
+    ogType?: ('website' | 'article') | null;
+    /**
+     * Description for social media sharing. Falls back to Meta Description if empty.
+     */
+    ogDescription?: string | null;
+    /**
+     * Image shown when shared on social media. Recommended: 1200×630px.
+     */
+    ogImage?: (string | null) | Media;
+    twitterCard?: ('summary' | 'summary_large_image') | null;
+    /**
+     * Set a custom canonical URL if this content is duplicated from another page.
+     */
+    canonicalUrl?: string | null;
+    /**
+     * Prevent search engines from indexing this page.
+     */
+    noIndex?: boolean | null;
+    /**
+     * Prevent search engines from following links on this page.
+     */
+    noFollow?: boolean | null;
+    /**
+     * Optional schema.org JSON-LD structured data for rich search results.
+     */
+    structuredData?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+  };
+  /**
+   * Auto-generated from title. Edit to customize.
+   */
+  slug?: string | null;
+  /**
+   * AI Card spans 2 cols, Globe Card spans full width.
+   */
+  layout: 'ai-card' | 'globe-card' | 'standard';
+  /**
+   * Lower numbers appear first.
+   */
   order: number;
-  isFeatured?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -415,15 +518,24 @@ export interface CaseStudy {
   id: string;
   title: string;
   category: string;
-  excerpt?: string | null;
+  /**
+   * Choose whether to display a static image or a live website preview (iframe) for this project.
+   */
+  displayMode: 'image' | 'livePreview';
+  /**
+   * Upload or select a project image.
+   */
   image?: (string | null) | Media;
   /**
    * Optional public or remote image URL used by the homepage card.
    */
   imageUrl?: string | null;
+  /**
+   * Full URL of the website to embed as a live preview (e.g. https://example.com).
+   */
+  livePreviewUrl?: string | null;
   href?: string | null;
   order: number;
-  isFeatured?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -827,7 +939,15 @@ export interface PagesSelect<T extends boolean = true> {
         metaTitle?: T;
         metaDescription?: T;
         keywords?: T;
+        ogTitle?: T;
+        ogType?: T;
+        ogDescription?: T;
         ogImage?: T;
+        twitterCard?: T;
+        canonicalUrl?: T;
+        noIndex?: T;
+        noFollow?: T;
+        structuredData?: T;
       };
   settings?:
     | T
@@ -855,14 +975,26 @@ export interface PagesSelect<T extends boolean = true> {
 export interface ServicesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  summary?: T;
-  metric?: T;
-  layout?: T;
-  accent?: T;
   image?: T;
-  imageUrl?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        keywords?: T;
+        ogTitle?: T;
+        ogType?: T;
+        ogDescription?: T;
+        ogImage?: T;
+        twitterCard?: T;
+        canonicalUrl?: T;
+        noIndex?: T;
+        noFollow?: T;
+        structuredData?: T;
+      };
+  slug?: T;
+  layout?: T;
   order?: T;
-  isFeatured?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -885,12 +1017,12 @@ export interface StatisticsSelect<T extends boolean = true> {
 export interface CaseStudiesSelect<T extends boolean = true> {
   title?: T;
   category?: T;
-  excerpt?: T;
+  displayMode?: T;
   image?: T;
   imageUrl?: T;
+  livePreviewUrl?: T;
   href?: T;
   order?: T;
-  isFeatured?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1011,12 +1143,26 @@ export interface Navigation {
 export interface Footer {
   id: string;
   socialTitle?: string | null;
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'twitter' | 'snapchat' | 'tiktok' | 'instagram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   locationTitle?: string | null;
   location?: string | null;
   contactTitle?: string | null;
   email?: string | null;
   phone?: string | null;
   linksTitle?: string | null;
+  links?:
+    | {
+        label: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   copyright?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1190,12 +1336,26 @@ export interface NavigationSelect<T extends boolean = true> {
  */
 export interface FooterSelect<T extends boolean = true> {
   socialTitle?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
   locationTitle?: T;
   location?: T;
   contactTitle?: T;
   email?: T;
   phone?: T;
   linksTitle?: T;
+  links?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        id?: T;
+      };
   copyright?: T;
   updatedAt?: T;
   createdAt?: T;

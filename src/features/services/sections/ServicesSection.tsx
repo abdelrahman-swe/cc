@@ -3,7 +3,7 @@
 import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { Star } from 'lucide-react'
 import { SectionTag } from '@/components/ui/SectionTag'
-import { getServices, type ServiceItem } from '@/lib/repositories/services.repository'
+import { type ServiceItem } from '@/lib/repositories/services.repository'
 import { cn } from '@/lib/cn'
 
 const fadeUp: Variants = {
@@ -33,7 +33,7 @@ const staggerContainer: Variants = {
 
 const motionViewport = { once: true, margin: '-80px' } as const
 
-function AiServiceCard() {
+function AiServiceCard({ title, body }: { title: string; body: string }) {
   return (
     <motion.article
       variants={scaleIn}
@@ -41,40 +41,86 @@ function AiServiceCard() {
       whileInView="visible"
       viewport={motionViewport}
       className={cn(
-        'group relative h-[530px] overflow-hidden rounded-[50px] border border-[#EEF2F8] bg-white shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] lg:col-span-2'
+        'group relative h-[530px] overflow-hidden rounded-[40px] border border-[#EAEAEB] bg-white shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)] lg:col-span-2'
       )}
     >
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-full w-full bg-gradient-to-t from-[#F15722]/25 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <img
+        src="/images/hover.svg"
+        alt=""
+        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+      />
+
+      {/* Layer 1: Mascot at Back */}
       <img
         src="/mockups/mascot.png"
         alt=""
-        className="absolute left-1/2 top-[-50px] z-0 h-[458px] w-auto -translate-x-1/2 object-contain"
+        className="absolute left-1/2 top-[95px] z-0 h-[409px] w-auto -translate-x-1/2 object-contain"
         loading="lazy"
       />
-      <div className="absolute bottom-[58px] left-1/2 z-10 flex min-h-[150px] w-[560px] max-w-[calc(100%-48px)] -translate-x-1/2 items-center justify-between gap-6 rounded-[24px] bg-white px-9 py-7 text-right shadow-[0_20px_50px_rgba(14,23,48,0.08)]">
-        <span className="grid size-12 shrink-0 place-items-center rounded-[15px] border border-[#EEF2F8] text-[#243A77] transition-colors duration-300 group-hover:border-[#FBCDBD] group-hover:text-[#F15722]">
-          <Star aria-hidden className="size-5" />
-        </span>
-        <div className="min-w-0 flex-1">
-          <h3 className="text-[24px] font-bold leading-8 text-[#0E1730]">
-            حلول الذكاء الاصطناعي المتقدمة
+
+      {/* Layer 2: White Card Container (Figma 563:9152) */}
+      <div className="absolute bottom-[30px] left-1/2 z-10 flex w-[623px] max-w-[calc(100%-32px)] -translate-x-1/2 flex-col gap-3 rounded-[24px] bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+        {/* Star Badge positioned on the right */}
+        <div className="flex w-full justify-start">
+          <div className="flex size-[48px] shrink-0 items-center justify-center rounded-[16px] border border-[#FCDDD3] bg-[#F9F9F9] p-3 text-[#F15722]">
+            <svg className="size-6 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Gray Content Box */}
+        <div className="w-full rounded-[16px] bg-[#F9F9F9] p-5 text-right">
+          <h3
+            className="text-right font-medium leading-normal text-[#1E1E20]"
+            style={{
+              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+              fontSize: '20px',
+              fontStyle: 'normal',
+              fontWeight: 500
+            }}
+          >
+            {title}
           </h3>
-          <p className="mt-4 text-[15px] leading-8 text-[#6F7890]">
-            نساعدك على تبني تقنيات الذكاء الاصطناعي التوليدي (GenAI) وتعلم الآلة (ML) لبناء أنظمة تفهم، تحلل، وتنبأ.
+          <p
+            className="mt-2 text-right font-normal text-[#5F6063]"
+            style={{
+              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+              fontSize: '16px',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              lineHeight: '1.4'
+            }}
+          >
+            {body}
           </p>
         </div>
       </div>
-      <div
-        className="absolute left-[calc(50%-230px)] top-[224px] z-20 h-[145px] w-[230px] max-md:left-[4%] max-md:h-[120px] max-md:w-[190px]"
-        style={{ clipPath: 'inset(0 0 8% 0)' }}
+
+      {/* Hidden SVG with clip path definition */}
+      <svg className="absolute -left-[999px] -top-[999px] h-0 w-0" aria-hidden="true">
+        <defs>
+          <clipPath id="edited-differentone23-1782742739957" clipPathUnits="objectBoundingBox">
+            <path
+              d="M0.107822 0.242870 L0.235307 0.324978 C0.563742 0.355229 0.263397 0.590752 0.369274 0.586430 L0.308773 0.644771 L0.192092 0.668539 C0.086214 0.515125 0.000000 0.766667 0.116465 0.240709 L0.109983 0.242870 Z"
+              fill="black"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+
+      {/* Layer 3: Hand with clip path applied on top of card */}
+      <figure
+        style={{ clipPath: 'url(#edited-differentone23-1782742739957)' }}
+        className="pointer-events-none absolute left-1/2 top-[95px] z-20 h-[409px] w-auto -translate-x-1/2"
       >
         <img
-          src="/mockups/mascot_arm_front.png"
+          src="/mockups/mascot.png"
           alt=""
-          className="h-full w-auto rotate-[-4deg] object-contain"
+          className="h-full w-auto object-contain"
           loading="lazy"
         />
-      </div>
+      </figure>
     </motion.article>
   )
 }
@@ -87,7 +133,7 @@ function ServiceCard({
 }: {
   title: string
   body: string
-  image: string
+  image?: string
   imageClass?: string
 }) {
   const shouldReduceMotion = useReducedMotion()
@@ -98,36 +144,61 @@ function ServiceCard({
       initial="hidden"
       whileInView="visible"
       viewport={motionViewport}
-      whileHover={
-        shouldReduceMotion
-          ? undefined
-          : {
-              y: -8,
-              transition: { type: 'spring', stiffness: 220, damping: 18 }
-            }
-      }
       className={cn(
-        'group relative flex h-[530px] flex-col overflow-hidden rounded-[50px] border border-[#EEF2F8] bg-white shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722]'
+        'group relative flex h-[530px] flex-col overflow-hidden rounded-[50px] border border-[#EEF2F8] bg-white shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]'
       )}
     >
+      <img
+        src="/images/hover.svg"
+        alt=""
+        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+      />
       <div className="px-8 pt-9 text-right">
-        <h3 className="text-[22px] font-bold leading-8 text-[#0E1730]">{title}</h3>
-        <p className="mt-4 text-[15px] leading-7 text-[#6F7890]">{body}</p>
+        <h3
+          className="text-right font-medium leading-normal"
+          style={{
+            color: 'var(--Neutral-800, #1E1E20)',
+            textAlign: 'right',
+            fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+            fontSize: '20px',
+            fontStyle: 'normal',
+            fontWeight: 500,
+            lineHeight: 'normal'
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          className="mt-4 text-right font-normal self-stretch"
+          style={{
+            color: 'var(--Neutral-500, #5F6063)',
+            textAlign: 'right',
+            fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+            fontSize: '18px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '140%',
+            alignSelf: 'stretch'
+          }}
+        >
+          {body}
+        </p>
       </div>
-      <div className="relative z-10 mt-6 w-full flex-1 overflow-hidden bg-transparent">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-full w-full bg-gradient-to-t from-[#F15722]/30 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        <img
-          src={image}
-          alt=""
-          className={cn('relative z-10 h-full w-full transition duration-500 group-hover:scale-[1.02]', imageClass)}
-          loading="lazy"
-        />
-      </div>
+      {image ? (
+        <div className="relative z-10 mt-6 w-full flex-1 overflow-hidden bg-transparent">
+          <img
+            src={image}
+            alt=""
+            className={cn('relative z-10 h-full w-full', imageClass)}
+            loading="lazy"
+          />
+        </div>
+      ) : null}
     </motion.article>
   )
 }
 
-function WideServiceCard() {
+function WideServiceCard({ title, body }: { title: string; body: string }) {
   return (
     <motion.article
       variants={fadeUp}
@@ -135,28 +206,46 @@ function WideServiceCard() {
       whileInView="visible"
       viewport={motionViewport}
       className={cn(
-        'group relative grid min-h-[320px] overflow-hidden rounded-[50px] border border-[#EEF2F8] bg-white shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] lg:col-span-3 lg:grid-cols-[1fr_815px]'
+        'group relative grid min-h-[320px] overflow-hidden rounded-[50px] border border-[#EEF2F8] bg-white shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)] lg:col-span-3 lg:grid-cols-[1fr_815px]'
       )}
     >
+      <img
+        src="/images/hover.svg"
+        alt=""
+        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+      />
       <div className="flex flex-col justify-center p-10 text-right">
-        <h3 className="text-[22px] font-bold text-[#0E1730]">تعزيز الكفاءات والفرق التقنية</h3>
-        <p className="mt-4 text-[15px] leading-7 text-[#6F7890]">
-          نوفر مطورين وخبراء تقنيين جاهزين للانضمام إلى فريقك، لتسريع تنفيذ المشاريع وسد فجوات المهارات بكفاءة ومرونة.
+        <h3
+          className="text-right font-medium leading-normal"
+          style={{
+            color: 'var(--Neutral-800, #1E1E20)',
+            textAlign: 'right',
+            fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+            fontSize: '20px',
+            fontStyle: 'normal',
+            fontWeight: 500,
+            lineHeight: 'normal'
+          }}
+        >
+          {title}
+        </h3>
+        <p
+          className="mt-4 text-right font-normal self-stretch"
+          style={{
+            color: 'var(--Neutral-500, #5F6063)',
+            textAlign: 'right',
+            fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+            fontSize: '18px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '140%',
+            alignSelf: 'stretch'
+          }}
+        >
+          {body}
         </p>
-        <div className="mt-7 flex items-center justify-end gap-2">
-          <span className="rounded-full bg-[#243A77] px-4 py-2 text-[13px] font-bold text-white">
-            10K+
-          </span>
-          {[0, 1, 2].map((item) => (
-            <span
-              key={item}
-              className="size-8 rounded-full border-2 border-white bg-[#EDF3FF]"
-            />
-          ))}
-        </div>
       </div>
       <div className="relative h-[320px] bg-white">
-        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-l from-[#F15722]/30 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         <img
           src="/images/globe.svg"
           alt=""
@@ -173,14 +262,37 @@ type ServicesSectionProps = {
   title?: string
   description?: string
   items?: ServiceItem[]
+  manualServices?: any[]
+  selectionMode?: string
   presentation?: any
   customSectionId?: string
+}
+
+function parseServiceDoc(doc: any): ServiceItem | null {
+  if (!doc || typeof doc !== 'object') return null
+  return {
+    id: String(doc.id || doc._id),
+    title: typeof doc.title === 'string' ? doc.title : doc.title?.ar || doc.title?.en || '',
+    description: typeof doc.description === 'string' ? doc.description : doc.description?.ar || doc.description?.en || '',
+    slug: doc.slug || '',
+    layout: doc.layout || 'standard',
+    imageUrl: doc.image && typeof doc.image === 'object' ? (doc.image.url || doc.image.src) : (typeof doc.image === 'string' ? doc.image : doc.imageUrl)
+  }
 }
 
 export function ServicesSection(props: ServicesSectionProps) {
   const sectionTag = props.sectionTag || 'خدماتنا'
   const title = props.title || 'حلول رقمية متكاملة تواكب نمو أعمالك'
   const sectionId = props.customSectionId || 'services'
+  
+  let items = props.items || []
+  if (items.length === 0 && Array.isArray(props.manualServices) && props.manualServices.length > 0) {
+    items = props.manualServices.map(parseServiceDoc).filter((x): x is ServiceItem => x !== null)
+  }
+
+  if (items.length === 0) {
+    return null
+  }
 
   return (
     <section className="bg-white py-16" id={sectionId}>
@@ -199,47 +311,25 @@ export function ServicesSection(props: ServicesSectionProps) {
           viewport={motionViewport}
           className="mt-[70px] grid gap-6 lg:grid-cols-3"
         >
-          {props.items && props.items.length > 0 ? (
-            props.items.map((svc) => (
+          {items.map((svc) => {
+            if (svc.layout === 'ai-card') {
+              return <AiServiceCard key={svc.id || svc.title} title={svc.title} body={svc.description} />
+            }
+            if (svc.layout === 'globe-card') {
+              return <WideServiceCard key={svc.id || svc.title} title={svc.title} body={svc.description} />
+            }
+            return (
               <ServiceCard
                 key={svc.id || svc.title}
                 title={svc.title}
                 body={svc.description}
-                image={svc.imageUrl || (svc as any).image?.src || '/mockups/Mockup 14.png'}
+                image={svc.imageUrl}
               />
-            ))
-          ) : (
-            <>
-              <ServiceCard
-                title="تصميم الواجهات وتجربة المستخدم"
-                body="نصمم تجارب مستخدم رقمية تتمحور حول المستخدم، تعزز التفاعل وترفع قيمة علامتك التجارية."
-                image="/mockups/Mockup 14.png"
-                imageClass="object-cover object-top w-full h-full"
-              />
-              <AiServiceCard />
-              <ServiceCard
-                title="تطوير تطبيقات الجوال"
-                body="نبني تطبيقات Native وCross-platform لتجربة مستخدم سلسة ومتكاملة مع مختلف الأنظمة."
-                image="/images/service-image.svg"
-                imageClass="object-cover object-top w-full h-full"
-              />
-              <ServiceCard
-                title="بناء منتجات SaaS"
-                body="نساعدك في تطوير منصات SaaS مرنة وقابلة للتوسع، بنظام اشتراكات يمكن منتجك من النمو."
-                image="/images/service-image-3.png"
-                imageClass="object-cover object-top w-full h-full"
-              />
-              <ServiceCard
-                title="حلول التجارة الإلكترونية"
-                body="نبني متاجر وتجارب بيع رقمية عالية الأداء، من الكتالوج حتى الدفع والتكاملات."
-                image="/mockups/Dashboard 1.png"
-                imageClass="object-cover object-top w-full h-full"
-              />
-              <WideServiceCard />
-            </>
-          )}
+            )
+          })}
         </motion.div>
       </div>
     </section>
   )
 }
+

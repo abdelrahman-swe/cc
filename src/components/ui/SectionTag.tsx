@@ -13,11 +13,15 @@ export function SectionTag({ children }: { children: string }) {
         'border-[#E8EDF6]',
         'bg-white',
         'px-4',
-        'text-[15px]',
-        'font-medium',
-        'text-[#6F7890]',
+        'font-normal',
+        'leading-normal',
         'shadow-[0_10px_24px_rgba(36,58,119,0.04)]'
       )}
+      style={{
+        color: 'var(--Neutral-700, #2F3032)',
+        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+        fontSize: '16px'
+      }}
     >
       {children}
     </div>

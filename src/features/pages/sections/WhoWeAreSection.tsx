@@ -64,10 +64,24 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
           viewport={motionViewport}
           className="pt-2 text-right"
         >
-          <h2 className="font-serif-text text-[36px] font-bold leading-[1.35] text-[#0E1730]">
+          <h2
+            className="font-serif-text font-bold leading-[1.35] text-right"
+            style={{
+              color: 'var(--Neutral-800, #1E1E20)',
+              fontSize: '36px'
+            }}
+          >
             {heading}
           </h2>
-          <p className="mt-7 text-[17px] leading-8 text-[#6F7890]">
+          <p
+            className="mt-7 text-right font-normal"
+            style={{
+              color: 'var(--Neutral-500, #5F6063)',
+              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+              fontSize: '18px',
+              lineHeight: '140%'
+            }}
+          >
             {body}
           </p>
           <motion.div
@@ -88,7 +102,13 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
                   <div className="text-[21px] font-bold text-[#243A77]">
                     {stat.label}
                   </div>
-                  <p className="mt-2 text-[13px] leading-5 text-[#74829A]">
+                  <p
+                    className="mt-2 text-[14px] font-normal"
+                    style={{
+                      color: 'var(--Neutral-500, #5F6063)',
+                      fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                    }}
+                  >
                     {stat.description}
                   </p>
                 </motion.div>
@@ -113,14 +133,33 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
             <motion.article
               key={title}
               variants={fadeUp}
-              className="flex min-h-[143px] items-center gap-5 rounded-[24px] border border-[#EEF2F8] bg-white p-6 shadow-[0_14px_34px_rgba(14,23,48,0.04)]"
+              className="flex min-h-[143px] items-center gap-5 rounded-[24px] border border-[#EEF2F8] bg-white p-6 shadow-[0_14px_34px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_14px_34px_rgba(14,23,48,0.04),inset_0_0_20px_rgba(241,87,34,0.12)]"
             >
               <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-orange-300">
                 <img src={icon} alt="" className="size-5" loading="lazy" />
               </div>
               <div className="text-right">
-                <h3 className="text-[18px] font-semibold text-[#0E1730]">{title}</h3>
-                <p className="mt-2 text-[14px] leading-6 text-[#74829A]">{desc}</p>
+                <h3
+                  className="text-right font-medium leading-normal"
+                  style={{
+                    color: 'var(--Neutral-800, #1E1E20)',
+                    fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                    fontSize: '20px'
+                  }}
+                >
+                  {title}
+                </h3>
+                <p
+                  className="mt-2 text-right font-normal"
+                  style={{
+                    color: 'var(--Neutral-500, #5F6063)',
+                    fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                    fontSize: '16px',
+                    lineHeight: '140%'
+                  }}
+                >
+                  {desc}
+                </p>
               </div>
             </motion.article>
           ))}
