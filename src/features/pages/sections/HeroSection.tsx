@@ -209,13 +209,36 @@ function HeroCardItem({
   body,
   type,
   hoverRotate = 2,
+  rotateOffset = 0,
 }: {
   title: string;
   body: string;
   type: "button" | "process" | "chart";
   hoverRotate?: number;
+  rotateOffset?: number;
 }) {
   const shouldReduceMotion = useReducedMotion();
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (shouldReduceMotion) return;
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    const px = x / (rect.width / 2);
+    const py = y / (rect.height / 2);
+
+    setRotateX(-py * 8);
+    setRotateY(px * 8);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
 
   return (
     <motion.article
@@ -223,6 +246,17 @@ function HeroCardItem({
       initial="hidden"
       whileInView="visible"
       viewport={motionViewport}
+      animate={{
+        rotate: rotateOffset,
+        rotateX: rotateX,
+        rotateY: rotateY,
+        transformPerspective: 1000,
+      }}
+      transition={{
+        rotate: { type: "spring", stiffness: 140, damping: 12 },
+        rotateX: { type: "spring", stiffness: 150, damping: 20 },
+        rotateY: { type: "spring", stiffness: 150, damping: 20 },
+      }}
       whileHover={
         shouldReduceMotion
           ? undefined
@@ -231,6 +265,9 @@ function HeroCardItem({
               transition: { duration: 0.2, ease: "easeOut" },
             }
       }
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transformOrigin: "bottom center" }}
       className={cn('group', 'relative', 'h-[360px]', 'overflow-hidden', 'rounded-[50.5px]', 'border-[2.02px]', 'border-[#F1D5CC]', 'bg-white', 'px-6', 'py-10', 'xl:px-8', 'text-right', 'shadow-[0_12px_32px_rgba(14,23,48,0.03)]', 'transition-[border-color]', 'duration-200', 'hover:border-[#F79A7A]')}
     >
       <div className={cn('pointer-events-none', 'absolute', 'bottom-4', 'left-1/2', 'h-28', 'w-[75%]', '-translate-x-1/2', 'rounded-full', 'bg-[#F79A7A]/25', 'opacity-0', 'blur-2xl', 'transition-opacity', 'duration-300', 'group-hover:opacity-100')} />
@@ -269,7 +306,6 @@ function HeroCardItem({
 }
 
 export function HeroSection(props: any) {
-  // Support both Hero tab fields (homepageHeadline) and block fields (headline)
   const headline = props.homepageHeadline || props.headline || {};
   const headlineBefore = headline.before || "شريكك التقني";
   const headlineEmphasis = headline.emphasis || "لحلــــول رقميـــــة";
@@ -285,9 +321,37 @@ export function HeroSection(props: any) {
     { title: "نمنحك رؤية أوضح", description: "من خلال أدوات تساعدك على قياس النجاح", visual: "chart" }
   ];
 
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [rotations, setRotations] = useState<[number, number, number]>([0, 0, 0]);
+
+  const triggerChainAnimation = () => {
+    if (hasAnimated) return;
+    setHasAnimated(true);
+
+    setTimeout(() => {
+      const rot = -30;
+
+      setRotations([rot, 0, 0]);
+
+      setTimeout(() => {
+        setRotations([0, rot, 0]);
+
+        setTimeout(() => {
+          setRotations([0, 0, rot]);
+
+          setTimeout(() => {
+            setRotations([0, 0, 0]);
+          }, 350);
+        }, 220);
+      }, 220);
+    }, 1000);
+  };
+
   return (
     <section id="home" className={cn('relative', 'overflow-hidden', 'bg-white', 'pb-14', 'pt-16', 'lg:min-h-[870px]')} dir="rtl">
-      <div className={cn('pointer-events-none', 'absolute', 'left-1/2', 'top-[250px]', 'z-0', 'h-[360px]', 'w-[1540px]', '-translate-x-1/2', 'bg-[radial-gradient(ellipse_at_center,rgba(241,87,34,0.14)_0%,rgba(241,87,34,0.08)_42%,rgba(255,255,255,0)_73%)]', 'opacity-90')} />
+      <div className={cn('pointer-events-none', 'absolute', 'left-1/2', 'top-[50px]', 'z-0', 'h-[750px]', 'w-[1540px]', '-translate-x-1/2', 'opacity-100')}>
+        <img src="/images/hero-blur-orange.svg" alt="" className="h-full w-full object-contain" />
+      </div>
       <div className={cn('relative', 'z-10', 'mx-auto', 'max-w-[1248px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" animate="visible" className={cn('mx-auto', 'w-full', 'max-w-[760px]')}>
           <h1 className={cn('text-[42px]', 'font-bold', 'leading-[1.18]', 'text-[#243A77]', 'md:text-[52px]', 'font-serif-display')} style={{ fontFamily: '"Thmanyah Serif Display", serif' }}>
@@ -314,6 +378,7 @@ export function HeroSection(props: any) {
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
+          onViewportEnter={triggerChainAnimation}
           className={cn('mx-auto', 'mt-[86px]', 'grid', 'max-w-[1248px]', 'gap-6', 'md:grid-cols-3', 'max-md:mt-14')}
         >
           {cards.map((card: any, idx: number) => (
@@ -323,6 +388,7 @@ export function HeroSection(props: any) {
               body={card.description}
               type={card.visual || (idx === 0 ? "button" : idx === 1 ? "process" : "chart")}
               hoverRotate={idx % 2 === 0 ? -2 : 2}
+              rotateOffset={rotations[idx]}
             />
           ))}
         </motion.div>
