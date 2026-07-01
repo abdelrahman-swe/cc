@@ -494,7 +494,7 @@ function AiServiceCard() {
         className={cn(
           "absolute",
           "left-1/2",
-          "top-[95px]",
+          "top-[60px] sm:top-[80px] lg:top-[95px]",
           "z-0",
           "h-[280px] sm:h-[350px] md:h-[409px]",
           "w-auto",
@@ -557,26 +557,23 @@ function AiServiceCard() {
       </svg>
 
       {/* Layer 3: Hand with clip path applied on top of card */}
-      <figure
+      <img
+        src="/mockups/mascot.png"
+        alt=""
         style={{ clipPath: 'url(#edited-differentone23-1782742739957)' }}
         className={cn(
           "pointer-events-none",
           "absolute",
           "left-1/2",
-          "top-[95px]",
+          "top-[60px] sm:top-[80px] lg:top-[95px]",
           "z-20",
           "h-[280px] sm:h-[350px] md:h-[409px]",
           "w-auto",
-          "-translate-x-1/2"
+          "-translate-x-1/2",
+          "object-contain"
         )}
-      >
-        <img
-          src="/mockups/mascot.png"
-          alt=""
-          className={cn("h-full", "w-auto", "object-contain")}
-          loading="lazy"
-        />
-      </figure>
+        loading="lazy"
+      />
     </motion.article>
   );
 }

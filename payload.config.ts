@@ -20,8 +20,8 @@ export default buildConfig({
     },
     components: {
       graphics: {
-        Logo: path.resolve(dirname, 'src/components/admin/Logo.tsx'),
-        Icon: path.resolve(dirname, 'src/components/admin/Icon.tsx'),
+        Logo: './src/components/admin/Logo.tsx',
+        Icon: './src/components/admin/Icon.tsx',
       }
     },
   },

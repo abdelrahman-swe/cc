@@ -51,9 +51,9 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
       <Image
         src="/mockups/mascot.png"
         alt=""
-        width={400}
-        height={409}
-        className="absolute left-1/2 top-[95px] z-0 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2 object-contain"
+        width={1024}
+        height={1312}
+        className="absolute left-1/2 top-[60px] sm:top-[80px] lg:top-[95px] z-0 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2 object-contain"
         loading="lazy"
       />
 
@@ -109,19 +109,15 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
       </svg>
 
       {/* Layer 3: Hand with clip path applied on top of card */}
-      <figure
+      <Image
+        src="/mockups/mascot.png"
+        alt=""
+        width={1024}
+        height={1312}
         style={{ clipPath: 'url(#edited-differentone23-1782742739957)' }}
-        className="pointer-events-none absolute left-1/2 top-[95px] z-20 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2"
-      >
-        <Image
-          src="/mockups/mascot.png"
-          alt=""
-          width={400}
-          height={409}
-          className="h-full w-auto object-contain"
-          loading="lazy"
-        />
-      </figure>
+        className="pointer-events-none absolute left-1/2 top-[60px] sm:top-[80px] lg:top-[95px] z-20 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2 object-contain"
+        loading="lazy"
+      />
     </motion.article>
   )
 }

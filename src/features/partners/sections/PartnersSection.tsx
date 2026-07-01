@@ -67,7 +67,7 @@ export function PartnersSection(props: PartnersSectionProps) {
           {heading}
         </h2>
         <div className={cn('relative', 'flex', 'w-full', 'flex-col', 'items-center', 'justify-center', 'overflow-hidden', 'mt-12')}>
-          <Marquee className={cn('[--duration:12s]', '[--gap:5.5rem]', 'py-4')}>
+          <Marquee pauseOnHover className={cn('[--duration:1s]', '[--gap:5.5rem]', 'py-4')}>
             {partnerItems.map(([src, alt], idx) => (
               <div
                 key={`${alt}-${idx}`}

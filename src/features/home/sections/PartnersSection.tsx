@@ -16,7 +16,7 @@ export function PartnersSection({ copy, partners }: PartnersSectionProps) {
       <div className="mx-auto w-full max-w-[1240px] px-5 lg:px-0">
         <SectionHeader eyebrow={copy.eyebrow} heading={copy.heading} />
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-12">
-          <Marquee className="[--duration:12s] [--gap:5.5rem] py-4">
+          <Marquee pauseOnHover className="[--duration:12s] [--gap:5.5rem] py-4">
             {validPartners.map((partner) => (
               <a
                 key={partner.name}

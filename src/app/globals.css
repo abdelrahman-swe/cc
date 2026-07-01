@@ -212,11 +212,11 @@ canvas {
 }
 
 .animate-marquee {
-  animation: marquee var(--duration, 40s) linear infinite;
+  animation: marquee var(--duration, 20s) linear infinite;
 }
 
 .animate-marquee-vertical {
-  animation: marquee-vertical var(--duration, 40s) linear infinite;
+  animation: marquee-vertical var(--duration, 20s) linear infinite;
 }
 
 
