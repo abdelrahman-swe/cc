@@ -104,7 +104,7 @@ export function Footer({ data }: FooterProps) {
       <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'lg:px-0', 'flex', 'flex-col', 'gap-10', 'items-stretch')}>
         
         {/* Upper Footer Container */}
-        <div className={cn('flex', 'flex-col', 'lg:flex-row', 'gap-12', 'lg:gap-[134px]', 'items-start', 'justify-between', 'w-full')}>
+        <div className={cn('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:flex', 'lg:flex-row', 'gap-12', 'lg:gap-[134px]', 'items-start', 'justify-between', 'w-full')}>
           
           {/* Column 1 (Rightmost in RTL, Leftmost in LTR): Logo */}
           <div className={cn('w-[160px]', 'h-[39px]', 'relative', 'shrink-0')}>
@@ -137,7 +137,7 @@ export function Footer({ data }: FooterProps) {
               <p className={cn('font-serif-display', 'font-medium', 'text-[20px]', 'text-white', 'leading-none')}>
                 {locationTitle}
               </p>
-              <div className={cn('flex', 'flex-row', 'items-center', 'gap-2', 'text-[16px]', 'text-white/70')}>
+              <div className={cn('flex', 'flex-row', 'items-center', 'gap-2', 'text-[16px]', 'text-white/70', 'justify-start', 'rtl:justify-start', 'ltr:justify-end')}>
                 <LocationIcon />
                 <span>{location}</span>
               </div>
@@ -148,11 +148,11 @@ export function Footer({ data }: FooterProps) {
                 {contactTitle}
               </p>
               <div className={cn('flex', 'flex-col', 'gap-2', 'items-end', 'rtl:items-start', 'ltr:items-end', 'text-[16px]', 'text-white/70', 'w-full')}>
-                <a href={`mailto:${email}`} className={cn('flex', 'flex-row', 'items-center', 'gap-2', 'hover:text-white', 'transition-colors', 'duration-200', 'justify-end', 'rtl:justify-end', 'ltr:justify-start')}>
+                <a href={`mailto:${email}`} className={cn('flex', 'flex-row', 'items-center', 'gap-2', 'hover:text-white', 'transition-colors', 'duration-200', 'justify-start', 'rtl:justify-start', 'ltr:justify-end')}>
                   <InboxIcon />
                   <span className={cn('dir-ltr', 'select-all')}>{email}</span>
                 </a>
-                <a href={`tel:${phone}`} className={cn('flex', 'flex-row', 'items-center', 'gap-2', 'hover:text-white', 'transition-colors', 'duration-200', 'justify-end', 'rtl:justify-end', 'ltr:justify-start')}>
+                <a href={`tel:${phone}`} className={cn('flex', 'flex-row', 'items-center', 'gap-2', 'hover:text-white', 'transition-colors', 'duration-200', 'justify-start', 'rtl:justify-start', 'ltr:justify-end')}>
                   <CallIcon />
                   <span className={cn('dir-ltr', 'select-all')}>{phone}</span>
                 </a>
@@ -165,7 +165,7 @@ export function Footer({ data }: FooterProps) {
             <p className={cn('font-serif-display', 'font-medium', 'text-[20px]', 'text-white', 'leading-none')}>
               {socialTitle}
             </p>
-            <div className={cn('flex', 'flex-row', 'gap-4', 'items-center', 'justify-end', 'rtl:justify-end', 'ltr:justify-start', 'w-full')}>
+            <div className={cn('flex', 'flex-row', 'gap-4', 'items-center', 'justify-start', 'rtl:justify-start', 'ltr:justify-end', 'w-full')}>
               {socialLinks.map((social) => {
                 const IconComponent = SOCIAL_ICONS[social.platform.toLowerCase()]
                 if (!IconComponent) return null

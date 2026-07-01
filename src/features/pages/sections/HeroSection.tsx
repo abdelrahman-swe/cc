@@ -271,7 +271,7 @@ function HeroCardItem({
       className={cn('group', 'relative', 'h-[360px]', 'overflow-hidden', 'rounded-[50.5px]', 'border-[2.02px]', 'border-[#F1D5CC]', 'bg-white', 'px-6', 'py-10', 'xl:px-8', 'text-right', 'shadow-[0_12px_32px_rgba(14,23,48,0.03)]', 'transition-[border-color]', 'duration-200', 'hover:border-[#F79A7A]')}
     >
       <div className={cn('pointer-events-none', 'absolute', 'bottom-4', 'left-1/2', 'h-28', 'w-[75%]', '-translate-x-1/2', 'rounded-full', 'bg-[#F79A7A]/25', 'opacity-0', 'blur-2xl', 'transition-opacity', 'duration-300', 'group-hover:opacity-100')} />
-      <img src="/images/hero-card-orange.svg" alt="" className={cn('pointer-events-none', 'absolute', 'inset-x-0', 'bottom-0', 'z-0', 'w-full')} />
+      {/* <img src="/hero-blur.svg" alt="" className={cn('pointer-events-none', 'absolute', 'inset-x-0', 'bottom-0', 'z-0', 'w-full')} /> */}
       {type === "button" ? <HeroButtonArt /> : null}
       {type === "process" ? <HeroProcessArt /> : null}
       {type === "chart" ? <HeroChartArt /> : null}
@@ -283,6 +283,7 @@ function HeroCardItem({
             color: 'var(--Neutral-800, #121516)',
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
             fontSize: '22px',
+            fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 'normal',
           }}
@@ -290,12 +291,15 @@ function HeroCardItem({
           {title}
         </h3>
         <p
-          className={cn('mt-2', 'text-right', 'font-normal', 'whitespace-nowrap', 'text-[16px]', 'lg:text-[18px]', 'xl:text-[20px]')}
+          className={cn('mt-2', 'text-right', 'font-normal')}
           style={{
             color: 'var(--Neutral-400, #575C5E)',
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
+            fontSize: '20px',
+            fontStyle: 'normal',
             fontWeight: 400,
-            lineHeight: '140%'
+            lineHeight: '140%',
+            whiteSpace: 'nowrap'
           }}
         >
           {body}
@@ -350,22 +354,21 @@ export function HeroSection(props: any) {
   return (
     <section id="home" className={cn('relative', 'overflow-hidden', 'bg-white', 'pb-14', 'pt-16', 'lg:min-h-[870px]')} dir="rtl">
       <div className={cn('pointer-events-none', 'absolute', 'left-1/2', 'top-[50px]', 'z-0', 'h-[750px]', 'w-[1540px]', '-translate-x-1/2', 'opacity-100')}>
-        <img src="/images/hero-blur-orange.svg" alt="" className="h-full w-full object-contain" />
+        <img src="/hero-blur.svg" alt="" className={cn('h-full', 'w-full', 'object-contain')} />
       </div>
       <div className={cn('relative', 'z-10', 'mx-auto', 'max-w-[1248px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" animate="visible" className={cn('mx-auto', 'w-full', 'max-w-[760px]')}>
-          <h1 className={cn('text-[42px]', 'font-bold', 'leading-[1.18]', 'text-[#243A77]', 'md:text-[52px]', 'font-serif-display')} style={{ fontFamily: '"Thmanyah Serif Display", serif' }}>
+          <h1 className={cn('text-[32px]', 'sm:text-[42px]', 'font-bold', 'leading-[1.18]', 'text-[#243A77]', 'md:text-[52px]', 'font-serif-display')} style={{ fontFamily: '"Thmanyah Serif Display", serif' }}>
             <span className="block">
               {headlineBefore} <span className={cn('text-[#F15722]', 'font-serif-display')}>{headlineEmphasis}</span>
             </span>
-            <span className={cn('mt-5', 'block', 'font-serif-display')}>{headlineAfter}</span>
+            <span className={cn('mt-3', 'md:mt-5', 'block', 'font-serif-display')}>{headlineAfter}</span>
           </h1>
           <p
-            className={cn('mx-auto', 'mt-7', 'max-w-[652px]', 'text-center', 'font-normal')}
+            className={cn('mx-auto', 'mt-5', 'md:mt-7', 'max-w-[652px]', 'text-center', 'font-normal', 'text-[16px]', 'sm:text-[20px]', 'md:text-[24px]')}
             style={{
               color: 'var(--Neutral-300, #808586)',
               fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-              fontSize: '24px',
               lineHeight: '140%'
             }}
           >

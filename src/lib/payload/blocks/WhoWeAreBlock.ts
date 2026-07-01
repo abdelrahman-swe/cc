@@ -31,31 +31,54 @@ export const WhoWeAreBlock: Block = {
       localized: true,
       minRows: 4,
       fields: [
-        { name: 'icon', type: 'text', required: true },
+        {
+          name: 'icon',
+          label: 'Icon URL (Fallback)',
+          type: 'text'
+        },
+        {
+          name: 'iconMedia',
+          label: 'Icon Upload',
+          type: 'relationship',
+          relationTo: 'media'
+        },
         { name: 'title', type: 'text', required: true },
         { name: 'description', type: 'textarea', required: true }
       ],
       defaultValue: [
         {
-          icon: '/icons/content/medal.svg',
           title: 'خبرة تزيد عن 6 سنوات',
           description: 'نمتلك خبرة عملية في تصميم وتطوير حلول رقمية احترافية تدعم نجاح أعمالك.'
         },
         {
-          icon: '/icons/content/pen.svg',
           title: 'حلول مخصصة حسب احتياجك',
           description: 'نصمم المنتج حول أهدافك ونموذج عملك، لا حول قالب جاهز ومحدود.'
         },
         {
-          icon: '/icons/content/rank.svg',
           title: 'سرعة إنجاز ومرونة عالية',
           description: 'فرق عمل رشيقة تتعامل مع المتغيرات بسرعة وتحافظ على جودة التنفيذ.'
         },
         {
-          icon: '/icons/content/shield.svg',
           title: 'أمان وحوكمة البيانات',
           description: 'نطبق معايير حماية واعتمادية مناسبة لطبيعة بياناتك وعملياتك.'
         }
+      ]
+    },
+    {
+      name: 'stats',
+      type: 'array',
+      localized: true,
+      minRows: 3,
+      maxRows: 3,
+      fields: [
+        { name: 'value', type: 'text', required: true },
+        { name: 'label', type: 'text', required: true },
+        { name: 'description', type: 'text', required: true }
+      ],
+      defaultValue: [
+        { value: '+10', label: 'سنوات', description: 'خبرة وتميز تقني' },
+        { value: '+150', label: 'عميل', description: 'وشريك نجاح' },
+        { value: '+200', label: 'مشروع', description: 'تم تسليمه بنجاح' }
       ]
     }
   ]

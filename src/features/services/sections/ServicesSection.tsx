@@ -41,20 +41,16 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
       whileInView="visible"
       viewport={motionViewport}
       className={cn(
-        'group relative h-[530px] overflow-hidden rounded-[40px] border border-[#EAEAEB] bg-white shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)] lg:col-span-2'
+        'brand-card',
+        'group relative h-[530px] overflow-hidden rounded-[40px] transition-all duration-300 md:col-span-2 lg:col-span-2'
       )}
     >
-      <img
-        src="/images/hover.svg"
-        alt=""
-        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-      />
 
       {/* Layer 1: Mascot at Back */}
       <img
         src="/mockups/mascot.png"
         alt=""
-        className="absolute left-1/2 top-[95px] z-0 h-[409px] w-auto -translate-x-1/2 object-contain"
+        className="absolute left-1/2 top-[95px] z-0 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2 object-contain"
         loading="lazy"
       />
 
@@ -112,7 +108,7 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
       {/* Layer 3: Hand with clip path applied on top of card */}
       <figure
         style={{ clipPath: 'url(#edited-differentone23-1782742739957)' }}
-        className="pointer-events-none absolute left-1/2 top-[95px] z-20 h-[409px] w-auto -translate-x-1/2"
+        className="pointer-events-none absolute left-1/2 top-[95px] z-20 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2"
       >
         <img
           src="/mockups/mascot.png"
@@ -129,7 +125,7 @@ function ServiceCard({
   title,
   body,
   image,
-  imageClass = 'object-cover object-top w-full h-full'
+  imageClass = 'w-full h-auto block object-contain object-bottom'
 }: {
   title: string
   body: string
@@ -145,15 +141,11 @@ function ServiceCard({
       whileInView="visible"
       viewport={motionViewport}
       className={cn(
-        'group relative flex h-[530px] flex-col overflow-hidden rounded-[50px] border border-[#EEF2F8] bg-white shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]'
+        'brand-card',
+        'group relative flex flex-col overflow-hidden rounded-[50px] transition-all duration-300'
       )}
     >
-      <img
-        src="/images/hover.svg"
-        alt=""
-        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-      />
-      <div className="px-8 pt-9 text-right">
+      <div className="px-8 pt-9 text-right relative z-10">
         <h3
           className="text-right font-medium leading-normal"
           style={{
@@ -185,11 +177,11 @@ function ServiceCard({
         </p>
       </div>
       {image ? (
-        <div className="relative z-10 mt-6 w-full flex-1 overflow-hidden bg-transparent">
+        <div className="relative z-10 mt-auto w-full overflow-hidden rounded-b-[50px] flex items-end justify-center">
           <img
             src={image}
             alt=""
-            className={cn('relative z-10 h-full w-full', imageClass)}
+            className={cn('relative z-10', imageClass)}
             loading="lazy"
           />
         </div>
@@ -206,15 +198,11 @@ function WideServiceCard({ title, body }: { title: string; body: string }) {
       whileInView="visible"
       viewport={motionViewport}
       className={cn(
-        'group relative grid min-h-[320px] overflow-hidden rounded-[50px] border border-[#EEF2F8] bg-white shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)] lg:col-span-3 lg:grid-cols-[1fr_815px]'
+        'brand-card',
+        'group relative grid min-h-[320px] overflow-hidden rounded-[50px] transition-all duration-300 md:col-span-2 lg:col-span-3 lg:grid-cols-[1fr_815px]'
       )}
     >
-      <img
-        src="/images/hover.svg"
-        alt=""
-        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-      />
-      <div className="flex flex-col justify-center p-10 text-right">
+      <div className="relative z-10 flex flex-col justify-center p-10 text-right">
         <h3
           className="text-right font-medium leading-normal"
           style={{
@@ -245,7 +233,7 @@ function WideServiceCard({ title, body }: { title: string; body: string }) {
           {body}
         </p>
       </div>
-      <div className="relative h-[320px] bg-white">
+      <div className="relative z-10 h-[240px] sm:h-[320px] bg-white">
         <img
           src="/images/globe.svg"
           alt=""
@@ -309,7 +297,7 @@ export function ServicesSection(props: ServicesSectionProps) {
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="mt-[70px] grid gap-6 lg:grid-cols-3"
+          className="mt-[40px] md:mt-[70px] grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
         >
           {items.map((svc) => {
             if (svc.layout === 'ai-card') {

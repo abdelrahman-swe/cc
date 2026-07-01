@@ -29,14 +29,14 @@ export function FinalCtaSection(props: FinalCtaSectionProps) {
   const sectionId = props.customSectionId || 'contact'
 
   return (
-    <section className="mt-24 bg-white py-20 lg:min-h-[456px]" id={sectionId}>
+    <section className="mt-12 md:mt-24 bg-white py-10 md:py-20" id={sectionId}>
       <div className="mx-auto max-w-[1240px] px-5 lg:px-0">
         <motion.div
           variants={scaleIn}
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="relative min-h-[420px] overflow-hidden rounded-[32px] bg-[#0D193B] px-8 py-12 text-white md:p-14 lg:px-16 lg:py-16"
+          className="relative min-h-[420px] overflow-hidden rounded-[32px] bg-[#0D193B] px-6 py-10 md:p-14 lg:px-16 lg:py-16 text-white"
         >
           {/* CTA Pop Starburst behind mascot head */}
           <img

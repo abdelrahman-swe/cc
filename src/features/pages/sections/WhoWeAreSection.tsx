@@ -34,7 +34,8 @@ type WhoWeAreSectionProps = {
   heading?: string
   body?: string
   stats?: Array<{ value: string; label: string; description: string }>
-  whyUs?: Array<{ icon?: string; title: string; description: string }>
+  whyCards?: Array<{ icon?: string | any; iconMedia?: string | any; title: string; description: string }>
+  whyUs?: Array<{ icon?: string | any; iconMedia?: string | any; title: string; description: string }>
   cta?: { label?: string; href?: string }
   customSectionId?: string
 }
@@ -45,36 +46,52 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
   const sectionId = props.customSectionId || 'who-we-are'
 
   const statsList = props.stats && props.stats.length > 0 ? props.stats : [
-    { value: '+200', label: 'مشروع', description: 'تم تسليمه بنجاح' },
+    { value: '+10', label: 'سنوات', description: 'خبرة وتميز تقني' },
     { value: '+150', label: 'عميل', description: 'وشريك نجاح' },
-    { value: '+10', label: 'سنوات', description: 'خبرة وتميز تقني' }
+    { value: '+200', label: 'مشروع', description: 'تم تسليمه بنجاح' }
   ]
 
-  const whyList = props.whyUs && props.whyUs.length > 0
-    ? props.whyUs.map((item, idx) => [item.icon || defaultWhyCards[idx % 4][0], item.title, item.description] as const)
+  const rawWhyCards = props.whyCards || props.whyUs || []
+  const whyList = rawWhyCards.length > 0
+    ? rawWhyCards.map((item, idx) => {
+        let iconUrl = ''
+        if (item.iconMedia && typeof item.iconMedia === 'object') {
+          iconUrl = item.iconMedia.url || ''
+        } else if (item.iconMedia && typeof item.iconMedia === 'string') {
+          iconUrl = item.iconMedia
+        } else if (item.icon && typeof item.icon === 'object') {
+          iconUrl = item.icon.url || ''
+        } else if (typeof item.icon === 'string') {
+          iconUrl = item.icon
+        }
+        return [
+          iconUrl || defaultWhyCards[idx % 4][0],
+          item.title,
+          item.description
+        ] as const
+      })
     : defaultWhyCards
 
   return (
-    <section id={sectionId} className="bg-white py-16 lg:min-h-[796px]">
-      <div className="mx-auto grid max-w-[1240px] gap-[73px] px-5 lg:grid-cols-[587px_580px] lg:px-0">
+    <section id={sectionId} className={cn('bg-white', 'py-16', 'lg:min-h-[796px]')}>
+      <div className={cn('mx-auto', 'grid', 'max-w-[1240px]', 'gap-[40px]', 'lg:gap-[73px]', 'px-5', 'lg:grid-cols-2', 'lg:px-0')}>
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="pt-2 text-right"
+          className={cn('pt-2', 'text-right')}
         >
           <h2
-            className="font-serif-text font-bold leading-[1.35] text-right"
+            className={cn('font-brand', 'font-bold', 'leading-[1.35]', 'text-right', 'text-[28px]', 'sm:text-[32px]', 'md:text-[36px]')}
             style={{
-              color: 'var(--Neutral-800, #1E1E20)',
-              fontSize: '36px'
+              color: 'var(--Neutral-800, #1E1E20)'
             }}
           >
             {heading}
           </h2>
           <p
-            className="mt-7 text-right font-normal"
+            className={cn('mt-7', 'text-right', 'font-normal')}
             style={{
               color: 'var(--Neutral-500, #5F6063)',
               fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
@@ -89,21 +106,23 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
             initial="hidden"
             whileInView="visible"
             viewport={motionViewport}
-            className="mt-12 grid max-w-[472px] grid-cols-3 gap-10 text-center"
+            className={cn('mt-10', 'md:mt-12', 'grid', 'max-w-[472px]', 'grid-cols-3', 'gap-4', 'sm:gap-6', 'md:gap-10', 'text-center')}
           >
             {statsList.map((stat) => {
-              const numericValue = Number(String(stat.value).replace(/\D/g, ''))
+              const rawValue = String(stat.value)
+              const numericValue = Number(rawValue.replace(/\D/g, ''))
+              const suffix = rawValue.replace(/\d/g, '') || ''
 
               return (
                 <motion.div key={stat.label} variants={fadeUp}>
-                  <div className="text-[30px] font-black text-[#F15722]">
-                    <Counter value={numericValue} suffix="+" />
+                  <div className={cn('text-[20px]', 'sm:text-[24px]', 'md:text-[30px]', 'font-black', 'text-[#F15722]')}>
+                    <Counter value={numericValue} suffix={suffix} />
                   </div>
-                  <div className="text-[21px] font-bold text-[#243A77]">
+                  <div className={cn('text-[15px]', 'sm:text-[18px]', 'md:text-[21px]', 'font-bold', 'text-[#243A77]', 'truncate')}>
                     {stat.label}
                   </div>
                   <p
-                    className="mt-2 text-[14px] font-normal"
+                    className={cn('mt-2', 'text-[11px]', 'sm:text-[13px]', 'md:text-[14px]', 'font-normal', 'leading-tight')}
                     style={{
                       color: 'var(--Neutral-500, #5F6063)',
                       fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
@@ -115,7 +134,7 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
               )
             })}
           </motion.div>
-          <div className="mt-16 flex justify-start">
+          <div className={cn('mt-10', 'md:mt-16', 'flex', 'justify-center', 'lg:justify-start')}>
             <PillButton href={props.cta?.href || '#contact'} variant="blue">
               {props.cta?.label || 'ابدأ رحلة نموك'}
             </PillButton>
@@ -127,20 +146,30 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="grid gap-8"
+          className={cn('grid', 'gap-8')}
         >
           {whyList.map(([icon, title, desc]) => (
             <motion.article
               key={title}
               variants={fadeUp}
-              className="flex min-h-[143px] items-center gap-5 rounded-[24px] border border-[#EEF2F8] bg-white p-6 shadow-[0_14px_34px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_14px_34px_rgba(14,23,48,0.04),inset_0_0_20px_rgba(241,87,34,0.12)]"
+              className={cn(
+                'brand-card',
+                'flex',
+                'items-start',
+                'gap-5',
+                'min-h-[143px]',
+                'rounded-[24px]',
+                'p-6',
+                'transition-all',
+                'duration-300'
+              )}
             >
-              <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-orange-300">
+              <div className={cn('relative', 'z-10', 'flex', 'size-11', 'shrink-0', 'items-center', 'justify-center', 'rounded-xl', 'border', 'border-orange-300')}>
                 <img src={icon} alt="" className="size-5" loading="lazy" />
               </div>
-              <div className="text-right">
+              <div className="relative z-10 flex flex-col text-right w-full">
                 <h3
-                  className="text-right font-medium leading-normal"
+                  className={cn('text-right', 'font-medium', 'leading-normal')}
                   style={{
                     color: 'var(--Neutral-800, #1E1E20)',
                     fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
@@ -150,12 +179,15 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
                   {title}
                 </h3>
                 <p
-                  className="mt-2 text-right font-normal"
+                  className={cn('mt-2', 'text-right', 'font-normal')}
                   style={{
                     color: 'var(--Neutral-500, #5F6063)',
+                    textAlign: 'right',
                     fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                    fontSize: '16px',
-                    lineHeight: '140%'
+                    fontSize: '18px',
+                    fontStyle: 'normal',
+                    fontWeight: 400,
+                    lineHeight: 'normal'
                   }}
                 >
                   {desc}

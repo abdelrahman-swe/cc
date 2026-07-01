@@ -337,8 +337,17 @@ export interface Page {
             description?: string | null;
             whyCards?:
               | {
-                  icon: string;
+                  icon?: string | null;
+                  iconMedia?: (string | null) | Media;
                   title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            stats?:
+              | {
+                  value: string;
+                  label: string;
                   description: string;
                   id?: string | null;
                 }[]
@@ -905,7 +914,16 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     icon?: T;
+                    iconMedia?: T;
                     title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
                     description?: T;
                     id?: T;
                   };

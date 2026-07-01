@@ -6,13 +6,15 @@ type PillButtonProps = {
   href: string
   variant?: 'nav' | 'orange' | 'blue' | 'white'
   className?: string
+  onClick?: () => void
 }
 
 export function PillButton({
   children,
   href,
   variant = 'nav',
-  className = ''
+  className = '',
+  onClick
 }: PillButtonProps) {
   const styles = {
     nav: 'cta-pill--navy bg-[#1a2d5e] text-white',
@@ -38,6 +40,7 @@ export function PillButton({
   return (
     <a
       href={href}
+      onClick={onClick}
       className={cn(
         'cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold transition duration-300 hover:-translate-y-0.5',
         shadows[variant],

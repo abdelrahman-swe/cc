@@ -354,3 +354,35 @@ canvas {
 body {
     cursor: url('/icons/mouse.svg'), auto;
 }
+
+/* ── Standard Reusable Brand Card with Hover Glow & hover.svg ── */
+.brand-card {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #EEF2F8;
+  box-shadow: 0 14px 34px rgba(14,23,48,0.04);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.brand-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/hover.svg');
+  background-size: cover;
+  background-position: bottom left;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.brand-card:hover {
+  border-color: #F15722 !important;
+  box-shadow: 0 20px 48px rgba(14,23,48,0.08), inset 0 0 20px rgba(241,87,34,0.12) !important;
+}
+
+.brand-card:hover::before {
+  opacity: 1;
+}

@@ -253,7 +253,7 @@ export function MethodologySection(props: MethodologySectionProps) {
           </h2>
         </motion.div>
 
-        <div ref={containerRef} className={cn('relative', 'mt-[104px]', 'flex', 'w-full', 'flex-col', 'gap-12', 'lg:gap-0')}>
+        <div ref={containerRef} className={cn('relative', 'mt-10 lg:mt-[104px]', 'flex', 'w-full', 'flex-col', 'gap-12', 'lg:gap-0')}>
           <div className={cn('absolute', 'bottom-0', 'left-1/2', 'top-0', 'hidden', 'w-[2px]', '-translate-x-1/2', 'bg-[#FEEEE9]', 'lg:block')} />
           {methodologyList.map(([title, body], index) => (
             <StepRow

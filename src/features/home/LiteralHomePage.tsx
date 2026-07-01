@@ -6,8 +6,9 @@ import {
   useInView,
   useReducedMotion,
   type Variants,
+  AnimatePresence,
 } from "framer-motion";
-import { ArrowLeft, ArrowUpLeft, Star } from "lucide-react";
+import { ArrowLeft, ArrowUpLeft, Star, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import { Marquee } from "@/registry/magicui/marquee";
@@ -151,11 +152,13 @@ function PillButton({
   href,
   variant = "nav",
   className = "",
+  onClick,
 }: {
   children: string;
   href: string;
   variant?: "nav" | "orange" | "blue" | "white";
   className?: string;
+  onClick?: () => void;
 }) {
   const styles = {
     nav: "cta-pill--navy bg-[#243A77] text-white",
@@ -174,6 +177,7 @@ function PillButton({
   return (
     <a
       href={href}
+      onClick={onClick}
       className={cn(
         "cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold shadow-[0_14px_34px_rgba(14,23,48,0.12)] transition duration-300 hover:-translate-y-0.5",
         styles[variant],
@@ -437,7 +441,7 @@ function HeroCard({
           {title}
         </h3>
         <p
-          className="mt-2 text-right font-normal whitespace-nowrap text-[16px] lg:text-[18px] xl:text-[20px]"
+          className="mt-2 text-right font-normal text-[15px] sm:text-[16px] lg:text-[18px] xl:text-[20px]"
           style={{
             color: "var(--Neutral-400, #575C5E)",
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
@@ -473,6 +477,7 @@ function AiServiceCard() {
         "duration-300",
         "hover:border-[#F15722]",
         "hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]",
+        "md:col-span-2",
         "lg:col-span-2",
       )}
     >
@@ -491,7 +496,7 @@ function AiServiceCard() {
           "left-1/2",
           "top-[95px]",
           "z-0",
-          "h-[409px]",
+          "h-[280px] sm:h-[350px] md:h-[409px]",
           "w-auto",
           "-translate-x-1/2",
           "object-contain",
@@ -560,7 +565,7 @@ function AiServiceCard() {
           "left-1/2",
           "top-[95px]",
           "z-20",
-          "h-[409px]",
+          "h-[280px] sm:h-[350px] md:h-[409px]",
           "w-auto",
           "-translate-x-1/2"
         )}
@@ -705,6 +710,7 @@ function WideServiceCard() {
         "duration-300",
         "hover:border-[#F15722]",
         "hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]",
+        "md:col-span-2",
         "lg:col-span-3",
         "lg:grid-cols-[1fr_815px]",
       )}
@@ -783,7 +789,7 @@ function WideServiceCard() {
           ))}
         </div>
       </div>
-      <div className={cn("relative", "h-[320px]", "bg-white")}>
+      <div className={cn("relative", "h-[240px] sm:h-[320px]", "bg-white")}>
         <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-l from-[#F15722]/30 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         <img
           src="/images/globe.svg"
@@ -799,6 +805,7 @@ function WideServiceCard() {
 
 
 export function LiteralHomePage({ data }: { data?: HomePageData }) {
+  const [menuOpen, setMenuOpen] = useState(false);
   const navLinksList = data?.nav?.links?.length
     ? data.nav.links.map((link) => [link.label, link.href] as const)
     : defaultNavLinks;
@@ -825,7 +832,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
       dir="rtl"
       className={cn("overflow-x-hidden", "bg-white", "text-[#0E1730]")}
     >
-      <header className={cn("h-[100px]", "bg-white")}>
+      <header className={cn("h-[100px]", "bg-white", "relative")}>
         <motion.nav
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -885,10 +892,66 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               );
             })}
           </div>
-          <PillButton href={data?.nav?.cta?.href || "#contact"} className="w-[160px]">
+          <PillButton href={data?.nav?.cta?.href || "#contact"} className="w-[160px] hidden lg:inline-flex">
             {data?.nav?.cta?.label || "طلب خدمة"}
           </PillButton>
+
+          {/* Hamburger Mobile Menu Toggle Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="flex size-10 items-center justify-center rounded-full border border-[#E8EDF6] text-[#243A77] lg:hidden transition duration-200 active:scale-95"
+            aria-label="Toggle Menu"
+          >
+            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </motion.nav>
+
+        {/* Mobile Drawer Overlay */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="absolute inset-x-0 top-[100px] z-50 flex flex-col items-center gap-6 border-b border-[#E8EDF6] bg-white px-6 py-8 shadow-lg lg:hidden"
+            >
+              <div className="flex flex-col items-center gap-4 w-full">
+                {navLinksList.map(([label, href], index) => {
+                  const isActive = index === 0;
+                  return (
+                    <a
+                      key={label}
+                      href={href}
+                      onClick={() => setMenuOpen(false)}
+                      className="transition duration-200 leading-normal text-center py-2 w-full block hover:bg-gray-50 rounded-xl"
+                      style={
+                        isActive
+                          ? {
+                              color: "var(--Primary-500, #F15722)",
+                              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                              fontSize: "20px",
+                              fontWeight: 700,
+                            }
+                          : {
+                              color: "var(--Neutral-600, #414244)",
+                              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                              fontSize: "18px",
+                              fontWeight: 400,
+                            }
+                      }
+                    >
+                      {label}
+                    </a>
+                  );
+                })}
+              </div>
+              <PillButton href={data?.nav?.cta?.href || "#contact"} className="w-full justify-center mt-2" onClick={() => setMenuOpen(false)}>
+                {data?.nav?.cta?.label || "طلب خدمة"}
+              </PillButton>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <main>
@@ -936,8 +999,9 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
             >
               <h1
                 className={cn(
-                  "font-serif-display",
-                  "text-[42px]",
+                  "font-serif-text",
+                  "text-[32px]",
+                  "sm:text-[42px]",
                   "font-bold",
                   "leading-[1.18]",
                   "text-[#243A77]",
@@ -949,10 +1013,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   {data?.hero?.headline?.before || "شريكك التقني لحلــــول"}{" "}
                   <span className="text-[#F15722] font-serif-display">{data?.hero?.headline?.emphasis || "رقميـــــة"}</span>
                 </span>
-                <span className={cn("mt-5", "block", "font-serif-display")}>{data?.hero?.headline?.after || "تدعم نمو أعمالك"}</span>
+                <span className={cn("mt-3", "md:mt-5", "block", "font-serif-display")}>{data?.hero?.headline?.after || "تدعم نمو أعمالك"}</span>
               </h1>
               <p
-                className="mx-auto mt-7 max-w-[652px] text-center font-normal"
+                className="mx-auto mt-5 md:mt-7 max-w-[652px] text-center font-normal text-[16px] sm:text-[20px] md:text-[24px]"
                 style={{
                   color: "var(--Neutral-300, #808586)",
                   fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
@@ -1116,7 +1180,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               initial="hidden"
               whileInView="visible"
               viewport={motionViewport}
-              className={cn("mt-[70px]", "grid", "gap-6", "lg:grid-cols-3")}
+              className={cn("mt-[40px] md:mt-[70px]", "grid", "gap-6", "grid-cols-1", "md:grid-cols-2", "lg:grid-cols-3")}
             >
               {data?.services?.length ? (
                 data.services.map((svc) => (
@@ -1170,9 +1234,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               "mx-auto",
               "grid",
               "max-w-[1240px]",
-              "gap-[73px]",
+              "gap-[40px]",
+              "lg:gap-[73px]",
               "px-5",
-              "lg:grid-cols-[587px_580px]",
+              "lg:grid-cols-2",
               "lg:px-0",
             )}
           >
@@ -1186,7 +1251,9 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               <h2
                 className={cn(
                   "font-serif-text",
-                  "text-[36px]",
+                  "text-[28px]",
+                  "sm:text-[32px]",
+                  "md:text-[36px]",
                   "font-bold",
                   "leading-[1.35]",
                   "text-right",
@@ -1212,11 +1279,11 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 whileInView="visible"
                 viewport={motionViewport}
                 className={cn(
-                  "mt-12",
+                  "mt-10 md:mt-12",
                   "grid",
                   "max-w-[472px]",
                   "grid-cols-3",
-                  "gap-10",
+                  "gap-4 sm:gap-6 md:gap-10",
                   "text-center",
                 )}
               >
@@ -1231,7 +1298,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                     <motion.div key={stat.label} variants={fadeUp}>
                       <div
                         className={cn(
-                          "text-[30px]",
+                          "text-[20px] sm:text-[24px] md:text-[30px]",
                           "font-black",
                           "text-[#F15722]",
                         )}
@@ -1240,9 +1307,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                       </div>
                       <div
                         className={cn(
-                          "text-[21px]",
+                          "text-[15px] sm:text-[18px] md:text-[21px]",
                           "font-bold",
                           "text-[#243A77]",
+                          "truncate",
                         )}
                       >
                         {stat.label}
@@ -1250,8 +1318,8 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                       <p
                         className={cn(
                           "mt-2",
-                          "text-[13px]",
-                          "leading-5",
+                          "text-[11px] sm:text-[13px] md:text-[14px]",
+                          "leading-tight",
                           "text-[#74829A]",
                         )}
                       >
@@ -1261,7 +1329,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   );
                 })}
               </motion.div>
-              <div className={cn("mt-16", "flex", "justify-start")}>
+              <div className={cn("mt-10 md:mt-16", "flex", "justify-center", "lg:justify-start")}>
                 <PillButton href={data?.whoWeAre?.cta?.href || "#contact"} variant="blue">
                   {data?.whoWeAre?.cta?.label || "ابدأ رحلة نموك"}
                 </PillButton>
@@ -1373,7 +1441,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               initial="hidden"
               whileInView="visible"
               viewport={motionViewport}
-              className={cn("mt-14", "grid", "gap-6", "md:grid-cols-3")}
+              className={cn("mt-14", "grid", "gap-6", "grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-3")}
             >
               {data?.caseStudies?.length ? (
                 data.caseStudies.map((cs) => (
@@ -1455,7 +1523,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
             <div
               className={cn(
                 "relative",
-                "mt-[104px]",
+                "mt-10 lg:mt-[104px]",
                 "flex",
                 "w-full",
                 "flex-col",
@@ -1674,7 +1742,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
         </section>
 
         <section
-          className={cn("mt-24", "bg-white", "py-20", "lg:min-h-[584px]")}
+          className={cn("mt-12 md:mt-24", "bg-white", "py-10 md:py-20")}
           id="contact"
         >
           <div className={cn("mx-auto", "max-w-[1240px]", "px-5", "lg:px-0")}>
@@ -1689,8 +1757,8 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 "overflow-hidden",
                 "rounded-[32px]",
                 "bg-[#F15722]",
-                "px-8",
-                "py-12",
+                "px-6",
+                "py-10",
                 "text-white",
                 "md:p-14",
                 "lg:px-16",

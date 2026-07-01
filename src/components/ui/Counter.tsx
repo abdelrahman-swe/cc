@@ -16,7 +16,7 @@ export function Counter({ value, suffix = '' }: { value: number; suffix?: string
     }
 
     if (shouldReduceMotion) {
-      node.textContent = `${value}${suffix}`
+      node.textContent = String(value)
       return
     }
 
@@ -24,12 +24,17 @@ export function Counter({ value, suffix = '' }: { value: number; suffix?: string
       duration: 1.8,
       ease: 'easeOut',
       onUpdate(latest) {
-        node.textContent = `${Math.round(latest)}${suffix}`
+        node.textContent = String(Math.round(latest))
       }
     })
 
     return () => controls.stop()
-  }, [isInView, shouldReduceMotion, suffix, value])
+  }, [isInView, shouldReduceMotion, value])
 
-  return <span ref={ref}>0{suffix}</span>
+  return (
+    <span className="inline-flex items-center" dir="ltr">
+      {suffix && <span className="text-[#243A77] inline-block">{suffix}</span>}
+      <span ref={ref}>0</span>
+    </span>
+  )
 }
