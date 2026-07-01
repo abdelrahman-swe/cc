@@ -26,7 +26,10 @@ export const metadata: Metadata = {
     default: 'CodeClouders',
     template: '%s | CodeClouders'
   },
-  description: 'Digital products that support business growth'
+  description: 'Digital products that support business growth',
+  icons: {
+    icon: '/favicon.svg'
+  }
 }
 
 export function generateStaticParams() {

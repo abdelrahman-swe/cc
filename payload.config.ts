@@ -17,8 +17,24 @@ export default buildConfig({
     user: 'users',
     meta: {
       titleSuffix: '- CodeClouders'
-    }
+    },
+    components: {
+      graphics: {
+        Logo: path.resolve(dirname, 'src/components/admin/Logo.tsx'),
+        Icon: path.resolve(dirname, 'src/components/admin/Icon.tsx'),
+      }
+    },
   },
+  cors: [
+    process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+    'https://cc-lime-nu.vercel.app',
+    'http://localhost:3000'
+  ],
+  csrf: [
+    process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+    'https://cc-lime-nu.vercel.app',
+    'http://localhost:3000'
+  ],
   collections,
   globals,
   editor: lexicalEditor(),

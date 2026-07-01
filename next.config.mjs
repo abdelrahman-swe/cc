@@ -18,7 +18,15 @@ const nextConfig = {
       }
     ]
   },
-  poweredByHeader: false
+  poweredByHeader: false,
+  async rewrites() {
+    return [
+      {
+        source: '/api/media/file/:filename',
+        destination: '/media/:filename',
+      },
+    ]
+  }
 }
 
 export default withPayload(withNextIntl(nextConfig))
