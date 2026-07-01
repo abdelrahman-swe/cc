@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function AdminIcon() {
+export default function AdminIcon() {
   return (
     <img
       src="/favicon.svg"

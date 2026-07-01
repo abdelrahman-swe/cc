@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function AdminLogo() {
+export default function AdminLogo() {
   return (
     <img
       src="/footer-logo.svg"
