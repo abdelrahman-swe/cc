@@ -1009,11 +1009,15 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 )}
                 style={{ fontFamily: '"Thmanyah Serif Display", serif' }}
               >
-                <span className="block font-serif-display">
-                  {data?.hero?.headline?.before || "شريكك التقني لحلــــول"}{" "}
-                  <span className="text-[#F15722] font-serif-display">{data?.hero?.headline?.emphasis || "رقميـــــة"}</span>
+                <span className="block md:inline font-serif-display">
+                  {data?.hero?.headline?.before || "شريكك التقني"}{" "}
                 </span>
-                <span className={cn("mt-3", "md:mt-5", "block", "font-serif-display")}>{data?.hero?.headline?.after || "تدعم نمو أعمالك"}</span>
+                <span className="text-[#F15722] font-serif-display block md:inline">
+                  {data?.hero?.headline?.emphasis || "لحلــــول رقميـــــة"}
+                </span>
+                <span className={cn("mt-3", "md:mt-5", "block", "font-serif-display")}>
+                  {data?.hero?.headline?.after || "تدعم نمو أعمالك"}
+                </span>
               </h1>
               <p
                 className="mx-auto mt-5 md:mt-7 max-w-[652px] text-center font-normal text-[16px] sm:text-[20px] md:text-[24px]"
