@@ -1,16 +1,12 @@
 import path from 'path'
-import { fileURLToPath } from 'url'
 import type { CollectionConfig } from 'payload'
 
 import { anyone, authenticated } from '@/payload/access'
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
-
 export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
-    staticDir: path.resolve(dirname, '../../public/media'),
+    staticDir: path.resolve(process.cwd(), 'public/media'),
     imageSizes: [
       {
         name: 'card',

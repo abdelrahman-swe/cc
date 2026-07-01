@@ -277,13 +277,12 @@ function HeroCardItem({
       {type === "process" ? <HeroProcessArt /> : null}
       {type === "chart" ? <HeroChartArt /> : null}
 
-      <div className={cn('relative', 'z-10', 'mt-[218px]')}>
+      <div className={cn('relative', 'z-10', 'mt-[170px]', 'sm:mt-[190px]', 'lg:mt-[218px]')}>
         <h3
-          className={cn('text-right', 'font-semibold', 'leading-normal')}
+          className={cn('text-right', 'font-semibold', 'leading-normal', 'text-[18px]', 'lg:text-[20px]', 'xl:text-[22px]')}
           style={{
             color: 'var(--Neutral-800, #121516)',
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
-            fontSize: '22px',
             fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 'normal',
@@ -292,11 +291,10 @@ function HeroCardItem({
           {title}
         </h3>
         <p
-          className={cn('mt-2', 'text-right', 'font-normal', 'md:whitespace-nowrap')}
+          className={cn('mt-2', 'text-right', 'font-normal', 'text-[14px]', 'lg:text-[18px]', 'xl:text-[20px]', 'xl:whitespace-nowrap')}
           style={{
             color: 'var(--Neutral-400, #575C5E)',
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
-            fontSize: '20px',
             fontStyle: 'normal',
             fontWeight: 400,
             lineHeight: '140%'
