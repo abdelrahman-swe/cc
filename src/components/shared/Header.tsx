@@ -111,7 +111,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
           <PillButton href={ctaHref} variant="nav">
             {ctaLabel}
           </PillButton>
-          <button
+          {/* <button
             onClick={() => switchLocale(currentLocale === 'ar' ? 'en' : 'ar')}
             className={cn(
               'flex',
@@ -133,7 +133,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
             )}
           >
             {currentLocale === 'ar' ? 'English' : 'العربية'}
-          </button>
+          </button> */}
         </div>
 
         {/* Hamburger Mobile Menu Toggle Button */}
@@ -189,7 +189,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
             <PillButton href={ctaHref} variant="nav" className="w-full justify-center mt-2" onClick={() => setMenuOpen(false)}>
               {ctaLabel}
             </PillButton>
-            <button
+            {/* <button
               onClick={() => {
                 switchLocale(currentLocale === 'ar' ? 'en' : 'ar')
                 setMenuOpen(false)
@@ -214,7 +214,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
               )}
             >
               {currentLocale === 'ar' ? 'English' : 'العربية'}
-            </button>
+            </button> */}
           </motion.div>
         )}
       </AnimatePresence>
