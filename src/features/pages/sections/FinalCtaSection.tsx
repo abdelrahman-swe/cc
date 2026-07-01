@@ -29,7 +29,7 @@ export function FinalCtaSection(props: FinalCtaSectionProps) {
   const sectionId = props.customSectionId || 'contact'
 
   return (
-    <section className="mt-12 md:mt-24 bg-white py-10 md:py-20" id={sectionId}>
+    <section className="bg-white py-10 md:py-16" id={sectionId}>
       <div className="mx-auto max-w-[1240px] px-5 lg:px-0">
         <motion.div
           variants={scaleIn}

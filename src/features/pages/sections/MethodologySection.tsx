@@ -244,7 +244,7 @@ export function MethodologySection(props: MethodologySectionProps) {
   const stepRefs = [step1Ref, step2Ref, step3Ref, step4Ref]
 
   return (
-    <section className={cn('bg-white', 'py-20 lg:py-32', 'lg:min-h-[960px]')} id={sectionId}>
+    <section className={cn('bg-white', 'py-16 lg:py-24')} id={sectionId}>
       <div className={cn('mx-auto', 'max-w-[1248px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
