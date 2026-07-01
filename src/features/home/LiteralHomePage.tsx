@@ -65,12 +65,12 @@ const defaultNavLinks = [
 ] as const;
 
 const defaultPartners = [
-  ["/images/noboco.svg", "noboco"],
-  ["/images/naama.svg", "Naama"],
-  ["/media/nafath.svg", "نفاذ"],
-  ["/images/mada.svg", "mada"],
-  ["/images/stc.svg", "stc"],
-  ["/images/sadia.svg", "SDAIA"],
+  ["/partners/nupco.svg", "nupco"],
+  ["/partners/naama.svg", "Naama"],
+  ["/partners/nafath.svg", "نفاذ"],
+  ["/partners/mada.svg", "mada"],
+  ["/partners/stc.svg", "stc"],
+  ["/partners/sdaia.svg", "SDAIA"],
 ] as const;
 
 const defaultWhyCards = [
@@ -1447,7 +1447,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 data.caseStudies.map((cs) => (
                   <ProjectCard
                     key={cs.title}
-                    image={cs.image?.src || "/media/red-cresent.png"}
+                    image={cs.image?.src || "/media/red-cresent.svg"}
                     category={cs.category}
                     title={cs.title}
                   />
@@ -1455,7 +1455,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               ) : (
                 <>
                   <ProjectCard
-                    image="/media/red-cresent.png"
+                    image="/media/red-cresent.svg"
                     category="موقع"
                     title="هيئة الهلال الأحمر السعودي"
                   />
@@ -1466,7 +1466,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                     imageClass="object-cover object-center"
                   />
                   <ProjectCard
-                    image="/media/red-cresent.png"
+                    image="/media/red-cresent.svg"
                     category="موقع"
                     title="هيئة الهلال الأحمر السعودي"
                   />

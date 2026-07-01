@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, type Variants } from 'framer-motion'
+import Image from 'next/image'
 import { SectionTag } from '@/components/ui/SectionTag'
 import { type PartnerItem } from '@/lib/repositories/partners.repository'
 import { cn } from '@/lib/cn'
@@ -26,12 +27,12 @@ const fadeIn: Variants = {
 const motionViewport = { once: true, margin: '-80px' } as const
 
 const defaultPartners = [
-  ['/images/noboco.svg', 'noboco'],
-  ['/images/naama.svg', 'Naama'],
-  ['/media/nafath.svg', 'نفاذ'],
-  ['/images/mada.svg', 'mada'],
-  ['/images/stc.svg', 'stc'],
-  ['/images/sadia.svg', 'SDAIA']
+  ['/partners/nupco.svg', 'nupco'],
+  ['/partners/naama.svg', 'Naama'],
+  ['/partners/nafath.svg', 'نفاذ'],
+  ['/partners/mada.svg', 'mada'],
+  ['/partners/stc.svg', 'stc'],
+  ['/partners/sdaia.svg', 'SDAIA']
 ] as const
 
 type PartnersSectionProps = {
@@ -72,9 +73,11 @@ export function PartnersSection(props: PartnersSectionProps) {
                 key={`${alt}-${idx}`}
                 className={cn('flex', 'h-16', 'w-36', 'items-center', 'justify-center', 'opacity-75', 'grayscale', 'transition-all', 'duration-300', 'hover:opacity-100', 'hover:grayscale-0')}
               >
-                <img
+                <Image
                   src={src}
                   alt={alt}
+                  width={130}
+                  height={48}
                   className={cn('max-h-12', 'max-w-[130px]', 'object-contain')}
                   loading="lazy"
                 />

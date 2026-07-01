@@ -118,7 +118,7 @@ export function FeaturedWorkSection(props: FeaturedWorkSectionProps) {
             props.items.map((cs) => (
               <ProjectCard
                 key={cs.id || cs.title}
-                image={cs.imageUrl || '/media/red-cresent.png'}
+                image={cs.imageUrl || '/media/red-cresent.svg'}
                 category={cs.category}
                 title={cs.title}
               />
@@ -126,7 +126,7 @@ export function FeaturedWorkSection(props: FeaturedWorkSectionProps) {
           ) : (
             <>
               <ProjectCard
-                image="/media/red-cresent.png"
+                image="/media/red-cresent.svg"
                 category="موقع"
                 title="هيئة الهلال الأحمر السعودي"
               />
@@ -137,7 +137,7 @@ export function FeaturedWorkSection(props: FeaturedWorkSectionProps) {
                 imageClass="object-cover object-center"
               />
               <ProjectCard
-                image="/media/red-cresent.png"
+                image="/media/red-cresent.svg"
                 category="موقع"
                 title="هيئة الهلال الأحمر السعودي"
               />

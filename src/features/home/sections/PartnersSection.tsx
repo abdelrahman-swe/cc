@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { Partner, SectionCopy } from '@/features/home/types/home'
 import { SectionHeader } from '../components/SectionHeader'
 import { Marquee } from '@/registry/magicui/marquee'
@@ -22,9 +23,11 @@ export function PartnersSection({ copy, partners }: PartnersSectionProps) {
                 href={partner.href || '#'}
                 className="flex h-16 w-36 items-center justify-center opacity-75 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
               >
-                <img
+                <Image
                   src={partner.logo!.src}
                   alt={partner.logo!.alt || partner.name}
+                  width={130}
+                  height={48}
                   loading="lazy"
                   className="max-h-12 max-w-[130px] object-contain"
                 />

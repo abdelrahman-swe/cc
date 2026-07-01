@@ -7,6 +7,7 @@ import {
   type Variants,
 } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 const DISPLAY_PARTNERS = [
@@ -184,7 +185,7 @@ function HeroProcessArt() {
           className={cn('absolute', 'flex', 'h-[64px]', 'w-[275px]', 'items-center', 'gap-3', 'rounded-full', 'border', 'border-[#EBECEF]', 'bg-white', 'px-4', 'py-2', 'shadow-[0_8px_24px_rgba(14,23,48,0.05)]')}
         >
           <div className={cn('relative', 'flex', 'size-11', 'shrink-0', 'items-center', 'justify-center', 'rounded-full', 'border', 'border-[#EAECEF]', 'bg-white', 'p-1.5', 'shadow-sm')}>
-            <img src={partner.logo} alt={partner.name} className={cn('h-full', 'w-full', 'object-contain')} />
+            <Image src={partner.logo} alt={partner.name} width={44} height={44} className={cn('h-full', 'w-full', 'object-contain')} />
           </div>
           <div className={cn('text-right', 'flex-1', 'min-w-0')}>
             <strong className={cn('block', 'text-[14px]', 'font-bold', 'text-[#0E1730]', 'truncate')}>{partner.name}</strong>
@@ -199,7 +200,7 @@ function HeroProcessArt() {
 function HeroChartArt() {
   return (
     <div className={cn('absolute', 'inset-x-0', 'top-10', 'flex', 'h-[160px]', 'items-center', 'justify-center')}>
-      <img src="/images/chart-orange.svg" alt="" className={cn('h-[160px]', 'w-auto', 'object-contain')} />
+      <Image src="/images/chart-orange.svg" alt="" width={160} height={160} className={cn('h-[160px]', 'w-auto', 'object-contain')} />
     </div>
   );
 }
@@ -291,15 +292,14 @@ function HeroCardItem({
           {title}
         </h3>
         <p
-          className={cn('mt-2', 'text-right', 'font-normal')}
+          className={cn('mt-2', 'text-right', 'font-normal', 'md:whitespace-nowrap')}
           style={{
             color: 'var(--Neutral-400, #575C5E)',
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
             fontSize: '20px',
             fontStyle: 'normal',
             fontWeight: 400,
-            lineHeight: '140%',
-            whiteSpace: 'nowrap'
+            lineHeight: '140%'
           }}
         >
           {body}
@@ -354,15 +354,20 @@ export function HeroSection(props: any) {
   return (
     <section id="home" className={cn('relative', 'overflow-hidden', 'bg-white', 'pb-14', 'pt-16', 'lg:min-h-[870px]')} dir="rtl">
       <div className={cn('pointer-events-none', 'absolute', 'left-1/2', 'top-[50px]', 'z-0', 'h-[750px]', 'w-[1540px]', '-translate-x-1/2', 'opacity-100')}>
-        <img src="/hero-blur.svg" alt="" className={cn('h-full', 'w-full', 'object-contain')} />
+        <Image src="/hero-blur.svg" alt="" width={1540} height={750} className={cn('h-full', 'w-full', 'object-contain')} priority />
       </div>
       <div className={cn('relative', 'z-10', 'mx-auto', 'max-w-[1248px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" animate="visible" className={cn('mx-auto', 'w-full', 'max-w-[760px]')}>
           <h1 className={cn('text-[32px]', 'sm:text-[42px]', 'font-bold', 'leading-[1.18]', 'text-[#243A77]', 'md:text-[52px]', 'font-serif-display')} style={{ fontFamily: '"Thmanyah Serif Display", serif' }}>
-            <span className="block">
-              {headlineBefore} <span className={cn('text-[#F15722]', 'font-serif-display')}>{headlineEmphasis}</span>
+            <span className="block md:inline">
+              {headlineBefore}{' '}
             </span>
-            <span className={cn('mt-3', 'md:mt-5', 'block', 'font-serif-display')}>{headlineAfter}</span>
+            <span className={cn('text-[#F15722]', 'font-serif-display', 'block md:inline')}>
+              {headlineEmphasis}
+            </span>
+            <span className={cn('mt-3', 'md:mt-5', 'block', 'font-serif-display')}>
+              {headlineAfter}
+            </span>
           </h1>
           <p
             className={cn('mx-auto', 'mt-5', 'md:mt-7', 'max-w-[652px]', 'text-center', 'font-normal', 'text-[16px]', 'sm:text-[20px]', 'md:text-[24px]')}
