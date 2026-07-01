@@ -322,4 +322,5 @@ body {
 
 .brand-card:hover::before {
   opacity: 1;
+  /*  */
 }
