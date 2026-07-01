@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import config from '@payload-config'
 import { getPayload } from 'payload'
 
@@ -7,6 +8,8 @@ import { LiteralHomePage } from '@/features/home/LiteralHomePage'
 import { RenderBlocks } from '@/features/pages/components/RenderBlocks'
 import { resolveBlocks } from '@/lib/repositories/blocks.resolver'
 import { routing, type Locale } from '@/i18n/routing'
+
+export const revalidate = 3600 // Caches and revalidates home page every hour
 
 const fallbackLocale = routing.defaultLocale
 
@@ -60,6 +63,35 @@ async function getHomePageFromCMS(locale: Locale) {
   } catch (error) {
     console.warn('Payload / MongoDB connection offline or timed out, using fallback homepage:', error)
     return null
+  }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale: localeParam } = await params
+  const locale = asLocale(localeParam)
+  const page = await getHomePageFromCMS(locale)
+
+  if (!page) {
+    return {
+      title: 'CodeClouders',
+      description: 'Digital products that support business growth'
+    }
+  }
+
+  const seo = (page as any).seo || {}
+  const title = seo.metaTitle || page.title || 'CodeClouders'
+  const description = seo.metaDescription || 'Digital products that support business growth'
+
+  return {
+    title,
+    description,
+    robots: {
+      index: !seo.noIndex,
+      follow: !seo.noFollow
+    },
+    alternates: {
+      canonical: seo.canonicalUrl || undefined
+    }
   }
 }
 

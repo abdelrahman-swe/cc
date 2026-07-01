@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { Star } from 'lucide-react'
+import Image from 'next/image'
 import { SectionTag } from '@/components/ui/SectionTag'
 import { type ServiceItem } from '@/lib/repositories/services.repository'
 import { cn } from '@/lib/cn'
@@ -47,9 +48,11 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
     >
 
       {/* Layer 1: Mascot at Back */}
-      <img
+      <Image
         src="/mockups/mascot.png"
         alt=""
+        width={400}
+        height={409}
         className="absolute left-1/2 top-[95px] z-0 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2 object-contain"
         loading="lazy"
       />
@@ -110,9 +113,11 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
         style={{ clipPath: 'url(#edited-differentone23-1782742739957)' }}
         className="pointer-events-none absolute left-1/2 top-[95px] z-20 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2"
       >
-        <img
+        <Image
           src="/mockups/mascot.png"
           alt=""
+          width={400}
+          height={409}
           className="h-full w-auto object-contain"
           loading="lazy"
         />
@@ -178,10 +183,12 @@ function ServiceCard({
       </div>
       {image ? (
         <div className="relative z-10 mt-auto w-full overflow-hidden rounded-b-[50px] flex items-end justify-center">
-          <img
+          <Image
             src={image}
-            alt=""
-            className={cn('relative z-10', imageClass)}
+            alt={title || ""}
+            width={600}
+            height={400}
+            className={cn('relative z-10 w-full h-auto block object-contain object-bottom', imageClass)}
             loading="lazy"
           />
         </div>
@@ -234,10 +241,12 @@ function WideServiceCard({ title, body }: { title: string; body: string }) {
         </p>
       </div>
       <div className="relative z-10 h-[240px] sm:h-[320px] bg-white">
-        <img
+        <Image
           src="/images/globe.svg"
           alt=""
-          className="relative z-10 h-full w-full object-cover"
+          fill
+          sizes="(max-width: 640px) 100vw, 50vw"
+          className="object-cover"
           loading="lazy"
         />
       </div>

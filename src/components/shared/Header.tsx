@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { PillButton } from '@/components/ui/PillButton'
 import { cn } from '@/lib/cn'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 
 const defaultNavLinks = [
   ['الرئيسية', '#home'],
@@ -28,6 +29,19 @@ type HeaderProps = {
 
 export function Header({ brand, links, cta }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+  const params = useParams()
+  const currentLocale = (params.locale as string) || 'ar'
+
+  const switchLocale = (newLocale: string) => {
+    if (currentLocale && pathname.startsWith(`/${currentLocale}`)) {
+      const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`)
+      router.push(newPath)
+    } else {
+      router.push(`/${newLocale}`)
+    }
+  }
 
   const navLinks = links && links.length > 0
     ? links.map((l) => [l.label, l.href] as const)
@@ -93,9 +107,34 @@ export function Header({ brand, links, cta }: HeaderProps) {
             )
           })}
         </div>
-        <PillButton href={ctaHref} variant="nav" className="hidden lg:inline-flex">
-          {ctaLabel}
-        </PillButton>
+        <div className="hidden lg:flex items-center gap-4">
+          <PillButton href={ctaHref} variant="nav">
+            {ctaLabel}
+          </PillButton>
+          <button
+            onClick={() => switchLocale(currentLocale === 'ar' ? 'en' : 'ar')}
+            className={cn(
+              'flex',
+              'h-10',
+              'px-4',
+              'items-center',
+              'justify-center',
+              'rounded-full',
+              'border',
+              'border-[#E8EDF6]',
+              'text-[#243A77]',
+              'font-medium',
+              'text-[15px]',
+              'transition-all',
+              'duration-200',
+              'hover:bg-[#FCDDD3]/10',
+              'hover:border-[#F15722]/50',
+              'hover:text-[#F15722]'
+            )}
+          >
+            {currentLocale === 'ar' ? 'English' : 'العربية'}
+          </button>
+        </div>
 
         {/* Hamburger Mobile Menu Toggle Button */}
         <button
@@ -150,6 +189,32 @@ export function Header({ brand, links, cta }: HeaderProps) {
             <PillButton href={ctaHref} variant="nav" className="w-full justify-center mt-2" onClick={() => setMenuOpen(false)}>
               {ctaLabel}
             </PillButton>
+            <button
+              onClick={() => {
+                switchLocale(currentLocale === 'ar' ? 'en' : 'ar')
+                setMenuOpen(false)
+              }}
+              className={cn(
+                'flex',
+                'w-full',
+                'h-12',
+                'items-center',
+                'justify-center',
+                'rounded-xl',
+                'border',
+                'border-[#E8EDF6]',
+                'text-[#243A77]',
+                'font-medium',
+                'text-[16px]',
+                'transition-all',
+                'duration-200',
+                'hover:bg-[#FCDDD3]/10',
+                'hover:border-[#F15722]/50',
+                'hover:text-[#F15722]'
+              )}
+            >
+              {currentLocale === 'ar' ? 'English' : 'العربية'}
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

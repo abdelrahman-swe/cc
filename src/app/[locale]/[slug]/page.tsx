@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 
 import config from '@payload-config'
 import { getPayload } from 'payload'
@@ -8,6 +9,8 @@ import { Footer } from '@/components/shared/Footer'
 import { RenderBlocks } from '@/features/pages/components/RenderBlocks'
 import { resolveBlocks } from '@/lib/repositories/blocks.resolver'
 import { routing, type Locale } from '@/i18n/routing'
+
+export const revalidate = 3600 // Caches and revalidates pages every hour
 
 const fallbackLocale = routing.defaultLocale
 
@@ -61,6 +64,61 @@ async function getPageBySlug(slug: string, locale: Locale) {
   } catch (error) {
     console.warn(`Could not fetch page '${slug}' from CMS:`, error)
     return null
+  }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
+  const { locale: localeParam, slug } = await params
+  const locale = asLocale(localeParam)
+  const page = await getPageBySlug(slug, locale)
+
+  if (!page) {
+    return {}
+  }
+
+  const seo = (page as any).seo || {}
+  const title = seo.metaTitle || page.title || 'CodeClouders'
+  const description = seo.metaDescription || 'Digital products that support business growth'
+
+  return {
+    title,
+    description,
+    robots: {
+      index: !seo.noIndex,
+      follow: !seo.noFollow
+    },
+    alternates: {
+      canonical: seo.canonicalUrl || undefined
+    }
+  }
+}
+
+export async function generateStaticParams() {
+  try {
+    const payload = await getPayload({ config })
+    const res = await payload.find({
+      collection: 'pages',
+      limit: 100,
+      depth: 0
+    })
+
+    const params: { locale: string; slug: string }[] = []
+
+    res.docs.forEach((doc) => {
+      if (doc.slug && doc.slug !== 'home') {
+        routing.locales.forEach((locale) => {
+          params.push({
+            locale,
+            slug: doc.slug
+          })
+        })
+      }
+    })
+
+    return params
+  } catch (error) {
+    console.error('Error in generateStaticParams for slug pages:', error)
+    return []
   }
 }
 

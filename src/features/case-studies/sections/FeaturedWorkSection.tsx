@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { ArrowUpLeft } from 'lucide-react'
+import Image from 'next/image'
 import { PillButton } from '@/components/ui/PillButton'
 import { SectionTag } from '@/components/ui/SectionTag'
 import { type CaseStudyItem } from '@/lib/repositories/caseStudies.repository'
@@ -58,10 +59,12 @@ export function ProjectCard({
       <div className={cn('relative', 'z-10', 'h-[320px] sm:h-[380px] md:h-[445px]', 'overflow-hidden', 'rounded-[18px]', 'bg-[#FAFBFF]')}>
         <div className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-1/2', 'h-28', 'w-[80%]', '-translate-x-1/2', 'rounded-full', 'bg-[#F15722]/25', 'opacity-0', 'blur-2xl', 'transition-opacity', 'duration-300', 'group-hover:opacity-100')} />
 
-        <img
+        <Image
           src={image}
-          alt=""
-          className={cn('relative z-10 h-full w-full transition-transform duration-500 group-hover:scale-[1.03]', imageClass)}
+          alt={title || ""}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className={cn('transition-transform duration-500 group-hover:scale-[1.03]', imageClass)}
           loading="lazy"
         />
       </div>
