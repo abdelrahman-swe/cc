@@ -1,32 +1,32 @@
-'use client'
+"use client";
 
-import { motion, type Variants } from 'framer-motion'
-import { PillButton } from '@/components/ui/PillButton'
-import { cn } from '@/lib/cn'
+import { motion, type Variants } from "framer-motion";
+import { PillButton } from "@/components/ui/PillButton";
+import { cn } from "@/lib/cn";
 
 const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.96 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.6, ease: 'easeOut' }
-  }
-}
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
-const motionViewport = { once: true, margin: '-80px' } as const
+const motionViewport = { once: true, margin: "-80px" } as const;
 
 type FinalCtaSectionProps = {
-  heading?: string
-  body?: string
-  cta?: { label?: string; href?: string }
-  presentation?: any
-  customSectionId?: string
-}
+  heading?: string;
+  body?: string;
+  cta?: { label?: string; href?: string };
+  presentation?: any;
+  customSectionId?: string;
+};
 
 export function FinalCtaSection(props: FinalCtaSectionProps) {
-  const heading = props.heading || 'لنحوّل فكرتك إلى منتج رقمي حقيقي'
-  const body = props.body || 'نحوّل الرؤية إلى واقع رقمي'
-  const sectionId = props.customSectionId || 'contact'
+  const heading = props.heading || "لنحوّل فكرتك إلى منتج رقمي حقيقي";
+  const body = props.body || "نحوّل الرؤية إلى واقع رقمي";
+  const sectionId = props.customSectionId || "contact";
 
   return (
     <section className="bg-white py-10 md:py-16" id={sectionId}>
@@ -75,8 +75,8 @@ export function FinalCtaSection(props: FinalCtaSectionProps) {
                 {body}
               </p>
               <div className="mt-8">
-                <PillButton href={props.cta?.href || '#contact'} variant="blue">
-                  {props.cta?.label || 'احصل علي استشارة مجانية'}
+                <PillButton href={props.cta?.href || "/contact"} variant="blue">
+                  {props.cta?.label || "احصل علي استشارة مجانية"}
                 </PillButton>
               </div>
             </div>
@@ -85,6 +85,5 @@ export function FinalCtaSection(props: FinalCtaSectionProps) {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-

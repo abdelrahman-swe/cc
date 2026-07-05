@@ -288,7 +288,7 @@ export function MethodologySection(props: MethodologySectionProps) {
           </div>
         </div>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport} className="mt-14">
-          <PillButton href={props.cta?.href || '#contact'} variant="blue">
+          <PillButton href={props.cta?.href || '/contact'} variant="blue">
             {props.cta?.label || 'تواصل معنا الآن'}
           </PillButton>
         </motion.div>

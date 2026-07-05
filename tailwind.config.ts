@@ -29,13 +29,18 @@ const config: Config = {
         section: '32px'
       },
       animation: {
-        'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear'
+        'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
+        'blink-cursor': 'blink-cursor 1.2s step-end infinite'
       },
       keyframes: {
         'border-beam': {
           '100%': {
             'offset-distance': '100%'
           }
+        },
+        'blink-cursor': {
+          '0%, 49%': { opacity: '1' },
+          '50%, 100%': { opacity: '0' }
         }
       }
     }

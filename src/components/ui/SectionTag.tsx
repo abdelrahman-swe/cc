@@ -1,6 +1,38 @@
 import { cn } from '@/lib/cn'
 
-export function SectionTag({ children }: { children: string }) {
+export interface SectionTagProps {
+  children: string
+  variant?: 'default' | 'about'
+}
+
+export function SectionTag({ children, variant = 'default' }: SectionTagProps) {
+  if (variant === 'about') {
+    return (
+      <div
+        className={cn(
+          'flex',
+          'h-12',
+          'items-center',
+          'justify-center',
+          'px-4',
+          'gap-2',
+          'font-normal',
+          'leading-normal'
+        )}
+        style={{
+          borderRadius: '32px',
+          border: '1px solid var(--Neutral-200, #EAEAEB)',
+          background: 'var(--Neutral-100, #F9F9F9)',
+          color: 'var(--Neutral-700, #2F3032)',
+          fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+          fontSize: '16px'
+        }}
+      >
+        {children}
+      </div>
+    )
+  }
+
   return (
     <div
       className={cn(

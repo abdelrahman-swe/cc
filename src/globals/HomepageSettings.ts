@@ -57,27 +57,27 @@ export const HomepageSettings: GlobalConfig = {
           defaultValue: [
             {
               label: 'الرئيسية',
-              href: '#home'
+              href: '/'
             },
             {
               label: 'من نحن',
-              href: '#who-we-are'
+              href: '/about'
             },
             {
               label: 'أعمالنا',
-              href: '#featured-work'
+              href: '/featured-work'
             },
             {
               label: 'الخدمات',
-              href: '#services'
+              href: '/services'
             },
             {
               label: 'المدونة',
-              href: '#blog'
+              href: '/blog'
             },
             {
               label: 'تواصل معنا',
-              href: '#contact'
+              href: '/contact'
             }
           ]
         }

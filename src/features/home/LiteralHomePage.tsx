@@ -18,50 +18,50 @@ import { ProjectCard } from "@/features/case-studies/sections/FeaturedWorkSectio
 
 const DISPLAY_PARTNERS = [
   {
-    id: 'naama',
-    name: 'نما',
-    note: 'تم تسليم المشروع بنجاح',
-    logo: '/partners/naama.svg',
+    id: "naama",
+    name: "نما",
+    note: "تم تسليم المشروع بنجاح",
+    logo: "/partners/naama.svg",
   },
   {
-    id: 'nupco',
-    name: 'نوبكو',
-    note: 'شكرا لكم، النتائج فاقت توقعاتنا',
-    logo: '/partners/nupco.svg',
+    id: "nupco",
+    name: "نوبكو",
+    note: "شكرا لكم، النتائج فاقت توقعاتنا",
+    logo: "/partners/nupco.svg",
   },
   {
-    id: 'sdaia',
-    name: 'سدايا',
-    note: 'شريك استراتيجي في التحول الرقمي',
-    logo: '/partners/sdaia.svg',
+    id: "sdaia",
+    name: "سدايا",
+    note: "شريك استراتيجي في التحول الرقمي",
+    logo: "/partners/sdaia.svg",
   },
   {
-    id: 'stc',
-    name: 'STC',
-    note: 'حلول تقنية متكاملة ومبتكرة',
-    logo: '/partners/stc.svg',
+    id: "stc",
+    name: "STC",
+    note: "حلول تقنية متكاملة ومبتكرة",
+    logo: "/partners/stc.svg",
   },
   {
-    id: 'nafath',
-    name: 'نفاذ',
-    note: 'ربط وتكامل الأنظمة الرقمية',
-    logo: '/partners/nafath.svg',
+    id: "nafath",
+    name: "نفاذ",
+    note: "ربط وتكامل الأنظمة الرقمية",
+    logo: "/partners/nafath.svg",
   },
   {
-    id: 'odawi',
-    name: 'عُداوي',
-    note: 'منصة الرعاية الصحية الذكية',
-    logo: '/partners/odawi.svg',
+    id: "odawi",
+    name: "عُداوي",
+    note: "منصة الرعاية الصحية الذكية",
+    logo: "/partners/odawi.svg",
   },
 ];
 
 const defaultNavLinks = [
-  ["الرئيسية", "#home"],
-  ["من نحن", "#who-we-are"],
-  ["أعمالنا", "#featured-work"],
-  ["الخدمات", "#services"],
-  ["المدونة", "#blog"],
-  ["تواصل معنا", "#contact"],
+  ["الرئيسية", "/"],
+  ["من نحن", "/about"],
+  ["أعمالنا", "/featured-work"],
+  ["الخدمات", "/services"],
+  ["المدونة", "/blog"],
+  ["تواصل معنا", "/contact"],
 ] as const;
 
 const defaultPartners = [
@@ -218,9 +218,9 @@ function SectionTag({ children }: { children: string }) {
         "shadow-[0_10px_24px_rgba(36,58,119,0.04)]",
       )}
       style={{
-        color: 'var(--Neutral-700, #2F3032)',
+        color: "var(--Neutral-700, #2F3032)",
         fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-        fontSize: '16px'
+        fontSize: "16px",
       }}
     >
       {children}
@@ -271,10 +271,44 @@ const cardVariants: Variants = {
 
 function HeroButtonArt() {
   return (
-    <div className={cn("absolute", "-right-[35px]", "top-[32px]", "flex", "origin-top-right", "-rotate-[8deg]", "items-center")}>
-      <div className={cn("relative", "flex", "h-[66px]", "w-[270px]", "items-center", "justify-between", "rounded-full", "border-[1.5px]", "border-[#F5C9BB]", "p-1.5", "bg-white/40")}>
+    <div
+      className={cn(
+        "absolute",
+        "-right-[35px]",
+        "top-[32px]",
+        "flex",
+        "origin-top-right",
+        "-rotate-[8deg]",
+        "items-center",
+      )}
+    >
+      <div
+        className={cn(
+          "relative",
+          "flex",
+          "h-[66px]",
+          "w-[270px]",
+          "items-center",
+          "justify-between",
+          "rounded-full",
+          "border-[1.5px]",
+          "border-[#F5C9BB]",
+          "p-1.5",
+          "bg-white/40",
+        )}
+      >
         <div className="w-1" />
-        <PillButton href="#contact" className={cn("!h-[52px]", "!ps-4", "!pe-1", "!text-[14px]", "w-[150px]", "shadow-md")}>
+        <PillButton
+          href="/contact"
+          className={cn(
+            "!h-[52px]",
+            "!ps-4",
+            "!pe-1",
+            "!text-[14px]",
+            "w-[150px]",
+            "shadow-md",
+          )}
+        >
           طلب خدمة
         </PillButton>
       </div>
@@ -294,8 +328,8 @@ function HeroProcessArt() {
 
   const len = DISPLAY_PARTNERS.length;
   const currentStack = [
-    { partner: DISPLAY_PARTNERS[(step + 1) % len], slot: 'top' as const },
-    { partner: DISPLAY_PARTNERS[step % len], slot: 'bottom' as const },
+    { partner: DISPLAY_PARTNERS[(step + 1) % len], slot: "top" as const },
+    { partner: DISPLAY_PARTNERS[step % len], slot: "bottom" as const },
   ];
 
   const slotVariants = {
@@ -304,15 +338,15 @@ function HeroProcessArt() {
       scale: 1,
       opacity: 1,
       zIndex: 20,
-      transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] as const }
+      transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] as const },
     },
     top: {
       y: -10,
       scale: 0.92,
       opacity: 0.75,
       zIndex: 10,
-      transition: { duration: 0.45, ease: "easeInOut" as const }
-    }
+      transition: { duration: 0.45, ease: "easeInOut" as const },
+    },
   } as const;
 
   return (
@@ -327,11 +361,19 @@ function HeroProcessArt() {
           className="absolute flex h-[64px] w-[275px] items-center gap-3 rounded-full border border-[#EBECEF] bg-white px-4 py-2 shadow-[0_8px_24px_rgba(14,23,48,0.05)]"
         >
           <div className="relative flex size-11 shrink-0 items-center justify-center rounded-full border border-[#EAECEF] bg-white p-1.5 shadow-sm">
-            <img src={partner.logo} alt={partner.name} className="h-full w-full object-contain" />
+            <img
+              src={partner.logo}
+              alt={partner.name}
+              className="h-full w-full object-contain"
+            />
           </div>
           <div className="text-right flex-1 min-w-0">
-            <strong className="block text-[14px] font-bold text-[#0E1730] truncate">{partner.name}</strong>
-            <span className="block text-[11px] text-[#808586] truncate">{partner.note}</span>
+            <strong className="block text-[14px] font-bold text-[#0E1730] truncate">
+              {partner.name}
+            </strong>
+            <span className="block text-[11px] text-[#808586] truncate">
+              {partner.note}
+            </span>
           </div>
         </motion.div>
       ))}
@@ -520,7 +562,8 @@ function AiServiceCard() {
           <h3
             className="text-right font-medium leading-normal text-[#1E1E20]"
             style={{
-              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+              fontFamily:
+                '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
               fontSize: "20px",
               fontStyle: "normal",
               fontWeight: 500,
@@ -531,7 +574,8 @@ function AiServiceCard() {
           <p
             className="mt-2 text-right font-normal text-[#5F6063]"
             style={{
-              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+              fontFamily:
+                '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
               fontSize: "16px",
               fontStyle: "normal",
               fontWeight: 400,
@@ -545,9 +589,15 @@ function AiServiceCard() {
       </div>
 
       {/* Hidden SVG with clip path definition */}
-      <svg className="absolute -left-[999px] -top-[999px] h-0 w-0" aria-hidden="true">
+      <svg
+        className="absolute -left-[999px] -top-[999px] h-0 w-0"
+        aria-hidden="true"
+      >
         <defs>
-          <clipPath id="edited-differentone23-1782742739957" clipPathUnits="objectBoundingBox">
+          <clipPath
+            id="edited-differentone23-1782742739957"
+            clipPathUnits="objectBoundingBox"
+          >
             <path
               d="M0.107822 0.242870 L0.235307 0.324978 C0.563742 0.355229 0.263397 0.590752 0.369274 0.586430 L0.308773 0.644771 L0.192092 0.668539 C0.086214 0.515125 0.000000 0.766667 0.116465 0.240709 L0.109983 0.242870 Z"
               fill="black"
@@ -560,7 +610,7 @@ function AiServiceCard() {
       <img
         src="/mockups/mascot.png"
         alt=""
-        style={{ clipPath: 'url(#edited-differentone23-1782742739957)' }}
+        style={{ clipPath: "url(#edited-differentone23-1782742739957)" }}
         className={cn(
           "pointer-events-none",
           "absolute",
@@ -570,7 +620,7 @@ function AiServiceCard() {
           "h-[280px] sm:h-[350px] md:h-[409px]",
           "w-auto",
           "-translate-x-1/2",
-          "object-contain"
+          "object-contain",
         )}
         loading="lazy"
       />
@@ -799,8 +849,6 @@ function WideServiceCard() {
   );
 }
 
-
-
 export function LiteralHomePage({ data }: { data?: HomePageData }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navLinksList = data?.nav?.links?.length
@@ -808,16 +856,20 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
     : defaultNavLinks;
 
   const filteredPartners = data?.partners?.filter((p) => Boolean(p.logo?.src));
-  const partnersList = filteredPartners && filteredPartners.length > 0
-    ? filteredPartners.map((p) => [p.logo!.src, p.name] as const)
-    : defaultPartners;
+  const partnersList =
+    filteredPartners && filteredPartners.length > 0
+      ? filteredPartners.map((p) => [p.logo!.src, p.name] as const)
+      : defaultPartners;
 
   const whyUsList = data?.whyUs?.length
-    ? data.whyUs.map((w, idx) => [
-        defaultWhyCards[idx % defaultWhyCards.length][0],
-        w.title,
-        w.description,
-      ] as const)
+    ? data.whyUs.map(
+        (w, idx) =>
+          [
+            defaultWhyCards[idx % defaultWhyCards.length][0],
+            w.title,
+            w.description,
+          ] as const,
+      )
     : defaultWhyCards;
 
   const methodologyList = data?.methodology?.steps?.length
@@ -872,13 +924,15 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                     isActive
                       ? {
                           color: "var(--Primary-500, #F15722)",
-                          fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                          fontFamily:
+                            '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                           fontSize: "20px",
                           fontWeight: 700,
                         }
                       : {
                           color: "var(--Neutral-600, #414244)",
-                          fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                          fontFamily:
+                            '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                           fontSize: "18px",
                           fontWeight: 400,
                         }
@@ -889,7 +943,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               );
             })}
           </div>
-          <PillButton href={data?.nav?.cta?.href || "#contact"} className="w-[160px] hidden lg:inline-flex">
+          <PillButton
+            href={data?.nav?.cta?.href || "/contact"}
+            className="w-[160px] hidden lg:inline-flex"
+          >
             {data?.nav?.cta?.label || "طلب خدمة"}
           </PillButton>
 
@@ -926,13 +983,15 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                         isActive
                           ? {
                               color: "var(--Primary-500, #F15722)",
-                              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                              fontFamily:
+                                '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                               fontSize: "20px",
                               fontWeight: 700,
                             }
                           : {
                               color: "var(--Neutral-600, #414244)",
-                              fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                              fontFamily:
+                                '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                               fontSize: "18px",
                               fontWeight: 400,
                             }
@@ -943,7 +1002,11 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   );
                 })}
               </div>
-              <PillButton href={data?.nav?.cta?.href || "#contact"} className="w-full justify-center mt-2" onClick={() => setMenuOpen(false)}>
+              <PillButton
+                href={data?.nav?.cta?.href || "/contact"}
+                className="w-full justify-center mt-2"
+                onClick={() => setMenuOpen(false)}
+              >
                 {data?.nav?.cta?.label || "طلب خدمة"}
               </PillButton>
             </motion.div>
@@ -1012,7 +1075,14 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 <span className="text-[#F15722] font-serif-display block md:inline">
                   {data?.hero?.headline?.emphasis || "لحلــــول رقميـــــة"}
                 </span>
-                <span className={cn("mt-3", "md:mt-5", "block", "font-serif-display")}>
+                <span
+                  className={cn(
+                    "mt-3",
+                    "md:mt-5",
+                    "block",
+                    "font-serif-display",
+                  )}
+                >
                   {data?.hero?.headline?.after || "تدعم نمو أعمالك"}
                 </span>
               </h1>
@@ -1020,12 +1090,14 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 className="mx-auto mt-5 md:mt-7 max-w-[652px] text-center font-normal text-[16px] sm:text-[20px] md:text-[24px]"
                 style={{
                   color: "var(--Neutral-300, #808586)",
-                  fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                  fontFamily:
+                    '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                   fontSize: "24px",
                   lineHeight: "140%",
                 }}
               >
-                {data?.hero?.subtitle || "نصمم ونطور مواقع وتطبيقات مخصصة لتحسين الكفاءة وتجربة العملاء."}
+                {data?.hero?.subtitle ||
+                  "نصمم ونطور مواقع وتطبيقات مخصصة لتحسين الكفاءة وتجربة العملاء."}
               </p>
             </motion.div>
 
@@ -1050,7 +1122,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                     key={card.title}
                     title={card.title}
                     body={card.description}
-                    type={card.visual || (idx === 0 ? "button" : idx === 1 ? "process" : "chart")}
+                    type={
+                      card.visual ||
+                      (idx === 0 ? "button" : idx === 1 ? "process" : "chart")
+                    }
                     hoverRotate={idx % 2 === 0 ? -2 : 2}
                   />
                 ))
@@ -1085,7 +1160,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               viewport={motionViewport}
               className="mt-16"
             >
-              <PillButton href={data?.hero?.primaryCta?.href || "#contact"} variant="orange">
+              <PillButton
+                href={data?.hero?.primaryCta?.href || "/contact"}
+                variant="orange"
+              >
                 {data?.hero?.primaryCta?.label || "احصل على استشارة مجانية"}
               </PillButton>
             </motion.div>
@@ -1109,7 +1187,9 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               "lg:px-0",
             )}
           >
-            <SectionTag>{data?.partnersCopy?.eyebrow || "شركاء النجاح"}</SectionTag>
+            <SectionTag>
+              {data?.partnersCopy?.eyebrow || "شركاء النجاح"}
+            </SectionTag>
             <h2
               className={cn(
                 "mt-6",
@@ -1119,10 +1199,11 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               )}
               style={{ color: "var(--Neutral-800, #1E1E20)" }}
             >
-              {data?.partnersCopy?.heading || "عملاء وثقوا بنا لصناعة حلول رقمية مؤثرة"}
+              {data?.partnersCopy?.heading ||
+                "عملاء وثقوا بنا لصناعة حلول رقمية مؤثرة"}
             </h2>
             <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-12">
-              <Marquee  className="[--duration:12s] [--gap:5.5rem] py-4">
+              <Marquee className="[--duration:12s] [--gap:5.5rem] py-4">
                 {partnersList.map(([src, alt], idx) => (
                   <div
                     key={`${alt}-${idx}`}
@@ -1159,7 +1240,9 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               whileInView="visible"
               viewport={motionViewport}
             >
-              <SectionTag>{data?.servicesCopy?.eyebrow || "خدماتنا"}</SectionTag>
+              <SectionTag>
+                {data?.servicesCopy?.eyebrow || "خدماتنا"}
+              </SectionTag>
               <h2
                 className={cn(
                   "mx-auto",
@@ -1172,7 +1255,8 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "text-[#243A77]",
                 )}
               >
-                {data?.servicesCopy?.heading || "حلول رقمية متكاملة تواكب نمو أعمالك"}
+                {data?.servicesCopy?.heading ||
+                  "حلول رقمية متكاملة تواكب نمو أعمالك"}
               </h2>
             </motion.div>
 
@@ -1181,7 +1265,14 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               initial="hidden"
               whileInView="visible"
               viewport={motionViewport}
-              className={cn("mt-[40px] md:mt-[70px]", "grid", "gap-6", "grid-cols-1", "md:grid-cols-2", "lg:grid-cols-3")}
+              className={cn(
+                "mt-[40px] md:mt-[70px]",
+                "grid",
+                "gap-6",
+                "grid-cols-1",
+                "md:grid-cols-2",
+                "lg:grid-cols-3",
+              )}
             >
               {data?.services?.length ? (
                 data.services.map((svc) => (
@@ -1267,12 +1358,14 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 className="mt-7 text-right font-normal"
                 style={{
                   color: "var(--Neutral-500, #5F6063)",
-                  fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                  fontFamily:
+                    '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                   fontSize: "18px",
                   lineHeight: "140%",
                 }}
               >
-                {data?.whoWeAre?.body || "منذ انطلاقنا في 2017، كرسنا جهودنا لتمكين المؤسسات من التميز الرقمي. نفخر بسجل من المشاريع التي أحدثت فارقا حقيقيا في أداء شركائنا."}
+                {data?.whoWeAre?.body ||
+                  "منذ انطلاقنا في 2017، كرسنا جهودنا لتمكين المؤسسات من التميز الرقمي. نفخر بسجل من المشاريع التي أحدثت فارقا حقيقيا في أداء شركائنا."}
               </p>
               <motion.div
                 variants={staggerContainer}
@@ -1288,12 +1381,29 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "text-center",
                 )}
               >
-                {(data?.stats?.length ? data.stats : [
-                  { value: "+200", label: "مشروع", description: "تم تسليمه بنجاح" },
-                  { value: "+150", label: "عميل", description: "وشريك نجاح" },
-                  { value: "+10", label: "سنوات", description: "خبرة وتميز تقني" },
-                ]).map((stat) => {
-                  const numericValue = Number(String(stat.value).replace(/\D/g, ""));
+                {(data?.stats?.length
+                  ? data.stats
+                  : [
+                      {
+                        value: "+200",
+                        label: "مشروع",
+                        description: "تم تسليمه بنجاح",
+                      },
+                      {
+                        value: "+150",
+                        label: "عميل",
+                        description: "وشريك نجاح",
+                      },
+                      {
+                        value: "+10",
+                        label: "سنوات",
+                        description: "خبرة وتميز تقني",
+                      },
+                    ]
+                ).map((stat) => {
+                  const numericValue = Number(
+                    String(stat.value).replace(/\D/g, ""),
+                  );
 
                   return (
                     <motion.div key={stat.label} variants={fadeUp}>
@@ -1330,8 +1440,18 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   );
                 })}
               </motion.div>
-              <div className={cn("mt-10 md:mt-16", "flex", "justify-center", "lg:justify-start")}>
-                <PillButton href={data?.whoWeAre?.cta?.href || "#contact"} variant="blue">
+              <div
+                className={cn(
+                  "mt-10 md:mt-16",
+                  "flex",
+                  "justify-center",
+                  "lg:justify-start",
+                )}
+              >
+                <PillButton
+                  href={data?.whoWeAre?.cta?.href || "/contact"}
+                  variant="blue"
+                >
                   {data?.whoWeAre?.cta?.label || "ابدأ رحلة نموك"}
                 </PillButton>
               </div>
@@ -1380,7 +1500,8 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                       className="text-right font-medium leading-normal"
                       style={{
                         color: "var(--Neutral-800, #1E1E20)",
-                        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                        fontFamily:
+                          '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                         fontSize: "20px",
                       }}
                     >
@@ -1390,7 +1511,8 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                       className="mt-2 text-right font-normal"
                       style={{
                         color: "var(--Neutral-500, #5F6063)",
-                        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                        fontFamily:
+                          '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                         fontSize: "16px",
                         lineHeight: "140%",
                       }}
@@ -1423,7 +1545,9 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               whileInView="visible"
               viewport={motionViewport}
             >
-              <SectionTag>{data?.resultsCopy?.eyebrow || "مشاريع مختارة"}</SectionTag>
+              <SectionTag>
+                {data?.resultsCopy?.eyebrow || "مشاريع مختارة"}
+              </SectionTag>
               <h2
                 className={cn(
                   "mt-6",
@@ -1433,7 +1557,8 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "text-[#243A77]",
                 )}
               >
-                {data?.resultsCopy?.heading || "نحوّل الأفكار إلى مشاريع تحقق نتائج"}
+                {data?.resultsCopy?.heading ||
+                  "نحوّل الأفكار إلى مشاريع تحقق نتائج"}
               </h2>
             </motion.div>
 
@@ -1442,7 +1567,14 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               initial="hidden"
               whileInView="visible"
               viewport={motionViewport}
-              className={cn("mt-14", "grid", "gap-6", "grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-3")}
+              className={cn(
+                "mt-14",
+                "grid",
+                "gap-6",
+                "grid-cols-1",
+                "sm:grid-cols-2",
+                "lg:grid-cols-3",
+              )}
             >
               {data?.caseStudies?.length ? (
                 data.caseStudies.map((cs) => (
@@ -1481,7 +1613,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               viewport={motionViewport}
               className="mt-14"
             >
-              <PillButton href={data?.resultsCopy?.cta?.href || "#featured-work"} variant="blue">
+              <PillButton
+                href={data?.resultsCopy?.cta?.href || "#featured-work"}
+                variant="blue"
+              >
                 {data?.resultsCopy?.cta?.label || "تصفح جميع المشاريع"}
               </PillButton>
             </motion.div>
@@ -1507,7 +1642,9 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               whileInView="visible"
               viewport={motionViewport}
             >
-              <SectionTag>{data?.methodology?.eyebrow || "آلية العمل"}</SectionTag>
+              <SectionTag>
+                {data?.methodology?.eyebrow || "آلية العمل"}
+              </SectionTag>
               <h2
                 className={cn(
                   "mt-6",
@@ -1517,7 +1654,8 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "text-[#243A77]",
                 )}
               >
-                {data?.methodology?.heading || "من الفكرة إلى الإطلاق بخطوات تقنية دقيقة"}
+                {data?.methodology?.heading ||
+                  "من الفكرة إلى الإطلاق بخطوات تقنية دقيقة"}
               </h2>
             </motion.div>
 
@@ -1580,7 +1718,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                             "text-right",
                             "shadow-[0_14px_34px_rgba(14,23,48,0.04)]",
                             "lg:w-[calc(50%-80px)]",
-                            "group relative overflow-hidden transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]"
+                            "group relative overflow-hidden transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]",
                           )}
                         >
                           <img
@@ -1593,7 +1731,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                               "text-[18px]",
                               "font-bold",
                               "text-[#0E1730]",
-                              "relative z-10"
+                              "relative z-10",
                             )}
                           >
                             {title}
@@ -1604,7 +1742,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                               "text-[14px]",
                               "leading-6",
                               "text-[#74829A]",
-                              "relative z-10"
+                              "relative z-10",
                             )}
                           >
                             {body}
@@ -1692,7 +1830,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                             "text-right",
                             "shadow-[0_14px_34px_rgba(14,23,48,0.04)]",
                             "lg:w-[calc(50%-80px)]",
-                            "group relative overflow-hidden transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]"
+                            "group relative overflow-hidden transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]",
                           )}
                         >
                           <img
@@ -1705,7 +1843,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                               "text-[18px]",
                               "font-bold",
                               "text-[#0E1730]",
-                              "relative z-10"
+                              "relative z-10",
                             )}
                           >
                             {title}
@@ -1716,7 +1854,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                               "text-[14px]",
                               "leading-6",
                               "text-[#74829A]",
-                              "relative z-10"
+                              "relative z-10",
                             )}
                           >
                             {body}
@@ -1735,7 +1873,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               viewport={motionViewport}
               className="mt-14"
             >
-              <PillButton href={data?.methodology?.cta?.href || "#contact"} variant="orange">
+              <PillButton
+                href={data?.methodology?.cta?.href || "/contact"}
+                variant="orange"
+              >
                 {data?.methodology?.cta?.label || "تواصل معنا الآن"}
               </PillButton>
             </motion.div>
@@ -1804,7 +1945,8 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                       "lg:text-[44px]",
                     )}
                   >
-                    {data?.finalCta?.heading || "لنحوّل فكرتك إلى منتج رقمي حقيقي"}
+                    {data?.finalCta?.heading ||
+                      "لنحوّل فكرتك إلى منتج رقمي حقيقي"}
                   </h2>
                   <p
                     className={cn(
@@ -1818,7 +1960,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                     {data?.finalCta?.body || "نحوّل الرؤية إلى واقع رقمي"}
                   </p>
                   <div className="mt-8">
-                    <PillButton href={data?.finalCta?.cta?.href || "#contact"} variant="white">
+                    <PillButton
+                      href={data?.finalCta?.cta?.href || "/contact"}
+                      variant="white"
+                    >
                       {data?.finalCta?.cta?.label || "احصل علي استشارة مجانية"}
                     </PillButton>
                   </div>

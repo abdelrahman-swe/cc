@@ -10,6 +10,12 @@ import { ServicesBlock } from './ServicesBlock'
 import { StatisticsBlock } from './StatisticsBlock'
 import { WhoWeAreBlock } from './WhoWeAreBlock'
 
+import { AboutHeroBlock } from './AboutHeroBlock'
+import { AboutStoryBlock } from './AboutStoryBlock'
+import { AboutValuesBlock } from './AboutValuesBlock'
+import { SolutionsBlock } from './SolutionsBlock'
+import { SectorsBlock } from './SectorsBlock'
+
 export const blocks: Block[] = [
   HeroBlock,
   ServicesBlock,
@@ -19,7 +25,12 @@ export const blocks: Block[] = [
   StatisticsBlock,
   MethodologyBlock,
   WhoWeAreBlock,
-  FinalCtaBlock
+  FinalCtaBlock,
+  AboutHeroBlock,
+  AboutStoryBlock,
+  AboutValuesBlock,
+  SolutionsBlock,
+  SectorsBlock
 ]
 
 export {
@@ -31,5 +42,11 @@ export {
   PartnersBlock,
   ServicesBlock,
   StatisticsBlock,
-  WhoWeAreBlock
+  WhoWeAreBlock,
+  AboutHeroBlock,
+  AboutStoryBlock,
+  AboutValuesBlock,
+  SolutionsBlock,
+  SectorsBlock
 }
+

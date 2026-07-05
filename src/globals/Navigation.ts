@@ -1,46 +1,46 @@
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from "payload";
 
-import { anyone, authenticated } from '@/payload/access'
+import { anyone, authenticated } from "@/payload/access";
 
 export const Navigation: GlobalConfig = {
-  slug: 'navigation',
-  label: 'Navigation',
+  slug: "navigation",
+  label: "Navigation",
   access: {
     read: anyone,
-    update: authenticated
+    update: authenticated,
   },
   fields: [
     {
-      name: 'brand',
-      type: 'text',
+      name: "brand",
+      type: "text",
       localized: true,
-      defaultValue: 'Code Clouders'
+      defaultValue: "Code Clouders",
     },
     {
-      name: 'cta',
-      type: 'group',
+      name: "cta",
+      type: "group",
       localized: true,
       fields: [
-        { name: 'label', type: 'text', defaultValue: 'طلب خدمة' },
-        { name: 'href', type: 'text', defaultValue: '#contact' }
-      ]
+        { name: "label", type: "text", defaultValue: "طلب خدمة" },
+        { name: "href", type: "text", defaultValue: "/contact" },
+      ],
     },
     {
-      name: 'links',
-      type: 'array',
+      name: "links",
+      type: "array",
       localized: true,
       fields: [
-        { name: 'label', type: 'text', required: true },
-        { name: 'href', type: 'text', defaultValue: '#' }
+        { name: "label", type: "text", required: true },
+        { name: "href", type: "text", defaultValue: "#" },
       ],
       defaultValue: [
-        { label: 'الرئيسية', href: '#home' },
-        { label: 'من نحن', href: '#who-we-are' },
-        { label: 'أعمالنا', href: '#featured-work' },
-        { label: 'الخدمات', href: '#services' },
-        { label: 'المدونة', href: '#blog' },
-        { label: 'تواصل معنا', href: '#contact' }
-      ]
-    }
-  ]
-}
+        { label: "الرئيسية", href: "/" },
+        { label: "من نحن", href: "/about" },
+        { label: "أعمالنا", href: "/featured-work" },
+        { label: "الخدمات", href: "/services" },
+        { label: "المدونة", href: "/blog" },
+        { label: "تواصل معنا", href: "/contact" },
+      ],
+    },
+  ],
+};

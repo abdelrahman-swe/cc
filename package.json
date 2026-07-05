@@ -10,11 +10,13 @@
     "payload": "payload"
   },
   "dependencies": {
+    "@meysam213/iconsax-react": "^1.0.4",
     "@payloadcms/db-mongodb": "^3.85.1",
     "@payloadcms/db-sqlite": "latest",
     "@payloadcms/next": "latest",
     "@payloadcms/richtext-lexical": "latest",
     "framer-motion": "latest",
+    "iconsax-reactjs": "^0.0.8",
     "lucide-react": "latest",
     "next": "15.4.11",
     "next-intl": "latest",

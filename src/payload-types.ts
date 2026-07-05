@@ -371,6 +371,68 @@ export interface Page {
             blockName?: string | null;
             blockType: 'final-cta-block';
           }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            description?: string | null;
+            cta?: {
+              label?: string | null;
+              href?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'about-hero-block';
+          }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            description?: string | null;
+            image?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'about-story-block';
+          }
+        | {
+            cards?:
+              | {
+                  title: string;
+                  description: string;
+                  bgType: 'lavender' | 'navy' | 'orange' | 'light-orange';
+                  icon: 'target' | 'eye' | 'medal' | 'layer';
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'about-values-block';
+          }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            items?:
+              | {
+                  name: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'solutions-block';
+          }
+        | {
+            sectionTag?: string | null;
+            title?: string | null;
+            sectors?:
+              | {
+                  name: string;
+                  image?: (string | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'sectors-block';
+          }
       )[]
     | null;
   seo?: {
@@ -946,6 +1008,75 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     label?: T;
                     href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'about-hero-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              description?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'about-story-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              description?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'about-values-block'?:
+          | T
+          | {
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    bgType?: T;
+                    icon?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'solutions-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    name?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'sectors-block'?:
+          | T
+          | {
+              sectionTag?: T;
+              title?: T;
+              sectors?:
+                | T
+                | {
+                    name?: T;
+                    image?: T;
+                    id?: T;
                   };
               id?: T;
               blockName?: T;

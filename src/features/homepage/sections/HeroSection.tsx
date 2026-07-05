@@ -1,21 +1,21 @@
-import { PillButton } from '@/components/ui/PillButton'
-import { SectionTag } from '@/components/ui/SectionTag'
-import { HeroCard } from '../components/HeroCards'
+import { PillButton } from "@/components/ui/PillButton";
+import { SectionTag } from "@/components/ui/SectionTag";
+import { HeroCard } from "../components/HeroCards";
 
 type HeroSectionProps = {
-  badge?: string
-  title?: string
-  subtitle?: string
-  primaryCta?: { label?: string; href?: string }
-  secondaryCta?: { label?: string; href?: string }
-}
+  badge?: string;
+  title?: string;
+  subtitle?: string;
+  primaryCta?: { label?: string; href?: string };
+  secondaryCta?: { label?: string; href?: string };
+};
 
 export function HeroSection(props: HeroSectionProps) {
-  const badge = props.badge || 'شركة تطوير برمجيات وسحابة متقدمة'
-  const title = props.title || 'نحول أفكارك إلى حلول رقمية تسابق المستقبل'
+  const badge = props.badge || "شركة تطوير برمجيات وسحابة متقدمة";
+  const title = props.title || "نحول أفكارك إلى حلول رقمية تسابق المستقبل";
   const subtitle =
     props.subtitle ||
-    'نساعد الشركات والمؤسسات على بناء وتطوير المنتجات الرقمية، الأنظمة السحابية، وتجارب المستخدم الاحترافية بأعلى معايير الجودة والأمان.'
+    "نساعد الشركات والمؤسسات على بناء وتطوير المنتجات الرقمية، الأنظمة السحابية، وتجارب المستخدم الاحترافية بأعلى معايير الجودة والأمان.";
 
   return (
     <section className="bg-white pb-16 pt-12 md:pb-24 md:pt-16" id="home">
@@ -30,11 +30,17 @@ export function HeroSection(props: HeroSectionProps) {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <PillButton href={props.primaryCta?.href || '#contact'} variant="orange">
-              {props.primaryCta?.label || 'احجز استشارة مجانية'}
+            <PillButton
+              href={props.primaryCta?.href || "/contact"}
+              variant="orange"
+            >
+              {props.primaryCta?.label || "احجز استشارة مجانية"}
             </PillButton>
-            <PillButton href={props.secondaryCta?.href || '#services'} variant="white">
-              {props.secondaryCta?.label || 'تصفح خدماتنا'}
+            <PillButton
+              href={props.secondaryCta?.href || "#services"}
+              variant="white"
+            >
+              {props.secondaryCta?.label || "تصفح خدماتنا"}
             </PillButton>
           </div>
         </div>
@@ -61,5 +67,5 @@ export function HeroSection(props: HeroSectionProps) {
         </div>
       </div>
     </section>
-  )
+  );
 }
