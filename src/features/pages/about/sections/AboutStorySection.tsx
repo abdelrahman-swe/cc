@@ -49,18 +49,18 @@ export function AboutStorySection({
 
   return (
     <section
-      className="bg-white py-16 lg:py-24"
+      className={cn('bg-white', 'py-16', 'lg:py-24')}
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
-      <div className="mx-auto max-w-[1240px] px-5 lg:px-0">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+      <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'lg:px-0')}>
+        <div className={cn('grid', 'grid-cols-1', 'items-center', 'gap-12', 'lg:grid-cols-12')}>
           {/* Texts Column */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={motionViewport}
-            className="lg:col-span-5 flex flex-col gap-6"
+            className={cn('lg:col-span-5', 'flex', 'flex-col', 'gap-6')}
           >
             <h2
               className={cn(
@@ -73,7 +73,7 @@ export function AboutStorySection({
             </h2>
 
             <div
-              className="flex flex-col gap-4"
+              className={cn('flex', 'flex-col', 'gap-4')}
               style={{
                 color: "var(--Neutral-500, #5F6063)",
                 textAlign: "justify",
@@ -99,51 +99,51 @@ export function AboutStorySection({
             initial="hidden"
             whileInView="visible"
             viewport={motionViewport}
-            className="relative lg:col-span-7 flex justify-center w-full"
+            className={cn('relative', 'lg:col-span-7', 'flex', 'justify-center', 'w-full')}
           >
             {/* Card Container wrapper with stacked layers: Max Width 800px */}
-            <div className="relative w-full max-w-[800px] h-[280px] sm:h-[350px] lg:h-[427px]">
-              {/* Tilted Tag Badge: Use tag.svg and place text above it */}
+            <div className={cn('relative', 'w-full', 'max-w-[800px]', 'h-[280px]', 'sm:h-[350px]', 'lg:h-[427px]')}>
+              {/* Tilted Tag Badge: Centered mathematically on the corner of the card */}
               <div
                 className={cn(
                   "absolute z-30 pointer-events-none select-none",
-                  locale === "ar"
-                    ? "-top-14 -left-6 sm:-left-10"
-                    : "-top-12 -right-6 sm:-right-10",
+                  locale === "ar" ? "top-0 left-0" : "top-0 right-0"
                 )}
-                style={{
-                  width: "180px",
-                  height: "110px",
-                }}
               >
-                <div className="relative w-full h-full flex items-center justify-center">
-                  {/* SVG Tag Background */}
-                  <img
-                    src="/images/tag.svg"
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-contain left-16"
-                  />
+                {/* The Orange Stripe */}
+                <div
+                  className={cn('absolute', 'bg-[#F15722]')}
+                  style={{
+                    width: "155px",
+                    height: "27px",
+                    left: "-50.5px",
+                    top: "-9px",
+                    transform: `rotate(${locale === "ar" ? -24.48 : 24.48}deg)`,
+                    transformOrigin: "center",
+                  }}
+                />
 
-                  {/* Text Overlay */}
-                  <span
-                    style={{
-                      position: "absolute",
-                      zIndex: 35,
-                      color: "var(--Primary-900, #301107)",
-                      fontFamily: '"IBM Plex Sans Arabic", sans-serif',
-                      fontSize: "40px", // Scaled slightly for layout safety, figma was 40px
-                      fontWeight: 600,
-                      lineHeight: "normal",
-                      transform:
-                        "rotate(-25.324deg) translateY(12px) translateX(-4px)",
-                      whiteSpace: "nowrap",
-                      top: "12px",
-                      left: "30px",
-                    }}
-                  >
-                    {sectionTag}
-                  </span>
-                </div>
+                {/* Text Overlay */}
+                <span
+                  className={cn('absolute', 'text-[#301107]', 'font-semibold', 'whitespace-nowrap')}
+                  style={{
+                    fontFamily: '"IBM Plex Sans Arabic", sans-serif',
+                    fontSize: "40px",
+                    lineHeight: "normal",
+                    width: "110px",
+                    height: "94px",
+                    left: locale === "ar" ? "-30px" : "auto",
+                    right: locale === "en" ? "-50px" : "auto",
+                    top: "-42px",
+                    transform: `rotate(${locale === "ar" ? -25.32 : 25.32}deg) translate(${locale === "ar" ? "-4px" : "4px"}, -12px)`,
+                    transformOrigin: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {sectionTag}
+                </span>
               </div>
 
               {/* Stack Layer 1 (Backmost/Bottom): Width 800px, bg: #FEEEE9 */}
@@ -178,7 +178,7 @@ export function AboutStorySection({
                   alt={title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-500 hover:scale-103"
+                  className={cn('object-cover', 'transition-transform', 'duration-500', 'hover:scale-103')}
                   priority
                 />
               </div>

@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { PillButton } from "@/components/ui/PillButton";
 import { cn } from "@/lib/cn";
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 
 const defaultNavLinks = [
   ["الرئيسية", "/"],
@@ -69,11 +70,13 @@ export function Header({ brand, links, cta }: HeaderProps) {
           "lg:px-0",
         )}
       >
-        <img
-          src="/Logo.svg"
-          alt={brand || "Code Clouders"}
-          className={cn("h-[39px]", "w-[160px]")}
-        />
+        <Link href="/">
+          <img
+            src="/Logo.svg"
+            alt={brand || "Code Clouders"}
+            className={cn("h-[39px]", "w-[160px]", "cursor-pointer")}
+          />
+        </Link>
         <div
           className={cn(
             "hidden",
@@ -85,17 +88,14 @@ export function Header({ brand, links, cta }: HeaderProps) {
           )}
         >
           {navLinks.map(([label, href]) => {
-            const resolvedHref = href.startsWith("#")
-              ? href
-              : `/${currentLocale}${href.startsWith("/") ? href : `/${href}`}`;
-            const isActive = href.startsWith("#")
-              ? pathname === `/${currentLocale}` && href === "/"
-              : pathname === resolvedHref ||
-                pathname.startsWith(resolvedHref + "/");
-            return (
+            const isHash = href.startsWith("#");
+            const isActive = href === "/"
+              ? pathname === "/"
+              : pathname === href || pathname.startsWith(href + "/");
+            return isHash ? (
               <a
                 key={label}
-                href={resolvedHref}
+                href={href}
                 className="transition duration-200 leading-normal"
                 style={
                   isActive
@@ -117,6 +117,31 @@ export function Header({ brand, links, cta }: HeaderProps) {
               >
                 {label}
               </a>
+            ) : (
+              <Link
+                key={label}
+                href={href}
+                className="transition duration-200 leading-normal"
+                style={
+                  isActive
+                    ? {
+                        color: "var(--Primary-500, #F15722)",
+                        fontFamily:
+                          '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                        fontSize: "20px",
+                        fontWeight: 700,
+                      }
+                    : {
+                        color: "var(--Neutral-600, #414244)",
+                        fontFamily:
+                          '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                        fontSize: "18px",
+                        fontWeight: 400,
+                      }
+                }
+              >
+                {label}
+              </Link>
             );
           })}
         </div>
@@ -171,17 +196,14 @@ export function Header({ brand, links, cta }: HeaderProps) {
           >
             <div className="flex flex-col items-center gap-4 w-full">
               {navLinks.map(([label, href]) => {
-                const resolvedHref = href.startsWith("#")
-                  ? href
-                  : `/${currentLocale}${href.startsWith("/") ? href : `/${href}`}`;
-                const isActive = href.startsWith("#")
-                  ? pathname === `/${currentLocale}` && href === "/"
-                  : pathname === resolvedHref ||
-                    pathname.startsWith(resolvedHref + "/");
-                return (
+                const isHash = href.startsWith("#");
+                const isActive = href === "/"
+                  ? pathname === "/"
+                  : pathname === href || pathname.startsWith(href + "/");
+                return isHash ? (
                   <a
                     key={label}
-                    href={resolvedHref}
+                    href={href}
                     onClick={() => setMenuOpen(false)}
                     className="transition duration-200 leading-normal text-center py-2 w-full block hover:bg-gray-50 rounded-xl"
                     style={
@@ -204,6 +226,32 @@ export function Header({ brand, links, cta }: HeaderProps) {
                   >
                     {label}
                   </a>
+                ) : (
+                  <Link
+                    key={label}
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className="transition duration-200 leading-normal text-center py-2 w-full block hover:bg-gray-50 rounded-xl"
+                    style={
+                      isActive
+                        ? {
+                            color: "var(--Primary-500, #F15722)",
+                            fontFamily:
+                              '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                            fontSize: "20px",
+                            fontWeight: 700,
+                          }
+                        : {
+                            color: "var(--Neutral-600, #414244)",
+                            fontFamily:
+                              '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                            fontSize: "18px",
+                            fontWeight: 400,
+                          }
+                    }
+                  >
+                    {label}
+                  </Link>
                 );
               })}
             </div>

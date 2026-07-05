@@ -1,5 +1,6 @@
 import { ArrowLeft } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { Link } from '@/i18n/routing'
 
 type PillButtonProps = {
   children: string
@@ -37,17 +38,17 @@ export function PillButton({
     white: 'shadow-[0_14px_34px_rgba(14,23,48,0.12)]'
   }
 
-  return (
-    <a
-      href={href}
-      onClick={onClick}
-      className={cn(
-        'cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold transition duration-300 hover:-translate-y-0.5',
-        shadows[variant],
-        styles[variant],
-        className
-      )}
-    >
+  const isHash = href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')
+
+  const commonClass = cn(
+    'cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold transition duration-300 hover:-translate-y-0.5',
+    shadows[variant],
+    styles[variant],
+    className
+  )
+
+  const content = (
+    <>
       <span>{children}</span>
       <span
         className={cn(
@@ -60,6 +61,20 @@ export function PillButton({
           <ArrowLeft aria-hidden className="size-5" />
         </span>
       </span>
-    </a>
+    </>
+  )
+
+  if (isHash) {
+    return (
+      <a href={href} onClick={onClick} className={commonClass}>
+        {content}
+      </a>
+    )
+  }
+
+  return (
+    <Link href={href} onClick={onClick} className={commonClass}>
+      {content}
+    </Link>
   )
 }

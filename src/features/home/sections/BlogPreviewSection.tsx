@@ -1,6 +1,6 @@
 import type { BlogPost, SectionCopy } from '@/features/home/types/home'
-
 import { SectionHeader } from '../components/SectionHeader'
+import { Link } from '@/i18n/routing'
 
 type BlogPreviewSectionProps = {
   copy: SectionCopy
@@ -46,7 +46,7 @@ export function BlogPreviewSection({ copy, posts }: BlogPreviewSectionProps) {
                     fontSize: '20px'
                   }}
                 >
-                  <a href={post.href}>{post.title}</a>
+                  <Link href={post.href}>{post.title}</Link>
                 </h3>
                 <p
                   className="mt-3 text-right font-normal"

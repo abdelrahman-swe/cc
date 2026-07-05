@@ -1,4 +1,5 @@
 import { cn } from "../../lib/utils";
+import { Link } from "@/i18n/routing";
 export type FooterData = {
   socialTitle?: string | null;
   socialLinks?: Array<{
@@ -222,18 +223,21 @@ export function Footer({ data }: FooterProps) {
         >
           {/* Column 1 (Rightmost in RTL, Leftmost in LTR): Logo */}
           <div className={cn("w-[160px]", "h-[39px]", "relative", "shrink-0")}>
-            <img
-              src="/footer-logo.svg"
-              alt="Code Clouders"
-              className={cn(
-                "absolute",
-                "block",
-                "inset-0",
-                "max-w-none",
-                "size-full",
-              )}
-              loading="lazy"
-            />
+            <Link href="/">
+              <img
+                src="/footer-logo.svg"
+                alt="Code Clouders"
+                className={cn(
+                  "absolute",
+                  "block",
+                  "inset-0",
+                  "max-w-none",
+                  "size-full",
+                  "cursor-pointer"
+                )}
+                loading="lazy"
+              />
+            </Link>
           </div>
 
           {/* Column 2 (Middle-right in RTL, Middle-left in LTR): Quick Links */}
@@ -271,19 +275,34 @@ export function Footer({ data }: FooterProps) {
                 "text-white/70",
               )}
             >
-              {links.map((link) => (
-                <a
-                  key={`${link.url}-${link.label}`}
-                  href={link.url}
-                  className={cn(
-                    "hover:text-white",
-                    "transition-colors",
-                    "duration-200",
-                  )}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {links.map((link) => {
+                const isHash = link.url.startsWith('#') || link.url.startsWith('http') || link.url.startsWith('mailto') || link.url.startsWith('tel')
+                return isHash ? (
+                  <a
+                    key={`${link.url}-${link.label}`}
+                    href={link.url}
+                    className={cn(
+                      "hover:text-white",
+                      "transition-colors",
+                      "duration-200",
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={`${link.url}-${link.label}`}
+                    href={link.url}
+                    className={cn(
+                      "hover:text-white",
+                      "transition-colors",
+                      "duration-200",
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
