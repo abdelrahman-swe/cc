@@ -46,10 +46,10 @@ export const SiteSettings: GlobalConfig = {
         { name: 'icon', type: 'text' }
       ],
       defaultValue: [
-        { platform: 'twitter', url: '#', icon: '/icons/twitter.svg' },
-        { platform: 'email', url: 'mailto:info@codeclouders.com', icon: '/icons/email.svg' },
-        { platform: 'linkedin', url: '#', icon: '/icons/Vector.svg' },
-        { platform: 'website', url: '#', icon: '/icons/mouse.svg' }
+        { platform: 'twitter', url: '#', icon: '/assets/icons/twitter.svg' },
+        { platform: 'email', url: 'mailto:info@codeclouders.com', icon: '/assets/icons/email.svg' },
+        { platform: 'linkedin', url: '#', icon: '/assets/icons/Vector.svg' },
+        { platform: 'website', url: '#', icon: '/assets/icons/mouse.svg' }
       ]
     }
   ]

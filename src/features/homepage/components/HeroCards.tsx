@@ -11,37 +11,37 @@ const DISPLAY_PARTNERS = [
     id: "naama",
     name: "نما",
     note: "تم تسليم المشروع بنجاح",
-    logo: "/partners/naama.svg",
+    logo: "/assets/partners/naama.svg",
   },
   {
     id: "nupco",
     name: "نوبكو",
     note: "شكرا لكم، النتائج فاقت توقعاتنا",
-    logo: "/partners/nupco.svg",
+    logo: "/assets/partners/nupco.svg",
   },
   {
     id: "sdaia",
     name: "سدايا",
     note: "شريك استراتيجي في التحول الرقمي",
-    logo: "/partners/sdaia.svg",
+    logo: "/assets/partners/sdaia.svg",
   },
   {
     id: "stc",
     name: "STC",
     note: "حلول تقنية متكاملة ومبتكرة",
-    logo: "/partners/stc.svg",
+    logo: "/assets/partners/stc.svg",
   },
   {
     id: "nafath",
     name: "نفاذ",
     note: "ربط وتكامل الأنظمة الرقمية",
-    logo: "/partners/nafath.svg",
+    logo: "/assets/partners/nafath.svg",
   },
   {
     id: "odawi",
     name: "عُداوي",
     note: "منصة الرعاية الصحية الذكية",
-    logo: "/partners/odawi.svg",
+    logo: "/assets/partners/odawi.svg",
   },
 ];
 
@@ -130,7 +130,7 @@ function HeroChartArt() {
   return (
     <div className="absolute inset-x-0 top-10 flex h-full items-center justify-center">
       <img
-        src="/images/chart-orange.svg"
+        src="/assets/images/chart-orange.svg"
         alt=""
         className="h-full w-auto object-contain"
       />
@@ -169,7 +169,7 @@ export function HeroCard({
     >
       <div className="pointer-events-none absolute bottom-4 left-1/2 h-28 w-[75%] -translate-x-1/2 rounded-full bg-[#F79A7A]/25 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
       <img
-        src="/images/hero-card-orange.svg"
+        src="/assets/images/hero-card-orange.svg"
         alt=""
         className="pointer-events-none absolute inset-x-0 bottom-0 z-0 w-full"
       />

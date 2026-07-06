@@ -14,44 +14,47 @@ import { cn } from "@/lib/cn";
 import { Marquee } from "@/registry/magicui/marquee";
 import type { HomePageData } from "./types/home";
 import { Footer } from "@/components/shared/Footer";
+import { Header } from "@/components/shared/Header";
 import { ProjectCard } from "@/features/case-studies/sections/FeaturedWorkSection";
+import { SectionTag } from "@/components/ui/SectionTag";
+import { useTheme } from "@/components/shared/ThemeProvider";
 
 const DISPLAY_PARTNERS = [
   {
     id: "naama",
     name: "نما",
     note: "تم تسليم المشروع بنجاح",
-    logo: "/partners/naama.svg",
+    logo: "/assets/partners/naama.svg",
   },
   {
     id: "nupco",
     name: "نوبكو",
     note: "شكرا لكم، النتائج فاقت توقعاتنا",
-    logo: "/partners/nupco.svg",
+    logo: "/assets/partners/nupco.svg",
   },
   {
     id: "sdaia",
     name: "سدايا",
     note: "شريك استراتيجي في التحول الرقمي",
-    logo: "/partners/sdaia.svg",
+    logo: "/assets/partners/sdaia.svg",
   },
   {
     id: "stc",
     name: "STC",
     note: "حلول تقنية متكاملة ومبتكرة",
-    logo: "/partners/stc.svg",
+    logo: "/assets/partners/stc.svg",
   },
   {
     id: "nafath",
     name: "نفاذ",
     note: "ربط وتكامل الأنظمة الرقمية",
-    logo: "/partners/nafath.svg",
+    logo: "/assets/partners/nafath.svg",
   },
   {
     id: "odawi",
     name: "عُداوي",
     note: "منصة الرعاية الصحية الذكية",
-    logo: "/partners/odawi.svg",
+    logo: "/assets/partners/odawi.svg",
   },
 ];
 
@@ -65,32 +68,32 @@ const defaultNavLinks = [
 ] as const;
 
 const defaultPartners = [
-  ["/partners/nupco.svg", "nupco"],
-  ["/partners/naama.svg", "Naama"],
-  ["/partners/nafath.svg", "نفاذ"],
-  ["/partners/mada.svg", "mada"],
-  ["/partners/stc.svg", "stc"],
-  ["/partners/sdaia.svg", "SDAIA"],
+  ["/assets/partners/nupco.svg", "nupco"],
+  ["/assets/partners/naama.svg", "Naama"],
+  ["/assets/partners/nafath.svg", "نفاذ"],
+  ["/assets/partners/mada.svg", "mada"],
+  ["/assets/partners/stc.svg", "stc"],
+  ["/assets/partners/sdaia.svg", "SDAIA"],
 ] as const;
 
 const defaultWhyCards = [
   [
-    "/icons/content/medal.svg",
+    "/assets/icons/content/medal.svg",
     "خبرة تزيد عن 6 سنوات",
     "نمتلك خبرة عملية في تصميم وتطوير حلول رقمية احترافية تدعم نجاح أعمالك.",
   ],
   [
-    "/icons/content/pen.svg",
+    "/assets/icons/content/pen.svg",
     "حلول مخصصة حسب احتياجك",
     "نصمم المنتج حول أهدافك ونموذج عملك، لا حول قالب جاهز ومحدود.",
   ],
   [
-    "/icons/content/rank.svg",
+    "/assets/icons/content/rank.svg",
     "سرعة إنجاز ومرونة عالية",
     "فرق عمل رشيقة تتعامل مع المتغيرات بسرعة وتحافظ على جودة التنفيذ.",
   ],
   [
-    "/icons/content/shield.svg",
+    "/assets/icons/content/shield.svg",
     "أمان وحوكمة البيانات",
     "نطبق معايير حماية واعتمادية مناسبة لطبيعة بياناتك وعملياتك.",
   ],
@@ -164,13 +167,13 @@ function PillButton({
     nav: "cta-pill--navy bg-[#243A77] text-white",
     orange: "cta-pill--orange bg-[#F15722] text-white",
     blue: "cta-pill--navy bg-[#243A77] text-white",
-    white: "cta-pill--white border border-[#F1D5CC] bg-white text-[#F15722]",
+    white: "cta-pill--white border border-[#F1D5CC] dark:border-white/15 bg-surface-card text-[#F15722]",
   };
 
   const circle = {
-    nav: "bg-white text-[#243A77]",
-    orange: "bg-white text-[#F15722]",
-    blue: "bg-white text-[#F15722]",
+    nav: "bg-surface text-[#243A77]",
+    orange: "bg-surface text-[#F15722]",
+    blue: "bg-surface text-[#F15722]",
     white: "bg-[#F15722] text-white",
   };
 
@@ -200,33 +203,7 @@ function PillButton({
   );
 }
 
-function SectionTag({ children }: { children: string }) {
-  return (
-    <div
-      className={cn(
-        "inline-flex",
-        "h-12",
-        "items-center",
-        "justify-center",
-        "rounded-full",
-        "border",
-        "border-[#E8EDF6]",
-        "bg-white",
-        "px-4",
-        "font-normal",
-        "leading-normal",
-        "shadow-[0_10px_24px_rgba(36,58,119,0.04)]",
-      )}
-      style={{
-        color: "var(--Neutral-700, #2F3032)",
-        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-        fontSize: "16px",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+
 
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -350,7 +327,7 @@ function HeroProcessArt() {
   } as const;
 
   return (
-    <div className="absolute inset-x-0 top-6 flex h-[160px] items-center justify-center pointer-events-none select-none overflow-visible">
+    <div className={cn('absolute', 'inset-x-0', 'top-6', 'flex', 'h-[160px]', 'items-center', 'justify-center', 'pointer-events-none', 'select-none', 'overflow-visible')}>
       {currentStack.map(({ partner, slot }) => (
         <motion.div
           key={partner.id}
@@ -358,20 +335,20 @@ function HeroProcessArt() {
           initial={false}
           animate={slot}
           variants={slotVariants}
-          className="absolute flex h-[64px] w-[275px] items-center gap-3 rounded-full border border-[#EBECEF] bg-white px-4 py-2 shadow-[0_8px_24px_rgba(14,23,48,0.05)]"
+          className={cn('absolute', 'flex', 'h-[64px]', 'w-[275px]', 'items-center', 'gap-3', 'rounded-full', 'border', 'border-border', 'dark:border-white/10', 'bg-surface-card', 'dark:bg-[#070C18]/60', 'px-4', 'py-2', 'shadow-[0_8px_24px_rgba(14,23,48,0.05)]', 'transition-colors', 'duration-300')}
         >
-          <div className="relative flex size-11 shrink-0 items-center justify-center rounded-full border border-[#EAECEF] bg-white p-1.5 shadow-sm">
+          <div className={cn('relative', 'flex', 'size-11', 'shrink-0', 'items-center', 'justify-center', 'rounded-full', 'border', 'border-border', 'dark:border-white/10', 'bg-surface-card', 'dark:bg-[#070C18]/60', 'p-1.5', 'shadow-sm', 'transition-colors', 'duration-300')}>
             <img
               src={partner.logo}
               alt={partner.name}
-              className="h-full w-full object-contain"
+              className={cn('h-full', 'w-full', 'object-contain', 'dark:brightness-0', 'dark:invert')}
             />
           </div>
-          <div className="text-right flex-1 min-w-0">
-            <strong className="block text-[14px] font-bold text-[#0E1730] truncate">
+          <div className={cn('text-right', 'flex-1', 'min-w-0')}>
+            <strong className={cn('block', 'text-[14px]', 'font-bold', 'text-foreground', 'truncate')}>
               {partner.name}
             </strong>
-            <span className="block text-[11px] text-[#808586] truncate">
+            <span className={cn('block', 'text-[11px]', 'text-foreground-subtle', 'truncate')}>
               {partner.note}
             </span>
           </div>
@@ -382,22 +359,23 @@ function HeroProcessArt() {
 }
 
 function HeroChartArt() {
+  const { theme } = useTheme();
   return (
     <div
       className={cn(
         "absolute",
         "inset-x-0",
-        "top-10",
+        "top-4",
         "flex",
-        "h-full",
+        "h-[190px]",
         "items-center",
         "justify-center",
       )}
     >
       <img
-        src="/images/chart-orange.svg"
+        src={theme === 'dark' ? '/dark/charts.svg' : '/assets/images/chart-orange.svg'}
         alt=""
-        className={cn("h-full", "w-auto", "object-contain")}
+        className={cn("h-[190px]", "w-auto", "object-contain")}
       />
     </div>
   );
@@ -415,6 +393,7 @@ function HeroCard({
   hoverRotate?: number;
 }) {
   const shouldReduceMotion = useReducedMotion();
+  const { theme } = useTheme();
 
   return (
     <motion.article
@@ -431,7 +410,7 @@ function HeroCard({
             }
       }
       className={cn(
-        "group relative h-[360px] overflow-hidden rounded-[50.5px] border-[2.02px] border-[#F1D5CC] bg-white px-6 py-10 xl:px-8 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-[border-color,box-shadow] duration-200 hover:border-[#F79A7A] hover:shadow-[-217.15px_247.45px_91.91px_0px_rgba(36,58,119,0.01),-9.09px_10.1px_29.29px_0px_rgba(36,58,119,0.08)]",
+        "group relative h-[360px] overflow-hidden rounded-[50.5px] border-[2.02px] border-[#F1D5CC] dark:border-white/15 bg-surface-card hero-card px-6 py-10 xl:px-8 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-[border-color,box-shadow,background-color] duration-200 hover:border-[#F79A7A] dark:hover:border-[#072FA2] hover:shadow-[-217.15px_247.45px_91.91px_0px_rgba(36,58,119,0.01),-9.09px_10.1px_29.29px_0px_rgba(36,58,119,0.08)]",
       )}
     >
       <div
@@ -445,6 +424,7 @@ function HeroCard({
           "-translate-x-1/2",
           "rounded-full",
           "bg-[#F79A7A]/25",
+          "dark:bg-[#072FA2]/20",
           "opacity-0",
           "blur-2xl",
           "transition-opacity",
@@ -454,7 +434,7 @@ function HeroCard({
       />
 
       <img
-        src="/images/hero-card-orange.svg"
+        src={theme === 'dark' ? '/dark/hero-card-blur.svg' : '/assets/images/hero-card-orange.svg'}
         alt=""
         className={cn(
           "pointer-events-none",
@@ -471,7 +451,7 @@ function HeroCard({
 
       <div className={cn("relative", "z-10", "mt-[218px]")}>
         <h3
-          className="text-right font-semibold leading-normal"
+          className={cn('text-right', 'font-semibold', 'leading-normal')}
           style={{
             color: "var(--Neutral-800, #121516)",
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
@@ -483,7 +463,7 @@ function HeroCard({
           {title}
         </h3>
         <p
-          className="mt-2 text-right font-normal text-[15px] sm:text-[16px] lg:text-[18px] xl:text-[20px]"
+          className={cn('mt-2', 'text-right', 'font-normal', 'text-[15px]', 'sm:text-[16px]', 'lg:text-[18px]', 'xl:text-[20px]')}
           style={{
             color: "var(--Neutral-400, #575C5E)",
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
@@ -506,6 +486,7 @@ function AiServiceCard() {
       whileInView="visible"
       viewport={motionViewport}
       className={cn(
+        "brand-card",
         "group",
         "relative",
         "h-[530px]",
@@ -524,14 +505,14 @@ function AiServiceCard() {
       )}
     >
       <img
-        src="/images/hover.svg"
+        src="/light/hover.svg"
         alt=""
-        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
       />
 
       {/* Layer 1: Mascot at Back */}
       <img
-        src="/mockups/mascot.png"
+        src="/assets/mockups/mascot.png"
         alt=""
         className={cn(
           "absolute",
@@ -547,20 +528,20 @@ function AiServiceCard() {
       />
 
       {/* Layer 2: White Card Container (Figma 563:9152) */}
-      <div className="absolute bottom-[30px] left-1/2 z-10 flex w-[623px] max-w-[calc(100%-32px)] -translate-x-1/2 flex-col gap-3 rounded-[24px] bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+      <div className={cn('absolute', 'bottom-[30px]', 'left-1/2', 'z-10', 'flex', 'w-[623px]', 'max-w-[calc(100%-32px)]', '-translate-x-1/2', 'flex-col', 'gap-3', 'rounded-[24px]', 'bg-surface-card', 'dark:bg-surface-elevated', 'p-4', 'shadow-[0_10px_30px_rgba(0,0,0,0.04)]', 'border', 'border-border', 'dark:border-white/10', 'transition-colors', 'duration-300')}>
         {/* Star Badge positioned on the right */}
-        <div className="flex w-full justify-start">
-          <div className="flex size-[48px] shrink-0 items-center justify-center rounded-[16px] border border-[#FCDDD3] bg-[#F9F9F9] p-3 text-[#F15722]">
-            <svg className="size-6 fill-current" viewBox="0 0 24 24">
+        <div className={cn('flex', 'w-full', 'justify-start')}>
+          <div className={cn('flex', 'size-[48px]', 'shrink-0', 'items-center', 'justify-center', 'rounded-[16px]', 'border', 'border-[#FCDDD3]', 'dark:border-white/15', 'bg-surface-elevated', 'dark:bg-surface', 'p-3', 'text-[#F15722]')}>
+            <svg className={cn('size-6', 'fill-current')} viewBox="0 0 24 24">
               <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
             </svg>
           </div>
         </div>
 
         {/* Gray Content Box */}
-        <div className="w-full rounded-[16px] bg-[#F9F9F9] p-5 text-right">
+        <div className={cn('w-full', 'rounded-[16px]', 'bg-surface-elevated', 'dark:bg-surface', 'p-5', 'text-right', 'transition-colors', 'duration-300')}>
           <h3
-            className="text-right font-medium leading-normal text-[#1E1E20]"
+            className={cn('text-right', 'font-medium', 'leading-normal', 'text-foreground')}
             style={{
               fontFamily:
                 '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
@@ -572,7 +553,7 @@ function AiServiceCard() {
             حلول الذكاء الاصطناعي المتقدمة
           </h3>
           <p
-            className="mt-2 text-right font-normal text-[#5F6063]"
+            className={cn('mt-2', 'text-right', 'font-normal', 'text-foreground-muted')}
             style={{
               fontFamily:
                 '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
@@ -590,7 +571,7 @@ function AiServiceCard() {
 
       {/* Hidden SVG with clip path definition */}
       <svg
-        className="absolute -left-[999px] -top-[999px] h-0 w-0"
+        className={cn('absolute', '-left-[999px]', '-top-[999px]', 'h-0', 'w-0')}
         aria-hidden="true"
       >
         <defs>
@@ -608,7 +589,7 @@ function AiServiceCard() {
 
       {/* Layer 3: Hand with clip path applied on top of card */}
       <img
-        src="/mockups/mascot.png"
+        src="/assets/mockups/mascot.png"
         alt=""
         style={{ clipPath: "url(#edited-differentone23-1782742739957)" }}
         className={cn(
@@ -656,6 +637,7 @@ function ServiceCard({
             }
       }
       className={cn(
+        "brand-card",
         "group",
         "relative",
         "flex",
@@ -663,10 +645,12 @@ function ServiceCard({
         "flex-col",
         "overflow-hidden",
         "rounded-[50px]",
+        "dark:rounded-[40px]",
         "border",
-        "border-[#EEF2F8]",
-        "bg-white",
+        "border-border",
+        "bg-surface-card",
         "shadow-[0_18px_44px_rgba(14,23,48,0.04)]",
+        "dark:shadow-[0_18px_44px_rgba(0,0,0,0.15)]",
         "transition-all",
         "duration-300",
         "hover:border-[#F15722]",
@@ -674,13 +658,13 @@ function ServiceCard({
       )}
     >
       <img
-        src="/images/hover.svg"
+        src="/light/hover.svg"
         alt=""
-        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
       />
       <div className={cn("px-8", "pt-9", "text-right")}>
         <h3
-          className="text-right font-medium leading-normal"
+          className={cn('text-right', 'font-medium', 'leading-normal')}
           style={{
             color: "var(--Neutral-800, #1E1E20)",
             textAlign: "right",
@@ -694,7 +678,7 @@ function ServiceCard({
           {title}
         </h3>
         <p
-          className="mt-4 text-right font-normal self-stretch"
+          className={cn('mt-4', 'text-right', 'font-normal', 'self-stretch')}
           style={{
             color: "var(--Neutral-500, #5F6063)",
             textAlign: "right",
@@ -720,7 +704,7 @@ function ServiceCard({
           "bg-transparent",
         )}
       >
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-full w-full bg-gradient-to-t from-[#F15722]/30 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className={cn('pointer-events-none', 'absolute', 'inset-x-0', 'bottom-0', 'z-0', 'h-full', 'w-full', 'bg-gradient-to-t', 'from-[#F15722]/30', 'via-[#F15722]/10', 'to-transparent', 'blur-2xl', 'opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100')} />
         <img
           src={image}
           alt=""
@@ -743,16 +727,19 @@ function WideServiceCard() {
       whileInView="visible"
       viewport={motionViewport}
       className={cn(
+        "brand-card",
         "group",
         "relative",
         "grid",
         "min-h-[320px]",
         "overflow-hidden",
         "rounded-[50px]",
+        "dark:rounded-[40px]",
         "border",
-        "border-[#EEF2F8]",
-        "bg-white",
+        "border-border",
+        "bg-surface-card",
         "shadow-[0_18px_44px_rgba(14,23,48,0.04)]",
+        "dark:shadow-[0_18px_44px_rgba(0,0,0,0.15)]",
         "transition-all",
         "duration-300",
         "hover:border-[#F15722]",
@@ -763,9 +750,9 @@ function WideServiceCard() {
       )}
     >
       <img
-        src="/images/hover.svg"
+        src="/light/hover.svg"
         alt=""
-        className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
       />
       <div
         className={cn(
@@ -777,7 +764,7 @@ function WideServiceCard() {
         )}
       >
         <h3
-          className="text-right font-medium leading-normal"
+          className={cn('text-right', 'font-medium', 'leading-normal')}
           style={{
             color: "var(--Neutral-800, #1E1E20)",
             textAlign: "right",
@@ -791,7 +778,7 @@ function WideServiceCard() {
           تعزيز الكفاءات والفرق التقنية
         </h3>
         <p
-          className="mt-4 text-right font-normal self-stretch"
+          className={cn('mt-4', 'text-right', 'font-normal', 'self-stretch')}
           style={{
             color: "var(--Neutral-500, #5F6063)",
             textAlign: "right",
@@ -836,10 +823,10 @@ function WideServiceCard() {
           ))}
         </div>
       </div>
-      <div className={cn("relative", "h-[240px] sm:h-[320px]", "bg-white")}>
-        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-l from-[#F15722]/30 via-[#F15722]/10 to-transparent blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className={cn("relative", "h-[240px] sm:h-[320px]", "bg-surface-card")}>
+        <div className={cn('pointer-events-none', 'absolute', 'inset-0', 'z-0', 'bg-gradient-to-l', 'from-[#F15722]/30', 'via-[#F15722]/10', 'to-transparent', 'blur-2xl', 'opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100')} />
         <img
-          src="/images/globe.svg"
+          src="/assets/images/globe.svg"
           alt=""
           className={cn("relative", "z-10", "h-full", "w-full", "object-cover")}
           loading="lazy"
@@ -850,7 +837,7 @@ function WideServiceCard() {
 }
 
 export function LiteralHomePage({ data }: { data?: HomePageData }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { theme } = useTheme();
   const navLinksList = data?.nav?.links?.length
     ? data.nav.links.map((link) => [link.label, link.href] as const)
     : defaultNavLinks;
@@ -879,140 +866,13 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
   return (
     <div
       dir="rtl"
-      className={cn("overflow-x-hidden", "bg-white", "text-[#0E1730]")}
+      className={cn("overflow-x-hidden", "bg-surface", "text-foreground", "transition-colors", "duration-300")}
     >
-      <header className={cn("h-[100px]", "bg-white", "relative")}>
-        <motion.nav
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className={cn(
-            "mx-auto",
-            "flex",
-            "h-14",
-            "max-w-[1240px]",
-            "items-center",
-            "justify-between",
-            "px-5",
-            "pt-[22px]",
-            "lg:px-0",
-          )}
-        >
-          <img
-            src="/Logo.svg"
-            alt={data?.nav?.brand || "Code Clouders"}
-            className={cn("h-[39px]", "w-[160px]")}
-          />
-          <div
-            className={cn(
-              "hidden",
-              "w-[920px]",
-              "items-center",
-              "justify-center",
-              "gap-10",
-              "lg:flex",
-            )}
-          >
-            {navLinksList.map(([label, href], index) => {
-              const isActive = index === 0;
-              return (
-                <a
-                  key={label}
-                  href={href}
-                  className="transition duration-200 leading-normal"
-                  style={
-                    isActive
-                      ? {
-                          color: "var(--Primary-500, #F15722)",
-                          fontFamily:
-                            '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                          fontSize: "20px",
-                          fontWeight: 700,
-                        }
-                      : {
-                          color: "var(--Neutral-600, #414244)",
-                          fontFamily:
-                            '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                          fontSize: "18px",
-                          fontWeight: 400,
-                        }
-                  }
-                >
-                  {label}
-                </a>
-              );
-            })}
-          </div>
-          <PillButton
-            href={data?.nav?.cta?.href || "/contact"}
-            className="w-[160px] hidden lg:inline-flex"
-          >
-            {data?.nav?.cta?.label || "طلب خدمة"}
-          </PillButton>
-
-          {/* Hamburger Mobile Menu Toggle Button */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="flex size-10 items-center justify-center rounded-full border border-[#E8EDF6] text-[#243A77] lg:hidden transition duration-200 active:scale-95"
-            aria-label="Toggle Menu"
-          >
-            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
-        </motion.nav>
-
-        {/* Mobile Drawer Overlay */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="absolute inset-x-0 top-[100px] z-50 flex flex-col items-center gap-6 border-b border-[#E8EDF6] bg-white px-6 py-8 shadow-lg lg:hidden"
-            >
-              <div className="flex flex-col items-center gap-4 w-full">
-                {navLinksList.map(([label, href], index) => {
-                  const isActive = index === 0;
-                  return (
-                    <a
-                      key={label}
-                      href={href}
-                      onClick={() => setMenuOpen(false)}
-                      className="transition duration-200 leading-normal text-center py-2 w-full block hover:bg-gray-50 rounded-xl"
-                      style={
-                        isActive
-                          ? {
-                              color: "var(--Primary-500, #F15722)",
-                              fontFamily:
-                                '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                              fontSize: "20px",
-                              fontWeight: 700,
-                            }
-                          : {
-                              color: "var(--Neutral-600, #414244)",
-                              fontFamily:
-                                '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                              fontSize: "18px",
-                              fontWeight: 400,
-                            }
-                      }
-                    >
-                      {label}
-                    </a>
-                  );
-                })}
-              </div>
-              <PillButton
-                href={data?.nav?.cta?.href || "/contact"}
-                className="w-full justify-center mt-2"
-                onClick={() => setMenuOpen(false)}
-              >
-                {data?.nav?.cta?.label || "طلب خدمة"}
-              </PillButton>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+      <Header
+        brand={data?.nav?.brand ?? undefined}
+        links={(data?.nav?.links as any[]) ?? undefined}
+        cta={data?.nav?.cta as any ?? undefined}
+      />
 
       <main>
         <section
@@ -1020,26 +880,32 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
           className={cn(
             "relative",
             "overflow-hidden",
-            "bg-white",
+            "bg-surface",
             "pb-14",
             "pt-16",
             "lg:min-h-[870px]",
+            "transition-colors",
+            "duration-300",
           )}
         >
           <div
             className={cn(
               "pointer-events-none",
               "absolute",
-              "left-1/2",
-              "top-[250px]",
+              "inset-0",
               "z-0",
-              "h-[360px]",
-              "w-[1540px]",
-              "-translate-x-1/2",
-              "bg-[radial-gradient(ellipse_at_center,rgba(241,87,34,0.14)_0%,rgba(241,87,34,0.08)_42%,rgba(255,255,255,0)_73%)]",
-              "opacity-90",
+              "w-full",
+              "h-full",
+              "opacity-100",
             )}
-          />
+          >
+            <img
+              src={theme === 'dark' ? '/dark/home-hero-blur.svg' : '/light/home-hero-blur.svg'}
+              alt=""
+              className={cn("h-full", "w-full", "object-cover", theme === 'dark' ? "object-center" : "object-top")}
+              loading="eager"
+            />
+          </div>
           <div
             className={cn(
               "relative",
@@ -1065,14 +931,15 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "font-bold",
                   "leading-[1.18]",
                   "text-[#243A77]",
+                  "dark:text-white",
                   "md:text-[52px]",
                 )}
                 style={{ fontFamily: '"Thmanyah Serif Display", serif' }}
               >
-                <span className="block md:inline font-serif-display">
+                <span className={cn('block', 'md:inline', 'font-serif-display')}>
                   {data?.hero?.headline?.before || "شريكك التقني"}{" "}
                 </span>
-                <span className="text-[#F15722] font-serif-display block md:inline">
+                <span className={cn('text-[#F15722]', 'font-serif-display', 'block', 'md:inline')}>
                   {data?.hero?.headline?.emphasis || "لحلــــول رقميـــــة"}
                 </span>
                 <span
@@ -1087,7 +954,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 </span>
               </h1>
               <p
-                className="mx-auto mt-5 md:mt-7 max-w-[652px] text-center font-normal text-[16px] sm:text-[20px] md:text-[24px]"
+                className={cn('mx-auto', 'mt-5', 'md:mt-7', 'max-w-[652px]', 'text-center', 'font-normal', 'text-[16px]', 'sm:text-[20px]', 'md:text-[24px]')}
                 style={{
                   color: "var(--Neutral-300, #808586)",
                   fontFamily:
@@ -1162,7 +1029,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
             >
               <PillButton
                 href={data?.hero?.primaryCta?.href || "/contact"}
-                variant="orange"
+                variant="blue"
               >
                 {data?.hero?.primaryCta?.label || "احصل على استشارة مجانية"}
               </PillButton>
@@ -1171,7 +1038,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
         </section>
 
         <section
-          className={cn("bg-white", "py-16", "lg:min-h-[392px]")}
+          className={cn("bg-surface", "py-16", "lg:min-h-[392px]", "transition-colors", "duration-300")}
           id="partners"
         >
           <motion.div
@@ -1202,29 +1069,29 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               {data?.partnersCopy?.heading ||
                 "عملاء وثقوا بنا لصناعة حلول رقمية مؤثرة"}
             </h2>
-            <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-12">
-              <Marquee className="[--duration:12s] [--gap:5.5rem] py-4">
+            <div className={cn('relative', 'flex', 'w-full', 'flex-col', 'items-center', 'justify-center', 'overflow-hidden', 'mt-12')}>
+              <Marquee className={cn('[--duration:12s]', '[--gap:5.5rem]', 'py-4')}>
                 {partnersList.map(([src, alt], idx) => (
                   <div
                     key={`${alt}-${idx}`}
-                    className="flex h-16 w-36 items-center justify-center opacity-75 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                    className={cn('flex', 'h-16', 'w-36', 'items-center', 'justify-center', 'opacity-75', 'grayscale', 'transition-all', 'duration-300', 'hover:opacity-100', 'hover:grayscale-0')}
                   >
                     <img
                       src={src}
                       alt={alt}
-                      className="max-h-12 max-w-[130px] object-contain"
+                      className={cn('max-h-12', 'max-w-[130px]', 'object-contain')}
                       loading="lazy"
                     />
                   </div>
                 ))}
               </Marquee>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white via-white/80 via-40% to-transparent z-10"></div>
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white via-white/80 via-40% to-transparent z-10"></div>
+              <div className={cn('pointer-events-none', 'absolute', 'inset-y-0', 'left-0', 'w-1/3', 'bg-gradient-to-r', 'from-white', 'via-white/80', 'via-40%', 'to-transparent', 'z-10')}></div>
+              <div className={cn('pointer-events-none', 'absolute', 'inset-y-0', 'right-0', 'w-1/3', 'bg-gradient-to-l', 'from-white', 'via-white/80', 'via-40%', 'to-transparent', 'z-10')}></div>
             </div>
           </motion.div>
         </section>
 
-        <section className={cn("bg-white", "py-16")} id="services">
+        <section className={cn("bg-surface", "py-16", "transition-colors", "duration-300")} id="services">
           <div
             className={cn(
               "mx-auto",
@@ -1253,6 +1120,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "font-bold",
                   "leading-[1.35]",
                   "text-[#243A77]",
+                  "dark:text-white",
                 )}
               >
                 {data?.servicesCopy?.heading ||
@@ -1280,7 +1148,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                     key={svc.title}
                     title={svc.title}
                     body={svc.description}
-                    image={svc.image?.src || "/mockups/Mockup 14.png"}
+                    image={svc.image?.src || "/assets/mockups/Mockup 14.png"}
                   />
                 ))
               ) : (
@@ -1288,26 +1156,26 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   <ServiceCard
                     title="تصميم الواجهات وتجربة المستخدم"
                     body="نصمم تجارب مستخدم رقمية تتمحور حول المستخدم، تعزز التفاعل وترفع قيمة علامتك التجارية."
-                    image="/mockups/Mockup 14.png"
+                    image="/assets/mockups/Mockup 14.png"
                     imageClass="object-cover object-top w-full h-full"
                   />
                   <AiServiceCard />
                   <ServiceCard
                     title="تطوير تطبيقات الجوال"
                     body="نبني تطبيقات Native وCross-platform لتجربة مستخدم سلسة ومتكاملة مع مختلف الأنظمة."
-                    image="/images/service-image.svg"
+                    image="/assets/images/service-image.svg"
                     imageClass="object-cover object-top w-full h-full"
                   />
                   <ServiceCard
                     title="بناء منتجات SaaS"
                     body="نساعدك في تطوير منصات SaaS مرنة وقابلة للتوسع، بنظام اشتراكات يمكن منتجك من النمو."
-                    image="/images/service-image-3.png"
+                    image="/assets/images/service-image-3.png"
                     imageClass="object-cover object-top w-full h-full"
                   />
                   <ServiceCard
                     title="حلول التجارة الإلكترونية"
                     body="نبني متاجر وتجارب بيع رقمية عالية الأداء، من الكتالوج حتى الدفع والتكاملات."
-                    image="/mockups/Dashboard 1.png"
+                    image="/assets/mockups/Dashboard 1.png"
                     imageClass="object-cover object-top w-full h-full"
                   />
                   <WideServiceCard />
@@ -1319,7 +1187,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
 
         <section
           id="who-we-are"
-          className={cn("bg-white", "py-16", "lg:min-h-[796px]")}
+          className={cn("bg-surface", "py-16", "lg:min-h-[796px]", "transition-colors", "duration-300")}
         >
           <div
             className={cn(
@@ -1355,7 +1223,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 {data?.whoWeAre?.heading || "نبني حلولا رقمية تنمو مع أعمالك"}
               </h2>
               <p
-                className="mt-7 text-right font-normal"
+                className={cn('mt-7', 'text-right', 'font-normal')}
                 style={{
                   color: "var(--Neutral-500, #5F6063)",
                   fontFamily:
@@ -1421,6 +1289,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                           "text-[15px] sm:text-[18px] md:text-[21px]",
                           "font-bold",
                           "text-[#243A77]",
+                   "dark:text-white",
                           "truncate",
                         )}
                       >
@@ -1497,7 +1366,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   </div>
                   <div className="text-right">
                     <h3
-                      className="text-right font-medium leading-normal"
+                      className={cn('text-right', 'font-medium', 'leading-normal')}
                       style={{
                         color: "var(--Neutral-800, #1E1E20)",
                         fontFamily:
@@ -1508,7 +1377,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                       {title}
                     </h3>
                     <p
-                      className="mt-2 text-right font-normal"
+                      className={cn('mt-2', 'text-right', 'font-normal')}
                       style={{
                         color: "var(--Neutral-500, #5F6063)",
                         fontFamily:
@@ -1528,7 +1397,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
 
         <section
           id="featured-work"
-          className={cn("bg-white", "py-16", "lg:min-h-[937px]")}
+          className={cn("bg-surface", "py-16", "lg:min-h-[937px]", "transition-colors", "duration-300")}
         >
           <div
             className={cn(
@@ -1555,6 +1424,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "text-[32px]",
                   "font-bold",
                   "text-[#243A77]",
+                  "dark:text-white",
                 )}
               >
                 {data?.resultsCopy?.heading ||
@@ -1593,7 +1463,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                     title="هيئة الهلال الأحمر السعودي"
                   />
                   <ProjectCard
-                    image="/mockups/Mockup 14.png"
+                    image="/assets/mockups/Mockup 14.png"
                     category="متجر"
                     title="أبير"
                     imageClass="object-cover object-center"
@@ -1624,7 +1494,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
         </section>
 
         <section
-          className={cn("bg-white", "py-16", "lg:min-h-[960px]")}
+          className={cn("bg-surface", "py-16", "lg:min-h-[960px]", "transition-colors", "duration-300")}
           id="methodology"
         >
           <div
@@ -1652,6 +1522,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "text-[32px]",
                   "font-bold",
                   "text-[#243A77]",
+                  "dark:text-white",
                 )}
               >
                 {data?.methodology?.heading ||
@@ -1679,7 +1550,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "hidden",
                   "w-px",
                   "-translate-x-1/2",
-                  "bg-[#FCDDD3]",
+                  "bg-[#FCDDD3] dark:bg-white/10",
                   "lg:block",
                 )}
               />
@@ -1709,28 +1580,25 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                           whileInView="visible"
                           viewport={motionViewport}
                           className={cn(
+                            "brand-card",
                             "w-full",
                             "rounded-[18px]",
-                            "border",
-                            "border-[#EEF2F8]",
-                            "bg-white",
                             "p-7",
                             "text-right",
-                            "shadow-[0_14px_34px_rgba(14,23,48,0.04)]",
                             "lg:w-[calc(50%-80px)]",
-                            "group relative overflow-hidden transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]",
+                            "group relative overflow-hidden transition-all duration-300",
                           )}
                         >
                           <img
-                            src="/images/hover.svg"
+                            src="/light/hover.svg"
                             alt=""
-                            className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
                           />
                           <h3
                             className={cn(
                               "text-[18px]",
                               "font-bold",
-                              "text-[#0E1730]",
+                              "text-foreground",
                               "relative z-10",
                             )}
                           >
@@ -1741,7 +1609,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                               "mt-3",
                               "text-[14px]",
                               "leading-6",
-                              "text-[#74829A]",
+                              "text-foreground-muted",
                               "relative z-10",
                             )}
                           >
@@ -1821,28 +1689,25 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                           whileInView="visible"
                           viewport={motionViewport}
                           className={cn(
+                            "brand-card",
                             "w-full",
                             "rounded-[18px]",
-                            "border",
-                            "border-[#EEF2F8]",
-                            "bg-white",
                             "p-7",
                             "text-right",
-                            "shadow-[0_14px_34px_rgba(14,23,48,0.04)]",
                             "lg:w-[calc(50%-80px)]",
-                            "group relative overflow-hidden transition-all duration-300 hover:border-[#F15722] hover:shadow-[0_20px_48px_rgba(14,23,48,0.08)]",
+                            "group relative overflow-hidden transition-all duration-300",
                           )}
                         >
                           <img
-                            src="/images/hover.svg"
+                            src="/light/hover.svg"
                             alt=""
-                            className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
                           />
                           <h3
                             className={cn(
                               "text-[18px]",
                               "font-bold",
-                              "text-[#0E1730]",
+                              "text-foreground",
                               "relative z-10",
                             )}
                           >
@@ -1853,7 +1718,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                               "mt-3",
                               "text-[14px]",
                               "leading-6",
-                              "text-[#74829A]",
+                              "text-foreground-muted",
                               "relative z-10",
                             )}
                           >
@@ -1875,7 +1740,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
             >
               <PillButton
                 href={data?.methodology?.cta?.href || "/contact"}
-                variant="orange"
+                variant="blue"
               >
                 {data?.methodology?.cta?.label || "تواصل معنا الآن"}
               </PillButton>
@@ -1884,7 +1749,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
         </section>
 
         <section
-          className={cn("mt-12 md:mt-24", "bg-white", "py-10 md:py-20")}
+          className={cn("mt-12 md:mt-24", "bg-surface", "py-10 md:py-20", "transition-colors", "duration-300")}
           id="contact"
         >
           <div className={cn("mx-auto", "max-w-[1240px]", "px-5", "lg:px-0")}>
@@ -1909,31 +1774,31 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
             >
               {/* CTA Pop Starburst behind mascot head */}
               <img
-                src="/images/cta-pop.svg"
+                src="/assets/images/cta-pop.svg"
                 alt=""
-                className="pointer-events-none absolute left-[170px] top-[15px] z-0 hidden w-[190px] md:block lg:left-[240px] lg:top-[25px] lg:w-[230px]"
+                className={cn('pointer-events-none', 'absolute', 'left-[170px]', 'top-[15px]', 'z-0', 'hidden', 'w-[190px]', 'md:block', 'lg:left-[240px]', 'lg:top-[25px]', 'lg:w-[230px]')}
                 loading="lazy"
               />
 
               {/* Mascot Robot on Left */}
               <img
-                src="/mockups/mascot.png"
+                src="/assets/mockups/mascot.png"
                 alt=""
-                className="pointer-events-none absolute bottom-[-75px] left-0 z-10 hidden w-[340px] md:block lg:bottom-[-95px] lg:left-[30px] lg:w-[460px]"
+                className={cn('pointer-events-none', 'absolute', 'bottom-[-75px]', 'left-0', 'z-10', 'hidden', 'w-[340px]', 'md:block', 'lg:bottom-[-95px]', 'lg:left-[30px]', 'lg:w-[460px]')}
                 loading="lazy"
               />
 
               {/* CTA Blur overlay on top of mascot at bottom end of card */}
               <img
-                src="/images/cta-blur.svg"
+                src="/assets/images/cta-blur.svg"
                 alt=""
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-auto w-full object-cover"
+                className={cn('pointer-events-none', 'absolute', 'inset-x-0', 'bottom-0', 'z-20', 'h-auto', 'w-full', 'object-cover')}
                 loading="lazy"
               />
 
               {/* Grid Layout: Text on Right */}
-              <div className="relative z-30 grid w-full items-center gap-8 md:grid-cols-[1.2fr_0.8fr]">
-                <div className="flex flex-col items-center text-center md:items-start md:text-right">
+              <div className={cn('relative', 'z-30', 'grid', 'w-full', 'items-center', 'gap-8', 'md:grid-cols-[1.2fr_0.8fr]')}>
+                <div className={cn('flex', 'flex-col', 'items-center', 'text-center', 'md:items-start', 'md:text-right')}>
                   <h2
                     className={cn(
                       "font-serif-text",
@@ -1968,7 +1833,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                     </PillButton>
                   </div>
                 </div>
-                <div className="hidden min-h-[300px] md:block" />
+                <div className={cn('hidden', 'min-h-[300px]', 'md:block')} />
               </div>
             </motion.div>
           </div>

@@ -52,7 +52,7 @@ export function SolutionsSection({
   const list = items && items.length > 0 ? items : defaultItems
 
   return (
-    <section className="bg-white py-16 lg:py-24" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <section className="bg-surface py-16 lg:py-24 transition-colors duration-300" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className="mx-auto max-w-[1240px] px-5 text-center lg:px-0">
         
         {/* Top Header */}

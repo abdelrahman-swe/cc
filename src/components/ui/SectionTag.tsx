@@ -17,13 +17,16 @@ export function SectionTag({ children, variant = 'default' }: SectionTagProps) {
           'px-4',
           'gap-2',
           'font-normal',
-          'leading-normal'
+          'leading-normal',
+          'rounded-[32px]',
+          'border',
+          'border-border-subtle',
+          'bg-surface-elevated',
+          'text-foreground-muted',
+          'transition-colors',
+          'duration-300'
         )}
         style={{
-          borderRadius: '32px',
-          border: '1px solid var(--Neutral-200, #EAEAEB)',
-          background: 'var(--Neutral-100, #F9F9F9)',
-          color: 'var(--Neutral-700, #2F3032)',
           fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
           fontSize: '16px'
         }}
@@ -42,15 +45,18 @@ export function SectionTag({ children, variant = 'default' }: SectionTagProps) {
         'justify-center',
         'rounded-full',
         'border',
-        'border-[#E8EDF6]',
-        'bg-white',
+        'border-border',
+        'bg-surface',
         'px-4',
         'font-normal',
         'leading-normal',
-        'shadow-[0_10px_24px_rgba(36,58,119,0.04)]'
+        'shadow-[0_10px_24px_rgba(36,58,119,0.04)]',
+        'dark:shadow-[0_10px_24px_rgba(0,0,0,0.2)]',
+        'text-foreground-muted',
+        'transition-colors',
+        'duration-300'
       )}
       style={{
-        color: 'var(--Neutral-700, #2F3032)',
         fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
         fontSize: '16px'
       }}
@@ -59,3 +65,4 @@ export function SectionTag({ children, variant = 'default' }: SectionTagProps) {
     </div>
   )
 }
+

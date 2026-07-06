@@ -6,6 +6,7 @@ import { PillButton } from '@/components/ui/PillButton'
 import { SectionTag } from '@/components/ui/SectionTag'
 import { cn } from '@/lib/cn'
 import { AnimatedBeam } from '@/registry/magicui/animated-beam'
+import { useTheme } from '@/components/shared/ThemeProvider'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -101,7 +102,7 @@ function StepRow({
         {!isCardOnRight && (
           <motion.article
             variants={cardVariants}
-            className="group relative w-full lg:w-[560px] max-w-[560px] overflow-hidden border border-[#EAEAEB] transition-all duration-300 hover:border-[#F15722]"
+            className={cn('brand-card', 'group', 'relative', 'w-full', 'lg:w-[560px]', 'max-w-[560px]', 'overflow-hidden', 'transition-all', 'duration-300')}
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -110,19 +111,18 @@ function StepRow({
               alignItems: 'flex-start',
               gap: '24px',
               borderRadius: '24px',
-              background: 'var(--Primary-25, #FFF)',
+              background: 'var(--surface-card, #FFF)',
             }}
           >
             <img
-              src="/images/hover.svg"
+              src="/light/hover.svg"
               alt=""
-              className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
             />
             <h3
-              className="relative z-10 w-full"
+              className={cn('relative', 'z-10', 'w-full', 'text-center')}
               style={{
-                color: 'var(--Neutral-800, #1E1E20)',
-                textAlign: 'center',
+                color: 'var(--text-main, #1E1E20)',
                 fontFamily: '"Thmanyah Serif Text", var(--font-serif-text), serif',
                 fontSize: '24px',
                 fontStyle: 'normal',
@@ -133,10 +133,9 @@ function StepRow({
               {title}
             </h3>
             <p
-              className="relative z-10 w-full"
+              className={cn('relative', 'z-10', 'w-full', 'text-center')}
               style={{
-                color: 'var(--Neutral-500, #5F6063)',
-                textAlign: 'center',
+                color: 'var(--text-muted, #5F6063)',
                 fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                 fontSize: '18px',
                 fontStyle: 'normal',
@@ -153,12 +152,12 @@ function StepRow({
       {/* Center (Circle) */}
       <div
         ref={circleRef}
-        className="z-10 flex items-center justify-center shrink-0 order-first lg:order-none w-8 h-8"
+        className={cn('z-10', 'flex', 'items-center', 'justify-center', 'shrink-0', 'order-first', 'lg:order-none', 'w-8', 'h-8')}
       >
         <motion.span
           variants={circleVariants}
           custom={index}
-          className="grid size-8 place-items-center rounded-full border border-[#F4794E] text-[14px] font-bold"
+          className={cn('grid', 'size-8', 'place-items-center', 'rounded-full', 'border', 'border-[#F4794E]', 'text-[14px]', 'font-bold')}
         >
           {step}
         </motion.span>
@@ -172,7 +171,7 @@ function StepRow({
         {isCardOnRight && (
           <motion.article
             variants={cardVariants}
-            className="group relative w-full lg:w-[560px] max-w-[560px] overflow-hidden border border-[#EAEAEB] transition-all duration-300 hover:border-[#F15722]"
+            className={cn('brand-card', 'group', 'relative', 'w-full', 'lg:w-[560px]', 'max-w-[560px]', 'overflow-hidden', 'transition-all', 'duration-300')}
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -181,19 +180,18 @@ function StepRow({
               alignItems: 'flex-start',
               gap: '24px',
               borderRadius: '24px',
-              background: 'var(--Primary-25, #FFF)',
+              background: 'var(--surface-card, #FFF)',
             }}
           >
             <img
-              src="/images/hover.svg"
+              src="/light/hover.svg"
               alt=""
-              className="pointer-events-none absolute bottom-0 left-0 z-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
             />
             <h3
-              className="relative z-10 w-full"
+              className={cn('relative', 'z-10', 'w-full', 'text-center')}
               style={{
-                color: 'var(--Neutral-800, #1E1E20)',
-                textAlign: 'center',
+                color: 'var(--text-main, #1E1E20)',
                 fontFamily: '"Thmanyah Serif Text", var(--font-serif-text), serif',
                 fontSize: '24px',
                 fontStyle: 'normal',
@@ -204,10 +202,9 @@ function StepRow({
               {title}
             </h3>
             <p
-              className="relative z-10 w-full"
+              className={cn('relative', 'z-10', 'w-full', 'text-center')}
               style={{
-                color: 'var(--Neutral-500, #5F6063)',
-                textAlign: 'center',
+                color: 'var(--text-muted, #5F6063)',
                 fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
                 fontSize: '18px',
                 fontStyle: 'normal',
@@ -225,10 +222,11 @@ function StepRow({
 }
 
 export function MethodologySection(props: MethodologySectionProps) {
+  const { theme } = useTheme()
   const sectionTag = props.sectionTag || 'آلية العمل'
   const heading = props.heading || 'من الفكرة إلى الإطلاق بخطوات تقنية دقيقة'
   const sectionId = props.customSectionId || 'methodology'
-
+  
   const methodologyList = props.steps && props.steps.length > 0
     ? props.steps.map((s) => [s.title, s.description] as const)
     : defaultMethodology
@@ -244,17 +242,17 @@ export function MethodologySection(props: MethodologySectionProps) {
   const stepRefs = [step1Ref, step2Ref, step3Ref, step4Ref]
 
   return (
-    <section className={cn('bg-white', 'py-16 lg:py-24')} id={sectionId}>
+    <section className={cn('bg-surface', 'py-16 lg:py-24', 'transition-colors', 'duration-300')} id={sectionId}>
       <div className={cn('mx-auto', 'max-w-[1248px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className={cn('mt-6', 'font-serif-text', 'text-[32px] lg:text-[40px]', 'font-bold', 'text-[#243A77]')}>
+          <h2 className={cn('mt-6', 'font-serif-text', 'text-[32px] lg:text-[40px]', 'font-bold', 'text-[#243A77]', 'dark:text-white')}>
             {heading}
           </h2>
         </motion.div>
 
         <div ref={containerRef} className={cn('relative', 'mt-10 lg:mt-[104px]', 'flex', 'w-full', 'flex-col', 'gap-12', 'lg:gap-0')}>
-          <div className={cn('absolute', 'bottom-0', 'left-1/2', 'top-0', 'hidden', 'w-[2px]', '-translate-x-1/2', 'bg-[#FEEEE9]', 'lg:block')} />
+          <div className={cn('absolute', 'bottom-0', 'left-1/2', 'top-0', 'hidden', 'w-[2px]', '-translate-x-1/2', 'bg-[#FEEEE9] dark:bg-white/10', 'lg:block')} />
           {methodologyList.map(([title, body], index) => (
             <StepRow
               key={title}
@@ -275,7 +273,7 @@ export function MethodologySection(props: MethodologySectionProps) {
                 containerRef={containerRef}
                 fromRef={stepRefs[index]}
                 toRef={stepRefs[index + 1]}
-                pathColor="#FEEEE9"
+                pathColor={theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : '#FEEEE9'}
                 pathOpacity={0}
                 pathWidth={2}
                 gradientStartColor="#F15722"

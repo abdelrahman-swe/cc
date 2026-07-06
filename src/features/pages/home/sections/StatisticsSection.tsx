@@ -29,7 +29,7 @@ export function StatisticsSection(props: StatisticsSectionProps) {
   const sectionId = props.customSectionId || 'statistics'
 
   return (
-    <section className="bg-white py-16 md:py-24" id={sectionId}>
+    <section className="bg-surface py-16 md:py-24 transition-colors duration-300" id={sectionId}>
       <div className="mx-auto w-full max-w-[1240px] px-5 lg:px-0">
         <div className="text-right">
           <SectionTag>{sectionTag}</SectionTag>
@@ -45,7 +45,7 @@ export function StatisticsSection(props: StatisticsSectionProps) {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-[30px] border border-[#EEF2F8] bg-[#FAFCFF] p-6 text-center shadow-[0_10px_24px_rgba(36,58,119,0.03)]"
+              className="rounded-[30px] border border-border bg-surface-card p-6 text-center shadow-[0_10px_24px_rgba(36,58,119,0.03)] dark:shadow-[0_10px_24px_rgba(0,0,0,0.15)] transition-colors duration-300"
             >
               <div className="text-[36px] font-extrabold text-[#F15722] md:text-[44px]">
                 <Counter value={stat.value} suffix={stat.suffix} />

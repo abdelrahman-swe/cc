@@ -40,7 +40,7 @@ export function AboutStorySection({
   const bodyText = description || defaultDescription;
   const paragraphs = bodyText.split("\n\n").filter(Boolean);
 
-  let imageUrl = "/images/about-story.svg";
+  let imageUrl = "/assets/images/about-story.svg";
   if (image && typeof image === "object") {
     imageUrl = image.url || image.src || imageUrl;
   } else if (typeof image === "string") {
@@ -49,7 +49,7 @@ export function AboutStorySection({
 
   return (
     <section
-      className={cn('bg-white', 'py-16', 'lg:py-24')}
+      className={cn('bg-surface', 'py-16', 'lg:py-24', 'transition-colors', 'duration-300')}
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
       <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'lg:px-0')}>

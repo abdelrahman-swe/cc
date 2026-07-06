@@ -48,11 +48,11 @@ export function BlogSection(props: BlogSectionProps) {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="bg-white py-16 lg:min-h-[700px]" id={sectionId}>
+    <section className="bg-surface py-16 lg:min-h-[700px] transition-colors duration-300" id={sectionId}>
       <div className="mx-auto max-w-[1240px] px-5 text-center lg:px-0">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className="mt-6 font-serif-text text-[32px] font-bold text-[#243A77]">
+          <h2 className="mt-6 font-serif-text text-[32px] font-bold text-[#243A77] dark:text-white">
             {heading}
           </h2>
         </motion.div>
@@ -74,26 +74,26 @@ export function BlogSection(props: BlogSectionProps) {
                     ? undefined
                     : { y: -8, transition: { type: 'spring', stiffness: 220, damping: 18 } }
                 }
-                className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-[#EEF2F8] bg-white p-6 text-right shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722]"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-border bg-surface-card p-6 text-right shadow-[0_18px_44px_rgba(14,23,48,0.04)] dark:shadow-[0_18px_44px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-[#F15722]"
               >
                 <div>
-                  <div className="aspect-[16/10] overflow-hidden rounded-[20px] bg-[#FAFBFF]">
+                  <div className="aspect-[16/10] overflow-hidden rounded-[20px] bg-surface-elevated">
                     <img
-                      src={post.imageUrl || '/mockups/Mockup 14.png'}
+                      src={post.imageUrl || '/assets/mockups/Mockup 14.png'}
                       alt={post.title}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                       loading="lazy"
                     />
                   </div>
                   {post.publishedAt && (
-                    <span className="mt-4 block text-[12px] font-medium text-[#6F7890]">
+                    <span className="mt-4 block text-[12px] font-medium text-foreground-muted">
                       {post.publishedAt}
                     </span>
                   )}
-                  <h3 className="mt-2 text-[18px] font-bold leading-7 text-[#0E1730]">
+                  <h3 className="mt-2 text-[18px] font-bold leading-7 text-foreground">
                     {post.title}
                   </h3>
-                  <p className="mt-3 text-[14px] leading-6 text-[#6F7890]">{post.excerpt}</p>
+                  <p className="mt-3 text-[14px] leading-6 text-foreground-muted">{post.excerpt}</p>
                 </div>
               </motion.article>
             ))
@@ -101,61 +101,61 @@ export function BlogSection(props: BlogSectionProps) {
             <>
               <motion.article
                 variants={scaleIn}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-[#EEF2F8] bg-white p-6 text-right shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722]"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-border bg-surface-card p-6 text-right shadow-[0_18px_44px_rgba(14,23,48,0.04)] dark:shadow-[0_18px_44px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-[#F15722]"
               >
-                <div className="aspect-[16/10] overflow-hidden rounded-[20px] bg-[#FAFBFF]">
+                <div className="aspect-[16/10] overflow-hidden rounded-[20px] bg-surface-elevated">
                   <img
-                    src="/mockups/Mockup 14.png"
+                    src="/assets/mockups/Mockup 14.png"
                     alt=""
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     loading="lazy"
                   />
                 </div>
-                <span className="mt-4 block text-[12px] font-medium text-[#6F7890]">24 يونيو 2026</span>
-                <h3 className="mt-2 text-[18px] font-bold leading-7 text-[#0E1730]">
+                <span className="mt-4 block text-[12px] font-medium text-foreground-muted">24 يونيو 2026</span>
+                <h3 className="mt-2 text-[18px] font-bold leading-7 text-foreground">
                   مستقبل تطبيقات الذكاء الاصطناعي التوليدي في حلول الأعمال
                 </h3>
-                <p className="mt-3 text-[14px] leading-6 text-[#6F7890]">
+                <p className="mt-3 text-[14px] leading-6 text-foreground-muted">
                   كيف تساهم التقنيات الحديثة في رفع كفاءة التشغيل وتحسين تجارب العملاء.
                 </p>
               </motion.article>
               <motion.article
                 variants={scaleIn}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-[#EEF2F8] bg-white p-6 text-right shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722]"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-border bg-surface-card p-6 text-right shadow-[0_18px_44px_rgba(14,23,48,0.04)] dark:shadow-[0_18px_44px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-[#F15722]"
               >
-                <div className="aspect-[16/10] overflow-hidden rounded-[20px] bg-[#FAFBFF]">
+                <div className="aspect-[16/10] overflow-hidden rounded-[20px] bg-surface-elevated">
                   <img
-                    src="/images/service-image-3.png"
+                    src="/assets/images/service-image-3.png"
                     alt=""
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     loading="lazy"
                   />
                 </div>
-                <span className="mt-4 block text-[12px] font-medium text-[#6F7890]">18 يونيو 2026</span>
-                <h3 className="mt-2 text-[18px] font-bold leading-7 text-[#0E1730]">
+                <span className="mt-4 block text-[12px] font-medium text-foreground-muted">18 يونيو 2026</span>
+                <h3 className="mt-2 text-[18px] font-bold leading-7 text-foreground">
                   أفضل الممارسات لتطوير وتوسع المنصات السحابية SaaS
                 </h3>
-                <p className="mt-3 text-[14px] leading-6 text-[#6F7890]">
+                <p className="mt-3 text-[14px] leading-6 text-foreground-muted">
                   دليل شامل حول بنية الأنظمة القابلة للتوسع وإدارة البنية التحتية بكفاءة.
                 </p>
               </motion.article>
               <motion.article
                 variants={scaleIn}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-[#EEF2F8] bg-white p-6 text-right shadow-[0_18px_44px_rgba(14,23,48,0.04)] transition-all duration-300 hover:border-[#F15722]"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-[28px] border border-border bg-surface-card p-6 text-right shadow-[0_18px_44px_rgba(14,23,48,0.04)] dark:shadow-[0_18px_44px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-[#F15722]"
               >
-                <div className="aspect-[16/10] overflow-hidden rounded-[20px] bg-[#FAFBFF]">
+                <div className="aspect-[16/10] overflow-hidden rounded-[20px] bg-surface-elevated">
                   <img
-                    src="/mockups/Dashboard 1.png"
+                    src="/assets/mockups/Dashboard 1.png"
                     alt=""
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     loading="lazy"
                   />
                 </div>
-                <span className="mt-4 block text-[12px] font-medium text-[#6F7890]">10 يونيو 2026</span>
-                <h3 className="mt-2 text-[18px] font-bold leading-7 text-[#0E1730]">
+                <span className="mt-4 block text-[12px] font-medium text-foreground-muted">10 يونيو 2026</span>
+                <h3 className="mt-2 text-[18px] font-bold leading-7 text-foreground">
                   توجيهات هندسة تجربة المستخدم في المتاجر الرقمية الحديثة
                 </h3>
-                <p className="mt-3 text-[14px] leading-6 text-[#6F7890]">
+                <p className="mt-3 text-[14px] leading-6 text-foreground-muted">
                   طرق عملية لزيادة معدلات التحويل وتسريع عمليات الشراء للمستخدمين.
                 </p>
               </motion.article>

@@ -3,7 +3,7 @@ import React from 'react'
 export default function AdminIcon() {
   return (
     <img
-      src="/favicon.svg"
+      src="/assets/favicon.svg"
       alt="CodeClouders Icon"
       style={{
         height: '24px',

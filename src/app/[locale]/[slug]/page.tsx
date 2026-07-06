@@ -138,7 +138,7 @@ export default async function SlugPage({ params }: { params: Promise<{ locale: s
   const layout = await resolveBlocks((page as any).layout, locale)
 
   return (
-    <div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="overflow-x-hidden bg-white text-[#0E1730]">
+    <div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="overflow-x-hidden bg-surface text-foreground transition-colors duration-300">
       <Header
         brand={nav?.brand ?? undefined}
         links={(nav?.links as any[]) ?? undefined}

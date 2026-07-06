@@ -225,7 +225,7 @@ export function Footer({ data }: FooterProps) {
           <div className={cn("w-[160px]", "h-[39px]", "relative", "shrink-0")}>
             <Link href="/">
               <img
-                src="/footer-logo.svg"
+                src="/assets/footer-logo.svg"
                 alt="Code Clouders"
                 className={cn(
                   "absolute",

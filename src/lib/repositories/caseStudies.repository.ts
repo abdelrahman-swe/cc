@@ -17,7 +17,7 @@ const defaultCaseStudies: CaseStudyItem[] = [
     title: 'تطوير منصة خدمات سحابية متكاملة لقطاع الرعاية الصحية',
     category: 'نظام سحابي وتطبيق جوال',
     href: '#',
-    imageUrl: '/images/case-study-1.svg',
+    imageUrl: '/assets/images/case-study-1.svg',
     displayMode: 'image'
   },
   {
@@ -25,7 +25,7 @@ const defaultCaseStudies: CaseStudyItem[] = [
     title: 'إعادة تصميم وتطوير البوابة الرقمية لمنظومة إمداد',
     category: 'تجربة مستخدم وتطوير ويب',
     href: '#',
-    imageUrl: '/images/case-study-2.svg',
+    imageUrl: '/assets/images/case-study-2.svg',
     displayMode: 'image'
   }
 ]
@@ -58,7 +58,7 @@ export async function getCaseStudies(options?: {
         title: doc.title,
         category: doc.category,
         href: doc.href || '#',
-        imageUrl: doc.imageUrl || (doc.image && typeof doc.image === 'object' ? doc.image.url : '/images/case-study-1.svg'),
+        imageUrl: doc.imageUrl || (doc.image && typeof doc.image === 'object' ? doc.image.url : '/assets/images/case-study-1.svg'),
         displayMode: doc.displayMode || 'image',
         livePreviewUrl: doc.livePreviewUrl || undefined
       }))

@@ -49,7 +49,7 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
 
       {/* Layer 1: Mascot at Back */}
       <Image
-        src="/mockups/mascot.png"
+        src="/assets/mockups/mascot.png"
         alt=""
         width={1024}
         height={1312}
@@ -58,10 +58,10 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
       />
 
       {/* Layer 2: White Card Container (Figma 563:9152) */}
-      <div className="absolute bottom-[30px] left-1/2 z-10 flex w-[623px] max-w-[calc(100%-32px)] -translate-x-1/2 flex-col gap-3 rounded-[24px] bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+      <div className="absolute bottom-[30px] left-1/2 z-10 flex w-[623px] max-w-[calc(100%-32px)] -translate-x-1/2 flex-col gap-3 rounded-[24px] bg-surface-card dark:bg-surface-elevated p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-border dark:border-white/10 transition-colors duration-300">
         {/* Star Badge positioned on the right */}
         <div className="flex w-full justify-start">
-          <div className="flex size-[48px] shrink-0 items-center justify-center rounded-[16px] border border-[#FCDDD3] bg-[#F9F9F9] p-3 text-[#F15722]">
+          <div className="flex size-[48px] shrink-0 items-center justify-center rounded-[16px] border border-[#FCDDD3] dark:border-white/15 bg-surface-elevated dark:bg-surface p-3 text-[#F15722]">
             <svg className="size-6 fill-current" viewBox="0 0 24 24">
               <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
             </svg>
@@ -69,9 +69,9 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
         </div>
 
         {/* Gray Content Box */}
-        <div className="w-full rounded-[16px] bg-[#F9F9F9] p-5 text-right">
+        <div className="w-full rounded-[16px] bg-surface-elevated dark:bg-surface p-5 text-right transition-colors duration-300">
           <h3
-            className="text-right font-medium leading-normal text-[#1E1E20]"
+            className="text-right font-medium leading-normal text-foreground"
             style={{
               fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
               fontSize: '20px',
@@ -82,7 +82,7 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
             {title}
           </h3>
           <p
-            className="mt-2 text-right font-normal text-[#5F6063]"
+            className="mt-2 text-right font-normal text-foreground-muted"
             style={{
               fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
               fontSize: '16px',
@@ -110,7 +110,7 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
 
       {/* Layer 3: Hand with clip path applied on top of card */}
       <Image
-        src="/mockups/mascot.png"
+        src="/assets/mockups/mascot.png"
         alt=""
         width={1024}
         height={1312}
@@ -143,7 +143,7 @@ function ServiceCard({
       viewport={motionViewport}
       className={cn(
         'brand-card',
-        'group relative flex flex-col overflow-hidden rounded-[50px] transition-all duration-300'
+        'group relative flex flex-col overflow-hidden rounded-[50px] dark:rounded-[40px] transition-all duration-300'
       )}
     >
       <div className="px-8 pt-9 text-right relative z-10">
@@ -202,7 +202,7 @@ function WideServiceCard({ title, body }: { title: string; body: string }) {
       viewport={motionViewport}
       className={cn(
         'brand-card',
-        'group relative grid min-h-[320px] overflow-hidden rounded-[50px] transition-all duration-300 md:col-span-2 lg:col-span-3 lg:grid-cols-[1fr_815px]'
+        'group relative grid min-h-[320px] overflow-hidden rounded-[50px] dark:rounded-[40px] transition-all duration-300 md:col-span-2 lg:col-span-3 lg:grid-cols-[1fr_815px]'
       )}
     >
       <div className="relative z-10 flex flex-col justify-center p-10 text-right">
@@ -236,9 +236,9 @@ function WideServiceCard({ title, body }: { title: string; body: string }) {
           {body}
         </p>
       </div>
-      <div className="relative z-10 h-[240px] sm:h-[320px] bg-white">
+      <div className="relative z-10 h-[240px] sm:h-[320px] bg-surface-card">
         <Image
-          src="/images/globe.svg"
+          src="/assets/images/globe.svg"
           alt=""
           fill
           sizes="(max-width: 640px) 100vw, 50vw"
@@ -288,11 +288,11 @@ export function ServicesSection(props: ServicesSectionProps) {
   }
 
   return (
-    <section className="bg-white py-16" id={sectionId}>
+    <section className="bg-surface py-16 transition-colors duration-300" id={sectionId}>
       <div className="mx-auto max-w-[1240px] px-5 text-center lg:px-0">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className="mx-auto mt-6 max-w-[760px] font-serif-text text-[34px] font-bold leading-[1.35] text-[#243A77]">
+          <h2 className="mx-auto mt-6 max-w-[760px] font-serif-text text-[34px] font-bold leading-[1.35] text-[#243A77] dark:text-white">
             {title}
           </h2>
         </motion.div>

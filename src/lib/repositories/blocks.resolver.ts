@@ -54,7 +54,7 @@ export async function resolveBlocks(blocks?: any[], locale: 'ar' | 'en' | 'all' 
               cloned.items = block.manualPartners.map((doc: any) => ({
                 id: String(doc.id || doc._id),
                 name: doc.name,
-                logoSrc: doc.logo && typeof doc.logo === 'object' ? doc.logo.url : '/images/noboco.svg',
+                logoSrc: doc.logo && typeof doc.logo === 'object' ? doc.logo.url : '/assets/images/noboco.svg',
                 href: doc.href || '#'
               }))
             } else {
@@ -126,7 +126,7 @@ export async function resolveBlocks(blocks?: any[], locale: 'ar' | 'en' | 'all' 
                 title: doc.title,
                 category: doc.category,
                 href: doc.href || '#',
-                imageUrl: doc.imageUrl || (doc.image && typeof doc.image === 'object' ? doc.image.url : '/images/case-study-1.svg'),
+                imageUrl: doc.imageUrl || (doc.image && typeof doc.image === 'object' ? doc.image.url : '/assets/images/case-study-1.svg'),
                 displayMode: doc.displayMode || 'image',
                 livePreviewUrl: doc.livePreviewUrl || undefined
               }))
@@ -156,7 +156,7 @@ export async function resolveBlocks(blocks?: any[], locale: 'ar' | 'en' | 'all' 
                 title: doc.title,
                 excerpt: doc.excerpt || '',
                 publishedAt: doc.publishedAt ? new Date(doc.publishedAt).toLocaleDateString('ar-SA') : undefined,
-                imageUrl: doc.image && typeof doc.image === 'object' ? doc.image.url : '/images/blog-1.svg'
+                imageUrl: doc.image && typeof doc.image === 'object' ? doc.image.url : '/assets/images/blog-1.svg'
               }))
             } else {
               const ids = block.manualPosts.map((item: any) => (typeof item === 'object' ? item.id : item))

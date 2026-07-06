@@ -56,7 +56,7 @@ export function ProjectCard({
         'group relative h-[420px] sm:h-[480px] md:h-[539px] rounded-[28px] p-4 text-right transition-all duration-300'
       )}
     >
-      <div className={cn('relative', 'z-10', 'h-[320px] sm:h-[380px] md:h-[445px]', 'overflow-hidden', 'rounded-[18px]', 'bg-[#FAFBFF]')}>
+      <div className={cn('relative', 'z-10', 'h-[320px] sm:h-[380px] md:h-[445px]', 'overflow-hidden', 'rounded-[18px]', 'bg-[#FAFBFF] dark:bg-surface-elevated')}>
         <div className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-1/2', 'h-28', 'w-[80%]', '-translate-x-1/2', 'rounded-full', 'bg-[#F15722]/25', 'opacity-0', 'blur-2xl', 'transition-opacity', 'duration-300', 'group-hover:opacity-100')} />
 
         <Image
@@ -70,12 +70,12 @@ export function ProjectCard({
       </div>
       <div className={cn('relative', 'z-10', 'flex', 'h-[62px]', 'items-end', 'justify-between')}>
         <div className={cn('flex', 'items-center', 'gap-2', 'text-[15px]')}>
-          <h3 className={cn('font-bold', 'text-[#0E1730]')}>{title}</h3>
-          <span className={cn('rounded-xl', 'bg-white', 'px-3', 'py-1', 'text-[13px]', 'text-[#6F7890] border border-[#6F7890]')}>
+          <h3 className={cn('font-bold', 'text-foreground')}>{title}</h3>
+          <span className={cn('rounded-xl', 'bg-surface-elevated', 'dark:bg-surface', 'px-3', 'py-1', 'text-[13px]', 'text-foreground-muted border border-border')}>
             {category}
           </span>
         </div>
-        <span className={cn('grid', 'size-10', 'place-items-center', 'text-[#243A77]')}>
+        <span className={cn('grid', 'size-10', 'place-items-center', 'text-[#243A77] dark:text-foreground-muted')}>
           <ArrowUpLeft aria-hidden className="size-6" />
         </span>
       </div>
@@ -98,11 +98,11 @@ export function FeaturedWorkSection(props: FeaturedWorkSectionProps) {
   const sectionId = props.customSectionId || 'featured-work'
 
   return (
-    <section id={sectionId} className={cn('bg-white', 'py-16', 'lg:min-h-[937px]')}>
+    <section id={sectionId} className={cn('bg-surface', 'py-16', 'lg:min-h-[937px]', 'transition-colors', 'duration-300')}>
       <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className={cn('mt-6', 'font-serif-text', 'text-[32px]', 'font-bold', 'text-[#243A77]')}>
+          <h2 className={cn('mt-6', 'font-serif-text', 'text-[32px]', 'font-bold', 'text-[#243A77]', 'dark:text-white')}>
             {heading}
           </h2>
         </motion.div>
@@ -131,7 +131,7 @@ export function FeaturedWorkSection(props: FeaturedWorkSectionProps) {
                 title="هيئة الهلال الأحمر السعودي"
               />
               <ProjectCard
-                image="/mockups/Mockup 14.png"
+                image="/assets/mockups/Mockup 14.png"
                 category="متجر"
                 title="أبير"
                 imageClass="object-cover object-center"

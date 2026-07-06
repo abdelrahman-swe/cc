@@ -1,6 +1,12 @@
-import { ArrowLeft } from 'lucide-react'
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  ArrowDown
+} from 'iconsax-reactjs'
 import { cn } from '@/lib/cn'
 import { Link } from '@/i18n/routing'
+import { useLocale } from 'next-intl'
 
 type PillButtonProps = {
   children: string
@@ -8,6 +14,7 @@ type PillButtonProps = {
   variant?: 'nav' | 'orange' | 'blue' | 'white'
   className?: string
   onClick?: () => void
+  arrowDirection?: 'left' | 'right' | 'up' | 'down' | 'up-left' | 'up-right'
 }
 
 export function PillButton({
@@ -15,8 +22,27 @@ export function PillButton({
   href,
   variant = 'nav',
   className = '',
-  onClick
+  onClick,
+  arrowDirection
 }: PillButtonProps) {
+  const locale = useLocale()
+  const isRtl = locale === 'ar'
+
+  const resolvedDirection = arrowDirection || (isRtl ? 'left' : 'right')
+
+  const ArrowIcon = {
+    left: ArrowLeft,
+    right: ArrowRight,
+    up: ArrowUp,
+    down: ArrowDown,
+    'up-left': ArrowLeft,
+    'up-right': ArrowRight
+  }[resolvedDirection] || (isRtl ? ArrowLeft : ArrowRight)
+
+  const rotateStyle = resolvedDirection === 'up-left' || resolvedDirection === 'up-right'
+    ? { transform: 'rotate(45deg)' }
+    : undefined
+
   const styles = {
     nav: 'cta-pill--navy bg-[#1a2d5e] text-white',
     orange: 'cta-pill--orange bg-[#c44118] text-white',
@@ -41,7 +67,7 @@ export function PillButton({
   const isHash = href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')
 
   const commonClass = cn(
-    'cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold transition duration-300 hover:-translate-y-0.5',
+    'cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold transition duration-300 hover:-translate-y-0.5 whitespace-nowrap',
     shadows[variant],
     styles[variant],
     className
@@ -56,9 +82,9 @@ export function PillButton({
           circle[variant]
         )}
       >
-        <ArrowLeft aria-hidden className={cn('cta-icon-main', 'size-5')} />
+        <ArrowIcon aria-hidden className={cn('cta-icon-main', 'size-5')} style={rotateStyle} />
         <span className="cta-icon-ghost">
-          <ArrowLeft aria-hidden className="size-5" />
+          <ArrowIcon aria-hidden className="size-5" style={rotateStyle} />
         </span>
       </span>
     </>

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { PillButton } from "@/components/ui/PillButton";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { useTheme } from "@/components/shared/ThemeProvider";
 import { cn } from "@/lib/cn";
 import { useParams } from "next/navigation";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
@@ -34,6 +36,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
   const router = useRouter();
   const params = useParams();
   const currentLocale = (params.locale as string) || "ar";
+  const { theme } = useTheme();
 
   const switchLocale = (newLocale: string) => {
     if (currentLocale && pathname.startsWith(`/${currentLocale}`)) {
@@ -53,7 +56,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
   const ctaHref = cta?.href || "/contact";
 
   return (
-    <header className={cn("h-[100px]", "bg-white", "relative")}>
+    <header className={cn("h-[100px]", "bg-surface", "relative", "transition-colors", "duration-300")}>
       <motion.nav
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -72,18 +75,19 @@ export function Header({ brand, links, cta }: HeaderProps) {
       >
         <Link href="/">
           <img
-            src="/Logo.svg"
+            src={theme === 'dark' ? '/light/logo.svg' : '/dark/logo.svg'}
             alt={brand || "Code Clouders"}
-            className={cn("h-[39px]", "w-[160px]", "cursor-pointer")}
+            className={cn("h-[39px]", "w-auto", "cursor-pointer")}
           />
         </Link>
         <div
           className={cn(
             "hidden",
-            "w-[920px]",
+            "flex-1",
             "items-center",
             "justify-center",
-            "gap-10",
+            "gap-8",
+            "xl:gap-10",
             "lg:flex",
           )}
         >
@@ -96,7 +100,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
               <a
                 key={label}
                 href={href}
-                className="transition duration-200 leading-normal"
+                className={cn('transition', 'duration-200', 'leading-normal')}
                 style={
                   isActive
                     ? {
@@ -121,7 +125,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
               <Link
                 key={label}
                 href={href}
-                className="transition duration-200 leading-normal"
+                className={cn('transition', 'duration-200', 'leading-normal')}
                 style={
                   isActive
                     ? {
@@ -145,7 +149,8 @@ export function Header({ brand, links, cta }: HeaderProps) {
             );
           })}
         </div>
-        <div className="hidden lg:flex items-center gap-4">
+        <div className={cn('hidden', 'lg:flex', 'items-center', 'gap-4')}>
+          <ThemeToggle />
           <PillButton href={ctaHref} variant="nav">
             {ctaLabel}
           </PillButton>
@@ -177,7 +182,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
         {/* Hamburger Mobile Menu Toggle Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="flex size-10 items-center justify-center rounded-full border border-[#E8EDF6] text-[#243A77] lg:hidden transition duration-200 active:scale-95"
+          className={cn("flex size-10 items-center justify-center rounded-full border lg:hidden transition duration-200 active:scale-95", "border-border text-foreground")}
           aria-label="Toggle Menu"
         >
           {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -192,9 +197,9 @@ export function Header({ brand, links, cta }: HeaderProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="absolute inset-x-0 top-[100px] z-50 flex flex-col items-center gap-6 border-b border-[#E8EDF6] bg-white px-6 py-8 shadow-lg lg:hidden"
+            className={cn("absolute inset-x-0 top-[100px] z-50 flex flex-col items-center gap-6 border-b px-6 py-8 shadow-lg lg:hidden", "border-border bg-surface")}
           >
-            <div className="flex flex-col items-center gap-4 w-full">
+            <div className={cn('flex', 'flex-col', 'items-center', 'gap-4', 'w-full')}>
               {navLinks.map(([label, href]) => {
                 const isHash = href.startsWith("#");
                 const isActive = href === "/"
@@ -205,7 +210,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
                     key={label}
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className="transition duration-200 leading-normal text-center py-2 w-full block hover:bg-gray-50 rounded-xl"
+                    className={cn('transition', 'duration-200', 'leading-normal', 'text-center', 'py-2', 'w-full', 'block', 'hover:bg-gray-50', 'rounded-xl')}
                     style={
                       isActive
                         ? {
@@ -231,7 +236,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
                     key={label}
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className="transition duration-200 leading-normal text-center py-2 w-full block hover:bg-gray-50 rounded-xl"
+                    className={cn('transition', 'duration-200', 'leading-normal', 'text-center', 'py-2', 'w-full', 'block', 'hover:bg-gray-50', 'rounded-xl')}
                     style={
                       isActive
                         ? {
@@ -258,7 +263,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
             <PillButton
               href={ctaHref}
               variant="nav"
-              className="w-full justify-center mt-2"
+              className={cn('w-full', 'justify-center', 'mt-2')}
               onClick={() => setMenuOpen(false)}
             >
               {ctaLabel}

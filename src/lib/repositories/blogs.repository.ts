@@ -17,7 +17,7 @@ const defaultBlogs: BlogPostItem[] = [
     excerpt: 'استعراض لأفضل الممارسات التقنية عند تصميم المنصات الرقمية لضمان الأداء الأقصى والتوسع المالي والتنفيذي.',
     href: '#',
     publishedAt: '25 يونيو 2026',
-    imageUrl: '/images/blog-1.svg'
+    imageUrl: '/assets/images/blog-1.svg'
   },
   {
     id: '2',
@@ -25,7 +25,7 @@ const defaultBlogs: BlogPostItem[] = [
     excerpt: 'دراسة تحليليّة حول تأثير التصميم المبني على فهم سلوك المستخدم في إنجاح المنتجات البرمجية.',
     href: '#',
     publishedAt: '18 يونيو 2026',
-    imageUrl: '/images/blog-2.svg'
+    imageUrl: '/assets/images/blog-2.svg'
   },
   {
     id: '3',
@@ -33,7 +33,7 @@ const defaultBlogs: BlogPostItem[] = [
     excerpt: 'دليل عملي حول كيفية تطبيق أعلى معايير الحماية والتشفير لحماية بيانات المستفيدين والعمليات.',
     href: '#',
     publishedAt: '10 يونيو 2026',
-    imageUrl: '/images/blog-3.svg'
+    imageUrl: '/assets/images/blog-3.svg'
   }
 ]
 
@@ -71,7 +71,7 @@ export async function getBlogPosts(options?: {
         excerpt: doc.excerpt,
         href: doc.href || '#',
         publishedAt: doc.publishedAt ? new Date(doc.publishedAt).toLocaleDateString('ar-SA') : undefined,
-        imageUrl: doc.imageUrl || (doc.image && typeof doc.image === 'object' ? doc.image.url : '/images/blog-1.svg')
+        imageUrl: doc.imageUrl || (doc.image && typeof doc.image === 'object' ? doc.image.url : '/assets/images/blog-1.svg')
       }))
     }
   } catch (error) {

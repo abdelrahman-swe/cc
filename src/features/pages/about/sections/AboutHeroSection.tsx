@@ -43,13 +43,13 @@ export function AboutHeroSection({
 
   return (
     <section
-      className="relative overflow-hidden bg-white py-20 lg:py-32"
+      className="relative overflow-hidden bg-surface py-20 lg:py-32 transition-colors duration-300"
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
       {/* SVG Background */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         <img
-          src="/images/about-hero.svg"
+          src="/assets/images/about-hero.svg"
           alt=""
           className="w-full h-full object-cover opacity-50"
         />
@@ -78,7 +78,7 @@ export function AboutHeroSection({
             }}
           >
             <TypingAnimation
-              duration={50}
+              duration={30}
               startOnView={true}
               showCursor={false}
               as="span"

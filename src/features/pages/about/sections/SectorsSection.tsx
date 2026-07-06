@@ -40,12 +40,12 @@ export function SectorsSection({
   const [activeIndex, setActiveIndex] = useState(0)
 
   const defaultSectors: SectorItem[] = [
-    { name: locale === 'en' ? 'Healthcare' : 'الرعاية الصحية', image: '/mockups/3aloolo.png' },
-    { name: locale === 'en' ? 'Government Sector' : 'القطاع الحكومي', image: '/mockups/Mockup 14.png' },
-    { name: locale === 'en' ? 'Retail & E-commerce' : 'التجزئة والتجارة الإلكترونية', image: '/mockups/Dashboard 1.png' },
-    { name: locale === 'en' ? 'Financial Services' : 'الخدمات المالية', image: '/mockups/card.png' },
-    { name: locale === 'en' ? 'Real Estate' : 'العقارات', image: '/mockups/mascot_web.png' },
-    { name: locale === 'en' ? 'Logistics & Supply Chain' : 'الخدمات اللوجستية', image: '/mockups/Mockup 14.png' }
+    { name: locale === 'en' ? 'Healthcare' : 'الرعاية الصحية', image: '/assets/mockups/3aloolo.png' },
+    { name: locale === 'en' ? 'Government Sector' : 'القطاع الحكومي', image: '/assets/mockups/Mockup 14.png' },
+    { name: locale === 'en' ? 'Retail & E-commerce' : 'التجزئة والتجارة الإلكترونية', image: '/assets/mockups/Dashboard 1.png' },
+    { name: locale === 'en' ? 'Financial Services' : 'الخدمات المالية', image: '/assets/mockups/card.png' },
+    { name: locale === 'en' ? 'Real Estate' : 'العقارات', image: '/assets/mockups/mascot_web.png' },
+    { name: locale === 'en' ? 'Logistics & Supply Chain' : 'الخدمات اللوجستية', image: '/assets/mockups/Mockup 14.png' }
   ]
 
   const defaultTitle = locale === 'en' ? 'Our expertise in diverse sectors' : 'خبراتنا في قطاعات متنوعة'
@@ -55,7 +55,7 @@ export function SectorsSection({
   const activeSector = list[activeIndex] || list[0]
 
   // Resolve active image source URL
-  let activeImageUrl = '/mockups/Mockup 14.png'
+  let activeImageUrl = '/assets/mockups/Mockup 14.png'
   if (activeSector?.image) {
     if (typeof activeSector.image === 'object') {
       activeImageUrl = activeSector.image.url || activeSector.image.src || activeImageUrl
@@ -90,7 +90,7 @@ export function SectorsSection({
   }
 
   return (
-    <section className={cn('bg-white', 'py-16', 'lg:py-24')} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <section className={cn('bg-surface', 'py-16', 'lg:py-24', 'transition-colors', 'duration-300')} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'lg:px-0')}>
         
         {/* Title Container */}
@@ -103,9 +103,8 @@ export function SectorsSection({
         >
           <SectionTag variant="about">{sectionTag}</SectionTag>
           <h2 
-            className={cn('mb-12', 'text-center')}
+            className={cn('mb-12', 'text-center', 'text-[#243A77] dark:text-white')}
             style={{
-              color: 'var(--Sec-500, #243A77)',
               textAlign: 'center',
               fontFamily: '"Thmanyah Serif Text", serif',
               fontSize: '32px',
@@ -127,7 +126,7 @@ export function SectorsSection({
             initial="hidden"
             whileInView="visible"
             viewport={motionViewport}
-            className={cn('lg:col-span-6', 'flex', 'flex-col', 'divide-y', 'divide-[#eaeaeb]', 'border-t', 'border-b', 'border-[#eaeaeb]')}
+            className={cn('lg:col-span-6', 'flex', 'flex-col', 'divide-y', 'divide-border', 'border-t', 'border-b', 'border-border', 'transition-colors', 'duration-300')}
           >
             {list.map((sector, index) => {
               const isActive = index === activeIndex
@@ -144,7 +143,7 @@ export function SectorsSection({
                   {/* Sector Title */}
                   <span 
                     style={{
-                      color: isActive ? 'var(--Primary-400, #F4794E)' : 'var(--Sec-500, #243A77)',
+                      color: isActive ? 'var(--Primary-400, #F4794E)' : 'var(--Neutral-800, #243A77)',
                       textAlign: locale === 'ar' ? 'right' : 'left',
                       fontFamily: '"Thmanyah Serif Text", serif',
                       fontSize: '28px',

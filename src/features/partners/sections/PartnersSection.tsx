@@ -27,12 +27,12 @@ const fadeIn: Variants = {
 const motionViewport = { once: true, margin: '-80px' } as const
 
 const defaultPartners = [
-  ['/partners/nupco.svg', 'nupco'],
-  ['/partners/naama.svg', 'Naama'],
-  ['/partners/nafath.svg', 'نفاذ'],
-  ['/partners/mada.svg', 'mada'],
-  ['/partners/stc.svg', 'stc'],
-  ['/partners/sdaia.svg', 'SDAIA']
+  ['/assets/partners/nupco.svg', 'nupco'],
+  ['/assets/partners/naama.svg', 'Naama'],
+  ['/assets/partners/nafath.svg', 'نفاذ'],
+  ['/assets/partners/mada.svg', 'mada'],
+  ['/assets/partners/stc.svg', 'stc'],
+  ['/assets/partners/sdaia.svg', 'SDAIA']
 ] as const
 
 type PartnersSectionProps = {
@@ -54,7 +54,7 @@ export function PartnersSection(props: PartnersSectionProps) {
     : defaultPartners
 
   return (
-    <section className={cn('bg-white', 'py-16', 'lg:min-h-[392px]')} id={sectionId}>
+    <section className={cn('bg-surface', 'py-16', 'lg:min-h-[392px]', 'transition-colors', 'duration-300')} id={sectionId}>
       <motion.div
         variants={fadeUp}
         initial="hidden"
@@ -63,7 +63,7 @@ export function PartnersSection(props: PartnersSectionProps) {
         className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'text-center', 'lg:px-0')}
       >
         <SectionTag>{sectionTag}</SectionTag>
-        <h2 className={cn('mt-6', 'font-serif-text', 'text-[28px]', 'font-bold', 'text-[#243A77]')}>
+        <h2 className={cn('mt-6', 'font-serif-text', 'text-[28px]', 'font-bold', 'text-[#243A77]', 'dark:text-white')}>
           {heading}
         </h2>
         <div className={cn('relative', 'flex', 'w-full', 'flex-col', 'items-center', 'justify-center', 'overflow-hidden', 'mt-12')}>
@@ -78,14 +78,14 @@ export function PartnersSection(props: PartnersSectionProps) {
                   alt={alt}
                   width={130}
                   height={48}
-                  className={cn('max-h-12', 'max-w-[130px]', 'object-contain')}
+                  className={cn('max-h-12', 'max-w-[130px]', 'object-contain', 'dark:brightness-0 dark:invert')}
                   loading="lazy"
                 />
               </div>
             ))}
           </Marquee>
-          <div className={cn('pointer-events-none', 'absolute', 'inset-y-0', 'left-0', 'w-1/3', 'bg-gradient-to-r', 'from-white', 'via-white/80', 'via-40%', 'to-transparent', 'z-10')}></div>
-          <div className={cn('pointer-events-none', 'absolute', 'inset-y-0', 'right-0', 'w-1/3', 'bg-gradient-to-l', 'from-white', 'via-white/80', 'via-40%', 'to-transparent', 'z-10')}></div>
+          <div className={cn('pointer-events-none', 'absolute', 'inset-y-0', 'left-0', 'w-1/3', 'bg-gradient-to-r', 'from-white', 'via-white/80', 'via-40%', 'to-transparent', 'dark:from-[#070C18]', 'dark:via-[#070C18]/80', 'z-10')}></div>
+          <div className={cn('pointer-events-none', 'absolute', 'inset-y-0', 'right-0', 'w-1/3', 'bg-gradient-to-l', 'from-white', 'via-white/80', 'via-40%', 'to-transparent', 'dark:from-[#070C18]', 'dark:via-[#070C18]/80', 'z-10')}></div>
         </div>
       </motion.div>
     </section>

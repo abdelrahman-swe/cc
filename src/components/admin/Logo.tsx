@@ -3,7 +3,7 @@ import React from 'react'
 export default function AdminLogo() {
   return (
     <img
-      src="/footer-logo.svg"
+      src="/assets/logo.svg"
       alt="CodeClouders"
       style={{
         height: '40px',

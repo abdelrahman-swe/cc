@@ -25,22 +25,22 @@ const motionViewport = { once: true, margin: "-80px" } as const;
 
 const defaultWhyCards = [
   [
-    "/icons/content/medal.svg",
+    "/assets/icons/content/medal.svg",
     "خبرة تزيد عن 6 سنوات",
     "نمتلك خبرة عملية في تصميم وتطوير حلول رقمية احترافية تدعم نجاح أعمالك.",
   ],
   [
-    "/icons/content/pen.svg",
+    "/assets/icons/content/pen.svg",
     "حلول مخصصة حسب احتياجك",
     "نصمم المنتج حول أهدافك ونموذج عملك، لا حول قالب جاهز ومحدود.",
   ],
   [
-    "/icons/content/rank.svg",
+    "/assets/icons/content/rank.svg",
     "سرعة إنجاز ومرونة عالية",
     "فرق عمل رشيقة تتعامل مع المتغيرات بسرعة وتحافظ على جودة التنفيذ.",
   ],
   [
-    "/icons/content/shield.svg",
+    "/assets/icons/content/shield.svg",
     "أمان وحوكمة البيانات",
     "نطبق معايير حماية واعتمادية مناسبة لطبيعة بياناتك وعملياتك.",
   ],
@@ -107,7 +107,7 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
   return (
     <section
       id={sectionId}
-      className={cn("bg-white", "py-16", "lg:min-h-[796px]")}
+      className={cn("bg-surface", "py-16", "lg:min-h-[796px]", "transition-colors", "duration-300")}
     >
       <div
         className={cn(
@@ -198,6 +198,7 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
                       "md:text-[21px]",
                       "font-bold",
                       "text-[#243A77]",
+                      "dark:text-foreground-muted",
                       "truncate",
                     )}
                   >

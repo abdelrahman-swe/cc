@@ -9,12 +9,12 @@ export type PartnerItem = {
 }
 
 const defaultPartners: PartnerItem[] = [
-  { id: '1', name: 'noboco', logoSrc: '/images/noboco.svg', href: '#' },
-  { id: '2', name: 'Naama', logoSrc: '/images/naama.svg', href: '#' },
+  { id: '1', name: 'noboco', logoSrc: '/assets/images/noboco.svg', href: '#' },
+  { id: '2', name: 'Naama', logoSrc: '/assets/images/naama.svg', href: '#' },
   { id: '3', name: 'نفاذ', logoSrc: '/media/nafath.svg', href: '#' },
-  { id: '4', name: 'mada', logoSrc: '/images/mada.svg', href: '#' },
-  { id: '5', name: 'stc', logoSrc: '/images/stc.svg', href: '#' },
-  { id: '6', name: 'SDAIA', logoSrc: '/images/sadia.svg', href: '#' }
+  { id: '4', name: 'mada', logoSrc: '/assets/images/mada.svg', href: '#' },
+  { id: '5', name: 'stc', logoSrc: '/assets/images/stc.svg', href: '#' },
+  { id: '6', name: 'SDAIA', logoSrc: '/assets/images/sadia.svg', href: '#' }
 ]
 
 export async function getPartners(options?: {
@@ -44,7 +44,7 @@ export async function getPartners(options?: {
       return res.docs.map((doc: any) => ({
         id: String(doc.id),
         name: doc.name,
-        logoSrc: doc.logo && typeof doc.logo === 'object' ? doc.logo.url : '/images/noboco.svg',
+        logoSrc: doc.logo && typeof doc.logo === 'object' ? doc.logo.url : '/assets/images/noboco.svg',
         href: doc.href || '#'
       }))
     }

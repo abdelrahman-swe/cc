@@ -124,8 +124,24 @@
 :root {
   --font-sans: "IBM Plex Sans Arabic", sans-serif;
   --font-brand: "IBM Plex Sans Arabic", sans-serif;
-  --page-bg: #ffffff;
-  --page-fg: #0e1730;
+
+  /* ── Semantic Surface Tokens (Light) ── */
+  --surface: #FFFFFF;
+  --surface-card: #FFFFFF;
+  --surface-elevated: #F9F9F9;
+
+  /* ── Semantic Foreground Tokens (Light) ── */
+  --foreground: #0E1730;
+  --foreground-muted: #5F6063;
+  --foreground-subtle: #808586;
+
+  /* ── Semantic Border Tokens (Light) ── */
+  --border: #E7EEF8;
+  --border-subtle: #EAEAEB;
+
+  /* ── Page-level aliases ── */
+  --page-bg: var(--surface);
+  --page-fg: var(--foreground);
 
   /* Figma Brand & Color Tokens */
   --Primary-500: #F15722;
@@ -149,6 +165,31 @@
   --Neutral-100: #F9F9F9;
   --Neutral-50: #FFFFFF;
   --Neutral-25: #E8EAEA;
+}
+
+/* ── Dark Mode Semantic Overrides ── */
+.dark {
+  --surface: #070C18;
+  --surface-card: #0E1730;
+  --surface-elevated: #162058;
+
+  --foreground: #FFFFFF;
+  --foreground-muted: #B0C9F7;
+  --foreground-subtle: rgba(255, 255, 255, 0.5);
+
+  --border: rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+
+  --Neutral-800: #FFFFFF;
+  --Neutral-700: #DAE5F7;
+  --Neutral-600: #B0C9F7;
+  --Neutral-500: #A9BEDB;
+  --Neutral-400: #A9BEDB;
+  --Neutral-300: rgba(255, 255, 255, 0.5);
+  --Neutral-200: rgba(255, 255, 255, 0.1);
+  --Neutral-100: #0E1730;
+  --Neutral-50: #0E1730;
+  --Neutral-25: rgba(255, 255, 255, 0.06);
 }
 
 * {
@@ -191,6 +232,11 @@ canvas {
 ::selection {
   background: #ffdfd1;
   color: #183777;
+}
+
+.dark ::selection {
+  background: #243A77;
+  color: #FFFFFF;
 }
 
 @keyframes marquee {
@@ -289,24 +335,35 @@ canvas {
 }
 
 body {
-    cursor: url('/icons/mouse.svg'), auto;
+    cursor: url('/assets/icons/mouse.svg'), auto;
 }
 
 /* ── Standard Reusable Brand Card with Hover Glow & hover.svg ── */
 .brand-card {
   position: relative;
-  background-color: #ffffff;
-  border: 1px solid #EEF2F8;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border);
   box-shadow: 0 14px 34px rgba(14,23,48,0.04);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, background-image 0.3s ease;
   overflow: hidden;
+  background-size: cover;
+  background-position: bottom left;
+}
+
+.dark .brand-card {
+  background-color: #0D193B !important;
+  background-image: url('/dark/hero-card-blur.svg') !important;
+  background-size: cover;
+  background-position: bottom left;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 0 10px 1px #072FA2 inset, 0 14px 34px rgba(0,0,0,0.2) !important;
 }
 
 .brand-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('/images/hover.svg');
+  background-image: url('/light/hover.svg');
   background-size: cover;
   background-position: bottom left;
   opacity: 0;
@@ -315,12 +372,37 @@ body {
   transition: opacity 0.5s ease;
 }
 
+.dark .brand-card::before {
+  opacity: 0 !important;
+  display: none !important;
+}
+
 .brand-card:hover {
   border-color: #F15722 !important;
   box-shadow: 0 20px 48px rgba(14,23,48,0.08), inset 0 0 20px rgba(241,87,34,0.12) !important;
 }
 
+.dark .brand-card:hover {
+  border-color: #072FA2 !important;
+  box-shadow: 0 0 15px 2px #072FA2 inset, 0 20px 48px rgba(0,0,0,0.3) !important;
+}
+
 .brand-card:hover::before {
   opacity: 1;
-  /*  */
+}
+
+/* ── Hero Cards Overrides in Dark Mode ── */
+.dark .hero-card {
+  background-color: #0D193B !important;
+  background-image: url('/dark/hero-card-blur.svg') !important;
+  background-size: cover;
+  background-position: bottom left;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 0 10px 1px #072FA2 inset !important;
+  border-radius: 50px !important;
+}
+
+.dark .hero-card:hover {
+  box-shadow: 0 0 15px 2px #072FA2 inset, 0 20px 48px rgba(0,0,0,0.3) !important;
+  border: 1px solid #072FA2 !important;
 }

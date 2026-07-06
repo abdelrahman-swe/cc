@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: ['./src/**/*.{ts,tsx}', './payload.config.ts'],
   theme: {
     extend: {
@@ -13,7 +14,21 @@ const config: Config = {
           mist: '#FAFBFF',
           line: '#E7EEF8',
           muted: '#74829a'
-        }
+        },
+        surface: {
+          DEFAULT: 'var(--surface)',
+          card: 'var(--surface-card)',
+          elevated: 'var(--surface-elevated)',
+        },
+        foreground: {
+          DEFAULT: 'var(--foreground)',
+          muted: 'var(--foreground-muted)',
+          subtle: 'var(--foreground-subtle)',
+        },
+        border: {
+          DEFAULT: 'var(--border)',
+          subtle: 'var(--border-subtle)',
+        },
       },
       fontFamily: {
         sans: ['"IBM Plex Sans Arabic"', 'var(--font-brand)', 'system-ui', 'sans-serif'],

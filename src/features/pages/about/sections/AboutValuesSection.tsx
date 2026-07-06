@@ -104,26 +104,26 @@ export function AboutValuesSection({ cards }: AboutValuesSectionProps) {
         }
       case 'light-orange':
         return {
-          cardBg: 'bg-[#FFF2EF] border border-[#fcddd3]/40',
-          titleColor: 'text-[#1E1E20]',
-          descColor: 'text-[#5F6063]',
-          iconWrapBg: 'bg-[#FCDDD3]',
+          cardBg: 'bg-[#FFF2EF] dark:bg-[#2a1610] border border-[#fcddd3]/40 dark:border-[#F15722]/20',
+          titleColor: 'text-foreground',
+          descColor: 'text-foreground-muted',
+          iconWrapBg: 'bg-[#FCDDD3] dark:bg-[#F15722]/20',
           iconColor: 'text-[#F15722]'
         }
       case 'lavender':
       default:
         return {
-          cardBg: 'bg-[#EEF2FF] border border-[#d2daf1]/40',
-          titleColor: 'text-[#1E1E20]',
-          descColor: 'text-[#5F6063]',
-          iconWrapBg: 'bg-[rgba(210,218,241,0.5)]',
-          iconColor: 'text-[#243A77]'
+          cardBg: 'bg-[#EEF2FF] dark:bg-[#0d1a3a] border border-[#d2daf1]/40 dark:border-white/10',
+          titleColor: 'text-foreground',
+          descColor: 'text-foreground-muted',
+          iconWrapBg: 'bg-[rgba(210,218,241,0.5)] dark:bg-white/10',
+          iconColor: 'text-[#243A77] dark:text-foreground-muted'
         }
     }
   }
 
   return (
-    <section className="bg-white py-16 lg:py-20" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <section className="bg-surface py-16 lg:py-20 transition-colors duration-300" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className="mx-auto max-w-[1240px] px-5 lg:px-0">
         <motion.div
           variants={staggerContainer}
