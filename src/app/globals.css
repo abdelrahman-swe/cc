@@ -307,6 +307,7 @@ canvas {
 }
 
 .cta-icon-main {
+  transform: rotate(var(--arrow-rotation, 0deg));
   transition: transform 0.35s ease-in-out;
 }
 
@@ -315,16 +316,16 @@ canvas {
   inset: 0;
   display: grid;
   place-items: center;
-  transform: translate(150%, 150%);
+  transform: translate(150%, 150%) rotate(var(--arrow-rotation, 0deg));
   transition: transform 0.35s ease-in-out 0.08s;
 }
 
 .cta-pill:hover .cta-icon-main {
-  transform: translate(-150%, -150%);
+  transform: translate(-150%, -150%) rotate(var(--arrow-rotation, 0deg));
 }
 
 .cta-pill:hover .cta-icon-ghost {
-  transform: translate(0, 0);
+  transform: translate(0, 0) rotate(var(--arrow-rotation, 0deg));
 }
 
 @media (prefers-reduced-motion: reduce) {

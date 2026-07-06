@@ -39,9 +39,13 @@ export function PillButton({
     'up-right': ArrowRight
   }[resolvedDirection] || (isRtl ? ArrowLeft : ArrowRight)
  
-  const rotateStyle = resolvedDirection === 'up-left' || resolvedDirection === 'up-right'
-    ? { transform: 'rotate(45deg)' }
-    : undefined
+  const rotateAngle = resolvedDirection === 'up-left' || resolvedDirection === 'up-right'
+    ? '45deg'
+    : '0deg'
+
+  const customStyle = {
+    '--arrow-rotation': rotateAngle
+  } as React.CSSProperties
  
   const styles = {
     nav: 'cta-pill--navy bg-[#1a2d5e] text-white',
@@ -81,10 +85,11 @@ export function PillButton({
           'cta-icon-wrap relative grid size-10 shrink-0 place-items-center rounded-full',
           circle[variant]
         )}
+        style={customStyle}
       >
-        <ArrowIcon aria-hidden className={cn('cta-icon-main', 'size-5')} style={rotateStyle} />
+        <ArrowIcon aria-hidden className={cn('cta-icon-main', 'size-5')} />
         <span className="cta-icon-ghost">
-          <ArrowIcon aria-hidden className="size-5" style={rotateStyle} />
+          <ArrowIcon aria-hidden className="size-5" />
         </span>
       </span>
     </>

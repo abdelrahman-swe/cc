@@ -95,9 +95,9 @@ export function HeroSection(props: any) {
         "bg-surface",
         "transition-colors",
         "duration-300",
-        "pb-14",
-        "pt-16",
-        "lg:min-h-[870px]",
+        "pt-24",
+        "lg:pt-[100.5px]",
+        "pb-[128px]",
       )}
       dir="rtl"
     >
@@ -105,10 +105,12 @@ export function HeroSection(props: any) {
         className={cn(
           "pointer-events-none",
           "absolute",
-          "inset-0",
+          "left-0",
+          "right-0",
+          "top-[330px]",
           "z-0",
           "w-full",
-          "h-full",
+          "h-[500px]",
           "opacity-100",
         )}
       >
@@ -204,7 +206,7 @@ export function HeroSection(props: any) {
           onViewportEnter={triggerChainAnimation}
           className={cn(
             "mx-auto",
-            "mt-[86px]",
+            "mt-[166.5px]",
             "grid",
             "max-w-[1248px]",
             "gap-6",
@@ -232,7 +234,7 @@ export function HeroSection(props: any) {
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="mt-16"
+          className="mt-[70.5px]"
         >
           <PillButton href={ctaHref} variant="orange" arrowDirection="up-left">
             {ctaLabel}

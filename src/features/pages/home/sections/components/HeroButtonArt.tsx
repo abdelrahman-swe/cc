@@ -8,7 +8,7 @@ export function HeroButtonArt() {
     <div
       className={cn(
         "absolute",
-        "-right-[100px]",
+        "-right-[70px]",
         "top-[32px]",
         "flex",
         "origin-top-right",
@@ -17,20 +17,21 @@ export function HeroButtonArt() {
       )}
     >
       <div
+        dir="ltr"
         className={cn(
           "relative",
           "flex",
-          "h-[96px]",
-          "w-[311px]",
-          "flex-row",
-          "justify-start",
-          "items-center",
+          "h-[84.32px]",
+          "w-[314.11px]",
+          "flex-col",
+          "justify-center",
+          "items-start",
+          "gap-[8.08px]",
           "rounded-[500px]",
           "border-[1.5px]",
           "border-[#F5C9BB]",
           "dark:border-white/10",
-          "p-[22px]",
-          "ps-[139px]",
+          "p-[16.16px]",
           "bg-surface-card/40",
           "dark:bg-[#0B1124]",
         )}
