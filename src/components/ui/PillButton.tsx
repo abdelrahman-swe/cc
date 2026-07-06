@@ -29,7 +29,7 @@ export function PillButton({
   const isRtl = locale === 'ar'
 
   const resolvedDirection = arrowDirection || (isRtl ? 'left' : 'right')
-
+ 
   const ArrowIcon = {
     left: ArrowLeft,
     right: ArrowRight,
@@ -38,28 +38,28 @@ export function PillButton({
     'up-left': ArrowLeft,
     'up-right': ArrowRight
   }[resolvedDirection] || (isRtl ? ArrowLeft : ArrowRight)
-
+ 
   const rotateStyle = resolvedDirection === 'up-left' || resolvedDirection === 'up-right'
     ? { transform: 'rotate(45deg)' }
     : undefined
-
+ 
   const styles = {
     nav: 'cta-pill--navy bg-[#1a2d5e] text-white',
-    orange: 'cta-pill--orange bg-[#c44118] text-white',
+    orange: 'cta-pill--orange bg-[#F15722] dark:bg-[#0E1730] dark:border dark:border-white/10 text-white',
     blue: 'cta-pill--navy bg-[#1a2d5e] text-white',
     white: 'cta-pill--white border border-[#F1D5CC] bg-white text-[#F15722]'
   }
-
+ 
   const circle = {
     nav: 'bg-white text-[#243A77]',
-    orange: 'bg-white text-[#F15722]',
+    orange: 'bg-white text-[#F15722] dark:bg-white/10 dark:text-white',
     blue: 'bg-white text-[#243A77]',
     white: 'bg-[#F15722] text-white'
   }
-
+ 
   const shadows = {
     nav: '',
-    orange: 'shadow-[0_14px_34px_rgba(241,87,34,0.2)]',
+    orange: 'shadow-[0_14px_34px_rgba(241,87,34,0.2)] dark:shadow-none',
     blue: 'shadow-[0_14px_34px_rgba(14,23,48,0.12)]',
     white: 'shadow-[0_14px_34px_rgba(14,23,48,0.12)]'
   }

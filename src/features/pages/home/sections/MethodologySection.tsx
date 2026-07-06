@@ -28,27 +28,33 @@ const cardVariants: Variants = {
 }
 
 const circleVariants: Variants = {
-  hidden: {
+  hidden: (custom: { index: number; theme: string }) => ({
     scale: 1,
-    backgroundColor: '#FFFFFF',
-    color: '#F15722',
-    borderColor: '#F4794E',
-    boxShadow: '0px 0px 0px rgba(241, 87, 34, 0)'
-  },
-  visible: (index: number) => ({
+    backgroundColor: custom.theme === 'dark' ? 'transparent' : '#FFFFFF',
+    color: custom.theme === 'dark' ? '#7687B5' : '#F15722',
+    borderColor: custom.theme === 'dark' ? '#243A77' : '#F4794E',
+    boxShadow: '0px 0px 0px rgba(0, 0, 0, 0)'
+  }),
+  visible: (custom: { index: number; theme: string }) => ({
     scale: [1, 1.25, 1.1],
-    backgroundColor: '#F15722',
+    backgroundColor: custom.theme === 'dark' ? '#243A77' : '#F15722',
     color: '#FFFFFF',
-    borderColor: '#F15722',
-    boxShadow: [
-      '0px 0px 0px rgba(241, 87, 34, 0)',
-      '0px 0px 28px rgba(241, 87, 34, 0.85)',
-      '0px 0px 14px rgba(241, 87, 34, 0.4)'
-    ],
+    borderColor: custom.theme === 'dark' ? '#243A77' : '#F15722',
+    boxShadow: custom.theme === 'dark'
+      ? [
+          '0px 0px 0px rgba(36, 58, 119, 0)',
+          '0px 0px 20px rgba(36, 58, 119, 0.75)',
+          '0px 0px 10px rgba(36, 58, 119, 0.4)'
+        ]
+      : [
+          '0px 0px 0px rgba(241, 87, 34, 0)',
+          '0px 0px 28px rgba(241, 87, 34, 0.85)',
+          '0px 0px 14px rgba(241, 87, 34, 0.4)'
+        ],
     transition: {
       duration: 0.65,
       ease: 'easeOut' as const,
-      delay: index * 1.2
+      delay: custom.index * 1.2
     }
   })
 }
@@ -56,8 +62,8 @@ const circleVariants: Variants = {
 const motionViewport = { once: true, margin: '-80px' } as const
 
 const defaultMethodology = [
-  ['تحليل وفهم المشروع', 'تمتلك خبرة تزيد عن 10 سنوات في تقديم حلول برمجية مبتكرة واحترافية تدعم نجاح عملائنا.'],
-  ['تخطيط تجربة المستخدم وواجهة الاستخدام (UX/UI)', 'نبدأ بدراسة متطلباتك، طبيعة عملك، وأهدافك لضمان بناء حل رقمي يخدم مشروعك فعلياً'],
+  ['تحليل وفهم المشروع', 'نبدأ بدراسة متطلباتك، طبيعة عملك، وأهدافك لضمان بناء حل رقمي يخدم مشروعك فعليًا'],
+  ['تخطيط تجربة المستخدم وواجهة الاستخدام (UX/UI)', 'نبدأ بدراسة متطلباتك، طبيعة عملك، وأهدافك لضمان بناء حل رقمي يخدم مشروعك فعليًا'],
   ['التطوير والبرمجة', 'نحوّل التصاميم إلى أنظمة وتطبيقات قوية باستخدام أحدث التقنيات وأفضل ممارسات البرمجة'],
   ['الاختبار والإطلاق', 'نختبر الحل بدقة لضمان الجودة والأمان والأداء، ثم نطلقه بشكل رسمي وجاهز للاستخدام']
 ] as const
@@ -77,7 +83,8 @@ function StepRow({
   step,
   index,
   circleRef,
-  isInView
+  isInView,
+  theme
 }: {
   title: string
   body: string
@@ -85,6 +92,7 @@ function StepRow({
   index: number
   circleRef: React.RefObject<HTMLDivElement | null>
   isInView: boolean
+  theme: string
 }) {
   const isCardOnRight = index % 2 !== 0
 
@@ -102,16 +110,15 @@ function StepRow({
         {!isCardOnRight && (
           <motion.article
             variants={cardVariants}
-            className={cn('brand-card', 'group', 'relative', 'w-full', 'lg:w-[560px]', 'max-w-[560px]', 'overflow-hidden', 'transition-all', 'duration-300')}
+            className={cn('brand-card', 'methodology-card', 'group', 'relative', 'w-full', 'lg:w-[548px]', 'max-w-[548px]', 'overflow-hidden', 'transition-all', 'duration-300')}
             style={{
               display: 'flex',
               flexDirection: 'column',
               padding: '24px',
-              justifyContent: 'flex-end',
-              alignItems: 'flex-start',
-              gap: '24px',
+              justifyContent: 'center',
+              alignItems: 'stretch',
+              gap: '8px',
               borderRadius: '24px',
-              background: 'var(--surface-card, #FFF)',
             }}
           >
             <img
@@ -120,28 +127,12 @@ function StepRow({
               className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
             />
             <h3
-              className={cn('relative', 'z-10', 'w-full', 'text-center')}
-              style={{
-                color: 'var(--text-main, #1E1E20)',
-                fontFamily: '"Thmanyah Serif Text", var(--font-serif-text), serif',
-                fontSize: '24px',
-                fontStyle: 'normal',
-                fontWeight: 700,
-                lineHeight: 'normal',
-              }}
+              className={cn('relative', 'z-10', 'w-full', 'text-right', 'font-brand', 'font-medium', 'text-[22px]', 'text-[#1E1E20]', 'dark:text-white')}
             >
               {title}
             </h3>
             <p
-              className={cn('relative', 'z-10', 'w-full', 'text-center')}
-              style={{
-                color: 'var(--text-muted, #5F6063)',
-                fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                fontSize: '18px',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: '150%',
-              }}
+              className={cn('relative', 'z-10', 'w-full', 'text-right', 'font-brand', 'font-normal', 'text-[18px]', 'leading-[150%]', 'text-[#5F6063]', 'dark:text-[#E8EAEA]')}
             >
               {body}
             </p>
@@ -156,8 +147,8 @@ function StepRow({
       >
         <motion.span
           variants={circleVariants}
-          custom={index}
-          className={cn('grid', 'size-8', 'place-items-center', 'rounded-full', 'border', 'border-[#F4794E]', 'text-[14px]', 'font-bold')}
+          custom={{ index, theme }}
+          className={cn('grid', 'size-8', 'place-items-center', 'rounded-full', 'border', 'border-[#243A77] dark:border-[#243A77]', 'text-[14px]', 'font-bold')}
         >
           {step}
         </motion.span>
@@ -171,16 +162,15 @@ function StepRow({
         {isCardOnRight && (
           <motion.article
             variants={cardVariants}
-            className={cn('brand-card', 'group', 'relative', 'w-full', 'lg:w-[560px]', 'max-w-[560px]', 'overflow-hidden', 'transition-all', 'duration-300')}
+            className={cn('brand-card', 'methodology-card', 'group', 'relative', 'w-full', 'lg:w-[548px]', 'max-w-[548px]', 'overflow-hidden', 'transition-all', 'duration-300')}
             style={{
               display: 'flex',
               flexDirection: 'column',
               padding: '24px',
-              justifyContent: 'flex-end',
-              alignItems: 'flex-start',
-              gap: '24px',
+              justifyContent: 'center',
+              alignItems: 'stretch',
+              gap: '8px',
               borderRadius: '24px',
-              background: 'var(--surface-card, #FFF)',
             }}
           >
             <img
@@ -189,28 +179,12 @@ function StepRow({
               className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
             />
             <h3
-              className={cn('relative', 'z-10', 'w-full', 'text-center')}
-              style={{
-                color: 'var(--text-main, #1E1E20)',
-                fontFamily: '"Thmanyah Serif Text", var(--font-serif-text), serif',
-                fontSize: '24px',
-                fontStyle: 'normal',
-                fontWeight: 700,
-                lineHeight: 'normal',
-              }}
+              className={cn('relative', 'z-10', 'w-full', 'text-right', 'font-brand', 'font-medium', 'text-[22px]', 'text-[#1E1E20]', 'dark:text-white')}
             >
               {title}
             </h3>
             <p
-              className={cn('relative', 'z-10', 'w-full', 'text-center')}
-              style={{
-                color: 'var(--text-muted, #5F6063)',
-                fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                fontSize: '18px',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: '150%',
-              }}
+              className={cn('relative', 'z-10', 'w-full', 'text-right', 'font-brand', 'font-normal', 'text-[18px]', 'leading-[150%]', 'text-[#5F6063]', 'dark:text-[#E8EAEA]')}
             >
               {body}
             </p>
@@ -242,7 +216,7 @@ export function MethodologySection(props: MethodologySectionProps) {
   const stepRefs = [step1Ref, step2Ref, step3Ref, step4Ref]
 
   return (
-    <section className={cn('bg-surface', 'py-16 lg:py-24', 'transition-colors', 'duration-300')} id={sectionId}>
+    <section className={cn('py-16 lg:py-24', 'transition-colors', 'duration-300')} id={sectionId}>
       <div className={cn('mx-auto', 'max-w-[1248px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
@@ -252,7 +226,7 @@ export function MethodologySection(props: MethodologySectionProps) {
         </motion.div>
 
         <div ref={containerRef} className={cn('relative', 'mt-10 lg:mt-[104px]', 'flex', 'w-full', 'flex-col', 'gap-12', 'lg:gap-0')}>
-          <div className={cn('absolute', 'bottom-0', 'left-1/2', 'top-0', 'hidden', 'w-[2px]', '-translate-x-1/2', 'bg-[#FEEEE9] dark:bg-white/10', 'lg:block')} />
+          <div className={cn('absolute', 'bottom-[-30px]', 'left-1/2', 'top-[-60px]', 'hidden', 'w-[2px]', '-translate-x-1/2', 'bg-[#FEEEE9] dark:bg-[#243A77]', 'lg:block')} />
           {methodologyList.map(([title, body], index) => (
             <StepRow
               key={title}
@@ -262,6 +236,7 @@ export function MethodologySection(props: MethodologySectionProps) {
               index={index}
               circleRef={stepRefs[index]}
               isInView={isInView}
+              theme={theme}
             />
           ))}
 
@@ -273,11 +248,11 @@ export function MethodologySection(props: MethodologySectionProps) {
                 containerRef={containerRef}
                 fromRef={stepRefs[index]}
                 toRef={stepRefs[index + 1]}
-                pathColor={theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : '#FEEEE9'}
+                pathColor={theme === 'dark' ? '#243A77' : '#FEEEE9'}
                 pathOpacity={0}
                 pathWidth={2}
-                gradientStartColor="#F15722"
-                gradientStopColor="#E84C1E"
+                gradientStartColor={theme === 'dark' ? '#0052FF' : '#F15722'}
+                gradientStopColor={theme === 'dark' ? '#60A5FA' : '#E84C1E'}
                 duration={1.2}
                 delay={index * 1.2}
                 repeat={0}

@@ -1,18 +1,18 @@
 "use client";
 
 import { cn } from "@/lib/cn";
-import { PillButton } from "./PillButton";
+import { PillButton } from "@/components/ui/PillButton";
 
 export function HeroButtonArt() {
   return (
     <div
       className={cn(
         "absolute",
-        "-right-[35px]",
+        "-right-[100px]",
         "top-[32px]",
         "flex",
         "origin-top-right",
-        "-rotate-[8deg]",
+        "-rotate-[10deg]",
         "items-center",
       )}
     >
@@ -20,19 +20,21 @@ export function HeroButtonArt() {
         className={cn(
           "relative",
           "flex",
-          "h-[66px]",
-          "w-[270px]",
+          "h-[96px]",
+          "w-[311px]",
+          "flex-row",
+          "justify-start",
           "items-center",
-          "justify-between",
-          "rounded-full",
+          "rounded-[500px]",
           "border-[1.5px]",
           "border-[#F5C9BB]",
-          "p-1.5",
+          "dark:border-white/10",
+          "p-[22px]",
+          "ps-[139px]",
           "bg-surface-card/40",
-          "dark:bg-surface-card/60",
+          "dark:bg-[#0B1124]",
         )}
       >
-        <div className="w-1" />
         <PillButton
           href="/contact"
           className={cn(

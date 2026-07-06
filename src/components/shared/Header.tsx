@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { PillButton } from "@/components/ui/PillButton";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { useTheme } from "@/components/shared/ThemeProvider";
 import { cn } from "@/lib/cn";
 import { useParams } from "next/navigation";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
@@ -36,7 +35,6 @@ export function Header({ brand, links, cta }: HeaderProps) {
   const router = useRouter();
   const params = useParams();
   const currentLocale = (params.locale as string) || "ar";
-  const { theme } = useTheme();
 
   const switchLocale = (newLocale: string) => {
     if (currentLocale && pathname.startsWith(`/${currentLocale}`)) {
@@ -75,9 +73,14 @@ export function Header({ brand, links, cta }: HeaderProps) {
       >
         <Link href="/">
           <img
-            src={theme === 'dark' ? '/light/logo.svg' : '/dark/logo.svg'}
+            src="/dark/logo.svg"
             alt={brand || "Code Clouders"}
-            className={cn("h-[39px]", "w-auto", "cursor-pointer")}
+            className={cn("h-[39px]", "w-auto", "cursor-pointer", "dark:hidden")}
+          />
+          <img
+            src="/light/logo.svg"
+            alt={brand || "Code Clouders"}
+            className={cn("h-[39px]", "w-auto", "cursor-pointer", "hidden dark:block")}
           />
         </Link>
         <div
@@ -151,7 +154,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
         </div>
         <div className={cn('hidden', 'lg:flex', 'items-center', 'gap-4')}>
           <ThemeToggle />
-          <PillButton href={ctaHref} variant="nav">
+          <PillButton href={ctaHref} variant="blue">
             {ctaLabel}
           </PillButton>
           {/* <button
@@ -262,8 +265,8 @@ export function Header({ brand, links, cta }: HeaderProps) {
             </div>
             <PillButton
               href={ctaHref}
-              variant="nav"
-              className={cn('w-full', 'justify-center', 'mt-2')}
+              variant="orange"
+              className={cn('w-full', 'justify-center')}
               onClick={() => setMenuOpen(false)}
             >
               {ctaLabel}

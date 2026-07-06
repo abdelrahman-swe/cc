@@ -53,15 +53,15 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
         alt=""
         width={1024}
         height={1312}
-        className="absolute left-1/2 top-[60px] sm:top-[80px] lg:top-[95px] z-0 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2 object-contain"
+        className="pointer-events-none absolute left-1/2 top-[35px] sm:top-[50px] lg:top-[60px] z-0 h-[310px] sm:h-[390px] md:h-[450px] lg:h-[470px] w-auto -translate-x-1/2 object-contain"
         loading="lazy"
       />
 
       {/* Layer 2: White Card Container (Figma 563:9152) */}
-      <div className="absolute bottom-[30px] left-1/2 z-10 flex w-[623px] max-w-[calc(100%-32px)] -translate-x-1/2 flex-col gap-3 rounded-[24px] bg-surface-card dark:bg-surface-elevated p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-border dark:border-white/10 transition-colors duration-300">
+      <div className="absolute bottom-[30px] left-1/2 z-10 flex w-[92%] sm:w-[88%] md:w-[680px] lg:w-[740px] max-w-[calc(100%-32px)] -translate-x-1/2 flex-col gap-3 rounded-[24px] bg-surface-card dark:bg-surface-elevated p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-border dark:border-white/10 transition-colors duration-300">
         {/* Star Badge positioned on the right */}
         <div className="flex w-full justify-start">
-          <div className="flex size-[48px] shrink-0 items-center justify-center rounded-[16px] border border-[#FCDDD3] dark:border-white/15 bg-surface-elevated dark:bg-surface p-3 text-[#F15722]">
+          <div className="flex size-[48px] shrink-0 items-center justify-center rounded-[16px] border border-[#FCDDD3] dark:[#F9BCA7] bg-surface-elevated dark:bg-white p-3 text-[#F15722]">
             <svg className="size-6 fill-current" viewBox="0 0 24 24">
               <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
             </svg>
@@ -69,9 +69,9 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
         </div>
 
         {/* Gray Content Box */}
-        <div className="w-full rounded-[16px] bg-surface-elevated dark:bg-surface p-5 text-right transition-colors duration-300">
+        <div className="w-full rounded-[16px] bg-surface-elevated dark:bg-white p-5 text-right transition-colors duration-300">
           <h3
-            className="text-right font-medium leading-normal text-foreground"
+            className="dark:text-[#1E1E20] text-right font-medium leading-normal text-foreground "
             style={{
               fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
               fontSize: '20px',
@@ -82,7 +82,7 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
             {title}
           </h3>
           <p
-            className="mt-2 text-right font-normal text-foreground-muted"
+            className="dark:text-[#5F6063] mt-2 text-right font-normal text-foreground-muted"
             style={{
               fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
               fontSize: '16px',
@@ -115,7 +115,7 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
         width={1024}
         height={1312}
         style={{ clipPath: 'url(#edited-differentone23-1782742739957)' }}
-        className="pointer-events-none absolute left-1/2 top-[60px] sm:top-[80px] lg:top-[95px] z-20 h-[280px] sm:h-[350px] md:h-[409px] w-auto -translate-x-1/2 object-contain"
+        className="pointer-events-none absolute left-1/2 top-[35px] sm:top-[50px] lg:top-[60px] z-20 h-[310px] sm:h-[390px] md:h-[450px] lg:h-[470px] w-auto -translate-x-1/2 object-contain"
         loading="lazy"
       />
     </motion.article>

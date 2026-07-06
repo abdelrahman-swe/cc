@@ -4,8 +4,7 @@ import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { useTheme } from "@/components/shared/ThemeProvider";
-import { PillButton } from "./components/PillButton";
+import { PillButton } from "@/components/ui/PillButton";
 import { HeroCardItem } from "./components/HeroCardItem";
 
 const fadeUp: Variants = {
@@ -27,7 +26,6 @@ const staggerContainer: Variants = {
 const motionViewport = { once: true, margin: "-80px" } as const;
 
 export function HeroSection(props: any) {
-  const { theme } = useTheme();
   const headline = props.homepageHeadline || props.headline || {};
   const headlineBefore = headline.before || "شريكك التقني";
   const headlineEmphasis = headline.emphasis || "لحلــــول رقميـــــة";
@@ -115,10 +113,17 @@ export function HeroSection(props: any) {
         )}
       >
         <Image
-          src={theme === 'dark' ? '/dark/home-hero-blur.svg' : '/light/home-hero-blur.svg'}
+          src="/light/home-hero-blur.svg"
           alt=""
           fill
-          className={cn("h-full", "w-full", "object-cover", theme === 'dark' ? "object-center" : "object-top")}
+          className={cn("h-full", "w-full", "object-cover", "object-top", "transition-opacity", "duration-500", "dark:opacity-0")}
+          priority
+        />
+        <Image
+          src="/dark/home-hero-blur.svg"
+          alt=""
+          fill
+          className={cn("h-full", "w-full", "object-cover", "object-center", "transition-opacity", "duration-500", "opacity-0 dark:opacity-100")}
           priority
         />
       </div>
@@ -229,7 +234,7 @@ export function HeroSection(props: any) {
           viewport={motionViewport}
           className="mt-16"
         >
-          <PillButton href={ctaHref} variant="blue">
+          <PillButton href={ctaHref} variant="orange" arrowDirection="up-left">
             {ctaLabel}
           </PillButton>
         </motion.div>

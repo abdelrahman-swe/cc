@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, type Variants } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { HeroButtonArt } from "./HeroButtonArt";
 import { HeroProcessArt } from "./HeroProcessArt";
@@ -33,8 +32,18 @@ export function HeroCardItem({
   rotateOffset?: number;
 }) {
   const shouldReduceMotion = useReducedMotion();
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
+  
+  // Normalized mouse coordinates (-1 to 1) relative to center of card
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Springs to smooth out the mouse movement
+  const springX = useSpring(mouseX, { stiffness: 150, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 150, damping: 20 });
+
+  // Map positions to rotation angles
+  const rotateX = useTransform(springY, [-1, 1], [8, -8]);
+  const rotateY = useTransform(springX, [-1, 1], [-8, 8]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     if (shouldReduceMotion) return;
@@ -46,13 +55,13 @@ export function HeroCardItem({
     const px = x / (rect.width / 2);
     const py = y / (rect.height / 2);
 
-    setRotateX(-py * 8);
-    setRotateY(px * 8);
+    mouseX.set(px);
+    mouseY.set(py);
   };
 
   const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
+    mouseX.set(0);
+    mouseY.set(0);
   };
 
   return (
@@ -63,14 +72,12 @@ export function HeroCardItem({
       viewport={motionViewport}
       animate={{
         rotate: rotateOffset,
-        rotateX: rotateX,
-        rotateY: rotateY,
-        transformPerspective: 1000,
       }}
-      transition={{
-        rotate: { type: "spring", stiffness: 140, damping: 12 },
-        rotateX: { type: "spring", stiffness: 150, damping: 20 },
-        rotateY: { type: "spring", stiffness: 150, damping: 20 },
+      style={{
+        rotateX: shouldReduceMotion ? 0 : rotateX,
+        rotateY: shouldReduceMotion ? 0 : rotateY,
+        transformPerspective: 1000,
+        transformOrigin: "bottom center",
       }}
       whileHover={
         shouldReduceMotion
@@ -82,7 +89,6 @@ export function HeroCardItem({
       }
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ transformOrigin: "bottom center" }}
       className={cn(
         "group",
         "relative",

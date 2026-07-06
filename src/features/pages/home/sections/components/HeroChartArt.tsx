@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { useTheme } from "@/components/shared/ThemeProvider";
 
 export function HeroChartArt() {
-  const { theme } = useTheme();
   return (
     <div
       className={cn(
@@ -19,11 +17,18 @@ export function HeroChartArt() {
       )}
     >
       <Image
-        src={theme === 'dark' ? '/dark/charts.svg' : '/light/chart-orange.svg'}
+        src="/light/chart-orange.svg"
         alt=""
         width={200}
         height={190}
-        className={cn("h-[190px]", "w-auto", "object-contain")}
+        className={cn("h-[190px]", "w-auto", "object-contain", "dark:hidden")}
+      />
+      <Image
+        src="/dark/charts.svg"
+        alt=""
+        width={200}
+        height={190}
+        className={cn("h-[190px]", "w-auto", "object-contain", "hidden dark:block")}
       />
     </div>
   );

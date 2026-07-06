@@ -4,6 +4,7 @@ import { motion, type Variants } from "framer-motion";
 import { Counter } from "@/components/ui/Counter";
 import { PillButton } from "@/components/ui/PillButton";
 import { cn } from "@/lib/cn";
+import Image from "next/image";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -253,6 +254,7 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
               variants={fadeUp}
               className={cn(
                 "brand-card",
+                "why-card",
                 "flex",
                 "items-start",
                 "gap-5",
@@ -274,10 +276,10 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
                   "justify-center",
                   "rounded-xl",
                   "border",
-                  "border-orange-300",
+                  "dark:border-[#1D2E5F] dark:bg-[#0E1730] border-orange-300",
                 )}
               >
-                <img src={icon} alt="" className="size-5" loading="lazy" />
+                <Image src={icon} alt="" width={20} height={20} className="size-5" loading="lazy" />
               </div>
               <div className="relative z-10 flex flex-col text-right w-full">
                 <h3

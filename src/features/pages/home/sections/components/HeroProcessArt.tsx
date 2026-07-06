@@ -130,7 +130,7 @@ export function HeroProcessArt() {
               "border-border",
               "dark:border-white/10",
               "bg-surface-card",
-              "dark:bg-[#070C18]/60",
+              "dark:bg-white",
               "p-1.5",
               "shadow-sm",
             )}
@@ -140,7 +140,7 @@ export function HeroProcessArt() {
               alt={partner.name}
               width={44}
               height={44}
-              className={cn("h-full", "w-full", "object-contain", "dark:brightness-0 dark:invert")}
+              className={cn("h-full", "w-full", "object-contain")}
             />
           </div>
           <div className={cn("text-right", "flex-1", "min-w-0")}>

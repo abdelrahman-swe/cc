@@ -359,7 +359,6 @@ function HeroProcessArt() {
 }
 
 function HeroChartArt() {
-  const { theme } = useTheme();
   return (
     <div
       className={cn(
@@ -373,9 +372,14 @@ function HeroChartArt() {
       )}
     >
       <img
-        src={theme === 'dark' ? '/dark/charts.svg' : '/assets/images/chart-orange.svg'}
+        src="/assets/images/chart-orange.svg"
         alt=""
-        className={cn("h-[190px]", "w-auto", "object-contain")}
+        className={cn("h-[190px]", "w-auto", "object-contain", "dark:hidden")}
+      />
+      <img
+        src="/dark/charts.svg"
+        alt=""
+        className={cn("h-[190px]", "w-auto", "object-contain", "hidden dark:block")}
       />
     </div>
   );
@@ -393,7 +397,6 @@ function HeroCard({
   hoverRotate?: number;
 }) {
   const shouldReduceMotion = useReducedMotion();
-  const { theme } = useTheme();
 
   return (
     <motion.article
@@ -434,7 +437,7 @@ function HeroCard({
       />
 
       <img
-        src={theme === 'dark' ? '/dark/hero-card-blur.svg' : '/assets/images/hero-card-orange.svg'}
+        src="/assets/images/hero-card-orange.svg"
         alt=""
         className={cn(
           "pointer-events-none",
@@ -443,6 +446,20 @@ function HeroCard({
           "bottom-0",
           "z-0",
           "w-full",
+          "dark:hidden",
+        )}
+      />
+      <img
+        src="/dark/hero-card-blur.svg"
+        alt=""
+        className={cn(
+          "pointer-events-none",
+          "absolute",
+          "inset-x-0",
+          "bottom-0",
+          "z-0",
+          "w-full",
+          "hidden dark:block",
         )}
       />
       {type === "button" ? <HeroButtonArt /> : null}
@@ -837,7 +854,6 @@ function WideServiceCard() {
 }
 
 export function LiteralHomePage({ data }: { data?: HomePageData }) {
-  const { theme } = useTheme();
   const navLinksList = data?.nav?.links?.length
     ? data.nav.links.map((link) => [link.label, link.href] as const)
     : defaultNavLinks;
@@ -900,9 +916,15 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
             )}
           >
             <img
-              src={theme === 'dark' ? '/dark/home-hero-blur.svg' : '/light/home-hero-blur.svg'}
+              src="/light/home-hero-blur.svg"
               alt=""
-              className={cn("h-full", "w-full", "object-cover", theme === 'dark' ? "object-center" : "object-top")}
+              className={cn("absolute", "inset-0", "h-full", "w-full", "object-cover", "object-top", "transition-opacity", "duration-500", "dark:opacity-0")}
+              loading="eager"
+            />
+            <img
+              src="/dark/home-hero-blur.svg"
+              alt=""
+              className={cn("absolute", "inset-0", "h-full", "w-full", "object-cover", "object-center", "transition-opacity", "duration-500", "opacity-0 dark:opacity-100")}
               loading="eager"
             />
           </div>
