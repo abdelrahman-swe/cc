@@ -107,7 +107,7 @@ export function HeroSection(props: any) {
           "absolute",
           "left-0",
           "right-0",
-          "top-[330px]",
+          "top-[400px]",
           "z-0",
           "w-full",
           "h-[500px]",
