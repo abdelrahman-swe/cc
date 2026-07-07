@@ -19,7 +19,7 @@ const nextConfig = {
     ]
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'iconsax-reactjs'],
     optimizeCss: true
   },
   poweredByHeader: false,

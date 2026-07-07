@@ -140,12 +140,7 @@ export function HeroSection(props: any) {
           "lg:px-0",
         )}
       >
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          className={cn("mx-auto", "w-full", "max-w-[760px]")}
-        >
+        <div className={cn("mx-auto", "w-full", "max-w-[760px]")}>
           <h1
             className={cn(
               "text-[32px]",
@@ -196,7 +191,7 @@ export function HeroSection(props: any) {
           >
             {subtitle}
           </p>
-        </motion.div>
+        </div>
 
         <motion.div
           variants={staggerContainer}
