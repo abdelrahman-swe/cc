@@ -466,7 +466,7 @@ export interface Page {
     ogImage?: (string | null) | Media;
     twitterCard?: ('summary' | 'summary_large_image') | null;
     /**
-     * Set a custom canonical URL if this content is duplicated from another page.
+     * Set a custom canonical URL if this content is duplicated from another page. Must be an absolute URL (https://...).
      */
     canonicalUrl?: string | null;
     /**
@@ -545,7 +545,7 @@ export interface Service {
     ogImage?: (string | null) | Media;
     twitterCard?: ('summary' | 'summary_large_image') | null;
     /**
-     * Set a custom canonical URL if this content is duplicated from another page.
+     * Set a custom canonical URL if this content is duplicated from another page. Must be an absolute URL (https://...).
      */
     canonicalUrl?: string | null;
     /**
