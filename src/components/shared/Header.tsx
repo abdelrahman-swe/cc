@@ -75,11 +75,15 @@ export function Header({ brand, links, cta }: HeaderProps) {
           <img
             src="/dark/logo.svg"
             alt={brand || "Code Clouders"}
+            width={160}
+            height={39}
             className={cn("h-[39px]", "w-auto", "cursor-pointer", "dark:hidden")}
           />
           <img
             src="/light/logo.svg"
             alt={brand || "Code Clouders"}
+            width={160}
+            height={39}
             className={cn("h-[39px]", "w-auto", "cursor-pointer", "hidden dark:block")}
           />
         </Link>

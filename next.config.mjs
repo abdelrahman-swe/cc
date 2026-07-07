@@ -18,6 +18,9 @@ const nextConfig = {
       }
     ]
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion']
+  },
   poweredByHeader: false,
   async rewrites() {
     return [

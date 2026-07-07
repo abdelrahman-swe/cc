@@ -101,8 +101,18 @@ export const seoFields: Field[] = [
     name: 'canonicalUrl',
     label: 'Canonical URL',
     type: 'text',
+    validate: (value: string | null | undefined) => {
+      if (!value) return true
+      try {
+        const parsed = new URL(value)
+        if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return true
+        return 'Canonical URL must start with http:// or https://'
+      } catch {
+        return 'Please enter a valid absolute URL (e.g. https://example.com/page)'
+      }
+    },
     admin: {
-      description: 'Set a custom canonical URL if this content is duplicated from another page.'
+      description: 'Set a custom canonical URL if this content is duplicated from another page. Must be an absolute URL (https://...).'
     }
   },
   {

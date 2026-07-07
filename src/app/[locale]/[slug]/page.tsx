@@ -10,6 +10,15 @@ import { RenderBlocks } from '@/features/pages/components/RenderBlocks'
 import { resolveBlocks } from '@/lib/repositories/blocks.resolver'
 import { routing, type Locale } from '@/i18n/routing'
 
+const isValidUrl = (url: string) => {
+  try {
+    const parsed = new URL(url)
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
 export const revalidate = 3600 // Caches and revalidates pages every hour
 
 const fallbackLocale = routing.defaultLocale
@@ -80,6 +89,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const title = seo.metaTitle || page.title || 'CodeClouders'
   const description = seo.metaDescription || 'Digital products that support business growth'
 
+  const canonical = seo.canonicalUrl && isValidUrl(seo.canonicalUrl) ? seo.canonicalUrl : undefined
+
   return {
     title,
     description,
@@ -88,7 +99,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       follow: !seo.noFollow
     },
     alternates: {
-      canonical: seo.canonicalUrl || undefined
+      canonical
     }
   }
 }
@@ -144,7 +155,9 @@ export default async function SlugPage({ params }: { params: Promise<{ locale: s
         links={(nav?.links as any[]) ?? undefined}
         cta={nav?.cta as any ?? undefined}
       />
-      <RenderBlocks blocks={layout} />
+      <main>
+        <RenderBlocks blocks={layout} />
+      </main>
       <Footer data={footer} />
     </div>
   )

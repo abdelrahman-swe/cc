@@ -50,6 +50,8 @@ export function FinalCtaSection(props: FinalCtaSectionProps) {
           <img
             src="/assets/mockups/mascot.png"
             alt=""
+            width={460}
+            height={590}
             className={cn('pointer-events-none', 'absolute', 'bottom-[-100px]', 'left-0', 'z-10', 'hidden', 'w-[340px]', 'md:block', 'lg:bottom-[-210px]', 'lg:left-[30px]', 'lg:w-[460px]')}
             loading="lazy"
           />
@@ -65,9 +67,9 @@ export function FinalCtaSection(props: FinalCtaSectionProps) {
           {/* Grid Layout: Text on Right */}
           <div className={cn('relative', 'z-30', 'grid', 'w-full', 'items-center', 'gap-8', 'md:grid-cols-[1.2fr_0.8fr]')}>
             <div className={cn('flex', 'flex-col', 'items-center', 'text-center', 'md:items-start', 'md:text-right')}>
-              <h3 className={cn('font-brand', 'bg-white', 'px-4', 'py-2', 'border', 'rounded-3xl', 'text-brand-ink', 'mb-3')}>
+              <span className={cn('font-brand', 'bg-white', 'px-4', 'py-2', 'border', 'rounded-3xl', 'text-brand-ink', 'mb-3', 'inline-block')}>
                 لديك فكرة ؟
-              </h3>
+              </span>
               <h2 className={cn('font-serif-text', 'text-[30px]', 'font-brand-ink', 'leading-tight', 'text-white', 'md:text-[40px]', 'lg:text-[44px]')}>
                 {heading}
               </h2>

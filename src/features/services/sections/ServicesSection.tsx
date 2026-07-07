@@ -53,6 +53,7 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
         alt=""
         width={1024}
         height={1312}
+        sizes="(max-width: 640px) 310px, (max-width: 768px) 390px, 470px"
         className="pointer-events-none absolute left-1/2 top-[35px] sm:top-[50px] lg:top-[60px] z-0 h-[310px] sm:h-[390px] md:h-[450px] lg:h-[470px] w-auto -translate-x-1/2 object-contain"
         loading="lazy"
       />
@@ -114,6 +115,7 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
         alt=""
         width={1024}
         height={1312}
+        sizes="(max-width: 640px) 310px, (max-width: 768px) 390px, 470px"
         style={{ clipPath: 'url(#edited-differentone23-1782742739957)' }}
         className="pointer-events-none absolute left-1/2 top-[35px] sm:top-[50px] lg:top-[60px] z-20 h-[310px] sm:h-[390px] md:h-[450px] lg:h-[470px] w-auto -translate-x-1/2 object-contain"
         loading="lazy"
