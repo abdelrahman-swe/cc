@@ -387,6 +387,9 @@ export interface Page {
             sectionTag?: string | null;
             title?: string | null;
             description?: string | null;
+            /**
+             * Upload or select the story section image.
+             */
             image?: (string | null) | Media;
             id?: string | null;
             blockName?: string | null;
@@ -617,6 +620,9 @@ export interface CaseStudy {
 export interface Partner {
   id: string;
   name: string;
+  /**
+   * Select or upload the partner logo image
+   */
   logo?: (string | null) | Media;
   href?: string | null;
   order: number;
@@ -631,6 +637,9 @@ export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
+  /**
+   * Upload or select a blog post cover image.
+   */
   image?: (string | null) | Media;
   /**
    * Optional public or remote image URL used by the homepage card.

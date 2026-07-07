@@ -49,7 +49,7 @@ export function AboutStorySection({
 
   return (
     <section
-      className={cn('bg-surface', 'py-16', 'lg:py-24', 'transition-colors', 'duration-300')}
+      className={cn('bg-surface dark:bg-[#0b1124]', 'py-16', 'lg:py-24', 'transition-colors', 'duration-300')}
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
       <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'lg:px-0')}>
@@ -64,7 +64,7 @@ export function AboutStorySection({
           >
             <h2
               className={cn(
-                "text-[28px] sm:text-[34px] md:text-[38px] font-bold leading-[1.3] text-[#1e1e20]",
+                "text-[28px] sm:text-[34px] md:text-[38px] font-bold leading-[1.3] text-[#1e1e20] dark:text-white",
                 locale === "ar" ? "text-right" : "text-left",
               )}
               style={{ fontFamily: '"Thmanyah Serif Text", serif' }}
@@ -73,9 +73,8 @@ export function AboutStorySection({
             </h2>
 
             <div
-              className={cn('flex', 'flex-col', 'gap-4')}
+              className={cn('flex', 'flex-col', 'gap-4', 'text-[#5f6063] dark:text-[#d2daf1]')}
               style={{
-                color: "var(--Neutral-500, #5F6063)",
                 textAlign: "justify",
                 fontFamily: '"IBM Plex Sans Arabic", sans-serif',
                 fontSize: "20px",
@@ -125,7 +124,7 @@ export function AboutStorySection({
 
                 {/* Text Overlay */}
                 <span
-                  className={cn('absolute', 'text-[#301107]', 'font-semibold', 'whitespace-nowrap')}
+                  className={cn('absolute', 'text-[#301107] dark:text-white', 'font-semibold', 'whitespace-nowrap')}
                   style={{
                     fontFamily: '"IBM Plex Sans Arabic", sans-serif',
                     fontSize: "40px",
@@ -149,7 +148,7 @@ export function AboutStorySection({
               {/* Stack Layer 1 (Backmost/Bottom): Width 800px, bg: #FEEEE9 */}
               <div
                 className={cn(
-                  "absolute inset-y-0 rounded-[24px] bg-[#FEEEE9] transition-all duration-300",
+                  "absolute inset-y-0 rounded-[24px] bg-[#FEEEE9] dark:bg-[#913414] transition-all duration-300",
                   locale === "ar" ? "left-0 right-0" : "left-0 right-0",
                 )}
               />
@@ -157,7 +156,7 @@ export function AboutStorySection({
               {/* Stack Layer 2 (Middle): Width 785px (offset by 15px), bg: #FCDDD3 */}
               <div
                 className={cn(
-                  "absolute inset-y-0 rounded-[24px] bg-[#FCDDD3] transition-all duration-300",
+                  "absolute inset-y-0 rounded-[24px] bg-[#FCDDD3] dark:bg-[#F15722] transition-all duration-300",
                   locale === "ar"
                     ? "left-0 right-[15px]"
                     : "left-[15px] right-0",
@@ -173,14 +172,35 @@ export function AboutStorySection({
                     : "left-[30px] right-0",
                 )}
               >
-                <Image
-                  src={imageUrl}
-                  alt={title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className={cn('object-cover', 'transition-transform', 'duration-500', 'hover:scale-103')}
-                  priority
-                />
+                {imageUrl === "/assets/images/about-story.svg" ? (
+                  <>
+                    <Image
+                      src="/assets/images/about-story.svg"
+                      alt={title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className={cn('object-cover dark:hidden transition-transform duration-500 hover:scale-103')}
+                      priority
+                    />
+                    <Image
+                      src="/dark/imgFrame2147224745.png"
+                      alt={title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className={cn('object-cover hidden dark:block transition-transform duration-500 hover:scale-103')}
+                      priority
+                    />
+                  </>
+                ) : (
+                  <Image
+                    src={imageUrl}
+                    alt={title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className={cn('object-cover transition-transform duration-500 hover:scale-103')}
+                    priority
+                  />
+                )}
               </div>
             </div>
           </motion.div>

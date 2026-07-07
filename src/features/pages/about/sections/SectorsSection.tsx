@@ -90,7 +90,7 @@ export function SectorsSection({
   }
 
   return (
-    <section className={cn('bg-surface', 'py-16', 'lg:py-24', 'transition-colors', 'duration-300')} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <section className={cn('bg-surface dark:bg-[#0b1124]', 'py-16', 'lg:py-24', 'transition-colors', 'duration-300')} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'lg:px-0')}>
         
         {/* Title Container */}
@@ -118,15 +118,74 @@ export function SectorsSection({
         </motion.div>
 
         {/* Content Columns split */}
-        <div className={cn('grid', 'grid-cols-1', 'gap-12', 'lg:grid-cols-12', 'items-center')}>
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 w-full" dir="ltr">
           
+          {/* Left Mockup Showcase */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={motionViewport}
+            className="flex justify-center items-center max-w-full"
+          >
+            <div 
+              className={cn('relative', 'overflow-hidden', 'rounded-[24px] bg-[#c9a893] dark:bg-[#0d193b] dark:border dark:border-[#0a2268] max-w-full')}
+              style={{ width: '598px', height: '656px', flexShrink: 0 }}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4 }}
+                  className={cn('relative', 'size-full', 'flex', 'items-center', 'justify-center')}
+                >
+                  <div className={cn('relative', 'w-full', 'h-full')}>
+                    {activeIndex === 0 && activeImageUrl === '/assets/mockups/3aloolo.png' ? (
+                      <>
+                        <Image
+                          src="/assets/mockups/3aloolo.png"
+                          alt={activeSector?.name || ''}
+                          fill
+                          className="object-cover dark:hidden rounded-[24px]"
+                          sizes="598px"
+                          priority
+                        />
+                        <Image
+                          src="/dark/imgMockupScene4.png"
+                          alt={activeSector?.name || ''}
+                          fill
+                          className="object-cover hidden dark:block rounded-[24px]"
+                          sizes="598px"
+                          priority
+                        />
+                      </>
+                    ) : (
+                      <Image
+                        src={activeImageUrl}
+                        alt={activeSector?.name || ''}
+                        fill
+                        className="object-cover rounded-[24px]"
+                        sizes="598px"
+                        priority
+                      />
+                    )}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+
           {/* Right interactive Accordion List */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={motionViewport}
-            className={cn('lg:col-span-6', 'flex', 'flex-col', 'divide-y', 'divide-border', 'border-t', 'border-b', 'border-border', 'transition-colors', 'duration-300')}
+            className={cn('flex flex-col gap-4 p-6 rounded-[24px] border border-border dark:border-[#0A2268] bg-[#f9f9f9] dark:bg-[#0D193B] shadow-[inset_0_4px_4px_0_rgba(10,34,104,0.05)] dark:shadow-[inset_0_4px_4px_0_#0A2268] transition-colors duration-300 justify-end items-start max-w-full')}
+            style={{ width: '600px', height: '656px', flexShrink: 0 }}
+            dir={locale === 'ar' ? 'rtl' : 'ltr'}
           >
             {list.map((sector, index) => {
               const isActive = index === activeIndex
@@ -136,14 +195,18 @@ export function SectorsSection({
                   key={index}
                   onMouseEnter={() => setActiveIndex(index)}
                   className={cn(
-                    "w-full flex items-center justify-between py-6 px-4 transition-colors duration-200 cursor-pointer",
+                    "w-full flex items-center justify-between py-5 px-4 border-b border-[#eaeaeb] dark:border-[#162347] last:border-b-0 transition-colors duration-200 cursor-pointer",
                     locale === 'ar' ? "text-right" : "text-left"
                   )}
                 >
                   {/* Sector Title */}
                   <span 
+                    className={cn(
+                      isActive 
+                        ? 'text-[#F4794E] dark:text-[#f15722]' 
+                        : 'text-[#243A77] dark:text-[#c1cae5]'
+                    )}
                     style={{
-                      color: isActive ? 'var(--Primary-400, #F4794E)' : 'var(--Neutral-800, #243A77)',
                       textAlign: locale === 'ar' ? 'right' : 'left',
                       fontFamily: '"Thmanyah Serif Text", serif',
                       fontSize: '28px',
@@ -158,20 +221,16 @@ export function SectorsSection({
 
                   {/* Circle Arrow Indicator */}
                   <div 
-                    className={cn('flex', 'items-center', 'justify-center', 'transition-all', 'duration-300')}
-                    style={{
-                      width: '40px',
-                      height: '40px',
-                      aspectRatio: '1/1',
-                      borderRadius: '240px',
-                      background: isActive ? 'var(--primary-effect, #F4794E)' : 'var(--Neutral-100, #F9F9F9)',
-                      gap: '9.6px',
-                      flexShrink: 0
-                    }}
+                    className={cn(
+                      'flex items-center justify-center transition-all duration-300 shrink-0 w-10 h-10 rounded-full',
+                      isActive 
+                        ? 'bg-[#F4794E] dark:bg-[#f15722]' 
+                        : 'bg-[#F9F9F9] dark:bg-[#0e1730]'
+                    )}
                   >
                     <ArrowLeft className={cn(
                       'size-5 transition-transform duration-300',
-                      isActive ? 'text-white' : 'text-[#98999A]'
+                      isActive ? 'text-white' : 'text-[#98999A] dark:text-[#c1cae5]'
                     )}
                     style={{
                       transform: isActive 
@@ -183,42 +242,6 @@ export function SectorsSection({
                 </div>
               )
             })}
-          </motion.div>
-
-          {/* Left Mockup Showcase */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={motionViewport}
-            className={cn('lg:col-span-6', 'flex', 'justify-center', 'items-center', 'w-full')}
-          >
-            <div 
-              className={cn('relative', 'overflow-hidden', 'rounded-[24px]')}
-              style={{ width: '598px', height: '656px', flexShrink: 0 }}
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  className={cn('relative', 'size-full', 'flex', 'items-center', 'justify-center')}
-                >
-                  <div className={cn('relative', 'w-full', 'h-full')}>
-                    <Image
-                      src={activeImageUrl}
-                      alt={activeSector?.name || ''}
-                      fill
-                      className="object-contain"
-                      sizes="598px"
-                      priority
-                    />
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
           </motion.div>
 
         </div>

@@ -42,7 +42,7 @@ export const CaseStudies: CollectionConfig = {
     },
     {
       name: 'image',
-      type: 'relationship',
+      type: 'upload',
       relationTo: 'media',
       admin: {
         condition: (_, siblingData) => siblingData?.displayMode !== 'livePreview',

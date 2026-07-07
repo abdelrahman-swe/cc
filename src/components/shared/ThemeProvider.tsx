@@ -34,17 +34,17 @@ export const themeInitScript = `
 (function(){
   try {
     var t = localStorage.getItem('theme');
-    if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-    } else {
+    if (t === 'light') {
       document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
     }
   } catch(e){}
 })();
 `;
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("light");
+  const [theme, setThemeState] = useState<Theme>("dark");
 
   useEffect(() => {
     // Read initial theme from DOM (set by inline script) or localStorage

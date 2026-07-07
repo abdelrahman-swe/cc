@@ -23,8 +23,11 @@ export const Partners: CollectionConfig = {
     },
     {
       name: 'logo',
-      type: 'relationship',
-      relationTo: 'media'
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Select or upload the partner logo image'
+      }
     },
     {
       name: 'href',

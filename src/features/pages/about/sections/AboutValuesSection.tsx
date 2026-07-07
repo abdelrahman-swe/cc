@@ -88,42 +88,42 @@ export function AboutValuesSection({ cards }: AboutValuesSectionProps) {
     switch (bgType) {
       case 'navy':
         return {
-          cardBg: 'bg-[#243A77]',
+          cardBg: 'bg-[#243A77] dark:bg-[#162347]',
           titleColor: 'text-white',
           descColor: 'text-[#f9f9f9]/80',
-          iconWrapBg: 'bg-[#1D2E5F]',
+          iconWrapBg: 'bg-[#1D2E5F] dark:bg-[#1d2e5f]',
           iconColor: 'text-white'
         }
       case 'orange':
         return {
-          cardBg: 'bg-[#F4794E]',
+          cardBg: 'bg-[#F4794E] dark:bg-[#f15722]',
           titleColor: 'text-white',
           descColor: 'text-[#f9f9f9]/80',
-          iconWrapBg: 'bg-[#C1461B]',
+          iconWrapBg: 'bg-[#C1461B] dark:bg-[#c1461b]',
           iconColor: 'text-white'
         }
       case 'light-orange':
         return {
-          cardBg: 'bg-[#FFF2EF] dark:bg-[#2a1610] border border-[#fcddd3]/40 dark:border-[#F15722]/20',
-          titleColor: 'text-foreground',
-          descColor: 'text-foreground-muted',
-          iconWrapBg: 'bg-[#FCDDD3] dark:bg-[#F15722]/20',
-          iconColor: 'text-[#F15722]'
+          cardBg: 'bg-[#FFF2EF] dark:bg-[#0e1730] border border-[#fcddd3]/40 dark:border-[#162347]',
+          titleColor: 'text-foreground dark:text-white',
+          descColor: 'text-foreground-muted dark:text-[#eaeaeb]',
+          iconWrapBg: 'bg-[#FCDDD3] dark:bg-[#162347]',
+          iconColor: 'text-[#F15722] dark:text-white'
         }
       case 'lavender':
       default:
         return {
-          cardBg: 'bg-[#EEF2FF] dark:bg-[#0d1a3a] border border-[#d2daf1]/40 dark:border-white/10',
-          titleColor: 'text-foreground',
-          descColor: 'text-foreground-muted',
-          iconWrapBg: 'bg-[rgba(210,218,241,0.5)] dark:bg-white/10',
-          iconColor: 'text-[#243A77] dark:text-foreground-muted'
+          cardBg: 'bg-[#EEF2FF] dark:bg-[#0e1730] border border-[#d2daf1]/40 dark:border-[#162347]',
+          titleColor: 'text-foreground dark:text-white',
+          descColor: 'text-foreground-muted dark:text-[#eaeaeb]',
+          iconWrapBg: 'bg-[rgba(210,218,241,0.5)] dark:bg-[#162347]',
+          iconColor: 'text-[#243A77] dark:text-white'
         }
     }
   }
 
   return (
-    <section className="bg-surface py-16 lg:py-20 transition-colors duration-300" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <section className="bg-surface dark:bg-[#0b1124] py-16 lg:py-20 transition-colors duration-300" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className="mx-auto max-w-[1240px] px-5 lg:px-0">
         <motion.div
           variants={staggerContainer}

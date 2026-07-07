@@ -21,8 +21,11 @@ export function SectionTag({ children, variant = 'default' }: SectionTagProps) {
           'rounded-[32px]',
           'border',
           'border-border-subtle',
+          'dark:border-[#162347]',
           'bg-surface-elevated',
+          'dark:bg-[#0E1730]',
           'text-foreground-muted',
+          'dark:text-[#A9BEDB]',
           'transition-colors',
           'duration-300'
         )}

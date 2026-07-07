@@ -27,8 +27,9 @@ export const AboutStoryBlock: Block = {
     },
     {
       name: 'image',
-      type: 'relationship',
-      relationTo: 'media'
+      type: 'upload',
+      relationTo: 'media',
+      admin: { description: 'Upload or select the story section image.' }
     }
   ]
 }

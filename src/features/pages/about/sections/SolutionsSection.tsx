@@ -52,7 +52,7 @@ export function SolutionsSection({
   const list = items && items.length > 0 ? items : defaultItems
 
   return (
-    <section className="bg-surface py-16 lg:py-24 transition-colors duration-300" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <section className="bg-surface dark:bg-[#0b1124] py-16 lg:py-24 transition-colors duration-300" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className="mx-auto max-w-[1240px] px-5 text-center lg:px-0">
         
         {/* Top Header */}
@@ -65,9 +65,8 @@ export function SolutionsSection({
         >
           <SectionTag variant="about">{sectionTag}</SectionTag>
           <h2 
-            className="mx-auto max-w-[780px] text-center"
+            className="mx-auto max-w-[780px] text-center text-[#243A77] dark:text-white"
             style={{
-              color: 'var(--Sec-500, #243A77)',
               textAlign: 'center',
               fontFamily: '"Thmanyah Serif Text", serif',
               fontSize: '32px',
@@ -93,7 +92,7 @@ export function SolutionsSection({
               key={index}
               variants={fadeUp}
               whileHover={{ scale: 1.03, y: -2 }}
-              className="flex h-[56px] items-center gap-3 rounded-[12px] border border-[#eaeaeb] bg-[#f9f9f9] px-5 py-3 shadow-[0_4px_12px_rgba(0,0,0,0.02)] transition-shadow duration-200 hover:shadow-[0_12px_24px_rgba(36,58,119,0.06)]"
+              className="flex h-[56px] items-center gap-3 rounded-[12px] border border-[#eaeaeb] dark:border-[#0a2268] bg-[#f9f9f9] dark:bg-[#0d193b] px-5 py-3 shadow-[0_4px_12px_rgba(0,0,0,0.02)] dark:shadow-[inset_0px_4px_4px_0px_#0a2268] transition-shadow duration-200 hover:shadow-[0_12px_24px_rgba(36,58,119,0.06)] hover:dark:shadow-[0_12px_24px_rgba(10,34,104,0.3)]"
             >
               {/* Gemini Star Icon */}
               <div className="size-6 text-[#f4794e] shrink-0">
@@ -104,7 +103,7 @@ export function SolutionsSection({
 
               {/* Gradient text */}
               <span
-                className="font-medium text-[16px] sm:text-[18px] leading-normal bg-clip-text bg-gradient-to-r from-[#f4794e] to-[#243a77] text-transparent"
+                className="font-medium text-[16px] sm:text-[18px] leading-normal bg-clip-text bg-gradient-to-r from-[#f4794e] to-[#243a77] dark:to-white text-transparent"
                 style={{ fontFamily: '"IBM Plex Sans Arabic", sans-serif' }}
               >
                 {item.name}

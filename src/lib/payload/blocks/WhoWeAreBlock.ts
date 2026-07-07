@@ -39,7 +39,7 @@ export const WhoWeAreBlock: Block = {
         {
           name: 'iconMedia',
           label: 'Icon Upload',
-          type: 'relationship',
+          type: 'upload',
           relationTo: 'media'
         },
         { name: 'title', type: 'text', required: true },

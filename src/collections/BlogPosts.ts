@@ -29,8 +29,11 @@ export const BlogPosts: CollectionConfig = {
     },
     {
       name: 'image',
-      type: 'relationship',
-      relationTo: 'media'
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Upload or select a blog post cover image.'
+      }
     },
     {
       name: 'imageUrl',

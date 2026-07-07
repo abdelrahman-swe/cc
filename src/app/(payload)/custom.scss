@@ -1,17 +1,618 @@
-/* Custom overrides for Payload Admin Dashboard brand styling */
+/* =========================================================
+   CodeClouders Admin Dashboard — Premium Design System
+   ========================================================= */
 
+/* ── 1. BRAND TOKENS ──────────────────────────────────── */
 :root {
-  --theme-primary: #F15722 !important;
-  --theme-primary-hover: #D04314 !important;
-  --theme-success: #243A77 !important;
-  
-  --theme-input-focus-border: #F15722 !important;
+  --cc-orange:        #F15722;
+  --cc-orange-hover:  #D04314;
+  --cc-orange-glow:   rgba(241, 87, 34, 0.18);
+  --cc-navy-900:      #0B1124;
+  --cc-navy-800:      #0E1730;
+  --cc-navy-750:      #0D193B;
+  --cc-navy-700:      #162347;
+  --cc-navy-600:      #0A2268;
+  --cc-navy-500:      #243A77;
+  --cc-white:         #FFFFFF;
+  --cc-gray-100:      rgba(255,255,255,0.06);
+  --cc-gray-200:      rgba(255,255,255,0.12);
+  --cc-transition:    150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Payload theme var overrides (global) */
+  --theme-primary:              #F15722 !important;
+  --theme-primary-hover:        #D04314 !important;
+  --theme-success:              #243A77 !important;
+  --theme-input-focus-border:   #F15722 !important;
 }
 
-/* Custom styling for the active links in the admin sidebar navigation */
-.nav-group__link--active, 
-.nav__link--active,
-.sidebar .nav a.active {
-  color: #F15722 !important;
-  border-right: 3px solid #F15722 !important;
+/* ── 2. LIGHT THEME ───────────────────────────────────── */
+[data-theme='light'], :root {
+  --theme-bg:                 #F4F6FF !important;
+  --theme-text:               #0B1124 !important;
+  --theme-elevation-0:        #FFFFFF !important;
+  --theme-elevation-50:       #F9FAFF !important;
+  --theme-elevation-100:      #EEF2FF !important;
+  --theme-elevation-150:      #E4EAFF !important;
+  --theme-elevation-200:      #D2DAF1 !important;
+  --theme-border-color:       #D2DAF1 !important;
+  --theme-input-bg:           #FFFFFF !important;
+  --theme-input-border-color: #D2DAF1 !important;
+}
+
+/* ── 3. DARK THEME ────────────────────────────────────── */
+[data-theme='dark'] {
+  --theme-bg:                 #0B1124 !important;
+  --theme-text:               #FFFFFF !important;
+  --theme-elevation-0:        #0B1124 !important;
+  --theme-elevation-50:       #0E1730 !important;
+  --theme-elevation-100:      #0D193B !important;
+  --theme-elevation-150:      #162347 !important;
+  --theme-elevation-200:      #0A2268 !important;
+  --theme-elevation-300:      #243A77 !important;
+  --theme-border-color:       #162347 !important;
+  --theme-input-bg:           #0E1730 !important;
+  --theme-input-border-color: #162347 !important;
+}
+
+/* ── 4. APP HEADER ────────────────────────────────────── */
+[data-theme='dark'] .app-header {
+  background: rgba(11, 17, 36, 0.9) !important;
+  border-bottom: 1px solid var(--cc-navy-700) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+[data-theme='dark'] .step-nav {
+  color: rgba(255,255,255,0.45) !important;
+}
+[data-theme='dark'] .step-nav a {
+  color: rgba(255,255,255,0.6) !important;
+  transition: color var(--cc-transition) !important;
+}
+[data-theme='dark'] .step-nav a:hover {
+  color: var(--cc-white) !important;
+}
+[data-theme='dark'] .step-nav__home svg {
+  fill: rgba(255,255,255,0.5) !important;
+}
+
+/* ── 5. SIDEBAR / NAV ─────────────────────────────────── */
+[data-theme='dark'] .nav {
+  background: linear-gradient(180deg, #0E1730 0%, #0B1124 100%) !important;
+  border-right: 1px solid var(--cc-navy-700) !important;
+}
+
+[data-theme='dark'] .nav__header {
+  border-bottom: 1px solid var(--cc-navy-700) !important;
+}
+
+[data-theme='dark'] .nav-group__label {
+  color: rgba(255,255,255,0.3) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+[data-theme='dark'] .nav__link {
+  color: rgba(255,255,255,0.6) !important;
+  border-radius: 10px !important;
+  margin: 2px 8px !important;
+  padding: 9px 12px !important;
+  transition: background var(--cc-transition), color var(--cc-transition) !important;
+  position: relative !important;
+}
+[data-theme='dark'] .nav__link:hover {
+  background: var(--cc-gray-100) !important;
+  color: var(--cc-white) !important;
+}
+[data-theme='dark'] .nav__link--active {
+  background: linear-gradient(135deg, rgba(241,87,34,0.18) 0%, rgba(241,87,34,0.06) 100%) !important;
+  color: var(--cc-orange) !important;
+  border: 1px solid rgba(241,87,34,0.28) !important;
+  font-weight: 600 !important;
+}
+[data-theme='dark'] .nav__link-indicator {
+  background: var(--cc-orange) !important;
+}
+
+[data-theme='dark'] .nav__log-out a,
+[data-theme='dark'] .nav__log-out button {
+  color: rgba(255,255,255,0.4) !important;
+  transition: color var(--cc-transition) !important;
+}
+[data-theme='dark'] .nav__log-out a:hover,
+[data-theme='dark'] .nav__log-out button:hover {
+  color: var(--cc-orange) !important;
+}
+
+/* ── 6. DOC HEADER ────────────────────────────────────── */
+[data-theme='dark'] .doc-header {
+  padding: 20px 28px 12px !important;
+}
+[data-theme='dark'] .doc-header__title {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--cc-white) !important;
+}
+
+/* ── 7. DOC CONTROLS BAR ──────────────────────────────── */
+[data-theme='dark'] .doc-controls__wrapper {
+  background: rgba(11,17,36,0.85) !important;
+  border-bottom: 1px solid var(--cc-navy-700) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+[data-theme='dark'] .doc-controls__meta {
+  color: rgba(255,255,255,0.45) !important;
+  font-size: 12px !important;
+}
+[data-theme='dark'] .doc-controls__value {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* ── 8. FORM / DOCUMENT FIELDS ────────────────────────── */
+[data-theme='dark'] .collection-edit__form,
+[data-theme='dark'] .document-fields__fields {
+  padding: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+/* Top-level field cards ONLY — do not re-style nested fields inside arrays/groups */
+[data-theme='dark'] .render-fields > .field-type {
+  background: linear-gradient(145deg, #0E1730 0%, #0D193B 100%) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 14px !important;
+  padding: 20px 24px !important;
+  transition: border-color var(--cc-transition), box-shadow var(--cc-transition) !important;
+  overflow: visible !important;
+}
+[data-theme='dark'] .render-fields > .field-type:focus-within {
+  border-color: rgba(241,87,34,0.38) !important;
+  box-shadow: 0 0 0 3px rgba(241,87,34,0.08) !important;
+}
+
+/* Nested field-type inside array rows — lighter, no double-card */
+[data-theme='dark'] .array-field__row .field-type,
+[data-theme='dark'] .group-field__wrap .field-type,
+[data-theme='dark'] .tabs-field .field-type,
+[data-theme='dark'] .blocks-field__block .field-type {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Array row wrapper */
+[data-theme='dark'] .array-field__row {
+  background: var(--cc-navy-900) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 10px !important;
+  padding: 16px !important;
+  margin-bottom: 8px !important;
+}
+
+/* Block row wrapper */
+[data-theme='dark'] .blocks-field__block {
+  background: var(--cc-navy-900) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin-bottom: 12px !important;
+}
+
+/* Field labels */
+[data-theme='dark'] .field-label,
+[data-theme='dark'] label.field-label {
+  color: rgba(255,255,255,0.45) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.09em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+[data-theme='dark'] .field-label--has-error {
+  color: #FF6B6B !important;
+}
+[data-theme='dark'] .required {
+  color: var(--cc-orange) !important;
+  margin-left: 3px !important;
+}
+
+/* Text/number inputs — target broadly without .field-type__wrap */
+[data-theme='dark'] .field-type input:not([type='checkbox']):not([type='radio']):not([type='file']),
+[data-theme='dark'] .field-type textarea,
+[data-theme='dark'] input.field__input,
+[data-theme='dark'] textarea.field__input {
+  background: var(--cc-navy-900) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 10px !important;
+  color: var(--cc-white) !important;
+  padding: 11px 14px !important;
+  font-size: 14px !important;
+  transition: border-color var(--cc-transition), box-shadow var(--cc-transition) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+[data-theme='dark'] .field-type input:focus,
+[data-theme='dark'] .field-type textarea:focus {
+  border-color: var(--cc-orange) !important;
+  box-shadow: 0 0 0 3px var(--cc-orange-glow) !important;
+  outline: none !important;
+}
+[data-theme='dark'] .field-type input::placeholder,
+[data-theme='dark'] .field-type textarea::placeholder {
+  color: rgba(255,255,255,0.22) !important;
+}
+
+/* ── UPLOAD FIELD IMAGE PREVIEW ───────────────────────── */
+[data-theme='dark'] .file-field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+/* Thumbnail shown after selection */
+[data-theme='dark'] .upload-relationship-details,
+[data-theme='dark'] .file-details {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  background: var(--cc-navy-900) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+}
+
+/* The actual image thumbnail */
+[data-theme='dark'] .upload-relationship-details img,
+[data-theme='dark'] .file-details img,
+[data-theme='dark'] .thumbnail img {
+  width: 72px !important;
+  height: 72px !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+  background: var(--cc-navy-800) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  padding: 6px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Thumbnail in list of options (list view) */
+[data-theme='dark'] .thumbnail {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  background: var(--cc-navy-800) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+/* Upload choose button */
+[data-theme='dark'] .upload-relationship__list {
+  display: flex !important;
+  gap: 8px !important;
+}
+
+[data-theme='dark'] .file-field__upload {
+  background: linear-gradient(135deg, rgba(241,87,34,0.05) 0%, rgba(11,17,36,0) 100%) !important;
+  border: 2px dashed var(--cc-navy-600) !important;
+  border-radius: 14px !important;
+  padding: 24px !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  transition: border-color var(--cc-transition), background var(--cc-transition) !important;
+}
+[data-theme='dark'] .file-field__upload:hover {
+  border-color: var(--cc-orange) !important;
+  background: linear-gradient(135deg, rgba(241,87,34,0.1) 0%, rgba(241,87,34,0.02) 100%) !important;
+}
+
+/* ── 9. RELATIONSHIP / IMAGE SELECTOR ───────────────── */
+
+/* The select control bar */
+[data-theme='dark'] .relationship .rs__control,
+[data-theme='dark'] .relationship .react-select__control {
+  background: var(--cc-navy-900) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 10px !important;
+  min-height: 46px !important;
+  cursor: pointer !important;
+  transition: border-color var(--cc-transition), box-shadow var(--cc-transition) !important;
+}
+[data-theme='dark'] .relationship .rs__control:hover,
+[data-theme='dark'] .relationship .rs__control--is-focused,
+[data-theme='dark'] .relationship .react-select__control--is-focused {
+  border-color: var(--cc-orange) !important;
+  box-shadow: 0 0 0 3px var(--cc-orange-glow) !important;
+}
+
+/* Placeholder text */
+[data-theme='dark'] .rs__placeholder {
+  color: rgba(255,255,255,0.28) !important;
+  font-size: 14px !important;
+}
+
+/* Dropdown container */
+[data-theme='dark'] .rs__menu,
+[data-theme='dark'] .react-select__menu {
+  background: var(--cc-navy-750) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.3) !important;
+  overflow: hidden !important;
+  margin-top: 8px !important;
+  z-index: 100 !important;
+}
+[data-theme='dark'] .rs__menu-list {
+  padding: 8px !important;
+  max-height: 320px !important;
+}
+
+/* Option items — make them feel like gallery thumbnails */
+[data-theme='dark'] .rs__option {
+  background: transparent !important;
+  border-radius: 8px !important;
+  color: rgba(255,255,255,0.72) !important;
+  padding: 10px 14px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-bottom: 2px !important;
+  transition: background var(--cc-transition), color var(--cc-transition) !important;
+  position: relative !important;
+}
+
+/* Thumbnail-like indicator on left */
+[data-theme='dark'] .rs__option::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cc-navy-600);
+  flex-shrink: 0;
+  transition: background var(--cc-transition);
+}
+
+[data-theme='dark'] .rs__option:hover,
+[data-theme='dark'] .rs__option--is-focused {
+  background: var(--cc-gray-100) !important;
+  color: var(--cc-white) !important;
+}
+[data-theme='dark'] .rs__option:hover::before,
+[data-theme='dark'] .rs__option--is-focused::before {
+  background: var(--cc-orange) !important;
+}
+
+[data-theme='dark'] .rs__option--is-selected {
+  background: linear-gradient(135deg, rgba(241,87,34,0.18) 0%, rgba(241,87,34,0.06) 100%) !important;
+  color: var(--cc-orange) !important;
+  font-weight: 600 !important;
+}
+[data-theme='dark'] .rs__option--is-selected::before {
+  background: var(--cc-orange) !important;
+  box-shadow: 0 0 0 3px rgba(241,87,34,0.25) !important;
+}
+
+/* Selected value pill */
+[data-theme='dark'] .rs__single-value {
+  color: var(--cc-white) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+
+/* Dropdown chevron icon */
+[data-theme='dark'] .rs__indicator-separator {
+  background-color: var(--cc-navy-700) !important;
+}
+[data-theme='dark'] .rs__dropdown-indicator svg {
+  color: rgba(255,255,255,0.35) !important;
+  transition: color var(--cc-transition) !important;
+}
+[data-theme='dark'] .rs__control:hover .rs__dropdown-indicator svg {
+  color: var(--cc-orange) !important;
+}
+
+/* Clear button */
+[data-theme='dark'] .rs__clear-indicator svg {
+  color: rgba(255,255,255,0.3) !important;
+  transition: color var(--cc-transition) !important;
+}
+[data-theme='dark'] .rs__clear-indicator:hover svg {
+  color: #FF6B6B !important;
+}
+
+/* "Add new" / drawer toggler button */
+[data-theme='dark'] .relationship-add-new__add-button,
+[data-theme='dark'] .doc-drawer__toggler {
+  background: linear-gradient(135deg, rgba(241,87,34,0.14) 0%, rgba(241,87,34,0.04) 100%) !important;
+  border: 1px solid rgba(241,87,34,0.32) !important;
+  border-radius: 10px !important;
+  color: var(--cc-orange) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  padding: 8px 16px !important;
+  transition: all var(--cc-transition) !important;
+  cursor: pointer !important;
+  margin-top: 10px !important;
+}
+[data-theme='dark'] .relationship-add-new__add-button:hover,
+[data-theme='dark'] .doc-drawer__toggler:hover {
+  background: linear-gradient(135deg, rgba(241,87,34,0.26) 0%, rgba(241,87,34,0.12) 100%) !important;
+  box-shadow: 0 0 0 3px var(--cc-orange-glow) !important;
+}
+
+/* ── 10. BUTTONS ──────────────────────────────────────── */
+/* Primary (Save, Create, etc.) */
+.btn--style-primary,
+[data-theme='dark'] .btn--style-primary {
+  background: linear-gradient(135deg, var(--cc-orange) 0%, var(--cc-orange-hover) 100%) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  color: var(--cc-white) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  box-shadow: 0 4px 16px rgba(241,87,34,0.35) !important;
+  transition: all var(--cc-transition) !important;
+}
+.btn--style-primary:hover,
+[data-theme='dark'] .btn--style-primary:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 24px rgba(241,87,34,0.5) !important;
+}
+.btn--style-primary:active,
+[data-theme='dark'] .btn--style-primary:active {
+  transform: translateY(0) !important;
+}
+
+/* Secondary */
+[data-theme='dark'] .btn--style-secondary {
+  background: var(--cc-navy-800) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 10px !important;
+  color: rgba(255,255,255,0.72) !important;
+  font-weight: 500 !important;
+  transition: all var(--cc-transition) !important;
+}
+[data-theme='dark'] .btn--style-secondary:hover {
+  background: var(--cc-navy-700) !important;
+  border-color: var(--cc-navy-600) !important;
+  color: var(--cc-white) !important;
+}
+
+/* ── 11. TABLE / LIST VIEW ────────────────────────────── */
+[data-theme='dark'] .table-wrap table,
+[data-theme='dark'] table {
+  border-collapse: separate !important;
+  border-spacing: 0 4px !important;
+  width: 100% !important;
+}
+[data-theme='dark'] table thead th {
+  background: rgba(14,23,48,0.6) !important;
+  color: rgba(255,255,255,0.38) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid var(--cc-navy-700) !important;
+}
+[data-theme='dark'] table tbody tr {
+  background: linear-gradient(145deg, #0E1730 0%, #0D193B 100%) !important;
+  transition: background var(--cc-transition) !important;
+}
+[data-theme='dark'] table tbody tr:hover {
+  background: linear-gradient(145deg, #0D193B 0%, #162347 100%) !important;
+}
+[data-theme='dark'] table tbody td {
+  border-top: 1px solid var(--cc-navy-700) !important;
+  border-bottom: 1px solid var(--cc-navy-700) !important;
+  padding: 14px 16px !important;
+  color: rgba(255,255,255,0.78) !important;
+  vertical-align: middle !important;
+  font-size: 14px !important;
+}
+[data-theme='dark'] table tbody td:first-child {
+  border-left: 1px solid var(--cc-navy-700) !important;
+  border-radius: 10px 0 0 10px !important;
+}
+[data-theme='dark'] table tbody td:last-child {
+  border-right: 1px solid var(--cc-navy-700) !important;
+  border-radius: 0 10px 10px 0 !important;
+}
+
+/* Checkboxes */
+[data-theme='dark'] input[type='checkbox'] {
+  accent-color: var(--cc-orange) !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Sort buttons */
+[data-theme='dark'] .sort-column__button {
+  color: rgba(255,255,255,0.3) !important;
+  transition: color var(--cc-transition) !important;
+}
+[data-theme='dark'] .sort-column__button:hover,
+[data-theme='dark'] .sort-column__button--asc,
+[data-theme='dark'] .sort-column__button--desc {
+  color: var(--cc-orange) !important;
+}
+
+/* ── 12. DASHBOARD HOME CARDS ─────────────────────────── */
+[data-theme='dark'] .card {
+  background: linear-gradient(145deg, #0E1730 0%, #0D193B 100%) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25) !important;
+  transition: border-color var(--cc-transition), box-shadow var(--cc-transition), transform var(--cc-transition) !important;
+  overflow: hidden !important;
+}
+[data-theme='dark'] .card:hover {
+  border-color: var(--cc-navy-600) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── 13. POPUP MENUS ──────────────────────────────────── */
+[data-theme='dark'] .popup__content {
+  background: var(--cc-navy-750) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5) !important;
+  padding: 6px !important;
+}
+[data-theme='dark'] .popup-button-list__button {
+  border-radius: 8px !important;
+  color: rgba(255,255,255,0.72) !important;
+  padding: 9px 14px !important;
+  transition: background var(--cc-transition), color var(--cc-transition) !important;
+  font-size: 14px !important;
+}
+[data-theme='dark'] .popup-button-list__button:hover {
+  background: var(--cc-gray-100) !important;
+  color: var(--cc-white) !important;
+}
+
+/* ── 14. TOAST NOTIFICATIONS ──────────────────────────── */
+[data-theme='dark'] .toast__message {
+  background: var(--cc-navy-750) !important;
+  border: 1px solid var(--cc-navy-700) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+  color: var(--cc-white) !important;
+  padding: 14px 20px !important;
+}
+
+/* ── 15. SCROLLBAR ────────────────────────────────────── */
+[data-theme='dark'] * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cc-navy-700) transparent;
+}
+[data-theme='dark'] *::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+[data-theme='dark'] *::-webkit-scrollbar-track {
+  background: transparent;
+}
+[data-theme='dark'] *::-webkit-scrollbar-thumb {
+  background-color: var(--cc-navy-600);
+  border-radius: 99px;
+}
+[data-theme='dark'] *::-webkit-scrollbar-thumb:hover {
+  background-color: var(--cc-navy-500);
 }

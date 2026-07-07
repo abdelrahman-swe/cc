@@ -99,28 +99,20 @@ export function Header({ brand, links, cta }: HeaderProps) {
             const isActive = href === "/"
               ? pathname === "/"
               : pathname === href || pathname.startsWith(href + "/");
+            const linkClass = cn(
+              'transition duration-200 leading-normal hover:text-[#F15722] dark:hover:text-[#F15722]',
+              isActive 
+                ? 'text-[#F15722] font-bold text-[20px]' 
+                : 'text-[#414244] dark:text-white font-normal text-[18px]'
+            );
             return isHash ? (
               <a
                 key={label}
                 href={href}
-                className={cn('transition', 'duration-200', 'leading-normal')}
-                style={
-                  isActive
-                    ? {
-                        color: "var(--Primary-500, #F15722)",
-                        fontFamily:
-                          '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                        fontSize: "20px",
-                        fontWeight: 700,
-                      }
-                    : {
-                        color: "var(--Neutral-600, #414244)",
-                        fontFamily:
-                          '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                        fontSize: "18px",
-                        fontWeight: 400,
-                      }
-                }
+                className={linkClass}
+                style={{
+                  fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                }}
               >
                 {label}
               </a>
@@ -128,24 +120,10 @@ export function Header({ brand, links, cta }: HeaderProps) {
               <Link
                 key={label}
                 href={href}
-                className={cn('transition', 'duration-200', 'leading-normal')}
-                style={
-                  isActive
-                    ? {
-                        color: "var(--Primary-500, #F15722)",
-                        fontFamily:
-                          '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                        fontSize: "20px",
-                        fontWeight: 700,
-                      }
-                    : {
-                        color: "var(--Neutral-600, #414244)",
-                        fontFamily:
-                          '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                        fontSize: "18px",
-                        fontWeight: 400,
-                      }
-                }
+                className={linkClass}
+                style={{
+                  fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                }}
               >
                 {label}
               </Link>
@@ -208,29 +186,21 @@ export function Header({ brand, links, cta }: HeaderProps) {
                 const isActive = href === "/"
                   ? pathname === "/"
                   : pathname === href || pathname.startsWith(href + "/");
+                const linkClass = cn(
+                  'transition duration-200 leading-normal text-center py-2 w-full block hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl hover:text-[#F15722] dark:hover:text-[#F15722]',
+                  isActive 
+                    ? 'text-[#F15722] font-bold text-[20px]' 
+                    : 'text-[#414244] dark:text-white font-normal text-[18px]'
+                );
                 return isHash ? (
                   <a
                     key={label}
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className={cn('transition', 'duration-200', 'leading-normal', 'text-center', 'py-2', 'w-full', 'block', 'hover:bg-gray-50', 'rounded-xl')}
-                    style={
-                      isActive
-                        ? {
-                            color: "var(--Primary-500, #F15722)",
-                            fontFamily:
-                              '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                            fontSize: "20px",
-                            fontWeight: 700,
-                          }
-                        : {
-                            color: "var(--Neutral-600, #414244)",
-                            fontFamily:
-                              '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                            fontSize: "18px",
-                            fontWeight: 400,
-                          }
-                    }
+                    className={linkClass}
+                    style={{
+                      fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                    }}
                   >
                     {label}
                   </a>
@@ -239,24 +209,10 @@ export function Header({ brand, links, cta }: HeaderProps) {
                     key={label}
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className={cn('transition', 'duration-200', 'leading-normal', 'text-center', 'py-2', 'w-full', 'block', 'hover:bg-gray-50', 'rounded-xl')}
-                    style={
-                      isActive
-                        ? {
-                            color: "var(--Primary-500, #F15722)",
-                            fontFamily:
-                              '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                            fontSize: "20px",
-                            fontWeight: 700,
-                          }
-                        : {
-                            color: "var(--Neutral-600, #414244)",
-                            fontFamily:
-                              '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                            fontSize: "18px",
-                            fontWeight: 400,
-                          }
-                    }
+                    className={linkClass}
+                    style={{
+                      fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                    }}
                   >
                     {label}
                   </Link>

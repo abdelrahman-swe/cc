@@ -1,17 +1,7 @@
-/* Custom overrides for Payload Admin Dashboard brand styling */
+/* 
+   This file mirrors custom.scss — kept as a fallback CSS import.
+   The canonical source is src/app/(payload)/custom.scss
+   Edit that file; this can import or just duplicate the theme vars.
+*/
 
-:root {
-  --theme-primary: #F15722 !important;
-  --theme-primary-hover: #D04314 !important;
-  --theme-success: #243A77 !important;
-  
-  --theme-input-focus-border: #F15722 !important;
-}
-
-/* Custom styling for the active links in the admin sidebar navigation */
-.nav-group__link--active, 
-.nav__link--active,
-.sidebar .nav a.active {
-  color: #F15722 !important;
-  border-right: 3px solid #F15722 !important;
-}
+@import url('../(payload)/custom.scss');

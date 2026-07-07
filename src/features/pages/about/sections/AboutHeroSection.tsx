@@ -43,16 +43,46 @@ export function AboutHeroSection({
 
   return (
     <section
-      className="relative overflow-hidden bg-surface py-20 lg:py-32 transition-colors duration-300"
+      className="relative overflow-hidden bg-surface dark:bg-[#0b1124] py-20 lg:py-32 transition-colors duration-300"
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
-      {/* SVG Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+      {/* SVG/Image Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+        {/* Light Mode Background */}
         <img
-          src="/assets/images/about-hero.svg"
+          src="/light/about-hero.svg"
           alt=""
-          className="w-full h-full object-cover opacity-50"
+          className="w-full h-full object-cover opacity-50 transition-opacity duration-500 dark:opacity-0"
         />
+        {/* Dark Mode Background */}
+        <div className="absolute inset-0 opacity-0 transition-opacity duration-500 dark:opacity-100 bg-[#0b1124]">
+          {/* Right Ellipse */}
+          <div className="absolute right-0 top-[71px] w-[322px] h-[322px] translate-x-1/4">
+            <img src="/dark/imgEllipse468.svg" alt="" className="w-full h-full" />
+          </div>
+          {/* Left Ellipse */}
+          <div className="absolute left-[-4px] top-[71px] w-[322px] h-[322px]">
+            <img src="/dark/imgEllipse469.svg" alt="" className="w-full h-full" />
+          </div>
+          {/* Masked grid/network background */}
+          <div 
+            className="absolute left-1/2 bottom-[-114px] h-[540px] w-[1440px] -translate-x-1/2 opacity-20 bg-[#b2c1e5]" 
+            style={{ 
+              maskImage: 'url("/dark/img7073.png")',
+              maskRepeat: 'no-repeat',
+              maskPosition: 'center bottom',
+              maskSize: '1440px 540px',
+              WebkitMaskImage: 'url("/dark/img7073.png")',
+              WebkitMaskRepeat: 'no-repeat',
+              WebkitMaskPosition: 'center bottom',
+              WebkitMaskSize: '1440px 540px',
+            }} 
+          />
+          {/* Bottom transition overlay */}
+          <div className="absolute left-1/2 bottom-0 h-[175px] w-[1440px] -translate-x-1/2">
+            <img src="/dark/imgRectangle3.png" alt="" className="w-full h-full object-cover" />
+          </div>
+        </div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1240px] px-5 text-center lg:px-0">
@@ -66,9 +96,8 @@ export function AboutHeroSection({
           <SectionTag variant="about">{sectionTag}</SectionTag>
 
           <h1
-            className="text-center max-w-[980px]"
+            className="text-center max-w-[980px] text-[#243A77] dark:text-white"
             style={{
-              color: "var(--Sec-500, #243A77)",
               textAlign: "center",
               fontFamily: '"Thmanyah Serif Text", serif',
               fontSize: "32px",
@@ -88,9 +117,8 @@ export function AboutHeroSection({
           </h1>
 
           <p
-            className="text-center max-w-[866px]"
+            className="text-center max-w-[866px] text-[#808586] dark:text-[#d5d6d7]"
             style={{
-              color: "var(--Neutral-300, #808586)",
               textAlign: "center",
               fontFamily: '"IBM Plex Sans Arabic", sans-serif',
               fontSize: "24px",
