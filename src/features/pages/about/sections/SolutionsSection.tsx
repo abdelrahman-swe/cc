@@ -52,8 +52,8 @@ export function SolutionsSection({
   const list = items && items.length > 0 ? items : defaultItems
 
   return (
-    <section className="bg-surface dark:bg-[#0b1124] py-16 lg:py-24 transition-colors duration-300" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="mx-auto max-w-[1240px] px-5 text-center lg:px-0">
+    <section className="bg-surface dark:bg-[#0b1124] py-5 sm:py-16 lg:py-24 transition-colors duration-300" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-5 text-center lg:px-0">
         
         {/* Top Header */}
         <motion.div
@@ -65,11 +65,10 @@ export function SolutionsSection({
         >
           <SectionTag variant="about">{sectionTag}</SectionTag>
           <h2 
-            className="mx-auto max-w-[780px] text-center text-[#243A77] dark:text-white"
+            className="mx-auto max-w-[780px] text-center text-[#243A77] dark:text-white text-[18px] sm:text-[28px] lg:text-[32px]"
             style={{
               textAlign: 'center',
               fontFamily: '"Thmanyah Serif Text", serif',
-              fontSize: '32px',
               fontStyle: 'normal',
               fontWeight: 700,
               lineHeight: 'normal'
@@ -85,17 +84,17 @@ export function SolutionsSection({
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="mt-12 flex flex-wrap justify-center gap-4 max-w-[980px] mx-auto"
+          className="mt-12 grid grid-cols-3 gap-2 px-1 max-w-[980px] mx-auto sm:flex sm:flex-wrap sm:justify-center sm:gap-4"
         >
           {list.map((item, index) => (
             <motion.div
               key={index}
               variants={fadeUp}
               whileHover={{ scale: 1.03, y: -2 }}
-              className="flex h-[56px] items-center gap-3 rounded-[12px] border border-[#eaeaeb] dark:border-[#0a2268] bg-[#f9f9f9] dark:bg-[#0d193b] px-5 py-3 shadow-[0_4px_12px_rgba(0,0,0,0.02)] dark:shadow-[inset_0px_4px_4px_0px_#0a2268] transition-shadow duration-200 hover:shadow-[0_12px_24px_rgba(36,58,119,0.06)] hover:dark:shadow-[0_12px_24px_rgba(10,34,104,0.3)]"
+              className="flex min-h-[56px] h-auto items-center justify-center text-center gap-1.5 sm:gap-3 rounded-[12px] border border-[#eaeaeb] dark:border-[#0a2268] bg-[#f9f9f9] dark:bg-[#0d193b] px-1.5 py-2 sm:px-5 sm:py-3 shadow-[0_4px_12px_rgba(0,0,0,0.02)] dark:shadow-[inset_0px_4px_4px_0px_#0a2268] transition-shadow duration-200 hover:shadow-[0_12px_24px_rgba(36,58,119,0.06)] hover:dark:shadow-[0_12px_24px_rgba(10,34,104,0.3)]"
             >
               {/* Gemini Star Icon */}
-              <div className="size-6 text-[#f4794e] shrink-0">
+              <div className="size-3.5 sm:size-6 text-[#f4794e] shrink-0">
                 <svg className="size-full fill-current" viewBox="0 0 24 24">
                   <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
                 </svg>
@@ -103,7 +102,7 @@ export function SolutionsSection({
 
               {/* Gradient text */}
               <span
-                className="font-medium text-[16px] sm:text-[18px] leading-normal bg-clip-text bg-gradient-to-r from-[#f4794e] to-[#243a77] dark:to-white text-transparent"
+                className="font-medium text-[10px] sm:text-[16px] md:text-[18px] leading-tight bg-clip-text bg-gradient-to-r from-[#f4794e] to-[#243a77] dark:to-white text-transparent"
                 style={{ fontFamily: '"IBM Plex Sans Arabic", sans-serif' }}
               >
                 {item.name}

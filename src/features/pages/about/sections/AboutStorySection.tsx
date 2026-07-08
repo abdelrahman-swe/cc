@@ -49,10 +49,10 @@ export function AboutStorySection({
 
   return (
     <section
-      className={cn('bg-surface dark:bg-[#0b1124]', 'py-16', 'lg:py-24', 'transition-colors', 'duration-300')}
+      className={cn('bg-surface dark:bg-[#0b1124]', 'py-5 sm:py-16', 'lg:py-24', 'transition-colors', 'duration-300')}
       dir={locale === "ar" ? "rtl" : "ltr"}
     >
-      <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'lg:px-0')}>
+      <div className={cn('mx-auto', 'max-w-[1240px]', 'px-4', 'sm:px-5', 'lg:px-0')}>
         <div className={cn('grid', 'grid-cols-1', 'items-center', 'gap-12', 'lg:grid-cols-12')}>
           {/* Texts Column */}
           <motion.div
@@ -60,11 +60,11 @@ export function AboutStorySection({
             initial="hidden"
             whileInView="visible"
             viewport={motionViewport}
-            className={cn('lg:col-span-5', 'flex', 'flex-col', 'gap-6')}
+            className={cn('lg:col-span-5', 'flex', 'flex-col', 'gap-6', 'order-2 lg:order-1')}
           >
             <h2
               className={cn(
-                "text-[28px] sm:text-[34px] md:text-[38px] font-bold leading-[1.3] text-[#1e1e20] dark:text-white",
+                "text-[18px] sm:text-[34px] md:text-[38px] font-bold leading-[1.3] text-[#1e1e20] dark:text-white",
                 locale === "ar" ? "text-right" : "text-left",
               )}
               style={{ fontFamily: '"Thmanyah Serif Text", serif' }}
@@ -73,11 +73,10 @@ export function AboutStorySection({
             </h2>
 
             <div
-              className={cn('flex', 'flex-col', 'gap-4', 'text-[#5f6063] dark:text-[#d2daf1]')}
+              className={cn('flex', 'flex-col', 'gap-4', 'text-[#5f6063] dark:text-[#d2daf1]', 'text-[14px] sm:text-[16px] lg:text-[18px]')}
               style={{
                 textAlign: "justify",
                 fontFamily: '"IBM Plex Sans Arabic", sans-serif',
-                fontSize: "20px",
                 fontStyle: "normal",
                 fontWeight: 400,
                 lineHeight: "140%",
@@ -98,15 +97,15 @@ export function AboutStorySection({
             initial="hidden"
             whileInView="visible"
             viewport={motionViewport}
-            className={cn('relative', 'lg:col-span-7', 'flex', 'justify-center', 'w-full')}
+            className={cn('relative', 'lg:col-span-7', 'flex', 'justify-center', 'w-full', 'order-1 lg:order-2')}
           >
             {/* Card Container wrapper with stacked layers: Max Width 800px */}
             <div className={cn('relative', 'w-full', 'max-w-[800px]', 'h-[280px]', 'sm:h-[350px]', 'lg:h-[427px]')}>
               {/* Tilted Tag Badge: Centered mathematically on the corner of the card */}
               <div
                 className={cn(
-                  "absolute z-30 pointer-events-none select-none",
-                  locale === "ar" ? "top-0 left-0" : "top-0 right-0"
+                  "absolute z-30 pointer-events-none select-none scale-[0.55] xs:scale-75 sm:scale-100",
+                  locale === "ar" ? "top-0 left-3 sm:left-0 origin-top-left" : "top-0 right-3 sm:right-0 origin-top-right"
                 )}
               >
                 {/* The Orange Stripe */}

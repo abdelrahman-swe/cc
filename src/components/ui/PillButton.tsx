@@ -15,6 +15,8 @@ type PillButtonProps = {
   className?: string
   onClick?: () => void
   arrowDirection?: 'left' | 'right' | 'up' | 'down' | 'up-left' | 'up-right'
+  size?: 'sm' | 'md'
+  circleClassName?: string
 }
 
 export function PillButton({
@@ -23,7 +25,9 @@ export function PillButton({
   variant = 'nav',
   className = '',
   onClick,
-  arrowDirection
+  arrowDirection,
+  size = 'md',
+  circleClassName = ''
 }: PillButtonProps) {
   const locale = useLocale()
   const isRtl = locale === 'ar'
@@ -70,8 +74,13 @@ export function PillButton({
 
   const isHash = href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')
 
+  const isSm = size === 'sm'
+
   const commonClass = cn(
-    'cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold transition duration-300 hover:-translate-y-0.5 whitespace-nowrap',
+    'cta-pill group inline-flex items-center justify-between transition duration-300 hover:-translate-y-0.5 whitespace-nowrap',
+    isSm
+      ? 'h-10 rounded-[50px] ps-4 pe-1.5 text-[13px] font-bold gap-2'
+      : 'h-14 rounded-[50px] ps-6 pe-2 text-[15px] font-bold gap-4',
     shadows[variant],
     styles[variant],
     className
@@ -82,14 +91,16 @@ export function PillButton({
       <span>{children}</span>
       <span
         className={cn(
-          'cta-icon-wrap relative grid size-10 shrink-0 place-items-center rounded-full',
-          circle[variant]
+          'cta-icon-wrap relative grid shrink-0 place-items-center rounded-full',
+          isSm ? 'size-7' : 'size-10',
+          circle[variant],
+          circleClassName
         )}
         style={customStyle}
       >
-        <ArrowIcon aria-hidden className={cn('cta-icon-main', 'size-5')} />
+        <ArrowIcon aria-hidden className={cn('cta-icon-main', isSm ? 'size-3.5' : 'size-5')} />
         <span className="cta-icon-ghost">
-          <ArrowIcon aria-hidden className="size-5" />
+          <ArrowIcon aria-hidden className={isSm ? 'size-3.5' : 'size-5'} />
         </span>
       </span>
     </>

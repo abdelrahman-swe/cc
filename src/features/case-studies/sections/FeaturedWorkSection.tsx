@@ -98,7 +98,7 @@ export function FeaturedWorkSection(props: FeaturedWorkSectionProps) {
   const sectionId = props.customSectionId || 'featured-work'
 
   return (
-    <section id={sectionId} className={cn('bg-surface', 'py-16', 'lg:min-h-[937px]', 'transition-colors', 'duration-300')}>
+    <section id={sectionId} className={cn('bg-surface', 'py-5 sm:py-16', 'lg:min-h-[937px]', 'transition-colors', 'duration-300')}>
       <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>

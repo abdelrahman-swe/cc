@@ -36,19 +36,22 @@ export function HeroButtonArt() {
           "dark:bg-[#0B1124]",
         )}
       >
-        <PillButton
-          href="/contact"
-          className={cn(
-            "!h-[52px]",
-            "!ps-4",
-            "!pe-1",
-            "!text-[14px]",
-            "w-[150px]",
-            "shadow-md",
-          )}
-        >
-          طلب خدمة
-        </PillButton>
+        <div dir="rtl" className="w-[150px]">
+          <PillButton
+            href="/contact"
+            variant="nav"
+            className={cn(
+              "!h-[52px]",
+              "!ps-5",
+              "!pe-3",
+              "!text-[14px]",
+              "w-[150px]",
+              "shadow-md",
+            )}
+          >
+            طلب خدمة
+          </PillButton>
+        </div>
       </div>
     </div>
   );

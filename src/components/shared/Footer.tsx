@@ -187,7 +187,7 @@ export function Footer({ data }: FooterProps) {
     <footer
       className={cn(
         "bg-[#0E1730]",
-        "py-16",
+        "py-10 md:py-16",
         "text-white",
         "w-full",
         "relative",
@@ -198,11 +198,11 @@ export function Footer({ data }: FooterProps) {
         className={cn(
           "mx-auto",
           "max-w-[1240px]",
-          "px-5",
+          "px-4 sm:px-5",
           "lg:px-0",
           "flex",
           "flex-col",
-          "gap-10",
+          "gap-8 md:gap-10",
           "items-stretch",
         )}
       >
@@ -210,11 +210,10 @@ export function Footer({ data }: FooterProps) {
         <div
           className={cn(
             "grid",
-            "grid-cols-1",
-            "md:grid-cols-2",
+            "grid-cols-2",
             "lg:flex",
             "lg:flex-row",
-            "gap-12",
+            "gap-8 md:gap-12",
             "lg:gap-[134px]",
             "items-start",
             "justify-between",
@@ -315,6 +314,7 @@ export function Footer({ data }: FooterProps) {
               "items-end",
               "rtl:items-start",
               "ltr:items-end",
+              "col-span-2 lg:col-span-1",
               "flex-1",
             )}
           >
@@ -443,6 +443,7 @@ export function Footer({ data }: FooterProps) {
               "items-end",
               "rtl:items-start",
               "ltr:items-end",
+              "col-span-2 lg:col-span-1",
               "shrink-0",
             )}
           >

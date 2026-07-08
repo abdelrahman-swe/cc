@@ -92,16 +92,17 @@ export function HeroCardItem({
       className={cn(
         "group",
         "relative",
-        "h-[360px]",
+        "flex flex-col justify-end",
+        "h-[310px] sm:h-[330px] lg:h-[363.6px]",
+        "w-full max-w-[395.92px] mx-auto",
         "overflow-hidden",
-        "rounded-[50.5px]",
+        "rounded-[40px] lg:rounded-[50.5px]",
         "border-[2.02px]",
         "border-[#F1D5CC]",
         "bg-surface-card",
         "dark:bg-surface-card",
         "hero-card",
-        "px-6",
-        "py-10",
+        "px-6 pt-6 pb-6 sm:pb-8 lg:pb-10",
         "xl:px-8",
         "text-right",
         "shadow-[0_12px_32px_rgba(14,23,48,0.03)]",
@@ -138,9 +139,6 @@ export function HeroCardItem({
         className={cn(
           "relative",
           "z-10",
-          "mt-[170px]",
-          "sm:mt-[190px]",
-          "lg:mt-[218px]",
         )}
       >
         <h3

@@ -90,8 +90,8 @@ export function SectorsSection({
   }
 
   return (
-    <section className={cn('bg-surface dark:bg-[#0b1124]', 'py-16', 'lg:py-24', 'transition-colors', 'duration-300')} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'lg:px-0')}>
+    <section className={cn('bg-surface dark:bg-[#0b1124]', 'py-5 sm:py-16', 'lg:py-24', 'transition-colors', 'duration-300')} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <div className={cn('mx-auto', 'max-w-[1240px]', 'px-4', 'sm:px-5', 'lg:px-0')}>
         
         {/* Title Container */}
         <motion.div
@@ -103,11 +103,10 @@ export function SectorsSection({
         >
           <SectionTag variant="about">{sectionTag}</SectionTag>
           <h2 
-            className={cn('mb-12', 'text-center', 'text-[#243A77] dark:text-white')}
+            className={cn('mb-8 md:mb-12', 'text-center', 'text-[#243A77] dark:text-white', 'text-[18px] sm:text-[28px] lg:text-[32px]')}
             style={{
               textAlign: 'center',
               fontFamily: '"Thmanyah Serif Text", serif',
-              fontSize: '32px',
               fontStyle: 'normal',
               fontWeight: 700,
               lineHeight: 'normal'
@@ -126,11 +125,10 @@ export function SectorsSection({
             initial="hidden"
             whileInView="visible"
             viewport={motionViewport}
-            className="flex justify-center items-center max-w-full"
+            className="flex justify-center items-center w-full max-w-[598px]"
           >
             <div 
-              className={cn('relative', 'overflow-hidden', 'rounded-[24px] bg-[#c9a893] dark:bg-[#0d193b] dark:border dark:border-[#0a2268] max-w-full')}
-              style={{ width: '598px', height: '656px', flexShrink: 0 }}
+              className={cn('relative', 'overflow-hidden', 'rounded-[24px] bg-[#c9a893] dark:bg-[#0d193b] dark:border dark:border-[#0a2268] w-full aspect-[598/480]', 'h-[250px] sm:h-[350px] lg:h-[480px]')}
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -183,8 +181,7 @@ export function SectorsSection({
             initial="hidden"
             whileInView="visible"
             viewport={motionViewport}
-            className={cn('flex flex-col gap-4 p-6 rounded-[24px] border border-border dark:border-[#0A2268] bg-[#f9f9f9] dark:bg-[#0D193B] shadow-[inset_0_4px_4px_0_rgba(10,34,104,0.05)] dark:shadow-[inset_0_4px_4px_0_#0A2268] transition-colors duration-300 justify-end items-start max-w-full')}
-            style={{ width: '600px', height: '656px', flexShrink: 0 }}
+            className={cn('flex flex-col gap-2 p-4 md:p-6 rounded-[24px] border border-border dark:border-[#0A2268] bg-[#f9f9f9] dark:bg-[#0D193B] shadow-[inset_0_4px_4px_0_rgba(10,34,104,0.05)] dark:shadow-[inset_0_4px_4px_0_#0A2268] transition-colors duration-300 justify-center items-start w-full max-w-[600px] h-auto lg:h-[480px]')}
             dir={locale === 'ar' ? 'rtl' : 'ltr'}
           >
             {list.map((sector, index) => {
@@ -195,7 +192,7 @@ export function SectorsSection({
                   key={index}
                   onMouseEnter={() => setActiveIndex(index)}
                   className={cn(
-                    "w-full flex items-center justify-between py-5 px-4 border-b border-[#eaeaeb] dark:border-[#162347] last:border-b-0 transition-colors duration-200 cursor-pointer",
+                    "w-full flex items-center justify-between py-2.5 sm:py-3.5 px-3 border-b border-[#eaeaeb] dark:border-[#162347] last:border-b-0 transition-colors duration-200 cursor-pointer",
                     locale === 'ar' ? "text-right" : "text-left"
                   )}
                 >
@@ -204,12 +201,12 @@ export function SectorsSection({
                     className={cn(
                       isActive 
                         ? 'text-[#F4794E] dark:text-[#f15722]' 
-                        : 'text-[#243A77] dark:text-[#c1cae5]'
+                        : 'text-[#243A77] dark:text-[#c1cae5]',
+                      'text-[15px] sm:text-[18px] lg:text-[22px]'
                     )}
                     style={{
                       textAlign: locale === 'ar' ? 'right' : 'left',
                       fontFamily: '"Thmanyah Serif Text", serif',
-                      fontSize: '28px',
                       fontStyle: 'normal',
                       fontWeight: 700,
                       lineHeight: 'normal',
@@ -222,14 +219,14 @@ export function SectorsSection({
                   {/* Circle Arrow Indicator */}
                   <div 
                     className={cn(
-                      'flex items-center justify-center transition-all duration-300 shrink-0 w-10 h-10 rounded-full',
+                      'flex items-center justify-center transition-all duration-300 shrink-0 w-8 h-8 rounded-full',
                       isActive 
                         ? 'bg-[#F4794E] dark:bg-[#f15722]' 
                         : 'bg-[#F9F9F9] dark:bg-[#0e1730]'
                     )}
                   >
                     <ArrowLeft className={cn(
-                      'size-5 transition-transform duration-300',
+                      'size-4 transition-transform duration-300',
                       isActive ? 'text-white' : 'text-[#98999A] dark:text-[#c1cae5]'
                     )}
                     style={{

@@ -54,7 +54,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
   const ctaHref = cta?.href || "/contact";
 
   return (
-    <header className={cn("h-[100px]", "bg-surface", "relative", "transition-colors", "duration-300")}>
+    <header className={cn("h-[72px] lg:h-[100px]", "bg-surface", "relative", "transition-colors", "duration-300")}>
       <motion.nav
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -62,12 +62,11 @@ export function Header({ brand, links, cta }: HeaderProps) {
         className={cn(
           "mx-auto",
           "flex",
-          "h-14",
+          "h-full",
           "max-w-[1240px]",
           "items-center",
           "justify-between",
-          "px-5",
-          "pt-[22px]",
+          "px-4 sm:px-5",
           "lg:px-0",
         )}
       >
@@ -77,14 +76,14 @@ export function Header({ brand, links, cta }: HeaderProps) {
             alt={brand || "Code Clouders"}
             width={160}
             height={39}
-            className={cn("h-[39px]", "w-auto", "cursor-pointer", "dark:hidden")}
+            className={cn("h-[30px] lg:h-[39px]", "w-auto", "cursor-pointer", "dark:hidden")}
           />
           <img
             src="/light/logo.svg"
             alt={brand || "Code Clouders"}
             width={160}
             height={39}
-            className={cn("h-[39px]", "w-auto", "cursor-pointer", "hidden dark:block")}
+            className={cn("h-[30px] lg:h-[39px]", "w-auto", "cursor-pointer", "hidden dark:block")}
           />
         </Link>
         <div
@@ -134,44 +133,33 @@ export function Header({ brand, links, cta }: HeaderProps) {
             );
           })}
         </div>
+        
+        {/* Desktop Controls */}
         <div className={cn('hidden', 'lg:flex', 'items-center', 'gap-4')}>
           <ThemeToggle />
           <PillButton href={ctaHref} variant="blue">
             {ctaLabel}
           </PillButton>
-          {/* <button
-            onClick={() => switchLocale(currentLocale === 'ar' ? 'en' : 'ar')}
-            className={cn(
-              'flex',
-              'h-10',
-              'px-4',
-              'items-center',
-              'justify-center',
-              'rounded-full',
-              'border',
-              'border-[#E8EDF6]',
-              'text-[#243A77]',
-              'font-medium',
-              'text-[15px]',
-              'transition-all',
-              'duration-200',
-              'hover:bg-[#FCDDD3]/10',
-              'hover:border-[#F15722]/50',
-              'hover:text-[#F15722]'
-            )}
-          >
-            {currentLocale === 'ar' ? 'English' : 'العربية'}
-          </button> */}
         </div>
 
-        {/* Hamburger Mobile Menu Toggle Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className={cn("flex size-10 items-center justify-center rounded-full border lg:hidden transition duration-200 active:scale-95", "border-border text-foreground")}
-          aria-label="Toggle Menu"
-        >
-          {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        {/* Mobile Controls (CTA, ThemeToggle, Burger) */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle className="!h-9 !w-9" />
+          <PillButton
+            href={ctaHref}
+            variant="blue"
+            size="sm"
+          >
+            {ctaLabel}
+          </PillButton>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={cn("flex size-9 items-center justify-center rounded-full border transition duration-200 active:scale-95", "border-border text-foreground")}
+            aria-label="Toggle Menu"
+          >
+            {menuOpen ? <X className="size-4.5" /> : <Menu className="size-4.5" />}
+          </button>
+        </div>
       </motion.nav>
 
       {/* Mobile Drawer Overlay */}
@@ -182,7 +170,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className={cn("absolute inset-x-0 top-[100px] z-50 flex flex-col items-center gap-6 border-b px-6 py-8 shadow-lg lg:hidden", "border-border bg-surface")}
+            className={cn("absolute inset-x-0 top-[72px] lg:top-[100px] z-50 flex flex-col items-center gap-6 border-b px-6 py-8 shadow-lg lg:hidden", "border-border bg-surface")}
           >
             <div className={cn('flex', 'flex-col', 'items-center', 'gap-4', 'w-full')}>
               {navLinks.map(([label, href]) => {
@@ -223,40 +211,6 @@ export function Header({ brand, links, cta }: HeaderProps) {
                 );
               })}
             </div>
-            <PillButton
-              href={ctaHref}
-              variant="orange"
-              className={cn('w-full', 'justify-center')}
-              onClick={() => setMenuOpen(false)}
-            >
-              {ctaLabel}
-            </PillButton>
-            {/* <button
-              onClick={() => {
-                switchLocale(currentLocale === 'ar' ? 'en' : 'ar')
-                setMenuOpen(false)
-              }}
-              className={cn(
-                'flex',
-                'w-full',
-                'h-12',
-                'items-center',
-                'justify-center',
-                'rounded-xl',
-                'border',
-                'border-[#E8EDF6]',
-                'text-[#243A77]',
-                'font-medium',
-                'text-[16px]',
-                'transition-all',
-                'duration-200',
-                'hover:bg-[#FCDDD3]/10',
-                'hover:border-[#F15722]/50',
-                'hover:text-[#F15722]'
-              )}
-            >
-              {currentLocale === 'ar' ? 'English' : 'العربية'}
-            </button> */}
           </motion.div>
         )}
       </AnimatePresence>

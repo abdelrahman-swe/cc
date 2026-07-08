@@ -108,7 +108,7 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
   return (
     <section
       id={sectionId}
-      className={cn("bg-surface", "py-16", "lg:min-h-[796px]", "transition-colors", "duration-300")}
+      className={cn("bg-surface", "py-5 sm:py-16", "lg:min-h-[796px]", "transition-colors", "duration-300")}
     >
       <div
         className={cn(
@@ -135,7 +135,7 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
               "font-bold",
               "leading-[1.35]",
               "text-right",
-              "text-[28px]",
+              "text-[18px]",
               "sm:text-[32px]",
               "md:text-[36px]",
             )}
@@ -146,12 +146,11 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
             {heading}
           </h2>
           <p
-            className={cn("mt-7", "text-right", "font-normal")}
+            className={cn("mt-7", "text-right", "font-normal", "text-[14px] sm:text-[16px] md:text-[18px]")}
             style={{
               color: "var(--Neutral-500, #5F6063)",
               fontFamily:
                 '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-              fontSize: "18px",
               lineHeight: "140%",
             }}
           >

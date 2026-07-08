@@ -43,6 +43,7 @@ function AiServiceCard({ title, body }: { title: string; body: string }) {
       viewport={motionViewport}
       className={cn(
         'brand-card',
+        'services-card',
         'group relative h-[530px] overflow-hidden rounded-[40px] transition-all duration-300 md:col-span-2 lg:col-span-2'
       )}
     >
@@ -145,6 +146,7 @@ function ServiceCard({
       viewport={motionViewport}
       className={cn(
         'brand-card',
+        'services-card',
         'group relative flex flex-col overflow-hidden rounded-[50px] dark:rounded-[40px] transition-all duration-300'
       )}
     >
@@ -204,6 +206,7 @@ function WideServiceCard({ title, body }: { title: string; body: string }) {
       viewport={motionViewport}
       className={cn(
         'brand-card',
+        'services-card',
         'group relative grid min-h-[320px] overflow-hidden rounded-[50px] dark:rounded-[40px] transition-all duration-300 md:col-span-2 lg:col-span-3 lg:grid-cols-[1fr_815px]'
       )}
     >
@@ -290,7 +293,7 @@ export function ServicesSection(props: ServicesSectionProps) {
   }
 
   return (
-    <section className="bg-surface py-16 transition-colors duration-300" id={sectionId}>
+    <section className="bg-surface py-5 sm:py-16 transition-colors duration-300" id={sectionId}>
       <div className="mx-auto max-w-[1240px] px-5 text-center lg:px-0">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>

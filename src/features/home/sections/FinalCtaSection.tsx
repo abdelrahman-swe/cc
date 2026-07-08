@@ -7,9 +7,9 @@ type FinalCtaSectionProps = {
 
 export function FinalCtaSection({ finalCta }: FinalCtaSectionProps) {
   return (
-    <section className="bg-white py-16 md:py-24" id="contact">
+    <section className="bg-white py-5 sm:py-16 md:py-24" id="contact">
       <div className="mx-auto w-full max-w-[1240px] px-5 lg:px-0">
-        <div className="relative min-h-[420px] overflow-hidden rounded-[32px] bg-[#F15722] px-8 py-12 text-white shadow-[0_26px_80px_rgba(255,90,36,0.24)] md:p-14 lg:px-16 lg:py-16">
+        <div className="relative min-h-[320px] md:min-h-[420px] flex items-center overflow-hidden rounded-[24px] md:rounded-[32px] bg-[#F15722] px-4 py-8 sm:px-8 sm:py-12 text-white shadow-[0_26px_80px_rgba(255,90,36,0.24)] md:p-14 lg:px-16 lg:py-16">
           {/* CTA Pop Starburst behind mascot head */}
           <img
             src="/assets/images/cta-pop.svg"
@@ -44,21 +44,21 @@ export function FinalCtaSection({ finalCta }: FinalCtaSectionProps) {
           />
 
           {/* Grid Layout: Text on Right */}
-          <div className="relative z-30 grid w-full items-center gap-8 md:grid-cols-[1.2fr_0.8fr]">
+          <div className="relative z-30 grid w-full items-center gap-6 md:gap-8 md:grid-cols-[1.2fr_0.8fr]">
             <div className="flex flex-col items-center text-center md:items-start md:text-right">
-              <h2 className="font-serif-text text-[30px] font-black leading-tight text-white md:text-[40px] lg:text-[44px]">
+              <h2 className="font-serif-text text-[18px] sm:text-[28px] md:text-[40px] lg:text-[44px] font-black leading-tight text-white">
                 {finalCta.heading}
               </h2>
-              <p className="mt-4 text-[18px] font-bold text-white/90 md:text-[20px]">
+              <p className="mt-3 md:mt-4 text-[14px] md:text-[20px] font-bold text-white/90">
                 {finalCta.body}
               </p>
-              <div className="mt-8">
+              <div className="mt-6 md:mt-8">
                 <ButtonLink href={finalCta.cta.href} variant="light">
                   {finalCta.cta.label}
                 </ButtonLink>
               </div>
             </div>
-            <div className="hidden min-h-[300px] md:block" />
+            <div className="hidden min-h-[200px] md:min-h-[300px] md:block" />
           </div>
         </div>
       </div>

@@ -50,12 +50,15 @@ function HeroButtonArt() {
     <div className="absolute -right-[35px] top-[32px] flex origin-top-right -rotate-[8deg] items-center">
       <div className="relative flex h-[66px] w-[270px] items-center justify-between rounded-full border-[1.5px] border-[#F5C9BB] p-1.5 bg-white/40">
         <div className="w-1" />
-        <PillButton
-          href="/contact"
-          className="!h-[52px] !ps-4 !pe-1 !text-[14px] w-[150px] shadow-md"
-        >
-          طلب خدمة
-        </PillButton>
+        <div dir="rtl" className="w-[150px]">
+          <PillButton
+            href="/contact"
+            variant="orange"
+            className="!h-[52px] !ps-5 !pe-3 !text-[14px] w-[150px] shadow-md"
+          >
+            طلب خدمة
+          </PillButton>
+        </div>
       </div>
     </div>
   );

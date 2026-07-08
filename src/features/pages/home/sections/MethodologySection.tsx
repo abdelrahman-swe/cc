@@ -121,11 +121,7 @@ function StepRow({
               borderRadius: '24px',
             }}
           >
-            <img
-              src="/light/hover.svg"
-              alt=""
-              className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
-            />
+
             <h3
               className={cn('relative', 'z-10', 'w-full', 'text-right', 'font-brand', 'font-medium', 'text-[22px]', 'text-[#1E1E20]', 'dark:text-white')}
             >
@@ -173,11 +169,7 @@ function StepRow({
               borderRadius: '24px',
             }}
           >
-            <img
-              src="/light/hover.svg"
-              alt=""
-              className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
-            />
+
             <h3
               className={cn('relative', 'z-10', 'w-full', 'text-right', 'font-brand', 'font-medium', 'text-[22px]', 'text-[#1E1E20]', 'dark:text-white')}
             >
@@ -216,11 +208,11 @@ export function MethodologySection(props: MethodologySectionProps) {
   const stepRefs = [step1Ref, step2Ref, step3Ref, step4Ref]
 
   return (
-    <section className={cn('py-16 lg:py-24', 'transition-colors', 'duration-300')} id={sectionId}>
+    <section className={cn('py-5 sm:py-16 lg:py-24', 'transition-colors', 'duration-300')} id={sectionId}>
       <div className={cn('mx-auto', 'max-w-[1248px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className={cn('mt-6', 'font-serif-text', 'text-[32px] lg:text-[40px]', 'font-bold', 'text-[#243A77]', 'dark:text-white')}>
+          <h2 className={cn('mt-6', 'font-serif-text', 'text-[18px] sm:text-[32px] lg:text-[40px]', 'font-bold', 'text-[#243A77]', 'dark:text-white')}>
             {heading}
           </h2>
         </motion.div>

@@ -375,23 +375,42 @@ body {
   transition: opacity 0.5s ease;
 }
 
+.services-card::before {
+  background-image: url('/light/hero-card-orange.svg') !important;
+}
+
 .dark .brand-card::before {
   opacity: 0 !important;
   display: none !important;
 }
 
 .brand-card:hover {
-  border-color: #F15722 !important;
-  box-shadow: 0 20px 48px rgba(14,23,48,0.08), inset 0 0 20px rgba(241,87,34,0.12) !important;
+  border: 1px solid var(--Neutral-50, #FFF) !important;
+  background-color: var(--Primary-25, #FFF) !important;
+  background-image: none !important;
+  box-shadow: 0 0 7px 0 rgba(244, 121, 78, 0.40) inset !important;
 }
 
 .dark .brand-card:hover {
   border-color: #072FA2 !important;
+  background-color: #0D193B !important;
+  background-image: url('/dark/hero-card-blur.svg') !important;
   box-shadow: 0 0 15px 2px #072FA2 inset, 0 20px 48px rgba(0,0,0,0.3) !important;
 }
 
 .brand-card:hover::before {
-  opacity: 1;
+  opacity: 0 !important;
+  display: none !important;
+}
+
+.services-card:hover::before {
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.dark .services-card:hover::before {
+  opacity: 0 !important;
+  display: none !important;
 }
 
 /* ── Hero Cards Overrides in Dark Mode ── */

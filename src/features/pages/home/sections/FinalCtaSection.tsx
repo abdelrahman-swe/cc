@@ -29,14 +29,14 @@ export function FinalCtaSection(props: FinalCtaSectionProps) {
   const sectionId = props.customSectionId || "contact";
 
   return (
-    <section className={cn('bg-surface', 'py-10', 'md:py-16', 'transition-colors', 'duration-300')} id={sectionId}>
+    <section className={cn('bg-surface', 'py-5 sm:py-10', 'md:py-16', 'transition-colors', 'duration-300')} id={sectionId}>
       <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'lg:px-0')}>
         <motion.div
           variants={scaleIn}
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className={cn('relative', 'min-h-[420px]', 'overflow-hidden', 'rounded-[32px]', 'bg-[#0D193B]', 'px-6', 'py-10', 'md:p-14', 'lg:px-16', 'lg:py-16', 'text-white')}
+          className={cn('relative', 'min-h-[320px] md:min-h-[420px]', 'flex items-center', 'overflow-hidden', 'rounded-[24px] md:rounded-[32px]', 'bg-[#0D193B]', 'px-4 py-8 sm:px-6 md:p-14 lg:px-16 lg:py-16', 'text-white')}
         >
           {/* CTA Pop Starburst behind mascot head */}
           <img
@@ -65,24 +65,24 @@ export function FinalCtaSection(props: FinalCtaSectionProps) {
           />
 
           {/* Grid Layout: Text on Right */}
-          <div className={cn('relative', 'z-30', 'grid', 'w-full', 'items-center', 'gap-8', 'md:grid-cols-[1.2fr_0.8fr]')}>
+          <div className={cn('relative', 'z-30', 'grid', 'w-full', 'items-center', 'gap-6 md:gap-8', 'md:grid-cols-[1.2fr_0.8fr]')}>
             <div className={cn('flex', 'flex-col', 'items-center', 'text-center', 'md:items-start', 'md:text-right')}>
-              <span className={cn('font-brand', 'bg-white', 'px-4', 'py-2', 'border', 'rounded-3xl', 'text-brand-ink', 'mb-3', 'inline-block')}>
+              <span className={cn('font-brand', 'bg-white/10 dark:bg-white/15 backdrop-blur-md', 'px-3.5', 'py-1.5', 'border border-white/20', 'rounded-3xl', 'text-white', 'text-[12px] md:text-[14px]', 'mb-3', 'inline-block')}>
                 لديك فكرة ؟
               </span>
-              <h2 className={cn('font-serif-text', 'text-[30px]', 'font-brand-ink', 'leading-tight', 'text-white', 'md:text-[40px]', 'lg:text-[44px]')}>
+              <h2 className={cn('font-serif-text', 'text-[18px] sm:text-[24px] md:text-[36px] lg:text-[44px]', 'font-bold', 'leading-tight', 'text-white')}>
                 {heading}
               </h2>
-              <p className={cn('mt-4', 'text-[18px]', 'font-semibold', 'text-white/90', 'md:text-[20px]')}>
+              <p className={cn('mt-3 md:mt-4', 'text-[14px] md:text-[20px]', 'font-semibold', 'text-white/90')}>
                 {body}
               </p>
-              <div className="mt-8">
+              <div className="mt-6 md:mt-8">
                 <PillButton href={props.cta?.href || "/contact"} variant="blue">
                   {props.cta?.label || "احصل علي استشارة مجانية"}
                 </PillButton>
               </div>
             </div>
-            <div className={cn('hidden', 'min-h-[300px]', 'md:block')} />
+            <div className={cn('hidden', 'min-h-[200px] md:min-h-[300px]', 'md:block')} />
           </div>
         </motion.div>
       </div>

@@ -275,19 +275,22 @@ function HeroButtonArt() {
         )}
       >
         <div className="w-1" />
-        <PillButton
-          href="/contact"
-          className={cn(
-            "!h-[52px]",
-            "!ps-4",
-            "!pe-1",
-            "!text-[14px]",
-            "w-[150px]",
-            "shadow-md",
-          )}
-        >
-          طلب خدمة
-        </PillButton>
+        <div dir="rtl" className="w-[150px]">
+          <PillButton
+            href="/contact"
+            variant="orange"
+            className={cn(
+              "!h-[52px]",
+              "!ps-5",
+              "!pe-3",
+              "!text-[14px]",
+              "w-[150px]",
+              "shadow-md",
+            )}
+          >
+            طلب خدمة
+          </PillButton>
+        </div>
       </div>
     </div>
   );
@@ -413,7 +416,7 @@ function HeroCard({
             }
       }
       className={cn(
-        "group relative h-[360px] overflow-hidden rounded-[50.5px] border-[2.02px] border-[#F1D5CC] dark:border-white/15 bg-surface-card hero-card px-6 py-10 xl:px-8 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-[border-color,box-shadow,background-color] duration-200 hover:border-[#F79A7A] dark:hover:border-[#072FA2] hover:shadow-[-217.15px_247.45px_91.91px_0px_rgba(36,58,119,0.01),-9.09px_10.1px_29.29px_0px_rgba(36,58,119,0.08)]",
+        "group relative flex flex-col justify-end h-[310px] sm:h-[330px] lg:h-[363.6px] w-full max-w-[395.92px] mx-auto overflow-hidden rounded-[40px] lg:rounded-[50.5px] border-[2.02px] border-[#F1D5CC] dark:border-white/15 bg-surface-card hero-card px-6 pt-6 pb-6 sm:pb-8 lg:pb-10 xl:px-8 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-[border-color,box-shadow,background-color] duration-200 hover:border-[#F79A7A] dark:hover:border-[#072FA2] hover:shadow-[-217.15px_247.45px_91.91px_0px_rgba(36,58,119,0.01),-9.09px_10.1px_29.29px_0px_rgba(36,58,119,0.08)]",
       )}
     >
       <div
@@ -442,8 +445,8 @@ function HeroCard({
         className={cn(
           "pointer-events-none",
           "absolute",
-          "inset-x-0",
           "bottom-0",
+          "inset-x-0",
           "z-0",
           "w-full",
           "dark:hidden",
@@ -455,8 +458,8 @@ function HeroCard({
         className={cn(
           "pointer-events-none",
           "absolute",
-          "inset-x-0",
           "bottom-0",
+          "inset-x-0",
           "z-0",
           "w-full",
           "hidden dark:block",
@@ -466,7 +469,7 @@ function HeroCard({
       {type === "process" ? <HeroProcessArt /> : null}
       {type === "chart" ? <HeroChartArt /> : null}
 
-      <div className={cn("relative", "z-10", "mt-[218px]")}>
+      <div className={cn("relative", "z-10")}>
         <h3
           className={cn('text-right', 'font-semibold', 'leading-normal')}
           style={{
@@ -504,6 +507,7 @@ function AiServiceCard() {
       viewport={motionViewport}
       className={cn(
         "brand-card",
+        "services-card",
         "group",
         "relative",
         "h-[530px]",
@@ -655,6 +659,7 @@ function ServiceCard({
       }
       className={cn(
         "brand-card",
+        "services-card",
         "group",
         "relative",
         "flex",
@@ -745,6 +750,7 @@ function WideServiceCard() {
       viewport={motionViewport}
       className={cn(
         "brand-card",
+        "services-card",
         "group",
         "relative",
         "grid",
@@ -919,12 +925,20 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               src="/light/home-hero-blur.svg"
               alt=""
               className={cn("absolute", "inset-0", "h-full", "w-full", "object-cover", "object-top", "transition-opacity", "duration-500", "dark:opacity-0")}
+              style={{
+                maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)'
+              }}
               loading="eager"
             />
             <img
               src="/dark/home-hero-blur.svg"
               alt=""
-              className={cn("absolute", "inset-0", "h-full", "w-full", "object-cover", "object-center", "transition-opacity", "duration-500", "opacity-0 dark:opacity-100")}
+              className={cn("absolute", "inset-0", "h-full", "w-full", "object-cover", "object-top", "transition-opacity", "duration-500", "opacity-0 dark:opacity-100")}
+              style={{
+                maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)'
+              }}
               loading="eager"
             />
           </div>
@@ -948,40 +962,38 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               <h1
                 className={cn(
                   "font-serif-text",
-                  "text-[32px]",
-                  "sm:text-[42px]",
+                  "text-[28px]",
+                  "sm:text-[36px]",
                   "font-bold",
-                  "leading-[1.18]",
+                  "leading-[1.2]",
                   "text-[#243A77]",
                   "dark:text-white",
                   "md:text-[52px]",
                 )}
                 style={{ fontFamily: '"Thmanyah Serif Display", serif' }}
               >
-                <span className={cn('block', 'md:inline', 'font-serif-display')}>
+                <span className={cn('font-serif-display')}>
                   {data?.hero?.headline?.before || "شريكك التقني"}{" "}
                 </span>
-                <span className={cn('text-[#F15722]', 'font-serif-display', 'block', 'md:inline')}>
+                <span className={cn('text-[#F15722]', 'font-serif-display')}>
                   {data?.hero?.headline?.emphasis || "لحلــــول رقميـــــة"}
                 </span>
                 <span
                   className={cn(
-                    "mt-3",
-                    "md:mt-5",
+                    "mt-2 sm:mt-5",
                     "block",
                     "font-serif-display",
                   )}
                 >
-                  {data?.hero?.headline?.after || "تدعم نمو أعمالك"}
+                  {" "}{data?.hero?.headline?.after || "تدعم نمو أعمالك"}
                 </span>
               </h1>
               <p
-                className={cn('mx-auto', 'mt-5', 'md:mt-7', 'max-w-[652px]', 'text-center', 'font-normal', 'text-[16px]', 'sm:text-[20px]', 'md:text-[24px]')}
+                className={cn('mx-auto', 'mt-4', 'md:mt-7', 'max-w-[652px]', 'text-center', 'font-normal', 'text-[10px] xs:text-[12px] sm:text-[16px] md:text-[20px] lg:text-[24px]', 'whitespace-nowrap sm:whitespace-normal')}
                 style={{
                   color: "var(--Neutral-300, #808586)",
                   fontFamily:
                     '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                  fontSize: "24px",
                   lineHeight: "140%",
                 }}
               >
@@ -1060,7 +1072,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
         </section>
 
         <section
-          className={cn("bg-surface", "py-16", "lg:min-h-[392px]", "transition-colors", "duration-300")}
+          className={cn("bg-surface", "py-5 sm:py-16", "lg:min-h-[392px]", "transition-colors", "duration-300")}
           id="partners"
         >
           <motion.div
@@ -1113,7 +1125,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
           </motion.div>
         </section>
 
-        <section className={cn("bg-surface", "py-16", "transition-colors", "duration-300")} id="services">
+        <section className={cn("bg-surface", "py-5 sm:py-16", "transition-colors", "duration-300")} id="services">
           <div
             className={cn(
               "mx-auto",
@@ -1209,7 +1221,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
 
         <section
           id="who-we-are"
-          className={cn("bg-surface", "py-16", "lg:min-h-[796px]", "transition-colors", "duration-300")}
+          className={cn("bg-surface", "py-5 sm:py-16", "lg:min-h-[796px]", "transition-colors", "duration-300")}
         >
           <div
             className={cn(
@@ -1233,7 +1245,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               <h2
                 className={cn(
                   "font-serif-text",
-                  "text-[28px]",
+                  "text-[18px]",
                   "sm:text-[32px]",
                   "md:text-[36px]",
                   "font-bold",
@@ -1245,12 +1257,11 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                 {data?.whoWeAre?.heading || "نبني حلولا رقمية تنمو مع أعمالك"}
               </h2>
               <p
-                className={cn('mt-7', 'text-right', 'font-normal')}
+                className={cn('mt-7', 'text-right', 'font-normal', 'text-[14px] sm:text-[16px] md:text-[18px]')}
                 style={{
                   color: "var(--Neutral-500, #5F6063)",
                   fontFamily:
                     '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                  fontSize: "18px",
                   lineHeight: "140%",
                 }}
               >
@@ -1603,6 +1614,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                           viewport={motionViewport}
                           className={cn(
                             "brand-card",
+                            "methodology-card",
                             "w-full",
                             "rounded-[18px]",
                             "p-7",
@@ -1611,11 +1623,6 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                             "group relative overflow-hidden transition-all duration-300",
                           )}
                         >
-                          <img
-                            src="/light/hover.svg"
-                            alt=""
-                            className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
-                          />
                           <h3
                             className={cn(
                               "text-[18px]",
@@ -1712,6 +1719,7 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                           viewport={motionViewport}
                           className={cn(
                             "brand-card",
+                            "methodology-card",
                             "w-full",
                             "rounded-[18px]",
                             "p-7",
@@ -1720,11 +1728,6 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                             "group relative overflow-hidden transition-all duration-300",
                           )}
                         >
-                          <img
-                            src="/light/hover.svg"
-                            alt=""
-                            className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
-                          />
                           <h3
                             className={cn(
                               "text-[18px]",

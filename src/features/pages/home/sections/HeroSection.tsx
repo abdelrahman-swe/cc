@@ -97,7 +97,7 @@ export function HeroSection(props: any) {
         "duration-300",
         "pt-24",
         "lg:pt-[100.5px]",
-        "pb-[128px]",
+        "pb-5 sm:pb-16 md:pb-[128px]",
       )}
       dir="rtl"
     >
@@ -105,12 +105,10 @@ export function HeroSection(props: any) {
         className={cn(
           "pointer-events-none",
           "absolute",
-          "left-0",
-          "right-0",
-          "top-[200px]",
+          "inset-0",
           "z-0",
           "w-full",
-          "h-[500px]",
+          "h-full",
           "opacity-100",
         )}
       >
@@ -119,13 +117,21 @@ export function HeroSection(props: any) {
           alt=""
           fill
           className={cn("h-full", "w-full", "object-cover", "object-top", "transition-opacity", "duration-500", "dark:opacity-0")}
+          style={{
+            maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)'
+          }}
           priority
         />
         <Image
           src="/dark/home-hero-blur.svg"
           alt=""
           fill
-          className={cn("h-full", "w-full", "object-cover", "object-center", "transition-opacity", "duration-500", "opacity-0 dark:opacity-100")}
+          className={cn("h-full", "w-full", "object-cover", "object-top", "transition-opacity", "duration-500", "opacity-0 dark:opacity-100")}
+          style={{
+            maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%)'
+          }}
           priority
         />
       </div>
@@ -135,7 +141,8 @@ export function HeroSection(props: any) {
           "z-10",
           "mx-auto",
           "max-w-[1248px]",
-          "px-5",
+          "px-4",
+          "sm:px-5",
           "text-center",
           "lg:px-0",
         )}
@@ -143,10 +150,10 @@ export function HeroSection(props: any) {
         <div className={cn("mx-auto", "w-full", "max-w-[760px]")}>
           <h1
             className={cn(
-              "text-[32px]",
-              "sm:text-[42px]",
+              "text-[28px]",
+              "sm:text-[36px]",
               "font-bold",
-              "leading-[1.18]",
+              "leading-[1.2]",
               "text-[#243A77]",
               "dark:text-white",
               "md:text-[52px]",
@@ -154,33 +161,31 @@ export function HeroSection(props: any) {
             )}
             style={{ fontFamily: '"Thmanyah Serif Display", serif' }}
           >
-            <span className="block md:inline">{headlineBefore} </span>
+            <span>{headlineBefore} </span>
             <span
               className={cn(
                 "text-[#F15722]",
                 "font-serif-display",
-                "block md:inline",
               )}
             >
               {headlineEmphasis}
             </span>
             <span
-              className={cn("mt-3", "md:mt-5", "block", "font-serif-display")}
+              className={cn("mt-2 sm:mt-5", "block", "font-serif-display")}
             >
-              {headlineAfter}
+              {" "}{headlineAfter}
             </span>
           </h1>
           <p
             className={cn(
               "mx-auto",
-              "mt-5",
+              "mt-4",
               "md:mt-7",
               "max-w-[652px]",
               "text-center",
               "font-normal",
-              "text-[16px]",
-              "sm:text-[20px]",
-              "md:text-[24px]",
+              "text-[10px] xs:text-[12px] sm:text-[16px] md:text-[20px] lg:text-[24px]",
+              "whitespace-nowrap sm:whitespace-normal",
             )}
             style={{
               color: "var(--Neutral-300, #808586)",
@@ -231,7 +236,12 @@ export function HeroSection(props: any) {
           viewport={motionViewport}
           className="mt-[70.5px]"
         >
-          <PillButton href={ctaHref} variant="orange" arrowDirection="up-left">
+          <PillButton
+            href={ctaHref}
+            variant="nav"
+            arrowDirection="up-left"
+            circleClassName="dark:text-brand-orange text-[#243A77]"
+          >
             {ctaLabel}
           </PillButton>
         </motion.div>
