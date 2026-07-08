@@ -58,12 +58,37 @@ export function PillButton({
     white: 'cta-pill--white border border-[#F1D5CC] bg-white text-[#F15722]'
   }
  
-  const circle = {
-    nav: 'bg-white text-[#243A77]',
-    orange: 'bg-white text-[#F15722] dark:bg-white/10 dark:text-white',
-    blue: 'bg-white text-[#243A77]',
-    white: 'bg-[#F15722] text-white'
+  const circleBg = {
+    nav: 'bg-white',
+    orange: 'bg-white dark:bg-white/10',
+    blue: 'bg-white',
+    white: 'bg-[#F15722]'
   }
+
+  const circleText = {
+    nav: 'text-[#243A77]',
+    orange: 'text-[#F15722] dark:text-white',
+    blue: 'text-[#243A77]',
+    white: 'text-white'
+  }
+
+  const customClasses = circleClassName.split(/\s+/).filter(Boolean)
+  const hasCustomLightText = customClasses.some(c => c.startsWith('text-'))
+  const hasCustomDarkText = customClasses.some(c => c.startsWith('dark:text-'))
+  const hasCustomLightBg = customClasses.some(c => c.startsWith('bg-'))
+  const hasCustomDarkBg = customClasses.some(c => c.startsWith('dark:bg-'))
+
+  const filteredBg = circleBg[variant].split(/\s+/).filter(Boolean).filter(c => {
+    if (c.startsWith('dark:bg-')) return !hasCustomDarkBg
+    if (c.startsWith('bg-')) return !hasCustomLightBg
+    return true
+  }).join(' ')
+
+  const filteredText = circleText[variant].split(/\s+/).filter(Boolean).filter(c => {
+    if (c.startsWith('dark:text-')) return !hasCustomDarkText
+    if (c.startsWith('text-')) return !hasCustomLightText
+    return true
+  }).join(' ')
  
   const shadows = {
     nav: '',
@@ -93,7 +118,8 @@ export function PillButton({
         className={cn(
           'cta-icon-wrap relative grid shrink-0 place-items-center rounded-full',
           isSm ? 'size-7' : 'size-10',
-          circle[variant],
+          filteredBg,
+          filteredText,
           circleClassName
         )}
         style={customStyle}

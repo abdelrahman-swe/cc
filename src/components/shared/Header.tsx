@@ -137,7 +137,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
         {/* Desktop Controls */}
         <div className={cn('hidden', 'lg:flex', 'items-center', 'gap-4')}>
           <ThemeToggle />
-          <PillButton href={ctaHref} variant="blue">
+          <PillButton href={ctaHref} variant="nav">
             {ctaLabel}
           </PillButton>
         </div>
@@ -147,7 +147,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
           <ThemeToggle className="!h-9 !w-9" />
           <PillButton
             href={ctaHref}
-            variant="blue"
+            variant="nav"
             size="sm"
           >
             {ctaLabel}

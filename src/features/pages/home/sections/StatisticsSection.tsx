@@ -34,7 +34,7 @@ export function StatisticsSection(props: StatisticsSectionProps) {
         <div className="text-right">
           <SectionTag>{sectionTag}</SectionTag>
           <h2
-            className="mt-4 font-serif-text text-[32px] font-bold leading-tight md:text-[40px]"
+            className="mt-4 font-serif-text text-[16px] xs:text-[18px] sm:text-[32px] whitespace-nowrap font-bold leading-tight md:text-[40px]"
             style={{ color: 'var(--Neutral-800, #1E1E20)' }}
           >
             {title}

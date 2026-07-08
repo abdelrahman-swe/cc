@@ -6,6 +6,7 @@ import { SectionTag } from "@/components/ui/SectionTag";
 import { useParams } from "next/navigation";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { cn } from "../../../../lib/utils";
+import { useTheme } from "@/components/shared/ThemeProvider";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -35,6 +36,7 @@ export function AboutHeroSection({
   cta,
 }: AboutHeroSectionProps) {
   const params = useParams();
+  const { theme } = useTheme();
   const locale = (params.locale as string) || "ar";
 
   const ctaLabel =
@@ -130,8 +132,8 @@ export function AboutHeroSection({
           <div className="mt-4">
             <PillButton 
               href={ctaHref} 
-              variant="nav" 
-              circleClassName="dark:text-brand-orange text-[#243A77]" 
+              variant={theme === "dark" ? "nav" : "orange"} 
+              circleClassName="dark:text-brand-orange text-[#243A77] " 
               arrowDirection="up-left"
             >
               {ctaLabel}

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { cn } from "@/lib/cn";
 import { PillButton } from "@/components/ui/PillButton";
 import { HeroCardItem } from "./components/HeroCardItem";
+import { useTheme } from "@/components/shared/ThemeProvider";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -26,6 +27,7 @@ const staggerContainer: Variants = {
 const motionViewport = { once: true, margin: "-80px" } as const;
 
 export function HeroSection(props: any) {
+  const { theme } = useTheme();
   const headline = props.homepageHeadline || props.headline || {};
   const headlineBefore = headline.before || "شريكك التقني";
   const headlineEmphasis = headline.emphasis || "لحلــــول رقميـــــة";
@@ -206,12 +208,11 @@ export function HeroSection(props: any) {
           onViewportEnter={triggerChainAnimation}
           className={cn(
             "mx-auto",
-            "mt-[166.5px]",
+            "mt-12 md:mt-20 lg:mt-[96px]",
             "grid",
             "max-w-[1248px]",
             "gap-6",
             "md:grid-cols-3",
-            "max-md:mt-14",
           )}
         >
           {cards.map((card: any, idx: number) => (
@@ -234,13 +235,13 @@ export function HeroSection(props: any) {
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="mt-[70.5px]"
+          className="mt-8 lg:mt-[48px]"
         >
           <PillButton
             href={ctaHref}
-            variant="nav"
+            variant={theme === "dark" ? "nav" : "orange"}
             arrowDirection="up-left"
-            circleClassName="dark:text-brand-orange text-[#243A77]"
+            circleClassName=" text-[#243A77]"
           >
             {ctaLabel}
           </PillButton>

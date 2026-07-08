@@ -102,7 +102,7 @@ export function FeaturedWorkSection(props: FeaturedWorkSectionProps) {
       <div className={cn('mx-auto', 'max-w-[1240px]', 'px-5', 'text-center', 'lg:px-0')}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className={cn('mt-6', 'font-serif-text', 'text-[32px]', 'font-bold', 'text-[#243A77]', 'dark:text-white')}>
+          <h2 className={cn('mt-6', 'font-serif-text', 'text-[16px] xs:text-[18px] sm:text-[32px]', 'whitespace-nowrap', 'font-bold', 'text-[#243A77]', 'dark:text-white')}>
             {heading}
           </h2>
         </motion.div>

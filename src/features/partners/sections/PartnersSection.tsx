@@ -64,7 +64,7 @@ export function PartnersSection(props: PartnersSectionProps) {
           className="flex flex-col items-center"
         >
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className={cn('mt-6', 'font-serif-text', 'text-[28px]', 'font-bold', 'text-[#243A77]', 'dark:text-white')}>
+          <h2 className={cn('mt-6', 'font-serif-text', 'text-[16px] xs:text-[18px] sm:text-[28px]', 'whitespace-nowrap', 'font-bold', 'text-[#243A77]', 'dark:text-white')}>
             {heading}
           </h2>
         </motion.div>

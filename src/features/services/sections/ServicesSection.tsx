@@ -297,7 +297,7 @@ export function ServicesSection(props: ServicesSectionProps) {
       <div className="mx-auto max-w-[1240px] px-5 text-center lg:px-0">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={motionViewport}>
           <SectionTag>{sectionTag}</SectionTag>
-          <h2 className="mx-auto mt-6 max-w-[760px] font-serif-text text-[34px] font-bold leading-[1.35] text-[#243A77] dark:text-white">
+          <h2 className="mx-auto mt-6 max-w-[760px] font-serif-text text-[16px] xs:text-[18px] sm:text-[34px] whitespace-nowrap font-bold leading-[1.35] text-[#243A77] dark:text-white">
             {title}
           </h2>
         </motion.div>

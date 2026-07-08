@@ -10,7 +10,7 @@ export function SectionTag({ children }: SectionTagProps) {
     <div
       className={cn(
         'inline-flex',
-        'h-12',
+        'h-10 sm:h-12',
         'items-center',
         'justify-center',
         'px-4',
@@ -25,12 +25,12 @@ export function SectionTag({ children }: SectionTagProps) {
         'dark:bg-[#0E1730]',
         'text-foreground-muted',
         'dark:text-[#A9BEDB]',
+        'text-[12px] sm:text-[16px]',
         'transition-colors',
         'duration-300'
       )}
       style={{
-        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-        fontSize: '16px'
+        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif'
       }}
     >
       {children}
