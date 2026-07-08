@@ -16,6 +16,7 @@
     "@payloadcms/next": "latest",
     "@payloadcms/richtext-lexical": "latest",
     "framer-motion": "latest",
+    "gsap": "^3.15.0",
     "iconsax-reactjs": "^0.0.8",
     "lucide-react": "latest",
     "next": "15.4.11",

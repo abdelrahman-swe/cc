@@ -8,6 +8,7 @@ import { IBM_Plex_Sans_Arabic } from 'next/font/google'
 import '@/app/globals.css'
 import { routing, type Locale } from '@/i18n/routing'
 import { ThemeProvider, themeInitScript } from '@/components/shared/ThemeProvider'
+import { SlashGateLoader } from '@/components/shared/SlashGateLoader'
 
 const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   subsets: ['arabic'],
@@ -57,10 +58,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <SlashGateLoader />
+            {children}
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>
   )
 }
-
