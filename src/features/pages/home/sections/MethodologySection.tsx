@@ -218,7 +218,7 @@ export function MethodologySection(props: MethodologySectionProps) {
         </motion.div>
 
         <div ref={containerRef} className={cn('relative', 'mt-10 lg:mt-[104px]', 'flex', 'w-full', 'flex-col', 'gap-12', 'lg:gap-0')}>
-          <div className={cn('absolute', 'bottom-[-30px]', 'left-1/2', 'top-[-60px]', 'hidden', 'w-[2px]', '-translate-x-1/2', 'bg-[#FEEEE9] dark:bg-[#243A77]', 'lg:block')} />
+          <div className={cn('absolute', 'bottom-[-30px]', 'left-1/2', 'top-0 lg:top-[-60px]', 'z-0', 'w-[2px]', '-translate-x-1/2', 'bg-[#FEEEE9] dark:bg-[#243A77]')} />
           {methodologyList.map(([title, body], index) => (
             <StepRow
               key={title}

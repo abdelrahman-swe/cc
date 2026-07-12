@@ -282,24 +282,22 @@ export function WhoWeAreSection(props: WhoWeAreSectionProps) {
               </div>
               <div className="relative z-10 flex flex-col text-right w-full">
                 <h3
-                  className={cn("text-right", "font-medium", "leading-normal")}
+                  className={cn("text-right", "font-medium", "leading-normal", "text-[16px] sm:text-[18px] md:text-[20px]")}
                   style={{
                     color: "var(--Neutral-800, #1E1E20)",
                     fontFamily:
                       '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                    fontSize: "20px",
                   }}
                 >
                   {title}
                 </h3>
                 <p
-                  className={cn("mt-2", "text-right", "font-normal")}
+                  className={cn("mt-2", "text-right", "font-normal", "text-[14px] sm:text-[16px] md:text-[18px]")}
                   style={{
                     color: "var(--Neutral-500, #5F6063)",
                     textAlign: "right",
                     fontFamily:
                       '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                    fontSize: "18px",
                     fontStyle: "normal",
                     fontWeight: 400,
                     lineHeight: "normal",

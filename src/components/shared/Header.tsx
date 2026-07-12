@@ -35,6 +35,7 @@ export function Header({ brand, links, cta }: HeaderProps) {
   const router = useRouter();
   const params = useParams();
   const currentLocale = (params.locale as string) || "ar";
+  const isRtl = currentLocale === "ar";
 
   const switchLocale = (newLocale: string) => {
     if (currentLocale && pathname.startsWith(`/${currentLocale}`)) {
@@ -76,14 +77,14 @@ export function Header({ brand, links, cta }: HeaderProps) {
             alt={brand || "Code Clouders"}
             width={160}
             height={39}
-            className={cn("h-[30px] lg:h-[39px]", "w-auto", "cursor-pointer", "dark:hidden")}
+            className={cn("h-[22px] lg:h-[39px]", "w-auto", "cursor-pointer", "dark:hidden")}
           />
           <img
             src="/light/logo.svg"
             alt={brand || "Code Clouders"}
             width={160}
             height={39}
-            className={cn("h-[30px] lg:h-[39px]", "w-auto", "cursor-pointer", "hidden dark:block")}
+            className={cn("h-[22px] lg:h-[39px]", "w-auto", "cursor-pointer", "hidden dark:block")}
           />
         </Link>
         <div
@@ -142,16 +143,9 @@ export function Header({ brand, links, cta }: HeaderProps) {
           </PillButton>
         </div>
 
-        {/* Mobile Controls (CTA, ThemeToggle, Burger) */}
+        {/* Mobile Controls (ThemeToggle, Burger) */}
         <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle className="!h-9 !w-9" />
-          <PillButton
-            href={ctaHref}
-            variant="nav"
-            size="sm"
-          >
-            {ctaLabel}
-          </PillButton>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className={cn("flex size-9 items-center justify-center rounded-full border transition duration-200 active:scale-95", "border-border text-foreground")}
@@ -162,56 +156,86 @@ export function Header({ brand, links, cta }: HeaderProps) {
         </div>
       </motion.nav>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Drawer Sidebar & Backdrop */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className={cn("absolute inset-x-0 top-[72px] lg:top-[100px] z-50 flex flex-col items-center gap-6 border-b px-6 py-8 shadow-lg lg:hidden", "border-border bg-surface")}
-          >
-            <div className={cn('flex', 'flex-col', 'items-center', 'gap-4', 'w-full')}>
-              {navLinks.map(([label, href]) => {
-                const isHash = href.startsWith("#");
-                const isActive = href === "/"
-                  ? pathname === "/"
-                  : pathname === href || pathname.startsWith(href + "/");
-                const linkClass = cn(
-                  'transition duration-200 leading-normal text-center py-2 w-full block hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl hover:text-[#F15722] dark:hover:text-[#F15722]',
-                  isActive 
-                    ? 'text-[#F15722] font-bold text-[20px]' 
-                    : 'text-[#414244] dark:text-white font-normal text-[18px]'
-                );
-                return isHash ? (
-                  <a
-                    key={label}
-                    href={href}
-                    onClick={() => setMenuOpen(false)}
-                    className={linkClass}
-                    style={{
-                      fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                    }}
-                  >
-                    {label}
-                  </a>
-                ) : (
-                  <Link
-                    key={label}
-                    href={href}
-                    onClick={() => setMenuOpen(false)}
-                    className={linkClass}
-                    style={{
-                      fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-                    }}
-                  >
-                    {label}
-                  </Link>
-                );
-              })}
-            </div>
-          </motion.div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+              className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm lg:hidden"
+            />
+
+            {/* Sidebar */}
+            <motion.div
+              initial={{ x: isRtl ? "100%" : "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: isRtl ? "100%" : "-100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 220 }}
+              className={cn(
+                "fixed top-0 bottom-0 z-50 w-[280px] sm:w-[320px] bg-surface p-6 shadow-2xl flex flex-col gap-6 lg:hidden border-border",
+                isRtl ? "right-0 border-l" : "left-0 border-r"
+              )}
+            >
+              {/* Sidebar Header with Close & Title */}
+              <div className="flex items-center justify-between w-full border-b pb-4 border-border/80">
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="flex size-9 items-center justify-center rounded-full border border-border text-foreground transition duration-200 active:scale-95 hover:bg-gray-100 dark:hover:bg-white/5"
+                  aria-label="Close Menu"
+                >
+                  <X className="size-4.5" />
+                </button>
+                <span className="font-bold text-[18px] text-foreground">
+                  {isRtl ? "القائمة" : "Menu"}
+                </span>
+              </div>
+
+              {/* Navigation Links */}
+              <div className="flex flex-col gap-2 w-full overflow-y-auto pr-1">
+                {navLinks.map(([label, href]) => {
+                  const isHash = href.startsWith("#");
+                  const isActive = href === "/"
+                    ? pathname === "/"
+                    : pathname === href || pathname.startsWith(href + "/");
+                  const linkClass = cn(
+                    'transition duration-200 leading-normal text-right py-3 px-4 w-full block hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl hover:text-[#F15722] dark:hover:text-[#F15722]',
+                    isActive 
+                      ? 'text-[#F15722] font-bold text-[18px] bg-gray-50 dark:bg-white/5' 
+                      : 'text-[#414244] dark:text-white font-normal text-[16px]'
+                  );
+                  return isHash ? (
+                    <a
+                      key={label}
+                      href={href}
+                      onClick={() => setMenuOpen(false)}
+                      className={linkClass}
+                      style={{
+                        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                      }}
+                    >
+                      {label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={label}
+                      href={href}
+                      onClick={() => setMenuOpen(false)}
+                      className={linkClass}
+                      style={{
+                        fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
+                      }}
+                    >
+                      {label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

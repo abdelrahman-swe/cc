@@ -152,7 +152,7 @@ export function AboutValuesSection({ cards }: AboutValuesSectionProps) {
                 variants={fadeUp}
                 whileHover={{ y: -5 }}
                 className={cn(
-                  'flex flex-col gap-6 rounded-[24px] p-8 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-all duration-300',
+                  'flex flex-col gap-4 sm:gap-6 rounded-[24px] p-6 sm:p-8 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-all duration-300',
                   colSpanClass,
                   styles.cardBg,
                   locale === 'ar' ? 'text-right' : 'text-left'
@@ -168,10 +168,10 @@ export function AboutValuesSection({ cards }: AboutValuesSectionProps) {
                 </div>
 
                 {/* Text Content */}
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2 sm:gap-3">
                   <h3 
                     className={cn(
-                      'text-[24px] sm:text-[28px] font-bold leading-normal font-serif-text',
+                      'text-[20px] sm:text-[28px] font-bold leading-normal font-serif-text',
                       styles.titleColor
                     )}
                     style={{ fontFamily: '"Thmanyah Serif Text", serif' }}
@@ -180,7 +180,7 @@ export function AboutValuesSection({ cards }: AboutValuesSectionProps) {
                   </h3>
                   <p 
                     className={cn(
-                      'text-[15px] sm:text-[18px] font-medium leading-[1.6]',
+                      'text-[13px] sm:text-[16px] font-medium leading-[1.6]',
                       styles.descColor
                     )}
                     style={{ fontFamily: '"IBM Plex Sans Arabic", sans-serif' }}

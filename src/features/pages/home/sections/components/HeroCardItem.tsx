@@ -93,7 +93,7 @@ export function HeroCardItem({
         "group",
         "relative",
         "flex flex-col justify-end",
-        "h-[310px] sm:h-[330px] lg:h-[363.6px]",
+        "h-[260px] sm:h-[300px] lg:h-[363.6px]",
         "w-full max-w-[395.92px] mx-auto",
         "overflow-hidden",
         "rounded-[40px] lg:rounded-[50.5px]",
@@ -146,9 +146,7 @@ export function HeroCardItem({
             "text-right",
             "font-semibold",
             "leading-normal",
-            "text-[18px]",
-            "lg:text-[20px]",
-            "xl:text-[22px]",
+            "text-[16px] sm:text-[18px] lg:text-[20px] xl:text-[22px]",
           )}
           style={{
             color: "var(--Neutral-800, #121516)",
@@ -165,9 +163,7 @@ export function HeroCardItem({
             "mt-2",
             "text-right",
             "font-normal",
-            "text-[14px]",
-            "lg:text-[18px]",
-            "xl:text-[20px]",
+            "text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[20px]",
             "xl:whitespace-nowrap",
           )}
           style={{

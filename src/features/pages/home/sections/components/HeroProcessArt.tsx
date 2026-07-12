@@ -46,6 +46,16 @@ const DISPLAY_PARTNERS = [
 
 export function HeroProcessArt() {
   const [step, setStep] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -62,14 +72,14 @@ export function HeroProcessArt() {
 
   const slotVariants = {
     bottom: {
-      y: 62,
+      y: isMobile ? 40 : 62,
       scale: 1,
       opacity: 1,
       zIndex: 20,
       transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] as const },
     },
     top: {
-      y: -10,
+      y: isMobile ? -8 : -10,
       scale: 0.92,
       opacity: 0.75,
       zIndex: 10,
@@ -84,7 +94,7 @@ export function HeroProcessArt() {
         "inset-x-0",
         "top-6",
         "flex",
-        "h-[160px]",
+        "h-[120px] lg:h-[160px]",
         "items-center",
         "justify-center",
         "pointer-events-none",
@@ -102,18 +112,18 @@ export function HeroProcessArt() {
           className={cn(
             "absolute",
             "flex",
-            "h-[64px]",
-            "w-[275px]",
+            "h-[48px] lg:h-[64px]",
+            "w-[220px] lg:w-[275px]",
             "items-center",
-            "gap-3",
+            "gap-2 lg:gap-3",
             "rounded-full",
             "border",
             "border-border",
             "dark:border-white/10",
             "bg-surface-card",
             "dark:bg-[#070C18]/60",
-            "px-4",
-            "py-2",
+            "px-3 lg:px-4",
+            "py-1.5 lg:py-2",
             "shadow-[0_8px_24px_rgba(14,23,48,0.05)]",
           )}
         >
@@ -121,7 +131,7 @@ export function HeroProcessArt() {
             className={cn(
               "relative",
               "flex",
-              "size-11",
+              "size-8 lg:size-11",
               "shrink-0",
               "items-center",
               "justify-center",
@@ -131,7 +141,7 @@ export function HeroProcessArt() {
               "dark:border-white/10",
               "bg-surface-card",
               "dark:bg-white",
-              "p-1.5",
+              "p-1 lg:p-1.5",
               "shadow-sm",
             )}
           >
@@ -147,7 +157,7 @@ export function HeroProcessArt() {
             <strong
               className={cn(
                 "block",
-                "text-[14px]",
+                "text-[12px] lg:text-[14px]",
                 "font-bold",
                 "text-foreground",
                 "truncate",
@@ -158,7 +168,7 @@ export function HeroProcessArt() {
             <span
               className={cn(
                 "block",
-                "text-[11px]",
+                "text-[9px] lg:text-[11px]",
                 "text-foreground-subtle",
                 "truncate",
               )}

@@ -97,7 +97,7 @@ export function HeroSection(props: any) {
         "bg-surface",
         "transition-colors",
         "duration-300",
-        "pt-24",
+        "pt-4",
         "lg:pt-[100.5px]",
         "pb-5 sm:pb-16 md:pb-[128px]",
       )}
@@ -186,7 +186,7 @@ export function HeroSection(props: any) {
               "max-w-[652px]",
               "text-center",
               "font-normal",
-              "text-[10px] xs:text-[12px] sm:text-[16px] md:text-[20px] lg:text-[24px]",
+              "text-[14px] xs:text-[14px] sm:text-[14px] md:text-[20px] lg:text-[24px]",
               "whitespace-nowrap sm:whitespace-normal",
             )}
             style={{
@@ -211,7 +211,7 @@ export function HeroSection(props: any) {
             "mt-12 md:mt-20 lg:mt-[96px]",
             "grid",
             "max-w-[1248px]",
-            "gap-6",
+            "gap-4",
             "md:grid-cols-3",
           )}
         >

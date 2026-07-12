@@ -1,0 +1,18 @@
+- [x] Update mobile Header: remove CTA button on mobile, minimize logo size to `h-[22px]`
+- [x] Implement mobile Sidebar: spring sliding drawer panel with clicking backdrop overlay in `Header.tsx`
+- [x] Reduce top space between Header and Hero content to max 16px (`pt-4`) in `HeroSection.tsx` and `LiteralHomePage.tsx`
+- [x] Update Hero Cards: reduce mobile height and font sizes in `HeroCardItem.tsx` and `LiteralHomePage.tsx`
+- [x] Update Services Cards: reduce mobile heights, adjust text sizes, and fix image container heights in `ServicesSection.tsx` and `LiteralHomePage.tsx`
+- [x] Methodology section: enable central vertical timeline line on mobile behind cards/circles in `MethodologySection.tsx`
+- [x] Collapse empty spaces in the final CTA section in `FinalCtaSection.tsx` and `LiteralHomePage.tsx`
+- [x] Run typechecks and verify layouts visually on mobile, tablet, and desktop
+- [x] Fix ServiceCard image cropping and blank gaps by setting `h-auto md:h-[530px]` and removing fixed mobile height limitations on image containers
+- [x] Fix Methodology line overlapping text title on mobile by making top position responsive (`top-0 lg:top-[-60px]`)
+- [x] Re-organize Footer: start-align logo (right in Arabic RTL), stack columns vertically on mobile, and force LTR text direction on email/phone contact information
+- [x] Eliminate footer blank gap under logo by grouping Logo, Location, and Contact in a single flex column
+- [x] Compact About page Vision/Mission card sizes on mobile (reduced padding, gap, title size, and desc size)
+- [x] Redesign "What We Offer" pills: changed layout to `grid-cols-1 xs:grid-cols-2` and optimized mobile text sizing/padding for beautiful UI legibility
+- [x] Fix Hero Card 2 (STC/Nafath pills) layout overlap on mobile by shrinking the pills/offsets responsively using CSS variables
+- [x] Redesign LiquidLogoLoader to use CSS-masked image wave clipping, centering, and zoom-in portal transition matching the HTML template logic exactly
+- [x] Fix LiquidLogoLoader centering, loading text proximity, mask path (/light/logo.svg), larger dimensions, and mathematically linear fill range (startY = height - 100, travel = height)
+- [x] Enable LiquidLogoLoader original brand colored filling by applying the liquid wave mask to the colored `/light/logo.svg` image

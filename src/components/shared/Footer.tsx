@@ -210,7 +210,7 @@ export function Footer({ data }: FooterProps) {
         <div
           className={cn(
             "grid",
-            "grid-cols-2",
+            "grid-cols-1 sm:grid-cols-2",
             "lg:flex",
             "lg:flex-row",
             "gap-8 md:gap-12",
@@ -220,76 +220,70 @@ export function Footer({ data }: FooterProps) {
             "w-full",
           )}
         >
-          {/* Column 1 (Logo): Centered full-width at the top on mobile, start-aligned on desktop */}
-          <div className={cn("col-span-2 flex justify-center mb-2 lg:mb-0 lg:col-span-1 lg:justify-start lg:w-[160px] h-[39px] relative shrink-0 w-full")}>
-            <div className="w-[160px] h-full relative">
-              <Link href="/">
-                <img
-                  src="/assets/footer-logo.svg"
-                  alt="Code Clouders"
-                  className={cn(
-                    "absolute",
-                    "block",
-                    "inset-0",
-                    "max-w-none",
-                    "size-full",
-                    "cursor-pointer"
-                  )}
-                  loading="lazy"
-                />
-              </Link>
+          {/* Column 1: Logo + Location & Contact */}
+          <div className="flex flex-col gap-8 col-span-1 w-full">
+            {/* Logo */}
+            <div className="flex justify-start w-[160px] h-[39px] relative shrink-0">
+              <div className="w-[160px] h-full relative">
+                <Link href="/">
+                  <img
+                    src="/assets/footer-logo.svg"
+                    alt="Code Clouders"
+                    className="absolute block inset-0 size-full cursor-pointer"
+                    loading="lazy"
+                  />
+                </Link>
+              </div>
+            </div>
+
+            {/* Location */}
+            <div className="flex flex-col gap-2 items-start w-full">
+              <p className="font-serif-display font-medium text-[20px] text-white leading-none">
+                {locationTitle}
+              </p>
+              <div className="flex flex-row items-center gap-2 text-[16px] text-white/70 justify-start">
+                <LocationIcon />
+                <span>{location}</span>
+              </div>
+            </div>
+
+            {/* Contact */}
+            <div className="flex flex-col gap-2 items-start w-full">
+              <p className="font-serif-display font-medium text-[20px] text-white leading-none">
+                {contactTitle}
+              </p>
+              <div className="flex flex-col gap-2 items-start text-[16px] text-white/70 w-full">
+                <a
+                  href={`mailto:${email}`}
+                  className="flex flex-row items-center gap-2 hover:text-white transition-colors duration-200 justify-start"
+                >
+                  <InboxIcon />
+                  <span className="inline-block [direction:ltr] select-all">{email}</span>
+                </a>
+                <a
+                  href={`tel:${phone}`}
+                  className="flex flex-row items-center gap-2 hover:text-white transition-colors duration-200 justify-start"
+                >
+                  <CallIcon />
+                  <span className="inline-block [direction:ltr] select-all">{phone}</span>
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Column 2 (Quick Links): Side-by-side on mobile, start-aligned on mobile, end-aligned on desktop */}
-          <div
-            className={cn(
-              "flex",
-              "flex-col",
-              "gap-4",
-              "col-span-1",
-              "items-start",
-              "lg:items-end",
-              "lg:rtl:items-start",
-              "lg:ltr:items-end",
-              "flex-1",
-            )}
-          >
-            <p
-              className={cn(
-                "font-serif-display",
-                "font-medium",
-                "text-[20px]",
-                "text-white",
-                "leading-none",
-              )}
-            >
+          {/* Column 2 (Quick Links) */}
+          <div className="flex flex-col gap-4 col-span-1 items-start">
+            <p className="font-serif-display font-medium text-[20px] text-white leading-none">
               {linksTitle}
             </p>
-            <div
-              className={cn(
-                "flex",
-                "flex-col",
-                "gap-2",
-                "items-start",
-                "lg:items-end",
-                "lg:rtl:items-start",
-                "lg:ltr:items-end",
-                "text-[16px]",
-                "text-white/70",
-              )}
-            >
+            <div className="flex flex-col gap-2 items-start text-[16px] text-white/70">
               {links.map((link) => {
                 const isHash = link.url.startsWith('#') || link.url.startsWith('http') || link.url.startsWith('mailto') || link.url.startsWith('tel')
                 return isHash ? (
                   <a
                     key={`${link.url}-${link.label}`}
                     href={link.url}
-                    className={cn(
-                      "hover:text-white",
-                      "transition-colors",
-                      "duration-200",
-                    )}
+                    className="hover:text-white transition-colors duration-200"
                   >
                     {link.label}
                   </a>
@@ -297,11 +291,7 @@ export function Footer({ data }: FooterProps) {
                   <Link
                     key={`${link.url}-${link.label}`}
                     href={link.url}
-                    className={cn(
-                      "hover:text-white",
-                      "transition-colors",
-                      "duration-200",
-                    )}
+                    className="hover:text-white transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -310,178 +300,12 @@ export function Footer({ data }: FooterProps) {
             </div>
           </div>
 
-          {/* Column 3 (Location and Contact): Side-by-side on mobile, start-aligned on mobile, end-aligned on desktop */}
-          <div
-            className={cn(
-              "flex",
-              "flex-col",
-              "gap-8",
-              "col-span-1",
-              "items-start",
-              "lg:items-end",
-              "lg:rtl:items-start",
-              "lg:ltr:items-end",
-              "flex-1",
-            )}
-          >
-            {/* Location Sub-column */}
-            <div
-              className={cn(
-                "flex",
-                "flex-col",
-                "gap-2",
-                "items-start",
-                "lg:items-end",
-                "lg:rtl:items-start",
-                "lg:ltr:items-end",
-                "w-full",
-              )}
-            >
-              <p
-                className={cn(
-                  "font-serif-display",
-                  "font-medium",
-                  "text-[20px]",
-                  "text-white",
-                  "leading-none",
-                )}
-              >
-                {locationTitle}
-              </p>
-              <div
-                className={cn(
-                  "flex",
-                  "flex-row",
-                  "items-center",
-                  "gap-2",
-                  "text-[16px]",
-                  "text-white/70",
-                  "justify-start",
-                  "lg:rtl:justify-start",
-                  "lg:ltr:justify-end",
-                )}
-              >
-                <LocationIcon />
-                <span>{location}</span>
-              </div>
-            </div>
-            {/* Contact Sub-column */}
-            <div
-              className={cn(
-                "flex",
-                "flex-col",
-                "gap-2",
-                "items-start",
-                "lg:items-end",
-                "lg:rtl:items-start",
-                "lg:ltr:items-end",
-                "w-full",
-              )}
-            >
-              <p
-                className={cn(
-                  "font-serif-display",
-                  "font-medium",
-                  "text-[20px]",
-                  "text-white",
-                  "leading-none",
-                )}
-              >
-                {contactTitle}
-              </p>
-              <div
-                className={cn(
-                  "flex",
-                  "flex-col",
-                  "gap-2",
-                  "items-start",
-                  "lg:items-end",
-                  "lg:rtl:items-start",
-                  "lg:ltr:items-end",
-                  "text-[16px]",
-                  "text-white/70",
-                  "w-full",
-                )}
-              >
-                <a
-                  href={`mailto:${email}`}
-                  className={cn(
-                    "flex",
-                    "flex-row",
-                    "items-center",
-                    "gap-2",
-                    "hover:text-white",
-                    "transition-colors",
-                    "duration-200",
-                    "justify-start",
-                    "lg:rtl:justify-start",
-                    "lg:ltr:justify-end",
-                  )}
-                >
-                  <InboxIcon />
-                  <span className={cn("dir-ltr", "select-all")}>{email}</span>
-                </a>
-                <a
-                  href={`tel:${phone}`}
-                  className={cn(
-                    "flex",
-                    "flex-row",
-                    "items-center",
-                    "gap-2",
-                    "hover:text-white",
-                    "transition-colors",
-                    "duration-200",
-                    "justify-start",
-                    "lg:rtl:justify-start",
-                    "lg:ltr:justify-end",
-                  )}
-                >
-                  <CallIcon />
-                  <span className={cn("dir-ltr", "select-all")}>{phone}</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Column 4 (Social Media): Centered full-width at the bottom on mobile, end-aligned on desktop */}
-          <div
-            className={cn(
-              "flex",
-              "flex-col",
-              "gap-4",
-              "col-span-2",
-              "lg:col-span-1",
-              "items-center",
-              "lg:items-end",
-              "lg:rtl:items-start",
-              "lg:ltr:items-end",
-              "shrink-0",
-            )}
-          >
-            <p
-              className={cn(
-                "font-serif-display",
-                "font-medium",
-                "text-[20px]",
-                "text-white",
-                "leading-none",
-              )}
-            >
+          {/* Column 3 (Social Media) */}
+          <div className="flex flex-col gap-4 col-span-1 sm:col-span-2 lg:col-span-1 items-start lg:items-end lg:rtl:items-start lg:ltr:items-end shrink-0">
+            <p className="font-serif-display font-medium text-[20px] text-white leading-none">
               {socialTitle}
             </p>
-            <div
-              className={cn(
-                "flex",
-                "flex-row",
-                "gap-4",
-                "items-center",
-                "justify-center",
-                "lg:justify-start",
-                "lg:rtl:justify-start",
-                "lg:ltr:justify-end",
-                "w-full",
-              )}
-            >
+            <div className="flex flex-row gap-4 items-center justify-start lg:justify-end lg:rtl:justify-start lg:ltr:justify-end w-full">
               {socialLinks.map((social) => {
                 const IconComponent =
                   SOCIAL_ICONS[social.platform.toLowerCase()];
@@ -493,20 +317,7 @@ export function Footer({ data }: FooterProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.platform}
-                    className={cn(
-                      "w-6",
-                      "h-6",
-                      "rounded-full",
-                      "bg-white",
-                      "flex",
-                      "items-center",
-                      "justify-center",
-                      "text-[#0E1730]",
-                      "hover:opacity-85",
-                      "transition-all",
-                      "duration-200",
-                      "hover:scale-105",
-                    )}
+                    className="w-6 h-6 rounded-full bg-white flex items-center justify-center text-[#0E1730] hover:opacity-85 transition-all duration-200 hover:scale-105"
                   >
                     <IconComponent />
                   </a>

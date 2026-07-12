@@ -17,6 +17,7 @@ import { Footer } from "@/components/shared/Footer";
 import { Header } from "@/components/shared/Header";
 import { ProjectCard } from "@/features/case-studies/sections/FeaturedWorkSection";
 import { SectionTag } from "@/components/ui/SectionTag";
+import { PillButton } from "@/components/ui/PillButton";
 import { useTheme } from "@/components/shared/ThemeProvider";
 
 const DISPLAY_PARTNERS = [
@@ -150,59 +151,6 @@ const staggerContainer: Variants = {
 
 const motionViewport = { once: true, margin: "-80px" } as const;
 
-function PillButton({
-  children,
-  href,
-  variant = "nav",
-  className = "",
-  onClick,
-}: {
-  children: string;
-  href: string;
-  variant?: "nav" | "orange" | "blue" | "white";
-  className?: string;
-  onClick?: () => void;
-}) {
-  const styles = {
-    nav: "cta-pill--navy bg-[#243A77] text-white",
-    orange: "cta-pill--orange bg-[#F15722] text-white",
-    blue: "cta-pill--navy bg-[#243A77] text-white",
-    white: "cta-pill--white border border-[#F1D5CC] dark:border-white/15 bg-surface-card text-[#F15722]",
-  };
-
-  const circle = {
-    nav: "bg-surface text-[#243A77]",
-    orange: "bg-surface text-[#F15722]",
-    blue: "bg-surface text-[#F15722]",
-    white: "bg-[#F15722] text-white",
-  };
-
-  return (
-    <a
-      href={href}
-      onClick={onClick}
-      className={cn(
-        "cta-pill group inline-flex h-14 items-center justify-between gap-4 rounded-[50px] ps-6 pe-2 text-[15px] font-bold shadow-[0_14px_34px_rgba(14,23,48,0.12)] transition duration-300 hover:-translate-y-0.5",
-        styles[variant],
-        className,
-      )}
-    >
-      <span>{children}</span>
-      <span
-        className={cn(
-          "cta-icon-wrap relative grid size-10 shrink-0 place-items-center rounded-full",
-          circle[variant],
-        )}
-      >
-        <ArrowLeft aria-hidden className={cn("cta-icon-main", "size-5")} />
-        <span className="cta-icon-ghost">
-          <ArrowLeft aria-hidden className="size-5" />
-        </span>
-      </span>
-    </a>
-  );
-}
-
 
 
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
@@ -298,6 +246,16 @@ function HeroButtonArt() {
 
 function HeroProcessArt() {
   const [step, setStep] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -314,14 +272,14 @@ function HeroProcessArt() {
 
   const slotVariants = {
     bottom: {
-      y: 62,
+      y: isMobile ? 40 : 62,
       scale: 1,
       opacity: 1,
       zIndex: 20,
       transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] as const },
     },
     top: {
-      y: -10,
+      y: isMobile ? -8 : -10,
       scale: 0.92,
       opacity: 0.75,
       zIndex: 10,
@@ -330,7 +288,7 @@ function HeroProcessArt() {
   } as const;
 
   return (
-    <div className={cn('absolute', 'inset-x-0', 'top-6', 'flex', 'h-[160px]', 'items-center', 'justify-center', 'pointer-events-none', 'select-none', 'overflow-visible')}>
+    <div className={cn('absolute', 'inset-x-0', 'top-6', 'flex', 'h-[120px] lg:h-[160px]', 'items-center', 'justify-center', 'pointer-events-none', 'select-none', 'overflow-visible')}>
       {currentStack.map(({ partner, slot }) => (
         <motion.div
           key={partner.id}
@@ -338,9 +296,9 @@ function HeroProcessArt() {
           initial={false}
           animate={slot}
           variants={slotVariants}
-          className={cn('absolute', 'flex', 'h-[64px]', 'w-[275px]', 'items-center', 'gap-3', 'rounded-full', 'border', 'border-border', 'dark:border-white/10', 'bg-surface-card', 'dark:bg-[#070C18]/60', 'px-4', 'py-2', 'shadow-[0_8px_24px_rgba(14,23,48,0.05)]', 'transition-colors', 'duration-300')}
+          className={cn('absolute', 'flex', 'h-[48px] lg:h-[64px]', 'w-[220px] lg:w-[275px]', 'items-center', 'gap-2 lg:gap-3', 'rounded-full', 'border', 'border-border', 'dark:border-white/10', 'bg-surface-card', 'dark:bg-[#070C18]/60', 'px-3 lg:px-4', 'py-1.5 lg:py-2', 'shadow-[0_8px_24px_rgba(14,23,48,0.05)]', 'transition-colors', 'duration-300')}
         >
-          <div className={cn('relative', 'flex', 'size-11', 'shrink-0', 'items-center', 'justify-center', 'rounded-full', 'border', 'border-border', 'dark:border-white/10', 'bg-surface-card', 'dark:bg-[#070C18]/60', 'p-1.5', 'shadow-sm', 'transition-colors', 'duration-300')}>
+          <div className={cn('relative', 'flex', 'size-8 lg:size-11', 'shrink-0', 'items-center', 'justify-center', 'rounded-full', 'border', 'border-border', 'dark:border-white/10', 'bg-surface-card', 'dark:bg-[#070C18]/60', 'p-1 lg:p-1.5', 'shadow-sm', 'transition-colors', 'duration-300')}>
             <img
               src={partner.logo}
               alt={partner.name}
@@ -348,10 +306,10 @@ function HeroProcessArt() {
             />
           </div>
           <div className={cn('text-right', 'flex-1', 'min-w-0')}>
-            <strong className={cn('block', 'text-[14px]', 'font-bold', 'text-foreground', 'truncate')}>
+            <strong className={cn('block', 'text-[12px] lg:text-[14px]', 'font-bold', 'text-foreground', 'truncate')}>
               {partner.name}
             </strong>
-            <span className={cn('block', 'text-[11px]', 'text-foreground-subtle', 'truncate')}>
+            <span className={cn('block', 'text-[9px] lg:text-[11px]', 'text-foreground-subtle', 'truncate')}>
               {partner.note}
             </span>
           </div>
@@ -416,7 +374,7 @@ function HeroCard({
             }
       }
       className={cn(
-        "group relative flex flex-col justify-end h-[310px] sm:h-[330px] lg:h-[363.6px] w-full max-w-[395.92px] mx-auto overflow-hidden rounded-[40px] lg:rounded-[50.5px] border-[2.02px] border-[#F1D5CC] dark:border-white/15 bg-surface-card hero-card px-6 pt-6 pb-6 sm:pb-8 lg:pb-10 xl:px-8 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-[border-color,box-shadow,background-color] duration-200 hover:border-[#F79A7A] dark:hover:border-[#072FA2] hover:shadow-[-217.15px_247.45px_91.91px_0px_rgba(36,58,119,0.01),-9.09px_10.1px_29.29px_0px_rgba(36,58,119,0.08)]",
+        "group relative flex flex-col justify-end h-[260px] sm:h-[300px] lg:h-[363.6px] w-full max-w-[395.92px] mx-auto overflow-hidden rounded-[40px] lg:rounded-[50.5px] border-[2.02px] border-[#F1D5CC] dark:border-white/15 bg-surface-card hero-card px-6 pt-6 pb-6 sm:pb-8 lg:pb-10 xl:px-8 text-right shadow-[0_12px_32px_rgba(14,23,48,0.03)] transition-[border-color,box-shadow,background-color] duration-200 hover:border-[#F79A7A] dark:hover:border-[#072FA2] hover:shadow-[-217.15px_247.45px_91.91px_0px_rgba(36,58,119,0.01),-9.09px_10.1px_29.29px_0px_rgba(36,58,119,0.08)]",
       )}
     >
       <div
@@ -471,11 +429,10 @@ function HeroCard({
 
       <div className={cn("relative", "z-10")}>
         <h3
-          className={cn('text-right', 'font-semibold', 'leading-normal')}
+          className={cn('text-right', 'font-semibold', 'leading-normal', 'text-[16px] sm:text-[18px] lg:text-[20px] xl:text-[22px]')}
           style={{
             color: "var(--Neutral-800, #121516)",
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
-            fontSize: "22px",
             fontWeight: 600,
             lineHeight: "normal",
           }}
@@ -483,7 +440,7 @@ function HeroCard({
           {title}
         </h3>
         <p
-          className={cn('mt-2', 'text-right', 'font-normal', 'text-[15px]', 'sm:text-[16px]', 'lg:text-[18px]', 'xl:text-[20px]')}
+          className={cn('mt-2', 'text-right', 'font-normal', 'text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[20px]')}
           style={{
             color: "var(--Neutral-400, #575C5E)",
             fontFamily: '"IBM Plex Sans Arabic", sans-serif',
@@ -510,7 +467,7 @@ function AiServiceCard() {
         "services-card",
         "group",
         "relative",
-        "h-[530px]",
+        "h-[360px] sm:h-[450px] md:h-[530px]",
         "overflow-hidden",
         "rounded-[50px]",
         "border",
@@ -540,7 +497,7 @@ function AiServiceCard() {
           "left-1/2",
           "top-[60px] sm:top-[80px] lg:top-[95px]",
           "z-0",
-          "h-[280px] sm:h-[350px] md:h-[409px]",
+          "h-[180px] sm:h-[280px] md:h-[409px]",
           "w-auto",
           "-translate-x-1/2",
           "object-contain",
@@ -549,7 +506,7 @@ function AiServiceCard() {
       />
 
       {/* Layer 2: White Card Container (Figma 563:9152) */}
-      <div className={cn('absolute', 'bottom-[30px]', 'left-1/2', 'z-10', 'flex', 'w-[623px]', 'max-w-[calc(100%-32px)]', '-translate-x-1/2', 'flex-col', 'gap-3', 'rounded-[24px]', 'bg-surface-card', 'dark:bg-surface-elevated', 'p-4', 'shadow-[0_10px_30px_rgba(0,0,0,0.04)]', 'border', 'border-border', 'dark:border-white/10', 'transition-colors', 'duration-300')}>
+      <div className={cn('absolute', 'bottom-4 sm:bottom-[30px]', 'left-1/2', 'z-10', 'flex', 'w-[623px]', 'max-w-[calc(100%-32px)]', '-translate-x-1/2', 'flex-col', 'gap-3', 'rounded-[24px]', 'bg-surface-card', 'dark:bg-surface-elevated', 'p-4', 'shadow-[0_10px_30px_rgba(0,0,0,0.04)]', 'border', 'border-border', 'dark:border-white/10', 'transition-colors', 'duration-300')}>
         {/* Star Badge positioned on the right */}
         <div className={cn('flex', 'w-full', 'justify-start')}>
           <div className={cn('flex', 'size-[48px]', 'shrink-0', 'items-center', 'justify-center', 'rounded-[16px]', 'border', 'border-[#FCDDD3]', 'dark:border-white/15', 'bg-surface-elevated', 'dark:bg-surface', 'p-3', 'text-[#F15722]')}>
@@ -562,24 +519,20 @@ function AiServiceCard() {
         {/* Gray Content Box */}
         <div className={cn('w-full', 'rounded-[16px]', 'bg-surface-elevated', 'dark:bg-surface', 'p-5', 'text-right', 'transition-colors', 'duration-300')}>
           <h3
-            className={cn('text-right', 'font-medium', 'leading-normal', 'text-foreground')}
+            className={cn('text-right', 'font-medium', 'leading-normal', 'text-foreground', 'text-[16px] sm:text-[18px] md:text-[20px]')}
             style={{
               fontFamily:
                 '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-              fontSize: "20px",
-              fontStyle: "normal",
               fontWeight: 500,
             }}
           >
             حلول الذكاء الاصطناعي المتقدمة
           </h3>
           <p
-            className={cn('mt-2', 'text-right', 'font-normal', 'text-foreground-muted')}
+            className={cn('mt-2', 'text-right', 'font-normal', 'text-foreground-muted', 'text-[12px] sm:text-[14px] md:text-[16px]')}
             style={{
               fontFamily:
                 '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-              fontSize: "16px",
-              fontStyle: "normal",
               fontWeight: 400,
               lineHeight: "1.4",
             }}
@@ -619,7 +572,7 @@ function AiServiceCard() {
           "left-1/2",
           "top-[60px] sm:top-[80px] lg:top-[95px]",
           "z-20",
-          "h-[280px] sm:h-[350px] md:h-[409px]",
+          "h-[180px] sm:h-[280px] md:h-[409px]",
           "w-auto",
           "-translate-x-1/2",
           "object-contain",
@@ -663,7 +616,7 @@ function ServiceCard({
         "group",
         "relative",
         "flex",
-        "h-[530px]",
+        "h-auto md:h-[530px]",
         "flex-col",
         "overflow-hidden",
         "rounded-[50px]",
@@ -684,15 +637,13 @@ function ServiceCard({
         alt=""
         className={cn('pointer-events-none', 'absolute', 'bottom-0', 'left-0', 'z-0', 'h-full', 'w-full', 'object-cover', 'opacity-0', 'dark:opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100', 'dark:group-hover:opacity-0')}
       />
-      <div className={cn("px-8", "pt-9", "text-right")}>
+      <div className={cn("px-6 sm:px-8", "pt-6 sm:pt-9", "text-right")}>
         <h3
-          className={cn('text-right', 'font-medium', 'leading-normal')}
+          className={cn('text-right', 'font-medium', 'leading-normal', 'text-[16px] sm:text-[18px] md:text-[20px]')}
           style={{
             color: "var(--Neutral-800, #1E1E20)",
             textAlign: "right",
             fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-            fontSize: "20px",
-            fontStyle: "normal",
             fontWeight: 500,
             lineHeight: "normal",
           }}
@@ -700,13 +651,11 @@ function ServiceCard({
           {title}
         </h3>
         <p
-          className={cn('mt-4', 'text-right', 'font-normal', 'self-stretch')}
+          className={cn('mt-2 sm:mt-4', 'text-right', 'font-normal', 'self-stretch', 'text-[13px] sm:text-[15px] md:text-[18px]')}
           style={{
             color: "var(--Neutral-500, #5F6063)",
             textAlign: "right",
             fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-            fontSize: "18px",
-            fontStyle: "normal",
             fontWeight: 400,
             lineHeight: "140%",
             alignSelf: "stretch",
@@ -719,11 +668,10 @@ function ServiceCard({
         className={cn(
           "relative",
           "z-10",
-          "mt-6",
-          "flex-1",
+          "mt-auto",
           "w-full",
           "overflow-hidden",
-          "bg-transparent",
+          "rounded-b-[50px]",
         )}
       >
         <div className={cn('pointer-events-none', 'absolute', 'inset-x-0', 'bottom-0', 'z-0', 'h-full', 'w-full', 'bg-gradient-to-t', 'from-[#F15722]/30', 'via-[#F15722]/10', 'to-transparent', 'blur-2xl', 'opacity-0', 'transition-opacity', 'duration-500', 'group-hover:opacity-100')} />
@@ -782,18 +730,16 @@ function WideServiceCard() {
           "flex",
           "flex-col",
           "justify-center",
-          "p-10",
+          "p-5 sm:p-10",
           "text-right",
         )}
       >
         <h3
-          className={cn('text-right', 'font-medium', 'leading-normal')}
+          className={cn('text-right', 'font-medium', 'leading-normal', 'text-[16px] sm:text-[18px] md:text-[20px]')}
           style={{
             color: "var(--Neutral-800, #1E1E20)",
             textAlign: "right",
             fontFamily: '"IBM Plex Sans Arabic", var(--font-brand), sans-serif',
-            fontSize: "20px",
-            fontStyle: "normal",
             fontWeight: 500,
             lineHeight: "normal",
           }}
@@ -904,7 +850,8 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
             "overflow-hidden",
             "bg-surface",
             "pb-14",
-            "pt-16",
+            "pt-4",
+            "lg:pt-16",
             "lg:min-h-[870px]",
             "transition-colors",
             "duration-300",
@@ -1580,11 +1527,10 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
                   "bottom-0",
                   "left-1/2",
                   "top-0",
-                  "hidden",
+                  "z-0",
                   "w-px",
                   "-translate-x-1/2",
                   "bg-[#FCDDD3] dark:bg-white/10",
-                  "lg:block",
                 )}
               />
               {methodologyList.map(([title, body], index) => {
@@ -1785,12 +1731,12 @@ export function LiteralHomePage({ data }: { data?: HomePageData }) {
               viewport={motionViewport}
               className={cn(
                 "relative",
-                "min-h-[420px]",
+                "min-h-[220px] md:min-h-[420px]",
                 "overflow-hidden",
                 "rounded-[32px]",
                 "bg-[#F15722]",
-                "px-6",
-                "py-10",
+                "px-4 sm:px-6",
+                "py-6 md:py-14",
                 "text-white",
                 "md:p-14",
                 "lg:px-16",

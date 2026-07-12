@@ -84,14 +84,14 @@ export function SolutionsSection({
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className="mt-12 grid grid-cols-3 gap-2 px-1 max-w-[980px] mx-auto sm:flex sm:flex-wrap sm:justify-center sm:gap-4"
+          className="mt-12 grid grid-cols-1 xs:grid-cols-2 gap-3 px-2 max-w-[980px] mx-auto sm:flex sm:flex-wrap sm:justify-center sm:gap-4"
         >
           {list.map((item, index) => (
             <motion.div
               key={index}
               variants={fadeUp}
               whileHover={{ scale: 1.03, y: -2 }}
-              className="flex min-h-[56px] h-auto items-center justify-center text-center gap-1.5 sm:gap-3 rounded-[12px] border border-[#eaeaeb] dark:border-[#0a2268] bg-[#f9f9f9] dark:bg-[#0d193b] px-1.5 py-2 sm:px-5 sm:py-3 shadow-[0_4px_12px_rgba(0,0,0,0.02)] dark:shadow-[inset_0px_4px_4px_0px_#0a2268] transition-shadow duration-200 hover:shadow-[0_12px_24px_rgba(36,58,119,0.06)] hover:dark:shadow-[0_12px_24px_rgba(10,34,104,0.3)]"
+              className="flex min-h-[56px] h-auto items-center justify-center text-center gap-1.5 sm:gap-3 rounded-[12px] border border-[#eaeaeb] dark:border-[#0a2268] bg-[#f9f9f9] dark:bg-[#0d193b] px-3.5 py-3 sm:px-5 sm:py-3 shadow-[0_4px_12px_rgba(0,0,0,0.02)] dark:shadow-[inset_0px_4px_4px_0px_#0a2268] transition-shadow duration-200 hover:shadow-[0_12px_24px_rgba(36,58,119,0.06)] hover:dark:shadow-[0_12px_24px_rgba(10,34,104,0.3)]"
             >
               {/* Gemini Star Icon */}
               <div className="size-3.5 sm:size-6 text-[#f4794e] shrink-0">
@@ -102,7 +102,7 @@ export function SolutionsSection({
 
               {/* Gradient text */}
               <span
-                className="font-medium text-[10px] sm:text-[16px] md:text-[18px] leading-tight bg-clip-text bg-gradient-to-r from-[#f4794e] to-[#243a77] dark:to-white text-transparent"
+                className="font-medium text-[13px] xs:text-[14px] sm:text-[16px] md:text-[18px] leading-tight bg-clip-text bg-gradient-to-r from-[#f4794e] to-[#243a77] dark:to-white text-transparent"
                 style={{ fontFamily: '"IBM Plex Sans Arabic", sans-serif' }}
               >
                 {item.name}

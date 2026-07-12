@@ -36,7 +36,7 @@ export function FinalCtaSection(props: FinalCtaSectionProps) {
           initial="hidden"
           whileInView="visible"
           viewport={motionViewport}
-          className={cn('relative', 'min-h-[320px] md:min-h-[420px]', 'flex items-center', 'overflow-hidden', 'rounded-[24px] md:rounded-[32px]', 'bg-[#0D193B]', 'px-4 py-8 sm:px-6 md:p-14 lg:px-16 lg:py-16', 'text-white')}
+          className={cn('relative', 'min-h-[220px] md:min-h-[420px]', 'flex items-center', 'overflow-hidden', 'rounded-[24px] md:rounded-[32px]', 'bg-[#0D193B]', 'px-4 py-6 sm:px-6 md:p-14 lg:px-16 lg:py-16', 'text-white')}
         >
           {/* CTA Pop Starburst behind mascot head */}
           <img

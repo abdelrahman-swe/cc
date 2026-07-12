@@ -15,7 +15,7 @@ type PillButtonProps = {
   className?: string
   onClick?: () => void
   arrowDirection?: 'left' | 'right' | 'up' | 'down' | 'up-left' | 'up-right'
-  size?: 'sm' | 'md'
+  size?: 'sm' | 'md' | 'responsive'
   circleClassName?: string
 }
 
@@ -26,7 +26,7 @@ export function PillButton({
   className = '',
   onClick,
   arrowDirection,
-  size = 'md',
+  size = 'responsive',
   circleClassName = ''
 }: PillButtonProps) {
   const locale = useLocale()
@@ -99,13 +99,28 @@ export function PillButton({
 
   const isHash = href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')
 
-  const isSm = size === 'sm'
+  let sizeClasses = ''
+  let circleSizeClass = ''
+  let iconSizeClass = ''
+
+  if (size === 'sm') {
+    sizeClasses = 'h-12 rounded-[50px] ps-4 pe-1.5 text-[16px] font-medium gap-2'
+    circleSizeClass = 'size-7'
+    iconSizeClass = 'size-3.5'
+  } else if (size === 'md') {
+    sizeClasses = 'h-14 rounded-[50px] ps-6 pe-2 text-[16px] font-semibold gap-4'
+    circleSizeClass = 'size-10'
+    iconSizeClass = 'size-5'
+  } else {
+    // responsive (default)
+    sizeClasses = 'h-12 lg:h-14 rounded-[50px] ps-4 pe-1.5 lg:ps-6 lg:pe-2 text-[16px] font-medium lg:font-semibold gap-2 lg:gap-4'
+    circleSizeClass = 'size-7 lg:size-10'
+    iconSizeClass = 'size-3.5 lg:size-5'
+  }
 
   const commonClass = cn(
     'cta-pill group inline-flex items-center justify-between transition duration-300 hover:-translate-y-0.5 whitespace-nowrap',
-    isSm
-      ? 'h-10 rounded-[50px] ps-4 pe-1.5 text-[13px] font-bold gap-2'
-      : 'h-14 rounded-[50px] ps-6 pe-2 text-[15px] font-bold gap-4',
+    sizeClasses,
     shadows[variant],
     styles[variant],
     className
@@ -117,16 +132,16 @@ export function PillButton({
       <span
         className={cn(
           'cta-icon-wrap relative grid shrink-0 place-items-center rounded-full',
-          isSm ? 'size-7' : 'size-10',
+          circleSizeClass,
           filteredBg,
           filteredText,
           circleClassName
         )}
         style={customStyle}
       >
-        <ArrowIcon aria-hidden className={cn('cta-icon-main', isSm ? 'size-3.5' : 'size-5')} />
+        <ArrowIcon aria-hidden className={cn('cta-icon-main', iconSizeClass)} />
         <span className="cta-icon-ghost">
-          <ArrowIcon aria-hidden className={isSm ? 'size-3.5' : 'size-5'} />
+          <ArrowIcon aria-hidden className={iconSizeClass} />
         </span>
       </span>
     </>
@@ -146,3 +161,5 @@ export function PillButton({
     </Link>
   )
 }
+
+
